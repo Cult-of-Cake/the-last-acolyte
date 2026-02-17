@@ -27,13 +27,13 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="TakinGodotTemplate"
-config/version="0.7.2"
+config/name="The Last Acolyte"
+config/version="26_08a"
 run/main_scene="res://root/scenes/scene/boot_splash_scene/boot_splash_scene.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://root/assets/image/boot_splash/png/boot_splash_2560_1440.png"
-config/icon="res://root/assets/image/boot_splash/png/icon_1024_1024.png"
+config/icon="uid://bhiujiixo2p02"
 
 [audio]
 

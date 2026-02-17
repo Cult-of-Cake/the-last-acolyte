@@ -1,4 +1,4 @@
-[gd_resource type="ParticleProcessMaterial" load_steps=6 format=3 uid="uid://djfj1oxf2lsrm"]
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://djfj1oxf2lsrm"]
 
 [sub_resource type="Curve" id="Curve_b55cx"]
 _data = [Vector2(0.0725076, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0]
@@ -7,7 +7,22 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_6e37s"]
 curve = SubResource("Curve_b55cx")
 
+[sub_resource type="Curve" id="Curve_7e8ho"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_25ja1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_he1xm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_v30b6"]
+curve_x = SubResource("Curve_7e8ho")
+curve_y = SubResource("Curve_25ja1")
+curve_z = SubResource("Curve_he1xm")
 
 [sub_resource type="Curve" id="Curve_h1l8l"]
 _limits = [-200.0, 200.0, 0.0, 1.0]

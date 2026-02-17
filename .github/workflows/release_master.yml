@@ -14,7 +14,7 @@ env:
 jobs:
   export-web:
     name: export (web) # & deploy to github pages
-    runs-on: ubuntu-24.10
+    runs-on: ubuntu-latest
     container:
       image: barichello/godot-ci:4.6
     steps:
@@ -49,7 +49,7 @@ jobs:
 
   export-windows:
     name: export (windows)
-    runs-on: ubuntu-24.10
+    runs-on: ubuntu-latest
     container:
       image: barichello/godot-ci:4.6
     steps:
@@ -78,7 +78,7 @@ jobs:
 
   export-linux:
     name: export (linux)
-    runs-on: ubuntu-24.10
+    runs-on: ubuntu-latest
     container:
       image: barichello/godot-ci:4.6
     steps:
@@ -104,7 +104,7 @@ jobs:
 
   #export-mac:
   #  name: export (mac)
-  #  runs-on: ubuntu-24.10
+  #  runs-on: ubuntu-latest
   #  container:
   #    image: barichello/godot-ci:4.6
   #  steps:
@@ -131,10 +131,10 @@ jobs:
   deploy-itch:
     name: deploy to itch.io
     needs: [export-web, export-windows] #, export-linux, export-mac]
-    runs-on: ubuntu-24.10
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        channel: ["web", "windows"] #, "linux", "mac"]
+        channel: ["web", "windows" , "linux"] #, "mac"]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4

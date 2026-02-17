@@ -146,7 +146,7 @@ jobs:
           path: archives/${{ matrix.channel }}
 
       - name: Deploy to Itch.io [${{ matrix.channel }}]
-        uses: manleydev/butler-publish-itchio-action@master
+        uses: XanatosX/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
           CHANNEL: ${{ matrix.channel }}

@@ -4,7 +4,7 @@ name: release-master
 on:
   push:
     branches:
-      - master
+      - main
 
 env:
   GODOT_VERSION: 4.6

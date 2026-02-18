@@ -4,6 +4,8 @@
 .import/
 *.tmp
 *.translation
+bin/
+godot/bin
 
 # Python
 venv/

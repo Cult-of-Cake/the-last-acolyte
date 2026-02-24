@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://br0mcjou8fgl7" path="res://root/assets/PLACEHOLDERS/Kenney/Roguelike Base Pack/Spritesheet/roguelikeSheet_transparent.png" id="1_xqe6v"]
 [ext_resource type="Texture2D" uid="uid://j7ma0mqgo4xb" path="res://root/assets/PLACEHOLDERS/Jo Concept/witch.png" id="2_2a87w"]
 [ext_resource type="Texture2D" uid="uid://bc0isyqt1irkr" path="res://root/assets/PLACEHOLDERS/tilemap-obstacles.png" id="3_pap3a"]
+[ext_resource type="Script" uid="uid://dj8urviixjcrq" path="res://root/scripts/movement/wasd_mover.gd" id="3_ruvug"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3p63o"]
 texture = ExtResource("1_xqe6v")
@@ -1685,6 +1686,8 @@ texture_region_size = Vector2i(17, 17)
 [sub_resource type="TileSet" id="TileSet_2a87w"]
 sources/0 = SubResource("TileSetAtlasSource_3p63o")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pap3a"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ruvug"]
 texture = ExtResource("3_pap3a")
 1:0/0 = 0
@@ -1705,10 +1708,28 @@ tile_set = SubResource("TileSet_2a87w")
 tile_map_data = PackedByteArray("AAAbABEAAAAQAAwAAAAbABcAAAAYABsAAAAcABEAAAAOAAwAAAAcABcAAAAZABsAAAAdABEAAAAOAAwAAAAdABcAAAAZABsAAAAeABEAAAAOAAwAAAAeABcAAAAZABsAAAAfABEAAAAOAAwAAAAfABcAAAAZABsAAAAgABEAAAAOAAwAAAAgABcAAAAZABsAAAAhABEAAAAOAAwAAAAhABcAAAAZABsAAAAiABEAAAATAA0AAAAiABcAAAAZABsAAAAjABEAAAAOAAwAAAAjABcAAAAZABsAAAAkABEAAAAOAAwAAAAkABcAAAAZABsAAAAlABEAAAAOAAwAAAAlABcAAAAZABsAAAAmABEAAAARAAwAAAAmABcAAAAaABsAAAAbABIAAAAPAA0AAAAbABMAAAAPAA0AAAAbABQAAAAPAA0AAAAbABUAAAAPAA0AAAAbABYAAAAQAA0AAAAcABIAAAASABcAAAAcABYAAAAOAAwAAAAdABIAAAASABcAAAAdABYAAAAOAAwAAAAeABIAAAASABcAAAAeABYAAAAOAAwAAAAfABIAAAASABcAAAAfABYAAAAOAAwAAAAgABIAAAASABcAAAAgABYAAAAOAAwAAAAhABIAAAASABcAAAAhABYAAAAOAAwAAAAiABIAAAAPAA0AAAAiABYAAAATAAwAAAAjABIAAAASABcAAAAjABYAAAAOAAwAAAAkABIAAAASABcAAAAkABYAAAAOAAwAAAAlABIAAAASABcAAAAlABYAAAAOAAwAAAAmABIAAAAPAA0AAAAmABMAAAAPAA0AAAAmABQAAAAPAA0AAAAmABUAAAAPAA0AAAAmABYAAAARAA0AAAAiABMAAAAPAA0AAAAiABQAAAAPAA0AAAAiABUAAAAPAA0AAAAMAA8AAAANAAoAAAAMABAAAAANAAsAAAAXABEAAAANAAoAAAAXABIAAAANAAsAAAA=")
 tile_set = SubResource("TileSet_2a87w")
 
-[node name="Witch" type="Sprite2D" parent="." unique_id=651314143]
-position = Vector2(478, 266)
+[node name="Witch" type="Node2D" parent="." unique_id=793330824]
+position = Vector2(360, 359)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Witch" unique_id=839600606]
+position = Vector2(3.0517578e-05, 3.0517578e-05)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="wasd_mover" type="Node" parent="Witch/CharacterBody2D" unique_id=413347082 node_paths=PackedStringArray("motion_obj")]
+script = ExtResource("3_ruvug")
+motion_obj = NodePath("..")
+metadata/_custom_type_script = "uid://dj8urviixjcrq"
+
+[node name="Sprite2D" type="Sprite2D" parent="Witch/CharacterBody2D" unique_id=651314143]
+position = Vector2(-3.0517578e-05, -3.0517578e-05)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_2a87w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Witch/CharacterBody2D" unique_id=526700114]
+shape = SubResource("CircleShape2D_pap3a")
+
+[node name="Camera2D" type="Camera2D" parent="Witch/CharacterBody2D" unique_id=2095272238]
+zoom = Vector2(1.5, 1.5)
 
 [node name="DUP BEHIND" type="TileMapLayer" parent="." unique_id=413187776]
 modulate = Color(1, 1, 1, 0.8666667)

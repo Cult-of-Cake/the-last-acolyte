@@ -11,9 +11,9 @@ var velocity : Vector2 :
 
 var posn : Vector2 :
 	get:
-		return motion_obj.position
+		return motion_obj.global_position
 	set (value):
-		motion_obj.position = value
+		motion_obj.global_position = value
 
 func move_and_slide() -> void:
 	motion_obj.move_and_slide()

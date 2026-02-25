@@ -3,7 +3,7 @@ class_name wanderer
 
 const SPEED = 10.0
 const NO_GOAL = Vector2(-.99, -.99)
-const DEBUG = true
+const DEBUG = false
 
 var _origin : Vector2
 var _goal : Vector2 = NO_GOAL

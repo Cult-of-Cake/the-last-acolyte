@@ -31,9 +31,9 @@ func _input(event: InputEvent) -> void:
 #region Actions
 
 func on_interact_pressed() -> void:
+	var witch : Vector2 = %Player.get_posn()
 	var closest : NPC = null
 	for npc in talkables:
-		var witch : Vector2 = %Player.get_posn()
 		var dist : float = witch.distance_to(npc.get_posn())
 		if DEBUG: print("Checking NPC ", npc.name, ", distance is ", dist)
 		if dist < TALK_DISTANCE:

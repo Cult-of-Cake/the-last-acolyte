@@ -1,10 +1,5 @@
-extends Control
+extends ActionListenerBase
 class_name HubActionListener
-
-@export var search_node : Node2D
-
-const DEBUG = true
-var actions : Dictionary[String, Callable] = {}
 
 func _ready() -> void:
 	# Prepare listeners
@@ -14,12 +9,6 @@ func _ready() -> void:
 
 	# OTher setup
 	talkables_setup()
-
-func _input(event: InputEvent) -> void:
-	for idx in actions:
-		if event.is_action_pressed(idx):
-			if DEBUG: print("Matched input! ", event)
-			actions[idx].call()
 
 #region Actions
 

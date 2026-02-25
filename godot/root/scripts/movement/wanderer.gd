@@ -3,7 +3,7 @@ class_name wanderer
 
 const SPEED = 10.0
 const NO_GOAL = Vector2(-.99, -.99)
-const DEBUG = false
+const DEBUG = true
 
 var _origin : Vector2
 var _goal : Vector2 = NO_GOAL
@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	
 	# A radical shift in heading means we bypassed or nearly bypassed our goal
 	var _curr_heading : float = posn.angle_to_point(_goal)
-	if DEBUG: print(_curr_heading, " originally ", _heading, " -> ", abs(_curr_heading - _heading))
+	#if DEBUG: print(_curr_heading, " originally ", _heading, " -> ", abs(_curr_heading - _heading))
 	if abs(_curr_heading - _heading) > 0.1:
 		# Wait a moment, then find a new goal!
 		begin_waiting()
@@ -48,6 +48,13 @@ func get_new_goal() -> void:
 	_goal = _origin + Vector2(randf_range(-leash.x, leash.x), randf_range(-leash.y, leash.y))
 	_heading = posn.angle_to_point(_goal)
 	
-	if DEBUG: print("Done waiting. Goal position is now ", _goal)
+	if DEBUG:
+		print("Done waiting. Goal position is now ", _goal)
+		queue_redraw()
 	_waiting = false
 	
+func _draw() -> void:
+	if DEBUG:
+		var rect : Rect2 = Rect2(_origin - leash, leash * 2)
+		draw_rect(rect, Color.BISQUE, false)
+		draw_circle(_goal, 1, Color.BISQUE, false)

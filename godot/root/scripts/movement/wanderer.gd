@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 	if _waiting: return
 	
 	# A radical shift in heading means we bypassed or nearly bypassed our goal
-	var _curr_heading = posn.angle_to_point(_goal)
+	var _curr_heading : float = posn.angle_to_point(_goal)
 	if DEBUG: print(_curr_heading, " originally ", _heading, " -> ", abs(_curr_heading - _heading))
 	if abs(_curr_heading - _heading) > 0.1:
 		# Wait a moment, then find a new goal!

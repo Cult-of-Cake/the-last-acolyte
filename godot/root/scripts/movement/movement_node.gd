@@ -1,7 +1,7 @@
 extends Node2D
 class_name movement_node
 
-@export var motion_obj : PhysicsBody2D
+@export var motion_obj : Node2D
 
 var velocity : Vector2 :
 	get:
@@ -15,5 +15,5 @@ var posn : Vector2 :
 	set (value):
 		motion_obj.position = value
 
-func move_and_slide():
+func move_and_slide() -> void:
 	motion_obj.move_and_slide()

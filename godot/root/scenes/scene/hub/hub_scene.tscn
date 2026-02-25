@@ -4,9 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://j7ma0mqgo4xb" path="res://root/assets/PLACEHOLDERS/Jo Concept/witch.png" id="2_2a87w"]
 [ext_resource type="Texture2D" uid="uid://bc0isyqt1irkr" path="res://root/assets/PLACEHOLDERS/tilemap-obstacles.png" id="3_pap3a"]
 [ext_resource type="Script" uid="uid://dj8urviixjcrq" path="res://root/scripts/movement/wasd_mover.gd" id="3_ruvug"]
+[ext_resource type="Script" uid="uid://cq44yfdomd0di" path="res://root/scripts/creatures/player/Player.gd" id="4_8j7gm"]
 [ext_resource type="Script" uid="uid://vscwnlyod4hn" path="res://root/scripts/movement/wanderer.gd" id="5_dnolg"]
 [ext_resource type="Script" uid="uid://w55tleix2ic2" path="res://root/scripts/movement/roof.gd" id="5_ruvug"]
+[ext_resource type="Script" uid="uid://cd7temqsi525n" path="res://root/scripts/creatures/pets/Pet.gd" id="6_4kech"]
 [ext_resource type="Texture2D" uid="uid://bpj5rw7vx38vr" path="res://root/assets/PLACEHOLDERS/Laura/ElectricWeaken128.png" id="6_v5l00"]
+[ext_resource type="Script" uid="uid://ggwtdut4tvf6" path="res://root/scripts/creatures/npcs/Talkable.gd" id="7_kl1gp"]
+[ext_resource type="Texture2D" uid="uid://bs5ywiwxj41op" path="res://root/assets/PLACEHOLDERS/Laura/FireDamage128.png" id="7_v5l00"]
+[ext_resource type="Script" uid="uid://ds64ihpkkswxj" path="res://root/scripts/ui/input_listeners/HubActionListener.gd" id="9_4h3xj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3p63o"]
 texture = ExtResource("1_xqe6v")
@@ -1710,13 +1715,13 @@ texture = ExtResource("3_pap3a")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ruvug")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3j8yk"]
+size = Vector2(161, 63)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_pap3a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4h3xj"]
 size = Vector2(47.500916, 21.427917)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3j8yk"]
-size = Vector2(161, 63)
 
 [node name="HubScene" type="Node2D" unique_id=31770513]
 y_sort_enabled = true
@@ -1749,74 +1754,6 @@ visible = false
 tile_map_data = PackedByteArray("AAAbABcAAAABAAAAAAAcABcAAAACAAAAAAAdABcAAAACAAAAAAAeABcAAAACAAAAAAAfABcAAAACAAAAAAAiABcAAAACAAAAAAAjABcAAAACAAAAAAAkABcAAAACAAAAAAAlABcAAAACAAAAAAAmABcAAAABAAAAAAAbABIAAAABAAAAAAAbABMAAAABAAAAAAAbABQAAAABAAAAAAAbABUAAAABAAAAAAAbABYAAAABAAAAAAAmABIAAAABAAAAAAAmABMAAAABAAAAAAAmABQAAAABAAAAAAAmABUAAAABAAAAAAAmABYAAAABAAAAAAAcABIAAAABAAAAAAAdABIAAAABAAAAAAAeABIAAAABAAAAAAAfABIAAAABAAAAAAAgABIAAAABAAAAAAAhABIAAAABAAAAAAAiABIAAAABAAAAAAAjABIAAAABAAAAAAAkABIAAAABAAAAAAAlABIAAAABAAAAAAAsABIAAAACAAEAAAAXABIAAAACAAEAAAA=")
 tile_set = SubResource("TileSet_3j8yk")
 
-[node name="Characters" type="Node2D" parent="." unique_id=1446159103]
-y_sort_enabled = true
-
-[node name="Witch" type="Node2D" parent="Characters" unique_id=793330824]
-y_sort_enabled = true
-position = Vector2(396, 316)
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Characters/Witch" unique_id=839600606]
-position = Vector2(3.0517578e-05, 3.0517578e-05)
-scale = Vector2(0.5, 0.5)
-collision_layer = 2
-collision_mask = 5
-
-[node name="WASD" type="Node2D" parent="Characters/Witch/CharacterBody2D" unique_id=967312868 node_paths=PackedStringArray("motion_obj")]
-script = ExtResource("3_ruvug")
-motion_obj = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/Witch/CharacterBody2D" unique_id=526700114]
-position = Vector2(0, -3.0517578e-05)
-scale = Vector2(0.79998034, 0.28000966)
-shape = SubResource("CircleShape2D_pap3a")
-
-[node name="MainSprite" type="Sprite2D" parent="Characters/Witch/CharacterBody2D" unique_id=651314143]
-position = Vector2(0.9999696, -20.000032)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_2a87w")
-offset = Vector2(0, 20)
-
-[node name="SemiTransparentSprite" type="Sprite2D" parent="Characters/Witch/CharacterBody2D" unique_id=872254424]
-modulate = Color(1, 1, 1, 0.13333334)
-z_index = 11
-z_as_relative = false
-position = Vector2(0.9999696, -20.000032)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_2a87w")
-offset = Vector2(0, 20)
-
-[node name="Camera2D" type="Camera2D" parent="Characters/Witch/CharacterBody2D" unique_id=2095272238]
-zoom = Vector2(4, 4)
-
-[node name="NPC" type="Node2D" parent="Characters" unique_id=1860690314]
-y_sort_enabled = true
-position = Vector2(339, 364)
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Characters/NPC" unique_id=1834892425]
-position = Vector2(-20, -30)
-scale = Vector2(0.5, 0.5)
-collision_layer = 2
-collision_mask = 5
-
-[node name="Wanderer" type="Node2D" parent="Characters/NPC/CharacterBody2D" unique_id=1466104435 node_paths=PackedStringArray("motion_obj")]
-script = ExtResource("5_dnolg")
-leash = Vector2(50, 20)
-motion_obj = NodePath("..")
-metadata/_custom_type_script = "uid://vscwnlyod4hn"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/NPC/CharacterBody2D" unique_id=8421387]
-position = Vector2(0, -6.1035156e-05)
-scale = Vector2(0.79998034, 0.28000966)
-shape = SubResource("RectangleShape2D_4h3xj")
-
-[node name="Sprite" type="Sprite2D" parent="Characters/NPC/CharacterBody2D" unique_id=301709631]
-y_sort_enabled = true
-position = Vector2(-10.000092, -59.00003)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("6_v5l00")
-offset = Vector2(0, 20)
-
 [node name="Roofs" type="Node2D" parent="." unique_id=511267253]
 
 [node name="Area2D" type="Area2D" parent="Roofs" unique_id=1721412860 node_paths=PackedStringArray("layer")]
@@ -1828,6 +1765,110 @@ layer = NodePath("../../Map/Roofs")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Roofs/Area2D" unique_id=75672301]
 position = Vector2(526.5, 335.5)
 shape = SubResource("RectangleShape2D_3j8yk")
+
+[node name="Characters" type="Node2D" parent="." unique_id=1446159103]
+y_sort_enabled = true
+
+[node name="Player" type="Node2D" parent="Characters" unique_id=1043778478]
+unique_name_in_owner = true
+position = Vector2(344, 265)
+script = ExtResource("4_8j7gm")
+metadata/_custom_type_script = "uid://cq44yfdomd0di"
+
+[node name="Witch" type="CharacterBody2D" parent="Characters/Player" unique_id=839600606]
+position = Vector2(3.0517578e-05, 3.0517578e-05)
+scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 5
+
+[node name="WASD" type="Node2D" parent="Characters/Player/Witch" unique_id=967312868 node_paths=PackedStringArray("motion_obj")]
+script = ExtResource("3_ruvug")
+motion_obj = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/Player/Witch" unique_id=526700114]
+position = Vector2(0, -3.0517578e-05)
+scale = Vector2(0.79998034, 0.28000966)
+shape = SubResource("CircleShape2D_pap3a")
+
+[node name="MainSprite" type="Sprite2D" parent="Characters/Player/Witch" unique_id=651314143]
+position = Vector2(0.9999696, -20.000032)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_2a87w")
+offset = Vector2(0, 20)
+
+[node name="SemiTransparentSprite" type="Sprite2D" parent="Characters/Player/Witch" unique_id=872254424]
+modulate = Color(1, 1, 1, 0.13333334)
+z_index = 11
+z_as_relative = false
+position = Vector2(0.9999696, -20.000032)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_2a87w")
+offset = Vector2(0, 20)
+
+[node name="Camera2D" type="Camera2D" parent="Characters/Player/Witch" unique_id=2095272238]
+zoom = Vector2(4, 4)
+
+[node name="NPCs" type="Node2D" parent="Characters" unique_id=1148343576]
+y_sort_enabled = true
+
+[node name="Giraffe" type="Node2D" parent="Characters/NPCs" unique_id=1556979453]
+y_sort_enabled = true
+position = Vector2(325, 337)
+script = ExtResource("6_4kech")
+
+[node name="Talkable" type="Node2D" parent="Characters/NPCs/Giraffe" unique_id=213575488]
+script = ExtResource("7_kl1gp")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Characters/NPCs/Giraffe" unique_id=1834892425]
+position = Vector2(1, 0)
+scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 5
+
+[node name="Wanderer" type="Node2D" parent="Characters/NPCs/Giraffe/CharacterBody2D" unique_id=1466104435 node_paths=PackedStringArray("motion_obj")]
+script = ExtResource("5_dnolg")
+leash = Vector2(50, 20)
+motion_obj = NodePath("..")
+metadata/_custom_type_script = "uid://vscwnlyod4hn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/NPCs/Giraffe/CharacterBody2D" unique_id=8421387]
+position = Vector2(0, -6.1035156e-05)
+scale = Vector2(0.79998034, 0.28000966)
+shape = SubResource("RectangleShape2D_4h3xj")
+
+[node name="Sprite" type="Sprite2D" parent="Characters/NPCs/Giraffe/CharacterBody2D" unique_id=301709631]
+y_sort_enabled = true
+position = Vector2(-10.000092, -59.00003)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("6_v5l00")
+offset = Vector2(0, 20)
+
+[node name="Bernie" type="Node2D" parent="Characters/NPCs" unique_id=1778374660]
+position = Vector2(518, 305)
+script = ExtResource("6_4kech")
+
+[node name="Talkable" type="Node2D" parent="Characters/NPCs/Bernie" unique_id=339809802]
+script = ExtResource("7_kl1gp")
+
+[node name="Sprite" type="Sprite2D" parent="Characters/NPCs/Bernie" unique_id=780915453]
+y_sort_enabled = true
+position = Vector2(-1, -11)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_v5l00")
+
+[node name="UI" type="Control" parent="." unique_id=1335209483]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HubActionListener" type="Control" parent="UI" unique_id=1949965769 node_paths=PackedStringArray("search_node")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_4h3xj")
+search_node = NodePath("../../Characters/NPCs")
+metadata/_custom_type_script = "uid://ds64ihpkkswxj"
 
 [connection signal="visibility_changed" from="Map/Walk-Behinds" to="Map/Walk-Behinds" method="_on_visibility_changed"]
 [connection signal="body_entered" from="Roofs/Area2D" to="Roofs/Area2D" method="_on_body_entered"]

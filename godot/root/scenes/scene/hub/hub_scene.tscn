@@ -1794,14 +1794,14 @@ y_sort_enabled = true
 position = Vector2(339, 364)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Characters/NPC" unique_id=1834892425]
-position = Vector2(3.0517578e-05, 3.0517578e-05)
+position = Vector2(-20, -30)
 scale = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 5
 
 [node name="Wanderer" type="Node2D" parent="Characters/NPC/CharacterBody2D" unique_id=1466104435 node_paths=PackedStringArray("motion_obj")]
 script = ExtResource("5_dnolg")
-leash = Vector2(100, 20)
+leash = Vector2(50, 20)
 motion_obj = NodePath("..")
 metadata/_custom_type_script = "uid://vscwnlyod4hn"
 

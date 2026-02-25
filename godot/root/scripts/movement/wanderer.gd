@@ -34,10 +34,7 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	# Main motion
-	var direction = _goal - posn
-	#velocity = lerp(direction, direction * SPEED, ACCEL * delta)
-	posn = Vector2(move_toward(posn.x, _goal.x, SPEED * delta), move_toward(posn.y, _goal.y, SPEED * delta))
-	
+	posn = posn.move_toward(_goal, SPEED * delta)
 	move_and_slide()
 
 func begin_waiting() -> void:

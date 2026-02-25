@@ -1,5 +1,5 @@
-extends movement_node
-class_name wanderer
+extends MovementNode
+class_name Wanderer
 
 const SPEED = 10.0
 const NO_GOAL = Vector2(-.99, -.99)

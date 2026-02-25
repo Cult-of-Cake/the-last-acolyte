@@ -4,7 +4,7 @@ class_name Creature
 const DEBUG : bool = false
 
 func get_posn() -> Vector2:
-	var motion_obj : movement_node = Lib.Objects.find_child_of_type(self, movement_node, true)
+	var motion_obj : MovementNode = Lib.Objects.find_child_of_type(self, MovementNode, true)
 	var posn : Vector2
 	#if DEBUG: print (name, " motion obj: ", motion_obj)
 	if motion_obj == null:

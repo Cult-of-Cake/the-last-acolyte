@@ -1,5 +1,6 @@
+@icon("uid://dgc05lcforj3r")
 extends Node2D
-class_name movement_node
+class_name MovementNode
 
 @export var motion_obj : Node2D
 

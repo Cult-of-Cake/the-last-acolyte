@@ -1,5 +1,5 @@
-extends movement_node
-class_name wasd_mover
+extends MovementNode
+class_name PlayerControlled
 
 const SPEED = 150.0
 const HIGHSPEED = 300.0

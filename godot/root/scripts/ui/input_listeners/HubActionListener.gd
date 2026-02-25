@@ -7,7 +7,7 @@ const DEBUG = true
 var actions : Dictionary[String, Callable] = {}
 
 # Talkables
-const TALK_DISTANCE : int = 100
+const TALK_DISTANCE : int = 50
 var talkables : Array[NPC] = []
 
 func _ready() -> void:
@@ -41,7 +41,9 @@ func on_interact_pressed() -> void:
 				if DEBUG: print("Setting ", npc.name, " as closest")
 				closest = npc
 	# Found it!
-	if closest != null:
+	if closest == null:
+			if DEBUG: print("Nobody nearby")
+	else:
 		var talk_node : Talkable = Lib.Objects.find_child_of_type(closest, Talkable)
 		if talk_node == null:
 			push_error("Talkable NPC went missing after being added to talkables array")

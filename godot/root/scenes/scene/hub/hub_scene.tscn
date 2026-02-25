@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://j7ma0mqgo4xb" path="res://root/assets/PLACEHOLDERS/Jo Concept/witch.png" id="2_2a87w"]
 [ext_resource type="Texture2D" uid="uid://bc0isyqt1irkr" path="res://root/assets/PLACEHOLDERS/tilemap-obstacles.png" id="3_pap3a"]
 [ext_resource type="Script" uid="uid://dj8urviixjcrq" path="res://root/scripts/movement/wasd_mover.gd" id="3_ruvug"]
+[ext_resource type="Script" uid="uid://vscwnlyod4hn" path="res://root/scripts/movement/wanderer.gd" id="5_dnolg"]
 [ext_resource type="Script" uid="uid://w55tleix2ic2" path="res://root/scripts/movement/roof.gd" id="5_ruvug"]
+[ext_resource type="Texture2D" uid="uid://bpj5rw7vx38vr" path="res://root/assets/PLACEHOLDERS/Laura/ElectricWeaken128.png" id="6_v5l00"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3p63o"]
 texture = ExtResource("1_xqe6v")
@@ -581,9 +583,13 @@ texture_region_size = Vector2i(17, 17)
 11:10/0 = 0
 12:10/0 = 0
 13:10/0 = 0
+13:10/0/y_sort_origin = 19
 14:10/0 = 0
+14:10/0/y_sort_origin = 16
 15:10/0 = 0
+15:10/0/y_sort_origin = 16
 16:10/0 = 0
+16:10/0/y_sort_origin = 16
 17:10/0 = 0
 18:10/0 = 0
 19:10/0 = 0
@@ -637,6 +643,7 @@ texture_region_size = Vector2i(17, 17)
 11:11/0 = 0
 12:11/0 = 0
 13:11/0 = 0
+13:11/0/y_sort_origin = 3
 14:11/0 = 0
 15:11/0 = 0
 16:11/0 = 0
@@ -1705,6 +1712,9 @@ sources/0 = SubResource("TileSetAtlasSource_ruvug")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pap3a"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4h3xj"]
+size = Vector2(47.500916, 21.427917)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3j8yk"]
 size = Vector2(161, 63)
 
@@ -1719,6 +1729,7 @@ tile_map_data = PackedByteArray("AAABABkAAAAFAAAAAAABABoAAAAFAAAAAAABABsAAAAFAAA
 tile_set = SubResource("TileSet_2a87w")
 
 [node name="Walk-Behinds" type="TileMapLayer" parent="Map" unique_id=581142554]
+y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAbABcAAAAYABsAAAAcABEAAAAOAAwAAAAcABcAAAAZABsAAAAdABEAAAAOAAwAAAAdABcAAAAZABsAAAAeABEAAAAOAAwAAAAeABcAAAAZABsAAAAfABEAAAAOAAwAAAAfABcAAAAZABsAAAAgABEAAAAOAAwAAAAgABcAAAAZABsAAAAhABEAAAAOAAwAAAAhABcAAAAZABsAAAAiABEAAAATAA0AAAAiABcAAAAZABsAAAAjABEAAAAOAAwAAAAjABcAAAAZABsAAAAkABEAAAAOAAwAAAAkABcAAAAZABsAAAAlABEAAAAOAAwAAAAlABcAAAAZABsAAAAmABEAAAARAAwAAAAmABcAAAAaABsAAAAbABIAAAAPAA0AAAAbABMAAAAPAA0AAAAbABQAAAAPAA0AAAAbABUAAAAPAA0AAAAbABYAAAAQAA0AAAAcABIAAAASABcAAAAcABYAAAAOAAwAAAAdABIAAAASABcAAAAdABYAAAAOAAwAAAAeABIAAAASABcAAAAeABYAAAAOAAwAAAAfABIAAAASABcAAAAfABYAAAAOAAwAAAAgABIAAAASABcAAAAgABYAAAAOAAwAAAAhABIAAAASABcAAAAhABYAAAAOAAwAAAAiABIAAAAPAA0AAAAiABYAAAATAAwAAAAjABIAAAASABcAAAAjABYAAAAOAAwAAAAkABIAAAASABcAAAAkABYAAAAOAAwAAAAlABIAAAASABcAAAAlABYAAAAOAAwAAAAmABIAAAAPAA0AAAAmABMAAAAPAA0AAAAmABQAAAAPAA0AAAAmABUAAAAPAA0AAAAmABYAAAARAA0AAAAiABMAAAAPAA0AAAAiABQAAAAPAA0AAAAiABUAAAAPAA0AAAAMAA8AAAANAAoAAAAMABAAAAANAAsAAAAXABEAAAANAAoAAAAXABIAAAANAAsAAAAbABEAAAAQAAwAAAA=")
 tile_set = SubResource("TileSet_2a87w")
 
@@ -1743,15 +1754,15 @@ y_sort_enabled = true
 
 [node name="Witch" type="Node2D" parent="Characters" unique_id=793330824]
 y_sort_enabled = true
-position = Vector2(503, 257)
+position = Vector2(396, 316)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Characters/Witch" unique_id=839600606]
 position = Vector2(3.0517578e-05, 3.0517578e-05)
-scale = Vector2(0.99999994, 0.99999994)
+scale = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 5
 
-[node name="wasd_mover" type="Node2D" parent="Characters/Witch/CharacterBody2D" unique_id=967312868 node_paths=PackedStringArray("motion_obj")]
+[node name="WASD" type="Node2D" parent="Characters/Witch/CharacterBody2D" unique_id=967312868 node_paths=PackedStringArray("motion_obj")]
 script = ExtResource("3_ruvug")
 motion_obj = NodePath("..")
 
@@ -1769,13 +1780,42 @@ offset = Vector2(0, 20)
 [node name="SemiTransparentSprite" type="Sprite2D" parent="Characters/Witch/CharacterBody2D" unique_id=872254424]
 modulate = Color(1, 1, 1, 0.13333334)
 z_index = 11
+z_as_relative = false
 position = Vector2(0.9999696, -20.000032)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_2a87w")
 offset = Vector2(0, 20)
 
 [node name="Camera2D" type="Camera2D" parent="Characters/Witch/CharacterBody2D" unique_id=2095272238]
-zoom = Vector2(2, 2)
+zoom = Vector2(4, 4)
+
+[node name="NPC" type="Node2D" parent="Characters" unique_id=1860690314]
+y_sort_enabled = true
+position = Vector2(339, 364)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Characters/NPC" unique_id=1834892425]
+position = Vector2(3.0517578e-05, 3.0517578e-05)
+scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 5
+
+[node name="Wanderer" type="Node2D" parent="Characters/NPC/CharacterBody2D" unique_id=1466104435 node_paths=PackedStringArray("motion_obj")]
+script = ExtResource("5_dnolg")
+leash = Vector2(100, 20)
+motion_obj = NodePath("..")
+metadata/_custom_type_script = "uid://vscwnlyod4hn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/NPC/CharacterBody2D" unique_id=8421387]
+position = Vector2(0, -6.1035156e-05)
+scale = Vector2(0.79998034, 0.28000966)
+shape = SubResource("RectangleShape2D_4h3xj")
+
+[node name="Sprite" type="Sprite2D" parent="Characters/NPC/CharacterBody2D" unique_id=301709631]
+y_sort_enabled = true
+position = Vector2(-10.000092, -59.00003)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("6_v5l00")
+offset = Vector2(0, 20)
 
 [node name="Roofs" type="Node2D" parent="." unique_id=511267253]
 

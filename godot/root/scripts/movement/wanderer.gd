@@ -1,0 +1,53 @@
+extends movement_node
+class_name wanderer
+
+const SPEED = 5.0
+const ACCEL = 0.1
+const NO_GOAL = Vector2(-.99, -.99)
+const DEBUG = false
+
+var _origin : Vector2
+var _goal : Vector2 = NO_GOAL
+var _waiting : bool = false
+var _heading : float			# Used to determine if we've reached our goal - ie if our heading has radically changed
+var delay : Timer
+
+@export var leash : Vector2 = Vector2(100, 100)
+
+func _ready() -> void:
+	_origin = posn
+	
+	# And set up a Timer.  We use this to pause after every movement.
+	delay = Timer.new()
+	delay.timeout.connect(get_new_goal)
+	add_child(delay)
+	delay.start()
+
+func _physics_process(delta: float) -> void:
+	if _waiting: return
+	
+	# A radical shift in heading means we bypassed or nearly bypassed our goal
+	var _curr_heading = posn.angle_to_point(_goal)
+	if DEBUG: print(_curr_heading, " originally ", _heading, " -> ", abs(_curr_heading - _heading))
+	if abs(_curr_heading - _heading) > 0.1:
+		# Wait a moment, then find a new goal!
+		if DEBUG: print ("Waiting")
+		_waiting = true
+		delay.wait_time = randf_range(1, 7)
+		delay.start()
+		return
+	
+	# Main motion
+	var direction = _goal - posn
+	velocity = lerp(direction, direction * SPEED, ACCEL * delta)
+	
+	move_and_slide()
+
+func get_new_goal() -> void:
+	delay.stop()
+	_goal = _origin + Vector2(randf_range(-leash.x, leash.x), randf_range(-leash.y, leash.y))
+	_heading = posn.angle_to_point(_goal)
+	
+	if DEBUG: print("Done waiting. Goal position is now ", _goal)
+	_waiting = false
+	

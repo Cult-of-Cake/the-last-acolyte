@@ -17,4 +17,4 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = lerp(velocity, direction * HIGHSPEED, ACCEL * delta)
 	
-	motion_obj.move_and_slide()
+	move_and_slide()

@@ -8,3 +8,12 @@ var velocity : Vector2 :
 		return motion_obj.velocity
 	set (value):
 		motion_obj.velocity = value
+
+var posn : Vector2 :
+	get:
+		return motion_obj.position
+	set (value):
+		motion_obj.position = value
+
+func move_and_slide():
+	motion_obj.move_and_slide()

@@ -63,6 +63,7 @@ Overlay="*res://root/autoload/overlay/overlay.tscn"
 Configuration="*res://root/autoload/configuration/configuration.tscn"
 ResourceReference="*res://root/autoload/reference/resource_reference/resource_reference.tscn"
 Vars="*uid://daml4h8crvxek"
+DialogueManager="*uid://c3rodes2l3gxb"
 
 [debug]
 

@@ -1,8 +1,7 @@
 extends movement_node
 class_name wanderer
 
-const SPEED = 5.0
-const ACCEL = 0.1
+const SPEED = 10.0
 const NO_GOAL = Vector2(-.99, -.99)
 const DEBUG = false
 
@@ -31,18 +30,22 @@ func _physics_process(delta: float) -> void:
 	if DEBUG: print(_curr_heading, " originally ", _heading, " -> ", abs(_curr_heading - _heading))
 	if abs(_curr_heading - _heading) > 0.1:
 		# Wait a moment, then find a new goal!
-		if DEBUG: print ("Waiting")
-		_waiting = true
-		delay.wait_time = randf_range(1, 7)
-		delay.start()
+		begin_waiting()
 		return
 	
 	# Main motion
 	var direction = _goal - posn
-	velocity = lerp(direction, direction * SPEED, ACCEL * delta)
+	#velocity = lerp(direction, direction * SPEED, ACCEL * delta)
+	posn = Vector2(move_toward(posn.x, _goal.x, SPEED * delta), move_toward(posn.y, _goal.y, SPEED * delta))
 	
 	move_and_slide()
 
+func begin_waiting() -> void:
+		if DEBUG: print ("Waiting")
+		_waiting = true
+		delay.wait_time = randf_range(1, 7)
+		delay.start()
+	
 func get_new_goal() -> void:
 	delay.stop()
 	_goal = _origin + Vector2(randf_range(-leash.x, leash.x), randf_range(-leash.y, leash.y))

@@ -6,21 +6,14 @@ class_name HubActionListener
 const DEBUG = true
 var actions : Dictionary[String, Callable] = {}
 
-# Talkables
-const TALK_DISTANCE : int = 50
-var talkables : Array[NPC] = []
-
 func _ready() -> void:
 	# Prepare listeners
-	# Technically we could just do a big 'ol switch in _input, but this lets us do things like output when any input is in the dictionary
+	# Technically we could just do a big 'ol switch in _input, but this lets us do things like
+	# output when any input is in the dictionary
 	actions["hub_interact"] = on_interact_pressed
-	
+
 	# OTher setup
-	for node in search_node.get_children():
-		if typeof(node) == typeof(Pet):
-			if Lib.Objects.has_child_of_type(node, Talkable):
-				if DEBUG: print("Found ", node.name)
-				talkables.append(node)
+	talkables_setup()
 
 func _input(event: InputEvent) -> void:
 	for idx in actions:
@@ -50,5 +43,19 @@ func on_interact_pressed() -> void:
 		else:
 			talk_node.talk()
 
+
+#endregion
+
+#region Talkables
+
+const TALK_DISTANCE : int = 50
+var talkables : Array[NPC] = []
+
+func talkables_setup() -> void:
+	for node in search_node.get_children():
+		if typeof(node) == typeof(Pet):
+			if Lib.Objects.has_child_of_type(node, Talkable):
+				if DEBUG: print("Found ", node.name)
+				talkables.append(node)
 
 #endregion

@@ -3,7 +3,6 @@ class_name Wanderer
 
 const SPEED = 10.0
 const NO_GOAL = Vector2(-.99, -.99)
-const DEBUG = false
 
 var _origin : Vector2
 var _goal : Vector2 = NO_GOAL
@@ -40,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func begin_waiting() -> void:
-		if DEBUG: print ("Waiting")
+		Lib.debug(log_stream, ["Waiting"])
 		_waiting = true
 		delay.wait_time = randf_range(1, 7)
 		delay.start()
@@ -50,13 +49,12 @@ func get_new_goal() -> void:
 	_goal = _origin + Vector2(randf_range(-leash.x, leash.x), randf_range(-leash.y, leash.y))
 	_heading = posn.angle_to_point(_goal)
 
-	if DEBUG:
-		print("Done waiting. Goal position is now ", _goal)
-		queue_redraw()
+	Lib.debug(log_stream, ["Done waiting. Goal position is now ", _goal])
+	queue_redraw()
 	_waiting = false
 
 func _draw() -> void:
-	if DEBUG:
+	if Lib.is_debugging(log_stream):
 		var rect : Rect2 = Rect2(to_local(_origin) - leash, leash * 2)
 		draw_rect(rect, Color.BISQUE, false)
 		draw_circle(to_local(_goal), 1, Color.BISQUE, false)

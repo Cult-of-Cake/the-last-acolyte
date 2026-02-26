@@ -4,6 +4,8 @@ class_name MovementNode
 
 @export var motion_obj : Node2D
 
+static var log_stream : Lib.LOG = Lib.LOG.MOVEMENT
+
 var velocity : Vector2 :
 	get:
 		return motion_obj.velocity

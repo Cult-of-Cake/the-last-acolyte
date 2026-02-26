@@ -13,18 +13,19 @@ func _ready() -> void:
 #region Actions
 
 func on_interact_pressed() -> void:
+
 	var witch : Vector2 = %Player.get_posn()
 	var closest : NPC = null
 	for npc in talkables:
 		var dist : float = witch.distance_to(npc.get_posn())
-		if DEBUG: print("Checking NPC ", npc.name, ", distance is ", dist)
+		Lib.debug(log_stream, ["Checking NPC ", npc.name, ", distance is ", dist])
 		if dist < TALK_DISTANCE:
 			if closest == null or dist < witch.distance_to(closest.get_posn()):
-				if DEBUG: print("Setting ", npc.name, " as closest")
+				Lib.debug(log_stream, ["Setting ", npc.name, " as closest"])
 				closest = npc
 	# Found it!
 	if closest == null:
-			if DEBUG: print("Nobody nearby")
+		Lib.debug(log_stream, ["Nobody nearby"])
 	else:
 		var talk_node : Talkable = Lib.Objects.find_child_of_type(closest, Talkable)
 		if talk_node == null:
@@ -44,7 +45,7 @@ func talkables_setup() -> void:
 	for node in search_node.get_children():
 		if typeof(node) == typeof(Pet):
 			if Lib.Objects.has_child_of_type(node, Talkable):
-				if DEBUG: print("Found ", node.name)
+				Lib.debug(log_stream, ["Found ", node.name])
 				talkables.append(node)
 
 #endregion

@@ -1,8 +1,6 @@
 extends Node2D
 class_name Creature
 
-const DEBUG : bool = false
-
 func get_posn() -> Vector2:
 	var motion_obj : MovementNode = Lib.Objects.find_child_of_type(self, MovementNode, true)
 	var posn : Vector2
@@ -20,4 +18,5 @@ func debug_colour() -> Color:
 func _draw() -> void:
 	# Draw functions need to be converted to local
 	# But the general advice is to otherwise always use global
-	if DEBUG: draw_circle(to_local(get_posn()), 5, debug_colour(), true)
+	if Lib.is_debugging(MovementNode.log_stream):
+		draw_circle(to_local(get_posn()), 5, debug_colour(), true)

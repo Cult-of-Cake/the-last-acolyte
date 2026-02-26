@@ -1,11 +1,11 @@
 ~ start
-Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-Nathan: Here are some choices.
-- First one
-	Nathan: You picked the first one.
-- Second one
-	Nathan: You picked the second one.
-- Start again => start
-- End the conversation => END
-Nathan: For more information see the online documentation.
+Giraffe: [[Hey There Ho There!|Eyyy!|Wazzap!]] I'm a fuckin' Giraffe!
+Giraffe: Don't be indecisive, pick somethin'!
+- Your neck long
+	Giraffe: Your neck short. What's it to ya!?
+- Feet pics?
+	Giraffe: Not for free, goon face.
+- Repeat that? => start
+- Leave me be! => END
+Giraffe: Alright then, go away!
 => END

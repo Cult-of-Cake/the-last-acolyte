@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://d3uqrlyf2k04v"]
+
+[ext_resource type="Texture2D" uid="uid://7h3jyvqqsr8d" path="res://Images/sprite_beast_dustfluffy_1.png" id="1_jc8o2"]
+[ext_resource type="Script" uid="uid://rv6tn3cdon2b" path="res://dummy_sprite.gd" id="1_qxu86"]
+[ext_resource type="Texture2D" uid="uid://c5y5xrekspur1" path="res://Images/sprite_beast_dustfluffy_2.png" id="2_qxu86"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogfdl"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("1_jc8o2")
+}, {
+"duration": 3.0,
+"texture": ExtResource("2_qxu86")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="DummySprite" type="PathFollow2D" unique_id=1250167057]
+progress = 50.0
+rotates = false
+loop = false
+script = ExtResource("1_qxu86")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=249716396]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_ogfdl")
+autoplay = "default"
+frame_progress = 0.7440687

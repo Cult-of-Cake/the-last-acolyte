@@ -38,7 +38,7 @@ const DEFAULT_LEVEL : Log.LogLevel = Log.LogLevel.INFO
 
 # These can be left alone.  The first is auto-filled and the second is what fills it
 static var streams : Array = []
-static var log : LogByStream = LogByStream.new()
+static var throwaway : LogByStream = LogByStream.new()
 
 # Log by stream - also accept arrays for easy concatenation
 static func debug(stream : LOG, messages:Array, values:Variant=null) -> void:

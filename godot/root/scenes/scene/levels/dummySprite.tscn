@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d3uqrlyf2k04v"]
 
 [ext_resource type="Texture2D" uid="uid://7h3jyvqqsr8d" path="res://Images/sprite_beast_dustfluffy_1.png" id="1_jc8o2"]
-[ext_resource type="Script" uid="uid://rv6tn3cdon2b" path="res://dummy_sprite.gd" id="1_qxu86"]
+[ext_resource type="Script" uid="uid://rv6tn3cdon2b" path="res://root/scripts/levels/dummy_sprite.gd" id="1_qxu86"]
 [ext_resource type="Texture2D" uid="uid://c5y5xrekspur1" path="res://Images/sprite_beast_dustfluffy_2.png" id="2_qxu86"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ogfdl"]

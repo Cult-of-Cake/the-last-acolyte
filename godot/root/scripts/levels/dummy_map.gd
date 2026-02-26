@@ -15,6 +15,6 @@ func _process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	var newguy = load("res://dummySprite.tscn").instantiate()
+	var newguy = load("res://root/scenes/scene/levels/dummySprite.tscn").instantiate()
 	var the_path = get_node("thePath")
 	the_path.add_child(newguy)

@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://cb541bsl7dfsu"]
 
-[ext_resource type="Script" uid="uid://bi7olhbpff4dy" path="res://dummy_map.gd" id="1_hl7yk"]
-[ext_resource type="PackedScene" uid="uid://c6faqnn12ba5a" path="res://simple_tiles.tscn" id="1_o3jlj"]
-[ext_resource type="Script" uid="uid://dj3bf5ojea3v4" path="res://start_point.gd" id="2_a2kly"]
+[ext_resource type="Script" uid="uid://bi7olhbpff4dy" path="res://root/scripts/levels/dummy_map.gd" id="1_hl7yk"]
+[ext_resource type="PackedScene" uid="uid://c6faqnn12ba5a" path="res://root/scenes/scene/levels/simple_tiles.tscn" id="1_o3jlj"]
+[ext_resource type="Script" uid="uid://dj3bf5ojea3v4" path="res://root/scripts/levels/start_point.gd" id="2_a2kly"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hl7yk"]
 radius = 5.0

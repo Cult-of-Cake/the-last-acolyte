@@ -52,7 +52,7 @@ func _set_current_scene() -> void:
 	var scene_file_path: String = get_tree().current_scene.scene_file_path
 	_current_scene = _get_scene_key_by_value(scene_file_path)
 
-#	assert (!(_current_scene == "" and !_current_scene_is_ignored(scene_file_path)), "Scene Manager Error: loaded scene is not defined in scene manager tool, to fix this, on Scene Manager UI panel, just once click on refresh and then save buttons respectively.")
+	assert (!(_current_scene == "" and !_current_scene_is_ignored(scene_file_path)), "Scene Manager Error: loaded scene is not defined in scene manager tool, to fix this, on Scene Manager UI panel, just once click on refresh and then save buttons respectively.")
 	if _current_scene == "":
 		push_warning("loaded scene is ignored by scene manager, it means that you can not go back to this scene by 'back' key word.")
 

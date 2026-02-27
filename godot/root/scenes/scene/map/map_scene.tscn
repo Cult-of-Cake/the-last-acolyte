@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://ndr23t86j562" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/star.png" id="23_51rvv"]
 [ext_resource type="Texture2D" uid="uid://cnu2drc0vxjnv" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Electric.png" id="25_4tljn"]
 [ext_resource type="Script" uid="uid://dbv6i81a2gr8l" path="res://root/scripts/map/Stars.gd" id="25_s04ac"]
+[ext_resource type="Script" uid="uid://dmwdfktvhed56" path="res://root/scripts/ui/resource_loaders/SpriteLoader.gd" id="26_2l5px"]
 [ext_resource type="Texture2D" uid="uid://0tkhxkxv03hl" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Air.png" id="26_g2pj0"]
 
 [node name="MapScene" type="Node2D" unique_id=919757401]
@@ -219,6 +220,7 @@ texture = ExtResource("18_wibl7")
 position = Vector2(531, 548)
 
 [node name="Camera2D" type="Camera2D" parent="Camera" unique_id=1335254968]
+metadata/_edit_lock_ = true
 
 [node name="PlayerControlled" type="Node2D" parent="Camera" unique_id=1941566140 node_paths=PackedStringArray("motion_obj")]
 script = ExtResource("2_c1cav")
@@ -226,6 +228,7 @@ speed = 500.0
 highspeed = 500.0
 motion_obj = NodePath("..")
 metadata/_custom_type_script = "uid://dj8urviixjcrq"
+metadata/_edit_lock_ = true
 
 [node name="Levels" type="Node2D" parent="." unique_id=826873381]
 
@@ -290,54 +293,75 @@ texture = ExtResource("22_s04ac")
 
 [node name="Level Template" type="Node2D" parent="Levels" unique_id=1692360330]
 
-[node name="LevelButton" type="Sprite2D" parent="Levels/Level Template" unique_id=1032043087 node_paths=PackedStringArray("level_name", "diff_text", "stars_obj")]
+[node name="LevelButton" type="Sprite2D" parent="Levels/Level Template" unique_id=1032043087 node_paths=PackedStringArray("level_name", "diff_text", "stars_obj", "element_1", "element_2")]
 position = Vector2(625, 760)
 script = ExtResource("20_m6phn")
 level_name = NodePath("NameLabel")
 diff_text = NodePath("DifficultyLabel")
 stars_obj = NodePath("Stars")
+element_1 = NodePath("Element1/SpriteLoader")
+element_2 = NodePath("Element2/SpriteLoader")
 
 [node name="Marker" type="Sprite2D" parent="Levels/Level Template/LevelButton" unique_id=1976659327]
 modulate = Color(0.5137255, 0.61960787, 1, 1)
 position = Vector2(0, 5)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("20_wibl7")
 
 [node name="Difficulty Back" type="Sprite2D" parent="Levels/Level Template/LevelButton" unique_id=1332181908]
 modulate = Color(0.8369335, 0.048093006, 2.8878452e-07, 1)
-position = Vector2(29, -10)
+position = Vector2(29, -16)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("21_m6phn")
 
-[node name="Difficulty Back2" type="Sprite2D" parent="Levels/Level Template/LevelButton" unique_id=528511114]
+[node name="Elements Back" type="Sprite2D" parent="Levels/Level Template/LevelButton" unique_id=528511114]
 modulate = Color(0.2784314, 0.047058824, 0.5294118, 1)
-position = Vector2(-29, -10)
+position = Vector2(-29, -16)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("21_m6phn")
 
 [node name="Element1" type="Sprite2D" parent="Levels/Level Template/LevelButton" unique_id=443533414]
 modulate = Color(0.8352941, 1, 0, 1)
-position = Vector2(-36, -10)
+position = Vector2(-36, -16)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("25_4tljn")
 
+[node name="SpriteLoader" type="Node2D" parent="Levels/Level Template/LevelButton/Element1" unique_id=2101103581 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-2356, -2976)
+scale = Vector2(4, 4)
+script = ExtResource("26_2l5px")
+colour = Color(1, 1, 1, 1)
+filename = "Electric"
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dmwdfktvhed56"
+
 [node name="Element2" type="Sprite2D" parent="Levels/Level Template/LevelButton" unique_id=492675907]
 modulate = Color(0.89492244, 0.89492244, 0.8949224, 1)
-position = Vector2(-25, -10)
+position = Vector2(-25, -16)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("26_g2pj0")
 
+[node name="SpriteLoader" type="Node2D" parent="Levels/Level Template/LevelButton/Element2" unique_id=316510439 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-2356, -2976)
+scale = Vector2(4, 4)
+script = ExtResource("26_2l5px")
+colour = Color(1, 1, 1, 1)
+filename = "Electric"
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dmwdfktvhed56"
+
 [node name="DifficultyLabel" type="Label" parent="Levels/Level Template/LevelButton" unique_id=2034600120]
 offset_left = 10.0
-offset_top = -28.0
+offset_top = -34.0
 offset_right = 50.0
-offset_bottom = 6.0
 text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Stars" type="Node2D" parent="Levels/Level Template/LevelButton" unique_id=317895512]
+[node name="Stars" type="Node2D" parent="Levels/Level Template/LevelButton" unique_id=317895512 node_paths=PackedStringArray("earned_images")]
 position = Vector2(0, 5)
 script = ExtResource("25_s04ac")
+earned_images = [NodePath("Star 1 Earned"), NodePath("Star 2 Earned"), NodePath("Star 3 Earned")]
 metadata/_custom_type_script = "uid://dbv6i81a2gr8l"
 
 [node name="Star 1 Back" type="Sprite2D" parent="Levels/Level Template/LevelButton/Stars" unique_id=1028420080]
@@ -381,15 +405,15 @@ texture = ExtResource("23_51rvv")
 
 [node name="NameLabel" type="Label" parent="Levels/Level Template/LevelButton" unique_id=230024203]
 offset_left = -75.0
-offset_top = -49.0
+offset_top = -13.0
 offset_right = 75.0
-offset_bottom = -15.0
+offset_bottom = 21.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.46666667)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 text = "Level Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PointerH" type="Sprite2D" parent="." unique_id=1924055320]
-position = Vector2(861, 408)
+[node name="PointerH" type="Sprite2D" parent="Levels/Level Template/LevelButton" unique_id=1924055320]
+position = Vector2(66, 27)
 texture = ExtResource("20_u02rk")

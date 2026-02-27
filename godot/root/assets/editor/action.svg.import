@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbq8h48mfm06g"
-path="res://.godot/imported/talk.svg-bb5833c67d0dd397fc8756a7685fc1f9.ctex"
+uid="uid://c16bu5hjrnhj7"
+path="res://.godot/imported/action.svg-4b22a678027d9992c7b43c694b7b1311.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://root/assets/editor/talk.svg"
-dest_files=["res://.godot/imported/talk.svg-bb5833c67d0dd397fc8756a7685fc1f9.ctex"]
+source_file="res://root/assets/editor/action.svg"
+dest_files=["res://.godot/imported/action.svg-4b22a678027d9992c7b43c694b7b1311.ctex"]
 
 [params]
 

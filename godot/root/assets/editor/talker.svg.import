@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgc05lcforj3r"
-path="res://.godot/imported/footprint.svg-9cec6745c876c4918c86423403fce20e.ctex"
+uid="uid://bbq8h48mfm06g"
+path="res://.godot/imported/talker.svg-cbc35b358883c4b5fdef70fc91a9c48f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://root/assets/editor/footprint.svg"
-dest_files=["res://.godot/imported/footprint.svg-9cec6745c876c4918c86423403fce20e.ctex"]
+source_file="res://root/assets/editor/talker.svg"
+dest_files=["res://.godot/imported/talker.svg-cbc35b358883c4b5fdef70fc91a9c48f.ctex"]
 
 [params]
 

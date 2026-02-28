@@ -293,14 +293,13 @@ texture = ExtResource("22_s04ac")
 
 [node name="Level Template" type="Node2D" parent="Levels" unique_id=1692360330]
 
-[node name="LevelButton" type="Sprite2D" parent="Levels/Level Template" unique_id=1032043087 node_paths=PackedStringArray("level_name", "diff_text", "stars_obj", "element_1", "element_2")]
+[node name="LevelButton" type="Sprite2D" parent="Levels/Level Template" unique_id=1032043087 node_paths=PackedStringArray("level_name", "diff_text", "stars_obj", "element_objs")]
 position = Vector2(625, 760)
 script = ExtResource("20_m6phn")
 level_name = NodePath("NameLabel")
 diff_text = NodePath("DifficultyLabel")
 stars_obj = NodePath("Stars")
-element_1 = NodePath("Element1/SpriteLoader")
-element_2 = NodePath("Element2/SpriteLoader")
+element_objs = [NodePath("Element1/SpriteLoader"), NodePath("Element2/SpriteLoader")]
 
 [node name="Marker" type="Sprite2D" parent="Levels/Level Template/LevelButton" unique_id=1976659327]
 modulate = Color(0.5137255, 0.61960787, 1, 1)
@@ -331,7 +330,6 @@ position = Vector2(-2356, -2976)
 scale = Vector2(4, 4)
 script = ExtResource("26_2l5px")
 colour = Color(1, 1, 1, 1)
-filename = "Electric"
 loading_node = NodePath("..")
 metadata/_custom_type_script = "uid://dmwdfktvhed56"
 
@@ -346,7 +344,6 @@ position = Vector2(-2356, -2976)
 scale = Vector2(4, 4)
 script = ExtResource("26_2l5px")
 colour = Color(1, 1, 1, 1)
-filename = "Electric"
 loading_node = NodePath("..")
 metadata/_custom_type_script = "uid://dmwdfktvhed56"
 

@@ -20,52 +20,6 @@ class Objects:
 
 #endregion
 
-#region File / Asset Loading
-static func get_image(folder : String, file : String = "", ext : String = "") -> Image:
-	var fname : String = folder + file + ext
-	# This file read stuff isn't necessary to actually read the image, however it seems useful for error handling
-	var f : FileAccess = FileAccess.open(fname, FileAccess.READ)
-	if f == null:
-		print ("Error reading image file %s: %s" % [fname, FileAccess.get_open_error()])
-	f.close()
-	return Image.load_from_file(fname)
-static func get_texture(folder : String, file : String = "", ext : String = "") -> Texture:
-# https://godotengine.org/qa/30210/how-do-load-resource-works
-	var img : Image = get_image(folder, file, ext)
-	var tex : Texture = ImageTexture.create_from_image(img)
-	return tex
-static func get_font(folder : String, file : String = "", ext : String = "") -> FontFile:
-	var fname : String = folder + file + ext
-	var font : FontFile# = FontFile.new()
-	# Report error
-	var f : FileAccess = FileAccess.open(fname, FileAccess.READ)
-	if f == null:
-		print ("Error reading font file %s: %s" % [fname, FileAccess.get_open_error()])
-	else:
-		font = load(fname)
-	return font
-static func verify_audio(folder : String, file : String = "", ext : String = "") -> bool:
-# https://github.com/godotengine/godot/issues/17748
-	var fname : String = get_audio(folder, file, ext)
-	var stream : AudioStream
-	if ext == ".ogg":
-		stream = AudioStreamOggVorbis.new()
-	else:
-		stream = AudioStreamWAV.new()
-		stream.format = stream.FORMAT_16_BITS
-		stream.mix_rate = 48000
-		var afile : FileAccess = FileAccess.open(fname, FileAccess.READ)
-		if afile == null:
-			return false
-		else:
-			stream = load(fname)
-			afile.close()
-	return true
-static func get_audio(folder : String, file : String = "", ext : String = "") -> String:
-	return folder + file + ext
-
-#endregion
-
 #region Strings
 static func join(messages:Array) -> String:
 	return "".join(messages)

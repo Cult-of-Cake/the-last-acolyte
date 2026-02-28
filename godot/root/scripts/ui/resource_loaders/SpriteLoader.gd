@@ -1,4 +1,3 @@
-@icon("uid://b0ujitsmcmrbu")
 extends ResourceLoaderBase
 class_name SpriteLoader
 
@@ -6,13 +5,11 @@ class_name SpriteLoader
 
 func _ready() -> void:
 	Lib.enable_debug(Lib.LOG.ASSETS)
-	_asset_extension = ".png"
-	_asset_directory_relative = "PLACEHOLDERS/Laura/Elements/"
-	update_object()
 
-func set_icon(fname : String, c : Color) -> void:
+func set_icon(img : CompressedTexture2D, c : Color) -> void:
+	file = img
 	colour = c
-	set_file(fname)
+	update_object()
 
 func update_object() -> void:
 	super()

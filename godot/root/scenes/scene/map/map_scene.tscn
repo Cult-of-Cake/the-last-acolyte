@@ -19,16 +19,12 @@
 [ext_resource type="Texture2D" uid="uid://cx7bfss0dpylh" path="res://root/assets/PLACEHOLDERS/Kenney/Scribble Dungeons/PNG 64/track.png" id="16_rius8"]
 [ext_resource type="Texture2D" uid="uid://dfemtpujtr365" path="res://root/assets/PLACEHOLDERS/Kenney/Scribble Dungeons/PNG 64/track_cart.png" id="17_xklo6"]
 [ext_resource type="Texture2D" uid="uid://1kp35m1po8eq" path="res://root/assets/PLACEHOLDERS/Kenney/Scribble Dungeons/PNG 64/plants.png" id="18_wibl7"]
-[ext_resource type="Script" uid="uid://c4n3qxcuvwsi3" path="res://root/scripts/map/LevelButton.gd" id="20_m6phn"]
-[ext_resource type="Texture2D" uid="uid://c6pmwh24ovib5" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/Cursor Pack/pointer_h.png" id="20_u02rk"]
 [ext_resource type="Texture2D" uid="uid://nxl7bitkgxlp" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/button_round_depth_gradient.png" id="20_wibl7"]
 [ext_resource type="Texture2D" uid="uid://dlq82lkpm3bbh" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/button_round_line.png" id="21_m6phn"]
 [ext_resource type="Texture2D" uid="uid://dijle4vdaatak" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/star_outline_depth.png" id="22_s04ac"]
 [ext_resource type="Texture2D" uid="uid://ndr23t86j562" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/star.png" id="23_51rvv"]
-[ext_resource type="Texture2D" uid="uid://cnu2drc0vxjnv" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Electric.png" id="25_4tljn"]
-[ext_resource type="Script" uid="uid://dbv6i81a2gr8l" path="res://root/scripts/map/Stars.gd" id="25_s04ac"]
-[ext_resource type="Script" uid="uid://dmwdfktvhed56" path="res://root/scripts/ui/resource_loaders/SpriteLoader.gd" id="26_2l5px"]
-[ext_resource type="Texture2D" uid="uid://0tkhxkxv03hl" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Air.png" id="26_g2pj0"]
+[ext_resource type="Script" uid="uid://b85ac4cpjkl8l" path="res://root/scripts/map/LevelManager.gd" id="24_m6phn"]
+[ext_resource type="PackedScene" uid="uid://ci262pusysvfq" path="res://root/scenes/scene/map/map_level.tscn" id="24_wibl7"]
 
 [node name="MapScene" type="Node2D" unique_id=919757401]
 
@@ -291,126 +287,9 @@ texture = ExtResource("22_s04ac")
 layout_mode = 2
 texture = ExtResource("22_s04ac")
 
-[node name="Level Template" type="Node2D" parent="Levels" unique_id=1692360330]
+[node name="Level Manager" type="Node2D" parent="Levels" unique_id=508355781]
+script = ExtResource("24_m6phn")
+metadata/_custom_type_script = "uid://b85ac4cpjkl8l"
 
-[node name="LevelButton" type="Sprite2D" parent="Levels/Level Template" unique_id=1032043087 node_paths=PackedStringArray("level_name", "diff_text", "stars_obj", "element_objs")]
+[node name="Map Level" parent="Levels/Level Manager" unique_id=41818855 instance=ExtResource("24_wibl7")]
 position = Vector2(625, 760)
-script = ExtResource("20_m6phn")
-level_name = NodePath("NameLabel")
-diff_text = NodePath("DifficultyLabel")
-stars_obj = NodePath("Stars")
-element_objs = [NodePath("Element1/SpriteLoader"), NodePath("Element2/SpriteLoader")]
-
-[node name="Marker" type="Sprite2D" parent="Levels/Level Template/LevelButton" unique_id=1976659327]
-modulate = Color(0.5137255, 0.61960787, 1, 1)
-position = Vector2(0, 5)
-scale = Vector2(1.2, 1.2)
-texture = ExtResource("20_wibl7")
-
-[node name="Difficulty Back" type="Sprite2D" parent="Levels/Level Template/LevelButton" unique_id=1332181908]
-modulate = Color(0.8369335, 0.048093006, 2.8878452e-07, 1)
-position = Vector2(29, -16)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("21_m6phn")
-
-[node name="Elements Back" type="Sprite2D" parent="Levels/Level Template/LevelButton" unique_id=528511114]
-modulate = Color(0.2784314, 0.047058824, 0.5294118, 1)
-position = Vector2(-29, -16)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("21_m6phn")
-
-[node name="Element1" type="Sprite2D" parent="Levels/Level Template/LevelButton" unique_id=443533414]
-modulate = Color(0.8352941, 1, 0, 1)
-position = Vector2(-36, -16)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("25_4tljn")
-
-[node name="SpriteLoader" type="Node2D" parent="Levels/Level Template/LevelButton/Element1" unique_id=2101103581 node_paths=PackedStringArray("loading_node")]
-position = Vector2(-2356, -2976)
-scale = Vector2(4, 4)
-script = ExtResource("26_2l5px")
-colour = Color(1, 1, 1, 1)
-loading_node = NodePath("..")
-metadata/_custom_type_script = "uid://dmwdfktvhed56"
-
-[node name="Element2" type="Sprite2D" parent="Levels/Level Template/LevelButton" unique_id=492675907]
-modulate = Color(0.89492244, 0.89492244, 0.8949224, 1)
-position = Vector2(-25, -16)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("26_g2pj0")
-
-[node name="SpriteLoader" type="Node2D" parent="Levels/Level Template/LevelButton/Element2" unique_id=316510439 node_paths=PackedStringArray("loading_node")]
-position = Vector2(-2356, -2976)
-scale = Vector2(4, 4)
-script = ExtResource("26_2l5px")
-colour = Color(1, 1, 1, 1)
-loading_node = NodePath("..")
-metadata/_custom_type_script = "uid://dmwdfktvhed56"
-
-[node name="DifficultyLabel" type="Label" parent="Levels/Level Template/LevelButton" unique_id=2034600120]
-offset_left = 10.0
-offset_top = -34.0
-offset_right = 50.0
-text = "3"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Stars" type="Node2D" parent="Levels/Level Template/LevelButton" unique_id=317895512 node_paths=PackedStringArray("earned_images")]
-position = Vector2(0, 5)
-script = ExtResource("25_s04ac")
-earned_images = [NodePath("Star 1 Earned"), NodePath("Star 2 Earned"), NodePath("Star 3 Earned")]
-metadata/_custom_type_script = "uid://dbv6i81a2gr8l"
-
-[node name="Star 1 Back" type="Sprite2D" parent="Levels/Level Template/LevelButton/Stars" unique_id=1028420080]
-modulate = Color(1, 0.9764706, 0.7529412, 1)
-position = Vector2(-25, 22)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("22_s04ac")
-
-[node name="Star 1 Earned" type="Sprite2D" parent="Levels/Level Template/LevelButton/Stars" unique_id=1120067608]
-visible = false
-modulate = Color(1, 0.8862745, 0, 1)
-position = Vector2(-25, 22)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("23_51rvv")
-
-[node name="Star 2 Empty" type="Sprite2D" parent="Levels/Level Template/LevelButton/Stars" unique_id=54825953]
-modulate = Color(1, 0.9764706, 0.7529412, 1)
-position = Vector2(0, 30)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("22_s04ac")
-
-[node name="Star 2 Earned" type="Sprite2D" parent="Levels/Level Template/LevelButton/Stars" unique_id=2125441745]
-visible = false
-modulate = Color(1, 0.8862745, 0, 1)
-position = Vector2(0, 30)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("23_51rvv")
-
-[node name="Star 3 Empty" type="Sprite2D" parent="Levels/Level Template/LevelButton/Stars" unique_id=2009623279]
-modulate = Color(1, 0.9764706, 0.7529412, 1)
-position = Vector2(25, 20)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("22_s04ac")
-
-[node name="Star 3 Earned" type="Sprite2D" parent="Levels/Level Template/LevelButton/Stars" unique_id=1472363355]
-visible = false
-modulate = Color(1, 0.8862745, 0, 1)
-position = Vector2(25, 20)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("23_51rvv")
-
-[node name="NameLabel" type="Label" parent="Levels/Level Template/LevelButton" unique_id=230024203]
-offset_left = -75.0
-offset_top = -13.0
-offset_right = 75.0
-offset_bottom = 21.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.46666667)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-text = "Level Name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PointerH" type="Sprite2D" parent="Levels/Level Template/LevelButton" unique_id=1924055320]
-position = Vector2(66, 27)
-texture = ExtResource("20_u02rk")

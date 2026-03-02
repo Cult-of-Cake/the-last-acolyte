@@ -1,5 +1,5 @@
 extends Sprite2D
-class_name LevelButton
+class_name MapLevel
 
 @export var level_name : Label
 @export var diff_text : Label

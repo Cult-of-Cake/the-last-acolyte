@@ -65,6 +65,7 @@ var _save_files_metadatas: Array[Dictionary] = []
 ## Children hold data of currently selected save file.
 @onready var meta: MetaSaveData = %MetaSaveData
 @onready var game: GameSaveData = %GameSaveData
+@onready var map: MapSaveData = %MapSaveData
 
 @onready var autosave_timer: Timer = %AutosaveTimer
 

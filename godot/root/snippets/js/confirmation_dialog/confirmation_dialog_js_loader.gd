@@ -7,7 +7,7 @@ extends Object
 
 const NAME: String = "ConfirmationDialogJsLoader"
 
-const ROOT_PATH: String = PathConsts.RES + "/snippets/js/"
+const ROOT_PATH: String = Vars.Paths.RES + "/snippets/js/"
 const FILE_PATH: String = ROOT_PATH + "confirmation_dialog/confirmation_dialog.js"
 
 const OUTPUT_CONTAINER: String = "window.textAreaResult"

@@ -11,7 +11,7 @@ extends Object
 const NAME: String = "ConfigStorage"
 
 const CONFIG_FILE_NAME: String = "config"
-const CONFIG_FILE_PATH: String = PathConsts.USER + CONFIG_FILE_NAME + ".cfg"
+const CONFIG_FILE_PATH: String = Vars.Paths.USER + CONFIG_FILE_NAME + ".cfg"
 
 static var config_file: ConfigFile = null
 

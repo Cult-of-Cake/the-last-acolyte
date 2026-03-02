@@ -11,7 +11,7 @@ extends Node
 
 const NAME: String = "Reference"
 
-const PRELOAD_PATH = PathConsts.RESOURCES + "preload/"
+const PRELOAD_PATH = Vars.Paths.RESOURCES + "preload/"
 const RESOURCE_EXTENSION = ".tres"
 
 var _resource_references_map: Dictionary[String, Resource] = {}

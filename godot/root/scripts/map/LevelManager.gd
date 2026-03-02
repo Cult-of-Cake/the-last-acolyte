@@ -1,6 +1,8 @@
 extends Node2D
 class_name LevelManager
 
+@onready var map : MapSaveData = Data.map
+
 enum LEVEL_ID { DUMMY }
 var level_list : Dictionary[LEVEL_ID, LevelData]
 const log_stream : Lib.LOG = Lib.LOG.SAVE_SYSTEM
@@ -9,11 +11,12 @@ func _ready() -> void:
 	Lib.enable_debug(log_stream)
 	init_level_array()
 	Data.select_save_file(0)
+	Data.load_save_file()
 	
 	var dummy : LevelData = level_list[LEVEL_ID.DUMMY]
-	Lib.debug(log_stream, ["Dummy level has ", dummy.stars_earned, " stars"])
-	dummy.stars_earned = 3
-	Lib.debug(log_stream, ["Dummy level has ", dummy.stars_earned, " stars"])
+	Lib.debug(log_stream, ["Dummy level has ", dummy.stars_earned, " stars, and test=", str(dummy.test)])
+	dummy.stars_earned = 2
+	Lib.debug(log_stream, ["Dummy level has ", dummy.stars_earned, " stars, and test=", str(dummy.test)])
 	Data.save_save_file()
 
 #region Level Init
@@ -38,11 +41,16 @@ class LevelData:
 		name = n
 		difficulty = diff
 		elements = elems
+		Lib.debug(log_stream, ["Initialized ", ID])
 	
 	# Changeable data.  These save and load to file.
 	var stars_earned : int:
 		get:
 			return Data.map.get_stars(ID)
 		set (val):
+			Data.map.test = val
 			Data.map.set_stars(ID, val)
+	var test : int:
+		get:
+			return Data.map.test
 	

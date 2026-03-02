@@ -57,24 +57,16 @@ func get_as_dict() -> Dictionary:
 func set_from_dict(dict: Dictionary, index: int = -1) -> void:
 	clear(index)
 	for var_name: String in dict:
-		Lib.debug(LevelManager.log_stream, ["Found var ", var_name, "=", dict[var_name]])
 		if var_name in self:
-			#if var_val.begins_with("{"):
+			# Dictionaries cannot be updated with self.set,
+			# which means they cannot be set with a string property.
+			# If you need dictionaries, your SaveData class must implement a loading function!
 			if dict[var_name] is Dictionary:
-				Lib.debug(LevelManager.log_stream, ["Is dictionary"])
-				var var_dict : Dictionary = dict[var_name] #MarshallsUtils.string_to_dict(var_val)
-				if var_dict.has("DUMMY"):
-					Lib.debug(LevelManager.log_stream, ["Found DUMMY, it's ", var_dict["DUMMY"]])
-				
-				#if self.has_method("set_stars"):
-					#Lib.debug(LevelManager.log_stream, ["CALLING"])
-					#self.call("set_stars", LevelManager.LEVEL_ID.DUMMY, 4)
-				if self.has_method("load_stars_earned"):
-					Lib.debug(LevelManager.log_stream, ["CALLING"])
-					self.call("load_stars_earned", var_dict)
+				var loading_function : String = "load_" + var_name
+				if self.has_method(loading_function):
+					self.call(loading_function, dict[var_name])
 			else:
 				self.set(var_name, dict[var_name])
-			Lib.debug(LevelManager.log_stream, ["Set ", var_name, " to ", dict[var_name]])
 
 
 ## return true if variable is not private (no underscore prefix) and is a plain script variable

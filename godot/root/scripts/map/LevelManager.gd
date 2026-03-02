@@ -14,9 +14,9 @@ func _ready() -> void:
 	Data.load_save_file()
 	
 	var dummy : LevelData = level_list[LEVEL_ID.DUMMY]
-	Lib.debug(log_stream, ["Dummy level has ", dummy.stars_earned, " stars, and test=", str(dummy.test)])
-	dummy.stars_earned = 2
-	Lib.debug(log_stream, ["Dummy level has ", dummy.stars_earned, " stars, and test=", str(dummy.test)])
+	Lib.debug(log_stream, ["Dummy level has ", dummy.stars_earned, " stars"])
+	dummy.stars_earned = 10
+	Lib.debug(log_stream, ["Dummy level has ", dummy.stars_earned, " stars"])
 	Data.save_save_file()
 
 #region Level Init
@@ -48,9 +48,5 @@ class LevelData:
 		get:
 			return Data.map.get_stars(ID)
 		set (val):
-			Data.map.test = val
 			Data.map.set_stars(ID, val)
-	var test : int:
-		get:
-			return Data.map.test
 	

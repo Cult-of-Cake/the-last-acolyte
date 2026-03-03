@@ -5,9 +5,11 @@ extends Node2D
 func _ready() -> void:
 	NavigationServer2D.map_changed.connect(_on_map_changed)
 
+
 func _on_map_changed(map):
 	print("map changed")
 	%StartPoint.calculate_path()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -15,6 +17,7 @@ func _process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	var newguy = load("res://root/scenes/scene/levels/dummySprite.tscn").instantiate()
+	var newguy = load("res://root/scenes/scene/levels/BasicEnemy.tscn").instantiate()
+	newguy.position = %StartPoint.position
 	var the_path = get_node("thePath")
 	the_path.add_child(newguy)

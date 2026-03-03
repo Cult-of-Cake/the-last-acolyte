@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ci262pusysvfq"]
 
-[ext_resource type="Script" uid="uid://c4n3qxcuvwsi3" path="res://root/scripts/map/MapLevel.gd" id="1_imtmw"]
+[ext_resource type="Script" uid="uid://c4n3qxcuvwsi3" path="res://root/scripts/map/MapButton.gd" id="1_imtmw"]
 [ext_resource type="Texture2D" uid="uid://nxl7bitkgxlp" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/button_round_depth_gradient.png" id="2_mi08v"]
 [ext_resource type="Texture2D" uid="uid://dlq82lkpm3bbh" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/button_round_line.png" id="3_rr02w"]
 [ext_resource type="Script" uid="uid://dmwdfktvhed56" path="res://root/scripts/ui/resource_loaders/SpriteLoader.gd" id="5_7wfh1"]

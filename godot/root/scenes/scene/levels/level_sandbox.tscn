@@ -5,8 +5,7 @@
 [ext_resource type="Script" uid="uid://dj3bf5ojea3v4" path="res://root/scripts/levels/start_point.gd" id="3_ljtiv"]
 [ext_resource type="Texture2D" uid="uid://dk7212tikruu" path="res://root/assets/PLACEHOLDERS/Kenney/Tower Defense Pack/towerDefense_tilesheet.png" id="4_vkfsa"]
 [ext_resource type="Script" uid="uid://dj8urviixjcrq" path="res://root/scripts/movement/PlayerControlled.gd" id="5_ljtiv"]
-[ext_resource type="Script" uid="uid://b687eokolvv5w" path="res://root/scripts/levels/SpeedRegion.gd" id="5_x8y2r"]
-[ext_resource type="Texture2D" uid="uid://ck2p7gofrbljt" path="res://root/assets/PLACEHOLDERS/Kenney/Tower Defense Pack/speed_up.png" id="6_7kndc"]
+[ext_resource type="PackedScene" uid="uid://ddgrxhf85hpd2" path="res://root/scenes/scene/levels/speed_region.tscn" id="5_x8y2r"]
 [ext_resource type="Texture2D" uid="uid://k6qa1yai6psc" path="res://root/assets/PLACEHOLDERS/Kenney/Tower Defense Pack/slow_down.png" id="7_7kndc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hl7yk"]
@@ -4611,12 +4610,6 @@ physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_2spvm")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7kndc"]
-size = Vector2(2304, 100)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mlcvb"]
-size = Vector2(100, 100)
-
 [node name="Level" type="Node2D" unique_id=955376474]
 script = ExtResource("1_hm0rt")
 
@@ -4662,59 +4655,26 @@ tile_set = SubResource("TileSet_xvigy")
 [node name="Regions" type="Node2D" parent="Map" unique_id=740813731]
 modulate = Color(1, 1, 1, 0.8)
 
-[node name="Speed x5" type="Node2D" parent="Map/Regions" unique_id=1639239591]
-position = Vector2(1405, 130)
+[node name="Speed x5" parent="Map/Regions" unique_id=1639239591 instance=ExtResource("5_x8y2r")]
 
-[node name="Size Container" type="MarginContainer" parent="Map/Regions/Speed x5" unique_id=405178400]
-offset_right = 2304.0
-offset_bottom = 640.0
+[node name="Size Container" parent="Map/Regions/Speed x5" index="0" unique_id=405178400]
+offset_left = 1405.0
+offset_top = 130.0
+offset_right = 3709.0
+offset_bottom = 770.0
 
-[node name="Texture" type="TextureRect" parent="Map/Regions/Speed x5/Size Container" unique_id=1626696431]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("6_7kndc")
-expand_mode = 1
-stretch_mode = 1
+[node name="Slow x2" parent="Map/Regions" unique_id=1764027524 instance=ExtResource("5_x8y2r")]
 
-[node name="Area2D" type="Area2D" parent="Map/Regions/Speed x5/Size Container" unique_id=1194159692 node_paths=PackedStringArray("collider", "match_area")]
-script = ExtResource("5_x8y2r")
-speed_multiplier = 5.0
-collision_shape = SubResource("RectangleShape2D_7kndc")
-collider = NodePath("CollisionShape2D")
-match_area = NodePath("..")
-metadata/_custom_type_script = "uid://b687eokolvv5w"
+[node name="Size Container" parent="Map/Regions/Slow x2" index="0" unique_id=405178400]
+offset_top = 1664.0
+offset_right = 1408.0
+offset_bottom = 2304.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Regions/Speed x5/Size Container/Area2D" unique_id=824694689]
-debug_color = Color(0.8392157, 0.12156863, 0.88235295, 0.6627451)
-
-[node name="Slow x4" type="Node2D" parent="Map/Regions" unique_id=1674720513]
-position = Vector2(1405, 130)
-
-[node name="Size Container" type="MarginContainer" parent="Map/Regions/Slow x4" unique_id=2019043773]
-offset_left = -1405.0
-offset_top = 1521.0
-offset_right = 3.0
-offset_bottom = 2161.0
-
-[node name="Texture" type="TextureRect" parent="Map/Regions/Slow x4/Size Container" unique_id=1914212438]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="Texture" parent="Map/Regions/Slow x2/Size Container" index="0" unique_id=1626696431]
 texture = ExtResource("7_7kndc")
-expand_mode = 1
-stretch_mode = 1
 
-[node name="Area2D" type="Area2D" parent="Map/Regions/Slow x4/Size Container" unique_id=744858198 node_paths=PackedStringArray("collider", "match_area")]
-script = ExtResource("5_x8y2r")
-speed_multiplier = 0.25
-collision_shape = SubResource("RectangleShape2D_mlcvb")
-collider = NodePath("CollisionShape2D")
-match_area = NodePath("..")
-metadata/_custom_type_script = "uid://b687eokolvv5w"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Regions/Slow x4/Size Container/Area2D" unique_id=219673463]
-debug_color = Color(0.8392157, 0.12156863, 0.88235295, 0.6627451)
+[node name="Area2D" parent="Map/Regions/Slow x2/Size Container" index="1" unique_id=1194159692]
+speed_multiplier = 0.5
 
 [node name="Towers & Growth" parent="Map" unique_id=41410746 instance=ExtResource("2_vkfsa")]
 scale = Vector2(2, 2)
@@ -4741,7 +4701,6 @@ motion_obj = NodePath("..")
 metadata/_custom_type_script = "uid://dj8urviixjcrq"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="Map/Regions/Speed x5/Size Container/Area2D" to="Map/Regions/Speed x5/Size Container/Area2D" method="_on_body_entered"]
-[connection signal="body_exited" from="Map/Regions/Speed x5/Size Container/Area2D" to="Map/Regions/Speed x5/Size Container/Area2D" method="_on_body_exited"]
-[connection signal="body_entered" from="Map/Regions/Slow x4/Size Container/Area2D" to="Map/Regions/Slow x4/Size Container/Area2D" method="_on_body_entered"]
-[connection signal="body_exited" from="Map/Regions/Slow x4/Size Container/Area2D" to="Map/Regions/Slow x4/Size Container/Area2D" method="_on_body_exited"]
+
+[editable path="Map/Regions/Speed x5"]
+[editable path="Map/Regions/Slow x2"]

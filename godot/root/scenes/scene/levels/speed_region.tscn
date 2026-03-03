@@ -3,9 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://ck2p7gofrbljt" path="res://root/assets/PLACEHOLDERS/Kenney/Tower Defense Pack/speed_up.png" id="1_x1var"]
 [ext_resource type="Script" uid="uid://b687eokolvv5w" path="res://root/scripts/levels/SpeedRegion.gd" id="2_heu40"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1var"]
-size = Vector2(100, 100)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x8y2r"]
 size = Vector2(100, 100)
 
@@ -23,10 +20,10 @@ texture = ExtResource("1_x1var")
 expand_mode = 1
 stretch_mode = 1
 
-[node name="Area2D" type="Area2D" parent="Size Container" unique_id=1194159692 node_paths=PackedStringArray("match_area")]
+[node name="Area2D" type="Area2D" parent="Size Container" unique_id=1194159692 node_paths=PackedStringArray("collider", "match_area")]
 script = ExtResource("2_heu40")
 speed_multiplier = 5.0
-collision_shape = SubResource("RectangleShape2D_x1var")
+collider = NodePath("CollisionShape2D")
 match_area = NodePath("..")
 metadata/_custom_type_script = "uid://b687eokolvv5w"
 

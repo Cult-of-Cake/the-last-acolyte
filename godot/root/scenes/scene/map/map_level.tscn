@@ -3,9 +3,7 @@
 [ext_resource type="Script" uid="uid://c4n3qxcuvwsi3" path="res://root/scripts/map/MapLevel.gd" id="1_imtmw"]
 [ext_resource type="Texture2D" uid="uid://nxl7bitkgxlp" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/button_round_depth_gradient.png" id="2_mi08v"]
 [ext_resource type="Texture2D" uid="uid://dlq82lkpm3bbh" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/button_round_line.png" id="3_rr02w"]
-[ext_resource type="Texture2D" uid="uid://cnu2drc0vxjnv" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Electric.png" id="4_e3mis"]
 [ext_resource type="Script" uid="uid://dmwdfktvhed56" path="res://root/scripts/ui/resource_loaders/SpriteLoader.gd" id="5_7wfh1"]
-[ext_resource type="Texture2D" uid="uid://0tkhxkxv03hl" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Air.png" id="6_3nwq6"]
 [ext_resource type="Script" uid="uid://dbv6i81a2gr8l" path="res://root/scripts/map/Stars.gd" id="7_ly445"]
 [ext_resource type="Texture2D" uid="uid://dijle4vdaatak" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/star_outline_depth.png" id="8_n8y7w"]
 [ext_resource type="Texture2D" uid="uid://ndr23t86j562" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/star.png" id="9_unclj"]
@@ -16,7 +14,7 @@ script = ExtResource("1_imtmw")
 level_name = NodePath("NameLabel")
 diff_text = NodePath("DifficultyLabel")
 stars_obj = NodePath("Stars")
-element_objs = [NodePath("Element1/SpriteLoader"), NodePath("Element2/SpriteLoader")]
+element_objs = [NodePath("Element Icons/Element1of1/SpriteLoader"), NodePath("Element Icons/Element1of2/SpriteLoader"), NodePath("Element Icons/Element2of2/SpriteLoader"), NodePath("Element Icons/Element1of3/SpriteLoader"), NodePath("Element Icons/Element2of3/SpriteLoader"), NodePath("Element Icons/Element3of3/SpriteLoader")]
 
 [node name="Marker" type="Sprite2D" parent="." unique_id=887557848]
 modulate = Color(0.5137255, 0.61960787, 1, 1)
@@ -36,13 +34,15 @@ position = Vector2(-29, -16)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_rr02w")
 
-[node name="Element1" type="Sprite2D" parent="." unique_id=124992769]
-modulate = Color(0.8352941, 1, 0, 1)
-position = Vector2(-36, -16)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("4_e3mis")
+[node name="Element Icons" type="Node2D" parent="." unique_id=1465762923]
 
-[node name="SpriteLoader" type="Node2D" parent="Element1" unique_id=1317771109 node_paths=PackedStringArray("loading_node")]
+[node name="Element1of1" type="Sprite2D" parent="Element Icons" unique_id=14560262]
+unique_name_in_owner = true
+modulate = Color(0.8352941, 1, 0, 1)
+position = Vector2(-29, -16)
+scale = Vector2(0.4, 0.4)
+
+[node name="SpriteLoader" type="Node2D" parent="Element Icons/Element1of1" unique_id=993265656 node_paths=PackedStringArray("loading_node")]
 position = Vector2(-2356, -2976)
 scale = Vector2(4, 4)
 script = ExtResource("5_7wfh1")
@@ -50,13 +50,69 @@ colour = Color(1, 1, 1, 1)
 loading_node = NodePath("..")
 metadata/_custom_type_script = "uid://dmwdfktvhed56"
 
-[node name="Element2" type="Sprite2D" parent="." unique_id=1638768064]
-modulate = Color(0.89492244, 0.89492244, 0.8949224, 1)
-position = Vector2(-25, -16)
+[node name="Element1of2" type="Sprite2D" parent="Element Icons" unique_id=124992769]
+unique_name_in_owner = true
+modulate = Color(0.8352941, 1, 0, 1)
+position = Vector2(-35, -16)
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("6_3nwq6")
 
-[node name="SpriteLoader" type="Node2D" parent="Element2" unique_id=839764376 node_paths=PackedStringArray("loading_node")]
+[node name="SpriteLoader" type="Node2D" parent="Element Icons/Element1of2" unique_id=1317771109 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-2356, -2976)
+scale = Vector2(4, 4)
+script = ExtResource("5_7wfh1")
+colour = Color(1, 1, 1, 1)
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dmwdfktvhed56"
+
+[node name="Element2of2" type="Sprite2D" parent="Element Icons" unique_id=1638768064]
+unique_name_in_owner = true
+modulate = Color(0.89492244, 0.89492244, 0.8949224, 1)
+position = Vector2(-23, -16)
+scale = Vector2(0.2, 0.2)
+
+[node name="SpriteLoader" type="Node2D" parent="Element Icons/Element2of2" unique_id=839764376 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-2356, -2976)
+scale = Vector2(4, 4)
+script = ExtResource("5_7wfh1")
+colour = Color(1, 1, 1, 1)
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dmwdfktvhed56"
+
+[node name="Element1of3" type="Sprite2D" parent="Element Icons" unique_id=124423876]
+unique_name_in_owner = true
+modulate = Color(0.8352941, 1, 0, 1)
+position = Vector2(-29, -22)
+scale = Vector2(0.2, 0.2)
+
+[node name="SpriteLoader" type="Node2D" parent="Element Icons/Element1of3" unique_id=613620868 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-2356, -2976)
+scale = Vector2(4, 4)
+script = ExtResource("5_7wfh1")
+colour = Color(1, 1, 1, 1)
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dmwdfktvhed56"
+
+[node name="Element2of3" type="Sprite2D" parent="Element Icons" unique_id=529340748]
+unique_name_in_owner = true
+modulate = Color(0.8352941, 1, 0, 1)
+position = Vector2(-35, -12)
+scale = Vector2(0.2, 0.2)
+
+[node name="SpriteLoader" type="Node2D" parent="Element Icons/Element2of3" unique_id=66429888 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-2356, -2976)
+scale = Vector2(4, 4)
+script = ExtResource("5_7wfh1")
+colour = Color(1, 1, 1, 1)
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dmwdfktvhed56"
+
+[node name="Element3of3" type="Sprite2D" parent="Element Icons" unique_id=1431756975]
+unique_name_in_owner = true
+modulate = Color(0.89492244, 0.89492244, 0.8949224, 1)
+position = Vector2(-23, -12)
+scale = Vector2(0.2, 0.2)
+
+[node name="SpriteLoader" type="Node2D" parent="Element Icons/Element3of3" unique_id=2021727127 node_paths=PackedStringArray("loading_node")]
 position = Vector2(-2356, -2976)
 scale = Vector2(4, 4)
 script = ExtResource("5_7wfh1")

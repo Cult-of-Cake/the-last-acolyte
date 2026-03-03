@@ -23,8 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dlq82lkpm3bbh" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/button_round_line.png" id="21_m6phn"]
 [ext_resource type="Texture2D" uid="uid://dijle4vdaatak" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/star_outline_depth.png" id="22_s04ac"]
 [ext_resource type="Texture2D" uid="uid://ndr23t86j562" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/star.png" id="23_51rvv"]
-[ext_resource type="Script" uid="uid://b85ac4cpjkl8l" path="res://root/scripts/map/LevelManager.gd" id="24_m6phn"]
-[ext_resource type="PackedScene" uid="uid://ci262pusysvfq" path="res://root/scenes/scene/map/map_level.tscn" id="24_wibl7"]
+[ext_resource type="Script" uid="uid://d4j2vegspyt6" path="res://root/scripts/map/MapButton.gd" id="25_m6phn"]
 
 [node name="MapScene" type="Node2D" unique_id=919757401]
 
@@ -287,9 +286,21 @@ texture = ExtResource("22_s04ac")
 layout_mode = 2
 texture = ExtResource("22_s04ac")
 
-[node name="Level Manager" type="Node2D" parent="Levels" unique_id=508355781]
-script = ExtResource("24_m6phn")
-metadata/_custom_type_script = "uid://b85ac4cpjkl8l"
+[node name="Level Manager" type="Node2D" parent="Levels" unique_id=1082024788]
 
-[node name="Map Level" parent="Levels/Level Manager" unique_id=41818855 instance=ExtResource("24_wibl7")]
-position = Vector2(625, 760)
+[node name="Dummy" type="Node2D" parent="Levels/Level Manager" unique_id=1936436551]
+position = Vector2(130, 411)
+script = ExtResource("25_m6phn")
+metadata/_custom_type_script = "uid://d4j2vegspyt6"
+
+[node name="Shipwreck" type="Node2D" parent="Levels/Level Manager" unique_id=509126165]
+position = Vector2(649, 733)
+script = ExtResource("25_m6phn")
+ID = 1
+metadata/_custom_type_script = "uid://d4j2vegspyt6"
+
+[node name="Mines" type="Node2D" parent="Levels/Level Manager" unique_id=821515591]
+position = Vector2(1004, 477)
+script = ExtResource("25_m6phn")
+ID = 2
+metadata/_custom_type_script = "uid://d4j2vegspyt6"

@@ -1,5 +1,11 @@
 extends Node
 
+func _ready() -> void:
+	init_level_array()
+	# TEMP for testing:
+	Data.select_save_file(0)
+	Data.load_save_file()
+
 class Paths:
 	const USER: String = "user://"
 	const ROOT: String = "root/"
@@ -39,4 +45,39 @@ class PlaceholderAudio:
 	const MOUSECLICK_1: AudioStream = preload(Paths.SFX + "kenny_ui/ogg/mouseclick1.ogg")
 	const MOUSERELEASE_1: AudioStream = preload(Paths.SFX + "kenny_ui/ogg/mouserelease1.ogg")
 
+#endregion
+
+#region Level Data
+
+enum LEVEL { DUMMY, SHIP, MINES }
+var level_list : Dictionary[LEVEL, LevelData]
+
+func init_level_array() -> void:
+	# If adding new levels, remember to change the ID in BOTH places
+	level_list[LEVEL.DUMMY] = LevelData.new(LEVEL.DUMMY, "Test Level", 1, [])
+	level_list[LEVEL.SHIP] = LevelData.new(LEVEL.SHIP, "Shipwreck", 4, [Vars.ELEMENT.WATER, Vars.ELEMENT.AIR])
+	level_list[LEVEL.MINES] = LevelData.new(LEVEL.MINES, "The Mines", 2, [Vars.ELEMENT.EARTH])
+
+class LevelData:
+	
+	# Constant data.  These are set on game init and never change.
+	var ID : LEVEL
+	var name : String
+	var difficulty : int = 1
+	var elements : Array[Vars.ELEMENT]
+	
+	func _init(id : LEVEL, n : String, diff : int, elems : Array[Vars.ELEMENT]) -> void:
+		ID = id
+		name = n
+		difficulty = diff
+		elements = elems
+	
+	# Changeable data.  These save and load to file.
+	var stars_earned : int:
+		get:
+			return Data.map.get_stars(ID)
+		set (val):
+			Data.map.set_stars(ID, val)
+			Data.save_save_file()
+	
 #endregion

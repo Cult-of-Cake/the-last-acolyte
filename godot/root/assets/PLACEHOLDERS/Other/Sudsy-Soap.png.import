@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5y5xrekspur1"
-path="res://.godot/imported/sprite_beast_dustfluffy_2.png-0a43ce458e2832aa025afd8181ec1ade.ctex"
+uid="uid://cjm830seu6hvb"
+path="res://.godot/imported/Sudsy-Soap.png-6f58c604d7955cf7997a0467483f939c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/sprite_beast_dustfluffy_2.png"
-dest_files=["res://.godot/imported/sprite_beast_dustfluffy_2.png-0a43ce458e2832aa025afd8181ec1ade.ctex"]
+source_file="res://root/assets/PLACEHOLDERS/Other/Sudsy-Soap.png"
+dest_files=["res://.godot/imported/Sudsy-Soap.png-6f58c604d7955cf7997a0467483f939c.ctex"]
 
 [params]
 

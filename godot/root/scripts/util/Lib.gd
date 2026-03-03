@@ -50,6 +50,12 @@ static func warn(stream : LOG, messages:Array, values:Variant=null) -> void:
 static func error(stream : LOG, messages:Array, values:Variant=null) -> void:
 	streams[stream].error(Lib.join(messages), values)
 
+#This is the new logging syntax:
+#func meh():
+#	var my_var = "somethin"
+#	Lib.enable_debug(Lib.LOG.ACTIONS)
+#	Lib.debug(Lib.LOG.ACTIONS, [my_var])
+
 # Getting and setting log level by stream
 static func set_log_level(stream : LOG, level : Log.LogLevel) -> void:
 	var s : LogStream = Lib.streams[int(stream)]

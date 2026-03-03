@@ -33,12 +33,12 @@ sprite_frames = SubResource("SpriteFrames_ogfdl")
 autoplay = "default"
 frame_progress = 0.7440687
 
-[node name="Enemy" type="Node2D" parent="." unique_id=1268059315 node_paths=PackedStringArray("path")]
-script = ExtResource("4_o8mlk")
-path = NodePath("..")
-metadata/_custom_type_script = "uid://bfjq2gp60sfmw"
-
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=250959287]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1723719872]
 shape = SubResource("CircleShape2D_rlycb")
+
+[node name="Enemy" type="Node2D" parent="CharacterBody2D" unique_id=1268059315 node_paths=PackedStringArray("path")]
+script = ExtResource("4_o8mlk")
+path = NodePath("../..")
+metadata/_custom_type_script = "uid://bfjq2gp60sfmw"

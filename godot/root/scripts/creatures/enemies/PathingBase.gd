@@ -3,7 +3,6 @@ class_name PathingBase
 
 var speed = 300
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta : float) -> void:
 	progress = progress + (speed * delta)

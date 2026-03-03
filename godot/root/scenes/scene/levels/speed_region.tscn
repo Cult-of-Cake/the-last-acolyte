@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://ddgrxhf85hpd2"]
+
+[ext_resource type="Texture2D" uid="uid://ck2p7gofrbljt" path="res://root/assets/PLACEHOLDERS/Kenney/Tower Defense Pack/speed_up.png" id="1_x1var"]
+[ext_resource type="Script" uid="uid://b687eokolvv5w" path="res://root/scripts/levels/SpeedRegion.gd" id="2_heu40"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1var"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8y2r"]
+size = Vector2(100, 100)
+
+[node name="SpeedRegion" type="Node2D" unique_id=1639239591]
+
+[node name="Size Container" type="MarginContainer" parent="." unique_id=405178400]
+offset_right = 2304.0
+offset_bottom = 640.0
+
+[node name="Texture" type="TextureRect" parent="Size Container" unique_id=1626696431]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_x1var")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Area2D" type="Area2D" parent="Size Container" unique_id=1194159692 node_paths=PackedStringArray("match_area")]
+script = ExtResource("2_heu40")
+speed_multiplier = 5.0
+collision_shape = SubResource("RectangleShape2D_x1var")
+match_area = NodePath("..")
+metadata/_custom_type_script = "uid://b687eokolvv5w"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Size Container/Area2D" unique_id=824694689]
+shape = SubResource("RectangleShape2D_x8y2r")
+debug_color = Color(0.8392157, 0.12156863, 0.88235295, 0.6627451)
+
+[connection signal="body_entered" from="Size Container/Area2D" to="Size Container/Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Size Container/Area2D" to="Size Container/Area2D" method="_on_body_exited"]

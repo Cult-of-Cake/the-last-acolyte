@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dijle4vdaatak" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/star_outline_depth.png" id="22_s04ac"]
 [ext_resource type="Texture2D" uid="uid://ndr23t86j562" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/star.png" id="23_51rvv"]
 [ext_resource type="Script" uid="uid://d4j2vegspyt6" path="res://root/scripts/map/MapButtonLoader.gd" id="25_m6phn"]
+[ext_resource type="PackedScene" uid="uid://cb541bsl7dfsu" path="res://root/scenes/scene/levels/dummy_map.tscn" id="25_s04ac"]
 
 [node name="MapScene" type="Node2D" unique_id=919757401]
 
@@ -291,7 +292,7 @@ texture = ExtResource("22_s04ac")
 [node name="Dummy" type="Node2D" parent="Levels/Level Manager" unique_id=1936436551]
 position = Vector2(130, 411)
 script = ExtResource("25_m6phn")
-ID = null
+level_scene = ExtResource("25_s04ac")
 metadata/_custom_type_script = "uid://d4j2vegspyt6"
 
 [node name="Shipwreck" type="Node2D" parent="Levels/Level Manager" unique_id=509126165]

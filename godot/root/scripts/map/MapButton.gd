@@ -1,15 +1,19 @@
 extends Sprite2D
 class_name MapButton
 
+@export var button : TextureButton
 @export var level_name : Label
 @export var diff_text : Label
 @export var stars_obj : Stars
 @export var element_objs : Array[SpriteLoader]
+@export var level_scene : PackedScene
 
-func initialize(lname : String, diff : int, stars : int, elements : Array[Vars.ELEMENT]) -> void:
+func initialize(lname : String, diff : int, level : PackedScene, stars : int, elements : Array[Vars.ELEMENT]) -> void:
+	# Main data
 	level_name.text = lname
 	diff_text.text = str(diff)
 	stars_obj.set_num_earned(stars)
+	level_scene = level
 	
 	# Element icons
 	# element_objs should have 1 object that we'll want to display if # of elements is 1,
@@ -31,10 +35,9 @@ func initialize(lname : String, diff : int, stars : int, elements : Array[Vars.E
 			check_size += 1
 		else:
 			found_at_size += 1
+	
+	# And action
+	button.pressed.connect(on_pressed)
 
-class IconLoader:
-	var show_when : int
-	var obj : SpriteLoader
-	func _init(n : int, o : SpriteLoader)-> void:
-		show_when = n
-		obj = o
+func on_pressed() -> void:
+	get_tree().change_scene_to_packed(level_scene)

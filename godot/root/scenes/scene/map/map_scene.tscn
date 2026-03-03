@@ -220,8 +220,6 @@ metadata/_edit_lock_ = true
 
 [node name="PlayerControlled" type="Node2D" parent="Camera" unique_id=1941566140 node_paths=PackedStringArray("motion_obj")]
 script = ExtResource("2_c1cav")
-speed = 500.0
-highspeed = 500.0
 motion_obj = NodePath("..")
 metadata/_custom_type_script = "uid://dj8urviixjcrq"
 metadata/_edit_lock_ = true
@@ -298,11 +296,11 @@ metadata/_custom_type_script = "uid://d4j2vegspyt6"
 [node name="Shipwreck" type="Node2D" parent="Levels/Level Manager" unique_id=509126165]
 position = Vector2(649, 733)
 script = ExtResource("25_m6phn")
-ID = 1
+id = 1
 metadata/_custom_type_script = "uid://d4j2vegspyt6"
 
 [node name="Mines" type="Node2D" parent="Levels/Level Manager" unique_id=821515591]
 position = Vector2(1004, 477)
 script = ExtResource("25_m6phn")
-ID = 2
+id = 2
 metadata/_custom_type_script = "uid://d4j2vegspyt6"

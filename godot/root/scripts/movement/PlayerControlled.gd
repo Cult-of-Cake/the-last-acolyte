@@ -1,11 +1,11 @@
 extends MovementNode
 class_name PlayerControlled
 
-@export var speed = 150.0
-@export var highspeed = 300.0
-const ACCEL = 20.0
+@export var speed : float = 150.0
+@export var highspeed : float = 300.0
+const ACCEL : float = 20.0
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta : float) -> void:
 
 	# Inputs
 	var sprinting : bool = Input.is_action_pressed("move_sprint")

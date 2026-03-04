@@ -8,14 +8,15 @@ class_name DirectToPoint
 func _ready() -> void:
 	pass
 
+
+var current_goal : Vector2
+
 func _physics_process(delta : float) -> void:
-	var current_goal : Vector2 = goal_object.global_position if goal_object else goal_point
+	current_goal = goal_object.global_position if goal_object else goal_point
 	posn = posn.move_toward(current_goal, speed * delta)
 	#print(posn, " ", current_goal)
 	move_and_slide()
 
-#func _draw() -> void:
+func _draw() -> void:
 	#if Lib.is_debugging(log_stream):
-		#var rect : Rect2 = Rect2(to_local(_origin) - leash, leash * 2)
-		#draw_rect(rect, Color.BISQUE, false)
-		#draw_circle(to_local(_goal), 1, Color.BISQUE, false)
+	draw_circle(to_local(current_goal), 1, Color.RED, false)

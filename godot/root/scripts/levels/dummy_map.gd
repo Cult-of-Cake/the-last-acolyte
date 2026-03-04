@@ -17,7 +17,14 @@ func _process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	var newguy = load("res://root/scenes/scene/levels/BasicEnemy.tscn").instantiate()
+	#var newguy = load("res://root/scenes/scene/levels/BasicEnemy.tscn").instantiate()
+	var the_path : Path2D = get_node("thePath")
+	var newguy : Enemy = %WaveManager.get_next_enemy(the_path).instantiate()
 	newguy.position = %StartPoint.position
-	var the_path = get_node("thePath")
 	the_path.add_child(newguy)
+	
+	if newguy.is_class("FlyingEnemy"):
+		newguy.set_goal(%EndPoint)
+	else:
+		newguy.add_to_path(the_path)
+		

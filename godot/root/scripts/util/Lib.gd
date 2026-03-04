@@ -17,7 +17,19 @@ class Objects:
 	static func has_child_of_type(parent : Node, type : Variant) -> bool:
 		var found : Node = find_child_of_type(parent, type)
 		return found != null
-
+	# Ran into an issue that I *thought* was a subclass not being detected here.
+	# This was a possible solution.  That didn't end up being the problem so I don't
+	# know if this is needed.  God, I hope not.  Keeping just in case.
+	#static func find_child_of_type_str(parent : Node, type : String, recursive : bool = false) -> Node2D:
+		#for child in parent.get_children():
+			#print ("TYPE: Checking if ", child.name, " (", child.get_class(), ") is type ", type)
+			#if child.is_class(type):
+				#return child
+			#if recursive:
+				#var grandchild : Node2D = find_child_of_type_str(child, type, true)
+				#if grandchild != null:
+					#return grandchild
+		#return null
 #endregion
 
 func _ready() -> void:

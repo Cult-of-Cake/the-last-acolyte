@@ -10,15 +10,23 @@ func _ready() -> void:
 	Lib.debug(log_stream, ["Running ", name])
 
 func _on_body_entered(body : Node2D) -> void:
-	Lib.debug(log_stream, ["Entered"])
-	var enemy: Enemy = Lib.Objects.find_child_of_type(body, Enemy, true)
+	Lib.debug(log_stream, ["Entered ", body.get_class()])
+	var enemy : Enemy
+	if body is CollisionTypeChecker:
+		enemy = body.true_body
+	else:
+		enemy = Lib.Objects.find_child_of_type(body, Enemy, true)
 	if enemy != null:
 		Lib.debug(log_stream, ["Setting enemy speed ", speed_multiplier])
 		enemy.set_speed_multiplier(speed_multiplier)
 
 func _on_body_exited(body : Node2D) -> void:
 	Lib.debug(log_stream, ["Exited"])
-	var enemy: Enemy = Lib.Objects.find_child_of_type(body, Enemy, true)
+	var enemy : Enemy
+	if body is CollisionTypeChecker:
+		enemy = body.true_body
+	else:
+		enemy = Lib.Objects.find_child_of_type(body, Enemy, true)
 	if enemy != null:
 		Lib.debug(log_stream, ["Reset"])
 		enemy.reset_speed()

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bi82aa8dtqcb7" path="res://root/scripts/creatures/enemies/PathFollowEnemy.gd" id="1_003vf"]
 [ext_resource type="Texture2D" uid="uid://7h3jyvqqsr8d" path="res://Images/sprite_beast_dustfluffy_1.png" id="2_0vuug"]
 [ext_resource type="Texture2D" uid="uid://c5y5xrekspur1" path="res://Images/sprite_beast_dustfluffy_2.png" id="3_6w0qo"]
+[ext_resource type="Script" uid="uid://co4a7w86xhd0s" path="res://root/scripts/util/CollisionTypeChecker.gd" id="4_0vuug"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3kygs"]
 animations = [{
@@ -29,7 +30,10 @@ metadata/_custom_type_script = "uid://bfjq2gp60sfmw"
 sprite_frames = SubResource("SpriteFrames_3kygs")
 autoplay = "default"
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=2081683307]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1981598136 node_paths=PackedStringArray("true_body")]
+script = ExtResource("4_0vuug")
+true_body = NodePath("..")
+metadata/_custom_type_script = "uid://co4a7w86xhd0s"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1223949217]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1520905432]
 shape = SubResource("CircleShape2D_rlycb")

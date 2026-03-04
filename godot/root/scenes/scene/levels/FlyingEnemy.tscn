@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dh2ofysm8eof3" path="res://root/scripts/creatures/enemies/FlyingEnemy.gd" id="1_u4fmg"]
 [ext_resource type="Script" uid="uid://b2pqgygo756jl" path="res://root/scripts/movement/DirectToPoint.gd" id="2_grven"]
+[ext_resource type="Script" uid="uid://co4a7w86xhd0s" path="res://root/scripts/util/CollisionTypeChecker.gd" id="3_grven"]
 [ext_resource type="Texture2D" uid="uid://dsts3hge36paw" path="res://root/assets/PLACEHOLDERS/Jo Concept/flying_dustfluffy_1.png" id="3_ont2y"]
 [ext_resource type="Texture2D" uid="uid://bwf1wnhpj63mq" path="res://root/assets/PLACEHOLDERS/Jo Concept/flying_dustfluffy_2.png" id="4_0jf6v"]
 
@@ -32,9 +33,12 @@ script = ExtResource("2_grven")
 motion_obj = NodePath("../CharacterBody2D")
 metadata/_custom_type_script = "uid://b2pqgygo756jl"
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=832038773]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1684537816 node_paths=PackedStringArray("true_body")]
 collision_mask = 0
 motion_mode = 1
+script = ExtResource("3_grven")
+true_body = NodePath("..")
+metadata/_custom_type_script = "uid://co4a7w86xhd0s"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=215321409]
 shape = SubResource("CircleShape2D_rlycb")

@@ -30,6 +30,8 @@ func calculate_path():
 		var global_coords = navigation_layer.to_global(local_coords)
 		thePath.curve.add_point(global_coords)
 	get_parent().add_child(thePath)
+	if %Enemy:
+		%Enemy.add_to_path(thePath)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

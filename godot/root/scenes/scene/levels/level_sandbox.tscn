@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://ddgrxhf85hpd2" path="res://root/scenes/scene/levels/speed_region.tscn" id="5_x8y2r"]
 [ext_resource type="Texture2D" uid="uid://cf0vm1sua1isx" path="res://root/assets/PLACEHOLDERS/tilemap-level-obstacles.png" id="6_x8y2r"]
 [ext_resource type="Texture2D" uid="uid://k6qa1yai6psc" path="res://root/assets/PLACEHOLDERS/Kenney/Tower Defense Pack/slow_down.png" id="7_7kndc"]
-[ext_resource type="Texture2D" uid="uid://7h3jyvqqsr8d" path="res://Images/sprite_beast_dustfluffy_1.png" id="9_m68ns"]
-[ext_resource type="Texture2D" uid="uid://c5y5xrekspur1" path="res://Images/sprite_beast_dustfluffy_2.png" id="10_gd3dv"]
+[ext_resource type="Texture2D" uid="uid://dsts3hge36paw" path="res://root/assets/PLACEHOLDERS/Jo Concept/flying_dustfluffy_1.png" id="9_ccu1u"]
+[ext_resource type="Texture2D" uid="uid://bwf1wnhpj63mq" path="res://root/assets/PLACEHOLDERS/Jo Concept/flying_dustfluffy_2.png" id="10_m68ns"]
+[ext_resource type="Script" uid="uid://b2pqgygo756jl" path="res://root/scripts/movement/DirectToPoint.gd" id="11_ccu1u"]
 [ext_resource type="Script" uid="uid://bfjq2gp60sfmw" path="res://root/scripts/creatures/enemies/Enemy.gd" id="11_m6cc7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hl7yk"]
@@ -4635,11 +4636,11 @@ sources/1 = SubResource("TileSetAtlasSource_mlcvb")
 [sub_resource type="SpriteFrames" id="SpriteFrames_ogfdl"]
 animations = [{
 "frames": [{
-"duration": 3.0,
-"texture": ExtResource("9_m68ns")
+"duration": 1.0,
+"texture": ExtResource("9_ccu1u")
 }, {
-"duration": 3.0,
-"texture": ExtResource("10_gd3dv")
+"duration": 1.0,
+"texture": ExtResource("10_m68ns")
 }],
 "loop": true,
 "name": &"default",
@@ -4745,21 +4746,45 @@ highspeed = 2000.0
 motion_obj = NodePath("..")
 metadata/_custom_type_script = "uid://dj8urviixjcrq"
 
-[node name="Enemy" type="Node2D" parent="." unique_id=1268059315 node_paths=PackedStringArray("path")]
+[node name="Enemy Follow" type="Node2D" parent="." unique_id=1268059315 node_paths=PackedStringArray("path")]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("11_m6cc7")
 path = NodePath("")
 metadata/_custom_type_script = "uid://bfjq2gp60sfmw"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy" unique_id=249716396]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy Follow" unique_id=249716396]
 sprite_frames = SubResource("SpriteFrames_ogfdl")
 autoplay = "default"
 frame_progress = 0.7440687
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Enemy" unique_id=250959287]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Enemy Follow" unique_id=250959287]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/CharacterBody2D" unique_id=1723719872]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Follow/CharacterBody2D" unique_id=1723719872]
 shape = SubResource("CircleShape2D_rlycb")
+
+[node name="Enemy Flying" type="Node2D" parent="." unique_id=1597967566 node_paths=PackedStringArray("path")]
+script = ExtResource("11_m6cc7")
+path = NodePath("")
+metadata/_custom_type_script = "uid://bfjq2gp60sfmw"
+
+[node name="DirectToPoint" type="Node2D" parent="Enemy Flying" unique_id=91912281 node_paths=PackedStringArray("goal_object", "motion_obj")]
+script = ExtResource("11_ccu1u")
+goal_object = NodePath("../../EndPoint")
+motion_obj = NodePath("../CharacterBody2D")
+metadata/_custom_type_script = "uid://b2pqgygo756jl"
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Enemy Flying" unique_id=1976017704]
+collision_mask = 0
+motion_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy Flying/CharacterBody2D" unique_id=665808636]
+shape = SubResource("CircleShape2D_rlycb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy Flying/CharacterBody2D" unique_id=1247772915]
+sprite_frames = SubResource("SpriteFrames_ogfdl")
+autoplay = "default"
+frame_progress = 0.7440687
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 

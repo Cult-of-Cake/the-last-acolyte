@@ -8,10 +8,10 @@ var spawn_obj : StartPoint
 var goal_obj : Area2D
 
 func initialize(spawner : StartPoint, end_goal : Area2D) -> void:
-	position = spawner.position
 	spawn_obj = spawner
 	goal_obj = end_goal
 	spawner.add_child(self)
+	global_position = spawner.position
 
 var speed_multiplier: float = 1.0
 

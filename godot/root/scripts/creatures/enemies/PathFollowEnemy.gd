@@ -11,7 +11,6 @@ func set_speed_multiplier(mult : float) -> void:
 func initialize(spawner : StartPoint, end_goal : Area2D) -> void:
 	super(spawner, end_goal)
 	add_to_path(spawn_obj.thePath)
-	spawner.thePath.add_child(self)
 
 # Path follow - MUST be the direct child of Path, so Enemy must be a child of that
 

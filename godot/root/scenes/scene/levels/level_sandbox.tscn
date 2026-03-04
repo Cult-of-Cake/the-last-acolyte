@@ -8,12 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://ddgrxhf85hpd2" path="res://root/scenes/scene/levels/speed_region.tscn" id="5_x8y2r"]
 [ext_resource type="Texture2D" uid="uid://cf0vm1sua1isx" path="res://root/assets/PLACEHOLDERS/tilemap-level-obstacles.png" id="6_x8y2r"]
 [ext_resource type="Texture2D" uid="uid://k6qa1yai6psc" path="res://root/assets/PLACEHOLDERS/Kenney/Tower Defense Pack/slow_down.png" id="7_7kndc"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_hl7yk"]
-radius = 5.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_1bqvh"]
-radius = 15.0
+[ext_resource type="Texture2D" uid="uid://bv2soi232fii3" path="res://root/assets/PLACEHOLDERS/118f38b1-4d1f-47a7-8147-2014916f759f.png" id="8_6sf74"]
+[ext_resource type="Texture2D" uid="uid://b5o7h7ph1cuqp" path="res://root/assets/PLACEHOLDERS/f724bfee-aec6-4b31-969c-0d38d6fd5218.png" id="9_ccu1u"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ljtiv"]
 vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
@@ -4630,43 +4626,18 @@ physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_mlcvb")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_hl7yk"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bqvh"]
+radius = 15.0
+
 [node name="Level" type="Node2D" unique_id=955376474]
 script = ExtResource("1_hm0rt")
 
 [node name="WaveManager" type="Node2D" parent="." unique_id=1421112523]
 unique_name_in_owner = true
 script = ExtResource("2_ccu1u")
-
-[node name="StartPoint" type="Area2D" parent="." unique_id=1059995643 node_paths=PackedStringArray("navigation_layer", "start_point", "end_point")]
-unique_name_in_owner = true
-position = Vector2(73, 191)
-script = ExtResource("3_ljtiv")
-navigation_layer = NodePath("../Map/Obstacles")
-start_point = NodePath(".")
-end_point = NodePath("../EndPoint")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StartPoint" unique_id=925756142]
-shape = SubResource("CircleShape2D_hl7yk")
-metadata/_edit_lock_ = true
-
-[node name="MainPathfinder" type="NavigationAgent2D" parent="StartPoint" unique_id=362178324]
-unique_name_in_owner = true
-avoidance_enabled = true
-debug_enabled = true
-debug_use_custom = true
-debug_path_custom_color = Color(0.58317125, 0.00025749952, 0.5857103, 1)
-
-[node name="EndPoint" type="Area2D" parent="." unique_id=809168112]
-unique_name_in_owner = true
-position = Vector2(3645, 2243)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EndPoint" unique_id=533524911]
-shape = SubResource("CircleShape2D_1bqvh")
-metadata/_edit_lock_ = true
-
-[node name="Timer" type="Timer" parent="." unique_id=184585600]
-wait_time = 0.5
-autostart = true
 
 [node name="Map" type="Node2D" parent="." unique_id=447858024]
 
@@ -4716,6 +4687,42 @@ scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAAEAAAAAQARAAIAAAADAAAAAQARAAIAAAACAAAAAQARAAIAAAABAAAAAQARAAIAAAAAAAAAAQARAAIAAAAFAAAAAQARAAIAAAAGAAAAAQARAAIAAAAHAAAAAQARAAIAAAAIAAAAAQARAAIAAAAJAAAAAQARAAIAAAAKAAAAAQARAAIAAAALAAAAAQARAAIAAAAMAAAAAQARAAIAAAANAAAAAQARAAIAAAAOAAAAAQARAAIAAAAPAAAAAQARAAIAAAAQAAAAAQARAAIAAAARAAAAAQARAAIAAAAUAAAAAQARAAIAAAAVAAAAAQARAAIAAAATAAAAAQARAAIAAAASAAAAAQARAAIAAAAWAAAAAQARAAIAAAAXAAAAAQARAAIAAAAYAAAAAQARAAIAAAAZAAAAAQARAAIAAAAaAAAAAQARAAIAAAAbAAAAAQARAAIAAAAcAAAAAQARAAIAAAD//wAAAQARAAIAAAD//wEAAQARAAIAAAD//wIAAQARAAIAAAD//wMAAQARAAIAAAD//wQAAQARAAIAAAD//wUAAQARAAIAAAD//wYAAQARAAIAAAD//wcAAQARAAIAAAD//wgAAQARAAIAAAD//wkAAQARAAIAAAD//woAAQARAAIAAAD//wsAAQARAAIAAAD//wwAAQARAAIAAAD//w0AAQARAAIAAAD//w4AAQARAAIAAAD//w8AAQARAAIAAAD//xAAAQARAAIAAAD//xIAAQARAAIAAAAAABIAAQARAAIAAAABABIAAQARAAIAAAACABIAAQARAAIAAAADABIAAQARAAIAAAAEABIAAQARAAIAAAAFABIAAQARAAIAAAAGABIAAQARAAIAAAAHABIAAQARAAIAAAAIABIAAQARAAIAAAAJABIAAQARAAIAAAAKABIAAQARAAIAAAALABIAAQARAAIAAAAMABIAAQARAAIAAAANABIAAQARAAIAAAAOABIAAQARAAIAAAAPABIAAQARAAIAAAAQABIAAQARAAIAAAARABIAAQARAAIAAAASABIAAQARAAIAAAATABIAAQARAAIAAAAUABIAAQARAAIAAAAVABIAAQARAAIAAAAWABIAAQARAAIAAAAXABIAAQARAAIAAAAYABIAAQARAAIAAAAZABIAAQARAAIAAAAaABIAAQARAAIAAAAbABIAAQARAAIAAAAcABIAAQARAAIAAAAdABIAAQARAAIAAAD//xEAAQARAAIAAAAFAAEAAQAPAAUAAAAFAAIAAQAPAAUAAAAFAAMAAQAPAAUAAAAFAAQAAQAPAAUAAAAFAAUAAQAPAAUAAAAFAAYAAQAPAAUAAAAFAAcAAQAPAAUAAAAFAAgAAQAPAAUAAAAFAAkAAQAPAAUAAAAFAAoAAQAPAAUAAAAFAAsAAQAPAAUAAAAFAAwAAQAPAAUAAAAMAAYAAQAPAAUAAAANAAYAAQAPAAUAAAAOAAYAAQAPAAUAAAAPAAYAAQAPAAUAAAAQAAYAAQAPAAUAAAARAAYAAQAPAAUAAAASAAYAAQAPAAUAAAATAAYAAQAPAAUAAAAUAAYAAQAPAAUAAAAVAAYAAQAPAAUAAAAWAAYAAQAPAAUAAAAXAAYAAQAPAAUAAAARAAwAAQAPAAUAAAASAAwAAQAPAAUAAAATAAwAAQAPAAUAAAAUAAwAAQAPAAUAAAAVAAwAAQAPAAUAAAAWAAwAAQAPAAUAAAAXAAwAAQAPAAUAAAAYAAwAAQAPAAUAAAAZAAwAAQAPAAUAAAAaAAwAAQAPAAUAAAAbAAwAAQAPAAUAAAAcAAwAAQAPAAUAAAAdAAAAAQARAAIAAAAdAAwAAQARAAIAAAAdAAEAAQARAAIAAAAdAAIAAQARAAIAAAAdAAMAAQARAAIAAAAdAAQAAQARAAIAAAAdAAUAAQARAAIAAAAdAAYAAQARAAIAAAAdAAcAAQARAAIAAAAdAAgAAQARAAIAAAAdAAkAAQARAAIAAAAdAAoAAQARAAIAAAAdAAsAAQARAAIAAAAdAA0AAQARAAIAAAAdAA4AAQARAAIAAAAdAA8AAQARAAIAAAAdABAAAQARAAIAAAAdABEAAQARAAIAAAALAAYAAQAPAAUAAAALAAcAAQAPAAUAAAALAAgAAQAPAAUAAAALAAkAAQAPAAUAAAALAAoAAQAPAAUAAAALAAsAAQAPAAUAAAALAAwAAQAPAAUAAAALAA0AAQAPAAUAAAALAA4AAQAPAAUAAAALAA8AAQAPAAUAAAALABAAAQAPAAUAAAALABEAAQAPAAUAAAA=")
 tile_set = SubResource("TileSet_xvigy")
 
+[node name="StartPoint" type="Area2D" parent="." unique_id=1059995643 node_paths=PackedStringArray("navigation_layer", "start_point", "end_point")]
+unique_name_in_owner = true
+position = Vector2(73, 191)
+script = ExtResource("3_ljtiv")
+navigation_layer = NodePath("../Map/Obstacles")
+start_point = NodePath(".")
+end_point = NodePath("../EndPoint")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartPoint" unique_id=925756142]
+shape = SubResource("CircleShape2D_hl7yk")
+metadata/_edit_lock_ = true
+
+[node name="MainPathfinder" type="NavigationAgent2D" parent="StartPoint" unique_id=362178324]
+unique_name_in_owner = true
+avoidance_enabled = true
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0.58317125, 0.00025749952, 0.5857103, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="StartPoint" unique_id=1694888526]
+scale = Vector2(3, 3)
+texture = ExtResource("8_6sf74")
+
+[node name="EndPoint" type="Area2D" parent="." unique_id=809168112]
+unique_name_in_owner = true
+position = Vector2(3645, 2243)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndPoint" unique_id=533524911]
+shape = SubResource("CircleShape2D_1bqvh")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EndPoint" unique_id=646138320]
+position = Vector2(-13, -35)
+scale = Vector2(3, 3)
+texture = ExtResource("9_ccu1u")
+
 [node name="Moveable Camera" type="CharacterBody2D" parent="." unique_id=1316024975]
 
 [node name="Camera2D" type="Camera2D" parent="Moveable Camera" unique_id=2135722269]
@@ -4729,8 +4736,6 @@ speed = 2000.0
 highspeed = 2000.0
 motion_obj = NodePath("..")
 metadata/_custom_type_script = "uid://dj8urviixjcrq"
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="Map/Regions/Speed x5"]
 [editable path="Map/Regions/Slow x2"]

@@ -6,7 +6,6 @@ class_name FlyingEnemy
 func _ready() -> void:
 	move_obj = Lib.Objects.find_child_of_type(self, DirectToPoint)
 
-func set_goal(obj : Node) -> void:
-	move_obj = Lib.Objects.find_child_of_type(self, DirectToPoint)
-	print(move_obj)
-	move_obj.goal_object = obj
+func initialize(spawner : StartPoint, end_goal : Area2D) -> void:
+	super(spawner, end_goal)
+	move_obj.goal_object = goal_obj

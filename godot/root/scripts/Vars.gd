@@ -2,9 +2,6 @@ extends Node
 
 func _ready() -> void:
 	init_level_array()
-	# Purely to get rid of the linter warning that we're not using these:
-	var _tempLD : Dictionary[LEVEL, LevelData] = _level_list_internal
-	var _tempPRD : Dictionary[int, PetRegistryData] = _pet_list_internal
 
 class Paths:
 	const USER: String = "user://"
@@ -50,16 +47,22 @@ class PlaceholderAudio:
 #region Level Data
 
 enum LEVEL { DUMMY, SHIP, MINES }
-var _level_list_internal : Dictionary[LEVEL, LevelData] # Access functions are in Game
+var _level_list_internal : Dictionary[LEVEL, LevelData] # Access functions below
 
 func init_level_array() -> void:
-	# If adding new levels, remember to change the ID in BOTH places
-	Game.set_level_data(LEVEL.DUMMY, LevelData.new(LEVEL.DUMMY,
+	# If adding new levels, remember to change the ID
+	set_level_data(LevelData.new(LEVEL.DUMMY,
 		"Test Level", 1, []))
-	Game.set_level_data(LEVEL.SHIP, LevelData.new(LEVEL.SHIP,
+	set_level_data(LevelData.new(LEVEL.SHIP,
 		"Shipwreck", 4, [Vars.ELEMENT.WATER, Vars.ELEMENT.AIR]))
-	Game.set_level_data(LEVEL.MINES, LevelData.new(LEVEL.MINES,
+	set_level_data(LevelData.new(LEVEL.MINES,
 		"The Mines", 2, [Vars.ELEMENT.EARTH]))
+
+# This is the only place that this dictionary should be accessed directly.
+func get_level_data(id : Vars.LEVEL) -> Vars.LevelData:
+	return _level_list_internal[id]
+func set_level_data(lvl : Vars.LevelData) -> void:
+	_level_list_internal[lvl.id] = lvl
 
 class LevelData:
 
@@ -88,8 +91,14 @@ class LevelData:
 #region Pet Data
 
 # Godot doesn't have private variables, and dictionaries don't work with getters/setters.
-# But I really need to make sure nobody sets this variable except through the access
-# function in Game.
+# But I really need to make sure nobody sets this variable except through the access function.
 var _pet_list_internal : Dictionary[int, PetRegistryData]
+
+# This is the ONLY place where this pet_list should be accessed directly.
+func get_pet_data(id : int) -> PetRegistryData:
+	return _pet_list_internal[id]
+func set_pet_data(reg : PetRegistryData) -> void:
+	_pet_list_internal[reg.hatch_id] = reg
+	Data.pet.pet_list[reg.hatch_id] = reg.serialize()
 
 #endregion

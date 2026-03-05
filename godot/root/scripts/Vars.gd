@@ -12,22 +12,31 @@ class Paths:
 	const ASSETS: String = RES + "assets/"
 	const SFX: String = ASSETS + "audio/sfx/"
 
+const NO_COLOUR : Color = Color(-99, -99, -99, 0)
+
 #region Elements
 
-enum ELEMENT { FIRE, EARTH, WATER, AIR, ELECTRIC }
-const ELEMENT_NAMES : Array[String] = ["Fire", "Earth", "Water", "Air", "Electric"]
-const ELEMENT_COLOURS : Array[Color] = [Color.FIREBRICK, Color.PERU, Color.DEEP_SKY_BLUE,
-	Color.LIGHT_GRAY, Color.YELLOW]
+enum ELEMENT { SPECIAL, FIRE, EARTH, WATER, AIR, ELECTRIC }
+const ELEMENT_NAMES : Array[String] = [ "", "Fire", "Earth", "Water", "Air", "Electric" ]
+const ELEMENT_COLOURS : Array[Color] = [ Color.TRANSPARENT, Color.FIREBRICK, Color.PERU,
+	Color.DEEP_SKY_BLUE, Color.LIGHT_GRAY, Color.YELLOW ]
 
 const ELEMENT_FILE_PREFIX : String = "PLACEHOLDERS/Laura/Elements/"
 const ELEMENT_FILE_SUFFIX : String = ".png"
 const ELEMENT_ICONS : Array[CompressedTexture2D] = [
-	preload(Paths.ASSETS + ELEMENT_FILE_PREFIX + ELEMENT_NAMES[0] + ELEMENT_FILE_SUFFIX),
+	null,
 	preload(Paths.ASSETS + ELEMENT_FILE_PREFIX + ELEMENT_NAMES[1] + ELEMENT_FILE_SUFFIX),
 	preload(Paths.ASSETS + ELEMENT_FILE_PREFIX + ELEMENT_NAMES[2] + ELEMENT_FILE_SUFFIX),
 	preload(Paths.ASSETS + ELEMENT_FILE_PREFIX + ELEMENT_NAMES[3] + ELEMENT_FILE_SUFFIX),
 	preload(Paths.ASSETS + ELEMENT_FILE_PREFIX + ELEMENT_NAMES[4] + ELEMENT_FILE_SUFFIX),
+	preload(Paths.ASSETS + ELEMENT_FILE_PREFIX + ELEMENT_NAMES[5] + ELEMENT_FILE_SUFFIX),
 ]
+
+#endregion
+
+#region Roles
+
+enum ROLE { DAMAGE, BOOST, SLOW }
 
 #endregion
 

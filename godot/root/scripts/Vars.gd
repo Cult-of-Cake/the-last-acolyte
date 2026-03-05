@@ -2,9 +2,9 @@ extends Node
 
 func _ready() -> void:
 	init_level_array()
-	# TEMP for testing:
-	Data.select_save_file(0)
-	Data.load_save_file()
+	# Purely to get rid of the linter warning that we're not using these:
+	var _tempLD : Dictionary[LEVEL, LevelData] = _level_list_internal
+	var _tempPRD : Dictionary[int, PetRegistryData] = _pet_list_internal
 
 class Paths:
 	const USER: String = "user://"
@@ -50,14 +50,16 @@ class PlaceholderAudio:
 #region Level Data
 
 enum LEVEL { DUMMY, SHIP, MINES }
-var level_list : Dictionary[LEVEL, LevelData]
+var _level_list_internal : Dictionary[LEVEL, LevelData] # Access functions are in Game
 
 func init_level_array() -> void:
 	# If adding new levels, remember to change the ID in BOTH places
-	level_list[LEVEL.DUMMY] = LevelData.new(LEVEL.DUMMY, "Test Level", 1, [])
-	level_list[LEVEL.SHIP] = LevelData.new(LEVEL.SHIP, "Shipwreck", 4,
-		[Vars.ELEMENT.WATER, Vars.ELEMENT.AIR])
-	level_list[LEVEL.MINES] = LevelData.new(LEVEL.MINES, "The Mines", 2, [Vars.ELEMENT.EARTH])
+	Game.set_level_data(LEVEL.DUMMY, LevelData.new(LEVEL.DUMMY,
+		"Test Level", 1, []))
+	Game.set_level_data(LEVEL.SHIP, LevelData.new(LEVEL.SHIP,
+		"Shipwreck", 4, [Vars.ELEMENT.WATER, Vars.ELEMENT.AIR]))
+	Game.set_level_data(LEVEL.MINES, LevelData.new(LEVEL.MINES,
+		"The Mines", 2, [Vars.ELEMENT.EARTH]))
 
 class LevelData:
 
@@ -67,8 +69,8 @@ class LevelData:
 	var difficulty : int = 1
 	var elements : Array[Vars.ELEMENT]
 
-	func _init(id : LEVEL, n : String, diff : int, elems : Array[Vars.ELEMENT]) -> void:
-		self.id = id
+	func _init(lvl : LEVEL, n : String, diff : int, elems : Array[Vars.ELEMENT]) -> void:
+		id = lvl
 		name = n
 		difficulty = diff
 		elements = elems
@@ -86,14 +88,8 @@ class LevelData:
 #region Pet Data
 
 # Godot doesn't have private variables, and dictionaries don't work with getters/setters.
-# But I really need to make sure nobody sets this variable except through the function
-# below, so I don't care if the linter complains, that's what this variable is called.
-var _pet_list_SERIOUSLY_DONT_TOUCH : Dictionary[int, PetRegistryData]
-
-func get_pet(id : int) -> PetRegistryData:
-	return _pet_list_SERIOUSLY_DONT_TOUCH[id]
-func set_pet(reg : PetRegistryData) -> void:
-	_pet_list_SERIOUSLY_DONT_TOUCH[reg.hatch_id] = reg
-	Data.pet.pet_list[reg.hatch_id] = reg.serialize()
+# But I really need to make sure nobody sets this variable except through the access
+# function in Game.
+var _pet_list_internal : Dictionary[int, PetRegistryData]
 
 #endregion

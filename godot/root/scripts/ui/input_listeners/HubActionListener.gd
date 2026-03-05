@@ -14,7 +14,7 @@ func _ready() -> void:
 	Data.select_save_file(0)
 	Data.load_save_file()
 	var reg : PetRegistryData = PetRegistryData.new()
-	Vars.set_pet(reg)
+	Game.set_pet_data(reg)
 
 #region Actions
 

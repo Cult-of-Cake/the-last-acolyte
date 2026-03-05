@@ -8,7 +8,7 @@ var MapLevelTemplate : PackedScene = preload("res://root/scenes/scene/map/map_bu
 
 func _ready() -> void:
 
-	var data : Vars.LevelData = Vars.level_list[id]
+	var data : Vars.LevelData = Game.get_level_data(id)
 	var level : MapButton = MapLevelTemplate.instantiate()
 	level.initialize(data.name, data.difficulty, level_scene, data.stars_earned, data.elements)
 

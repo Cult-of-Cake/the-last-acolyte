@@ -17,5 +17,5 @@ func load_pet_list_str(arr : Dictionary) -> void:
 		var data : Dictionary = JSON.parse_string(arr[key])
 		var reg : PetRegistryData = PetRegistryData.new()
 		reg.set_from_dict(data)
-		Vars.set_pet(reg)
+		Game.set_pet_data(reg)
 #endregion

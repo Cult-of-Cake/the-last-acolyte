@@ -82,3 +82,18 @@ class LevelData:
 			Data.save_save_file()
 
 #endregion
+
+#region Pet Data
+
+# Godot doesn't have private variables, and dictionaries don't work with getters/setters.
+# But I really need to make sure nobody sets this variable except through the function
+# below, so I don't care if the linter complains, that's what this variable is called.
+var _pet_list_SERIOUSLY_DONT_TOUCH : Dictionary[int, PetRegistryData]
+
+func get_pet(id : int) -> PetRegistryData:
+	return _pet_list_SERIOUSLY_DONT_TOUCH[id]
+func set_pet(reg : PetRegistryData) -> void:
+	_pet_list_SERIOUSLY_DONT_TOUCH[reg.hatch_id] = reg
+	Data.pet.pet_list[reg.hatch_id] = reg.serialize()
+
+#endregion

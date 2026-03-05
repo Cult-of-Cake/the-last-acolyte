@@ -9,6 +9,12 @@ func _ready() -> void:
 
 	# OTher setup
 	talkables_setup()
+	
+	# TEMP for testing
+	Data.select_save_file(0)
+	Data.load_save_file()
+	var reg : PetRegistryData = PetRegistryData.new()
+	Vars.set_pet(reg)
 
 #region Actions
 

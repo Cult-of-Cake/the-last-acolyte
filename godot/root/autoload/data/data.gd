@@ -66,6 +66,7 @@ var _save_files_metadatas: Array[Dictionary] = []
 @onready var meta: MetaSaveData = %MetaSaveData
 @onready var game: GameSaveData = %GameSaveData
 @onready var map: MapSaveData = %MapSaveData
+@onready var pet: PetSaveData = %PetSaveData
 
 @onready var autosave_timer: Timer = %AutosaveTimer
 

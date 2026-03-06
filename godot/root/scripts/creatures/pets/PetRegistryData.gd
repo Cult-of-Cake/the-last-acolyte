@@ -44,7 +44,7 @@ func set_role(r : Vars.ROLE) -> void:
 
 # This works because we extend SaveData
 func serialize() -> String:
-	stats = JSON.stringify(_stats.get_as_dict())
+	stats = _stats.serialize()
 	return JSON.stringify(get_as_dict())
 
 func load_stats(arr : Dictionary) -> void:

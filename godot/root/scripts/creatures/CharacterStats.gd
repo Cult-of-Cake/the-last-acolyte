@@ -1,4 +1,4 @@
-extends SaveData
+extends Node
 class_name CharacterStats
 
 enum STAT {
@@ -27,10 +27,14 @@ var values_str : Dictionary[String, float] # This one is needed to save to file
 
 func _init() -> void:
 	for s : int in range(0, STAT.size()):
-		_values[s] = defaults[s]
+		set_stat(s, defaults[s])
 
 func get_stat(idx : STAT) -> float:
 	return _values[idx]
 func set_stat(idx : STAT, val : float) -> void:
 	_values[idx] = val
 	values_str[EnumUtils.to_name(int(idx), STAT)] = val
+
+# This works because we extend SaveData
+func serialize() -> String:
+	return JSON.stringify(values_str)

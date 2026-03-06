@@ -64,6 +64,7 @@ Configuration="*res://root/autoload/configuration/configuration.tscn"
 ResourceReference="*res://root/autoload/reference/resource_reference/resource_reference.tscn"
 Vars="*uid://daml4h8crvxek"
 DialogueManager="*uid://c3rodes2l3gxb"
+CharacterReference="*uid://dntqc68h5mjvg"
 
 [debug]
 

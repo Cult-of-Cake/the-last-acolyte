@@ -110,4 +110,28 @@ func set_pet_data(reg : PetRegistryData) -> void:
 	_pet_list_internal[reg.hatch_id] = reg
 	Data.pet.pet_list[reg.hatch_id] = reg.serialize()
 
+# These are strings instead of an enum so that we can change the order without breaking old saves
+class STAT:
+	# The usual
+	const SPEED : String = "speed"
+	const MAX_HP : String = "max_hp"
+	const HP_REGEN_AMOUNT : String = "hp_regen"
+	const CRIT_CHANCE : String = "crit_chance"
+	const CRIT_MULTIPLIER : String = "crit_mult"
+	# Be careful with this one, it probably shouldn't ever go beyond, say, 2
+	const RANGE_MULTIPLIER : String = "range_mult"
+	# All towers will have powers that use both of these, albeit usually more of one:
+	const ATTACK_ELEMENTAL : String = "att_elem"
+	const ATTACK_COSMIC : String = "att_cosm"
+	const DEFENSE_ELEMENTAL : String = "def_elem"
+	const DEFENSE_COSMIC : String = "def_cosm"
+	# Optional (e.g. Player has MP, Pets have rage, boss enemies have armour
+	const MAX_MP : String = "att_cosm"
+	const MP_REGEN_AMOUNT : String = "att_cosm"
+	const MAX_RAGE : String = "att_cosm"
+	const RAGE_REGEN_AMOUNT : String = "att_cosm"
+	const HEAL_AMOUNT : String = "att_cosm"
+	const ARMOUR : String = "att_cosm"
+	const ARMOUR_PENETRATION : String = "att_cosm"
+
 #endregion

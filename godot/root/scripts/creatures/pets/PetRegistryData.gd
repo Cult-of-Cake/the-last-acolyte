@@ -49,5 +49,5 @@ func serialize() -> String:
 
 func load_stats(arr : Dictionary) -> void:
 	_stats = CharacterStats.new()
-	for key : CharacterStats.STAT in arr.keys():
+	for key : String in arr.keys():
 		_stats.values[key] = arr[key]

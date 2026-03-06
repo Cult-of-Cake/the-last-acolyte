@@ -1,40 +1,32 @@
 extends Node
 class_name CharacterStats
 
-enum STAT {
-	# The usual
-	SPEED, MAX_HP, HP_REGEN_AMOUNT, CRIT_CHANCE, CRIT_MULTIPLIER,
-	# All towers will have powers that use both, albeit usually more of one
-	ATTACK_ELEMENTAL, ATTACK_COSMIC,
-	DEFENSE_ELEMENTAL, DEFENSE_COSMIC,
-	# Optional (e.g. Player has MP, Pets have rage, boss enemies have armour
-	MAX_MP, MP_REGEN_AMOUNT, MAX_RAGE, RAGE_REGEN_AMOUNT, HEAL_AMOUNT,
-	ARMOUR, ARMOUR_PENETRATION,
-	# Be careful with this one, it probably shouldn't ever go beyond, say, 2
-	RANGE_MULTIPLIER,
-}
-var defaults : Array[float] = [
-	10, 50, 0, 0, 1,
-	5, 5,
-	0, 0,
-	0, 1, 0, 1, 0,
-	0, 0,
-	1,
-]
-
-var _values : Dictionary[STAT, float]
-var values_str : Dictionary[String, float] # This one is needed to save to file
+var values : Dictionary[String, float]
 
 func _init() -> void:
-	for s : int in range(0, STAT.size()):
-		set_stat(s, defaults[s])
+	set_stat(Vars.STAT.SPEED, 10)
+	set_stat(Vars.STAT.MAX_HP, 50)
+	set_stat(Vars.STAT.HP_REGEN_AMOUNT, 0)
+	set_stat(Vars.STAT.CRIT_CHANCE, 0)
+	set_stat(Vars.STAT.CRIT_MULTIPLIER, 1)
+	set_stat(Vars.STAT.RANGE_MULTIPLIER, 1)
+	set_stat(Vars.STAT.ATTACK_ELEMENTAL, 5)
+	set_stat(Vars.STAT.ATTACK_COSMIC, 5)
+	set_stat(Vars.STAT.DEFENSE_ELEMENTAL, 0)
+	set_stat(Vars.STAT.DEFENSE_COSMIC, 0)
+	# Optional
+	set_stat(Vars.STAT.MAX_MP, 0)
+	set_stat(Vars.STAT.MP_REGEN_AMOUNT, 1)
+	set_stat(Vars.STAT.MAX_RAGE, 0)
+	set_stat(Vars.STAT.RAGE_REGEN_AMOUNT, 1)
+	set_stat(Vars.STAT.HEAL_AMOUNT, 0)
+	set_stat(Vars.STAT.ARMOUR, 0)
+	set_stat(Vars.STAT.ARMOUR_PENETRATION, 0)
 
-func get_stat(idx : STAT) -> float:
-	return _values[idx]
-func set_stat(idx : STAT, val : float) -> void:
-	_values[idx] = val
-	values_str[EnumUtils.to_name(int(idx), STAT)] = val
+func get_stat(idx : String) -> float:
+	return values[idx]
+func set_stat(idx : String, val : float) -> void:
+	values[idx] = val
 
-# This works because we extend SaveData
 func serialize() -> String:
-	return JSON.stringify(values_str)
+	return JSON.stringify(values)

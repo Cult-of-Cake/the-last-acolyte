@@ -135,6 +135,15 @@ func apply_dialogue_line() -> void:
 		target_character = CharacterReference\
 			.character_dict[dialogue_line.character.to_lower()]
 	
+	# Figure out if the character portrait is going to work
+	if((target_character != null) \
+	&& (not dialogue_line.get_tag_value("mood").is_empty())):
+		var mood = dialogue_line.get_tag_value("mood")
+		var mood_exists = target_character.dialogue_style.portrait_dict.has(mood)
+		if mood_exists: 
+			cur_mood = mood
+		else:
+			Log.debug("MOOD DOESN'T EXIST FOR " + target_character.character_name + ": " + cur_mood)
 		
 	
 	
@@ -156,7 +165,7 @@ func apply_dialogue_line() -> void:
 	character_portrait.hide()
 	if(target_character != null):
 		character_portrait.texture = \
-			target_character.dialogue_style.portrait_dict["default"]
+			target_character.dialogue_style.portrait_dict[cur_mood]
 		character_portrait.show()
 
 	dialogue_label.hide()

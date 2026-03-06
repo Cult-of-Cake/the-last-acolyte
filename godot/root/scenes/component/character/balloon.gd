@@ -70,6 +70,9 @@ var mutation_cooldown: Timer = Timer.new()
 ## Indicator to show that player can progress dialogue.
 @onready var progress: Polygon2D = %Progress
 
+## Character Portrait area
+@onready var character_portrait: TextureRect = %CharacterPortrait
+
 
 func _ready() -> void:
 	balloon.hide()
@@ -124,14 +127,37 @@ func start(with_dialogue_resource: DialogueResource = null, title: String = "", 
 ## Apply any changes to the balloon given a new [DialogueLine].
 func apply_dialogue_line() -> void:
 	mutation_cooldown.stop()
+	var target_character : Character = null
+	var cur_mood : String = "default"
+	
+	#Determine if the current speaking character exists in CharacterReference
+	if CharacterReference.character_dict.has(dialogue_line.character.to_lower()):
+		target_character = CharacterReference\
+			.character_dict[dialogue_line.character.to_lower()]
+	
+		
+	
+	
+	
+	
+
 
 	progress.hide()
 	is_waiting_for_input = false
 	balloon.focus_mode = Control.FOCUS_ALL
 	balloon.grab_focus()
-
-	character_label.visible = not dialogue_line.character.is_empty()
-	character_label.text = tr(dialogue_line.character, "dialogue")
+	
+	character_label.text = ""
+	character_label.visible = not (target_character == null)
+	
+	if(target_character != null):
+		character_label.text = tr(target_character.character_name, "dialogue")
+	
+	character_portrait.hide()
+	if(target_character != null):
+		character_portrait.texture = \
+			target_character.dialogue_style.portrait_dict["default"]
+		character_portrait.show()
 
 	dialogue_label.hide()
 	dialogue_label.dialogue_line = dialogue_line

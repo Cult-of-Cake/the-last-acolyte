@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dntqc68h5mjvg"]
+
+[ext_resource type="Script" uid="uid://cl3cgvugxy8lr" path="res://root/autoload/reference/character_reference/character_reference.gd" id="1_yrtvj"]
+[ext_resource type="Resource" uid="uid://bf3fffygxk6pc" path="res://root/resources/global/characters/tres/Giraffe.character.tres" id="2_52yr4"]
+[ext_resource type="Script" uid="uid://bdwbkmf5ssyt8" path="res://root/scenes/scene/characters/Character.gd" id="2_d8lvp"]
+
+[node name="CharacterReference" type="Node" unique_id=1467506222]
+script = ExtResource("1_yrtvj")
+character_file_list = Array[ExtResource("2_d8lvp")]([ExtResource("2_52yr4")])
+metadata/_custom_type_script = "uid://bdwbkmf5ssyt8"

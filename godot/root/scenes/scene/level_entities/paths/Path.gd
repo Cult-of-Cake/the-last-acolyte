@@ -23,7 +23,7 @@ static func build_path(point_list: Array[Vector2i], tile_map: TileMapLayer) -> P
 
 func intersects_enemy(enemy: PathFollow2D) -> bool:
 	var closest_point:Vector2 = curve.get_closest_point(enemy.global_position)
-	if closest_point.distance_to(enemy.global_position) < 2: #hard coded cutoff for now
+	if closest_point.distance_to(enemy.global_position) < 2: #hard coded cutoff for now, in pixels, TODO
 		return true
 	else:
 		return false

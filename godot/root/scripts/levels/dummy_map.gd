@@ -67,7 +67,7 @@ func tile_clicked(coords:Vector2) ->void :
 
 		#Also, somewhere in all that, it should probably make sure the tile is walkable to begin with
 
-		#There's a whole shit pile of way so set this to false.
+		#There's a whole shit pile of way to set this to false.
 		var valid:bool = true
 		var orphans : Array[PathFollow2D]
 		var new_paths : Array[Path]
@@ -79,7 +79,7 @@ func tile_clicked(coords:Vector2) ->void :
 				var break_offset:float = broken_path.curve.get_closest_offset(broken_path.to_local(coords))
 				#Build a list of every enemy who is cut off from the end point by the new barricade
 				for guy in broken_path.get_children():
-					if guy.progress && guy.progress < break_offset - 8:
+					if guy.progress && guy.progress < break_offset - 8: #In pixels, probalby about half a tile
 						orphans.append(guy)
 		
 

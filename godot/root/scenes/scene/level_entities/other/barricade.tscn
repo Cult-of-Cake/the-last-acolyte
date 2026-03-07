@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bpm686jonemgm"]
+
+[ext_resource type="Script" uid="uid://bxorhjyvnfuwn" path="res://root/scenes/scene/level_entities/other/barricade.gd" id="1_5aj67"]
+[ext_resource type="Texture2D" uid="uid://cjm830seu6hvb" path="res://root/assets/PLACEHOLDERS/Other/Sudsy-Soap.png" id="1_c1frg"]
+
+[node name="Barricade" type="Node2D" unique_id=787024682]
+script = ExtResource("1_5aj67")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=780019209]
+scale = Vector2(0.011, 0.011)
+texture = ExtResource("1_c1frg")

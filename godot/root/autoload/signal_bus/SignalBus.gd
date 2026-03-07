@@ -7,6 +7,7 @@ extends Node
 # Configuration
 signal language_changed(locale: String)
 signal number_format_changed(number_format: NumberUtils.NumberFormat)
+signal delete_path(path: Path)
 
 # Game
 signal clicks_per_second_updated(cps: int)

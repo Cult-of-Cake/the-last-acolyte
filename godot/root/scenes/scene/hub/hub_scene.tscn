@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://ds64ihpkkswxj" path="res://root/scripts/ui/input_listeners/HubActionListener.gd" id="9_4h3xj"]
 [ext_resource type="Resource" uid="uid://ciyv4grfrdfn5" path="res://testwors.dialogue" id="9_lq4yk"]
 [ext_resource type="PackedScene" uid="uid://c187j6og8dp42" path="res://root/scenes/component/character/balloon.tscn" id="10_f6ymf"]
+[ext_resource type="PackedScene" uid="uid://g8ru6a3r06wr" path="res://root/scenes/scene/hub/hub_exit.tscn" id="14_f6ymf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3p63o"]
 texture = ExtResource("1_xqe6v")
@@ -1864,6 +1865,9 @@ y_sort_enabled = true
 position = Vector2(-1, -11)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("7_v5l00")
+
+[node name="Level Select" parent="Characters/NPCs" unique_id=1419526251 instance=ExtResource("14_f6ymf")]
+position = Vector2(616, 216)
 
 [node name="UI" type="Control" parent="." unique_id=1335209483]
 layout_mode = 3

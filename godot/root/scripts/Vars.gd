@@ -1,5 +1,7 @@
 extends Node
 
+var DIALOGUE_TAKEN := false
+
 func _ready() -> void:
 	init_level_array()
 	# TEMP for testing:

@@ -1,0 +1,197 @@
+[gd_scene format=3 uid="uid://ci262pusysvfq"]
+
+[ext_resource type="Script" uid="uid://c4n3qxcuvwsi3" path="res://root/scripts/map/MapButton.gd" id="1_byjox"]
+[ext_resource type="Texture2D" uid="uid://nxl7bitkgxlp" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/button_round_depth_gradient.png" id="2_pq2n2"]
+[ext_resource type="Texture2D" uid="uid://dlq82lkpm3bbh" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/button_round_line.png" id="3_ryfbk"]
+[ext_resource type="Script" uid="uid://dmwdfktvhed56" path="res://root/scripts/ui/resource_loaders/SpriteLoader.gd" id="4_toaow"]
+[ext_resource type="Script" uid="uid://dbv6i81a2gr8l" path="res://root/scripts/map/Stars.gd" id="5_esq8n"]
+[ext_resource type="Texture2D" uid="uid://dijle4vdaatak" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/star_outline_depth.png" id="6_splht"]
+[ext_resource type="Texture2D" uid="uid://ndr23t86j562" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/star.png" id="7_b4vu1"]
+[ext_resource type="Texture2D" uid="uid://c6pmwh24ovib5" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/Cursor Pack/pointer_h.png" id="8_fbcwj"]
+
+[node name="Map Level" type="Sprite2D" unique_id=41818855 node_paths=PackedStringArray("button", "level_name", "diff_text", "stars_obj", "element_objs")]
+script = ExtResource("1_byjox")
+button = NodePath("GameButton")
+level_name = NodePath("NameLabel")
+diff_text = NodePath("DifficultyLabel")
+stars_obj = NodePath("Stars")
+element_objs = [NodePath("Element Icons/Element1of1/SpriteLoader"), NodePath("Element Icons/Element1of2/SpriteLoader"), NodePath("Element Icons/Element2of2/SpriteLoader"), NodePath("Element Icons/Element1of3/SpriteLoader"), NodePath("Element Icons/Element2of3/SpriteLoader"), NodePath("Element Icons/Element3of3/SpriteLoader")]
+
+[node name="GameButton" type="TextureButton" parent="." unique_id=1351892497]
+offset_left = -61.0
+offset_top = -54.0
+offset_right = 59.0
+offset_bottom = 66.0
+
+[node name="Marker" type="Sprite2D" parent="." unique_id=887557848]
+modulate = Color(0.5137255, 0.61960787, 1, 1)
+position = Vector2(0, 5)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_pq2n2")
+
+[node name="Difficulty Back" type="Sprite2D" parent="." unique_id=2088908350]
+modulate = Color(0.8369335, 0.048093006, 2.8878452e-07, 1)
+position = Vector2(29, -16)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ryfbk")
+
+[node name="Elements Back" type="Sprite2D" parent="." unique_id=1254488743]
+modulate = Color(0.2784314, 0.047058824, 0.5294118, 1)
+position = Vector2(-29, -16)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ryfbk")
+
+[node name="Element Icons" type="Node2D" parent="." unique_id=1465762923]
+
+[node name="Element1of1" type="Sprite2D" parent="Element Icons" unique_id=14560262]
+unique_name_in_owner = true
+modulate = Color(0.8352941, 1, 0, 1)
+position = Vector2(-29, -16)
+scale = Vector2(0.4, 0.4)
+
+[node name="SpriteLoader" type="Node2D" parent="Element Icons/Element1of1" unique_id=993265656 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-2356, -2976)
+scale = Vector2(4, 4)
+script = ExtResource("4_toaow")
+colour = Color(1, 1, 1, 1)
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dmwdfktvhed56"
+
+[node name="Element1of2" type="Sprite2D" parent="Element Icons" unique_id=124992769]
+unique_name_in_owner = true
+modulate = Color(0.8352941, 1, 0, 1)
+position = Vector2(-35, -16)
+scale = Vector2(0.2, 0.2)
+
+[node name="SpriteLoader" type="Node2D" parent="Element Icons/Element1of2" unique_id=1317771109 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-2356, -2976)
+scale = Vector2(4, 4)
+script = ExtResource("4_toaow")
+colour = Color(1, 1, 1, 1)
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dmwdfktvhed56"
+
+[node name="Element2of2" type="Sprite2D" parent="Element Icons" unique_id=1638768064]
+unique_name_in_owner = true
+modulate = Color(0.89492244, 0.89492244, 0.8949224, 1)
+position = Vector2(-23, -16)
+scale = Vector2(0.2, 0.2)
+
+[node name="SpriteLoader" type="Node2D" parent="Element Icons/Element2of2" unique_id=839764376 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-2356, -2976)
+scale = Vector2(4, 4)
+script = ExtResource("4_toaow")
+colour = Color(1, 1, 1, 1)
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dmwdfktvhed56"
+
+[node name="Element1of3" type="Sprite2D" parent="Element Icons" unique_id=124423876]
+unique_name_in_owner = true
+modulate = Color(0.8352941, 1, 0, 1)
+position = Vector2(-29, -22)
+scale = Vector2(0.2, 0.2)
+
+[node name="SpriteLoader" type="Node2D" parent="Element Icons/Element1of3" unique_id=613620868 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-2356, -2976)
+scale = Vector2(4, 4)
+script = ExtResource("4_toaow")
+colour = Color(1, 1, 1, 1)
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dmwdfktvhed56"
+
+[node name="Element2of3" type="Sprite2D" parent="Element Icons" unique_id=529340748]
+unique_name_in_owner = true
+modulate = Color(0.8352941, 1, 0, 1)
+position = Vector2(-35, -12)
+scale = Vector2(0.2, 0.2)
+
+[node name="SpriteLoader" type="Node2D" parent="Element Icons/Element2of3" unique_id=66429888 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-2356, -2976)
+scale = Vector2(4, 4)
+script = ExtResource("4_toaow")
+colour = Color(1, 1, 1, 1)
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dmwdfktvhed56"
+
+[node name="Element3of3" type="Sprite2D" parent="Element Icons" unique_id=1431756975]
+unique_name_in_owner = true
+modulate = Color(0.89492244, 0.89492244, 0.8949224, 1)
+position = Vector2(-23, -12)
+scale = Vector2(0.2, 0.2)
+
+[node name="SpriteLoader" type="Node2D" parent="Element Icons/Element3of3" unique_id=2021727127 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-2356, -2976)
+scale = Vector2(4, 4)
+script = ExtResource("4_toaow")
+colour = Color(1, 1, 1, 1)
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dmwdfktvhed56"
+
+[node name="DifficultyLabel" type="Label" parent="." unique_id=591792549]
+offset_left = 10.0
+offset_top = -34.0
+offset_right = 50.0
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stars" type="Node2D" parent="." unique_id=116920691 node_paths=PackedStringArray("earned_images")]
+position = Vector2(0, 5)
+script = ExtResource("5_esq8n")
+earned_images = [NodePath("Star 1 Earned"), NodePath("Star 2 Earned"), NodePath("Star 3 Earned")]
+metadata/_custom_type_script = "uid://dbv6i81a2gr8l"
+
+[node name="Star 1 Back" type="Sprite2D" parent="Stars" unique_id=1305345406]
+modulate = Color(1, 0.9764706, 0.7529412, 1)
+position = Vector2(-25, 22)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_splht")
+
+[node name="Star 1 Earned" type="Sprite2D" parent="Stars" unique_id=1142079154]
+visible = false
+modulate = Color(1, 0.8862745, 0, 1)
+position = Vector2(-25, 22)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_b4vu1")
+
+[node name="Star 2 Empty" type="Sprite2D" parent="Stars" unique_id=658989691]
+modulate = Color(1, 0.9764706, 0.7529412, 1)
+position = Vector2(0, 30)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_splht")
+
+[node name="Star 2 Earned" type="Sprite2D" parent="Stars" unique_id=1669613209]
+visible = false
+modulate = Color(1, 0.8862745, 0, 1)
+position = Vector2(0, 30)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_b4vu1")
+
+[node name="Star 3 Empty" type="Sprite2D" parent="Stars" unique_id=523060915]
+modulate = Color(1, 0.9764706, 0.7529412, 1)
+position = Vector2(25, 20)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_splht")
+
+[node name="Star 3 Earned" type="Sprite2D" parent="Stars" unique_id=1212771894]
+visible = false
+modulate = Color(1, 0.8862745, 0, 1)
+position = Vector2(25, 20)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_b4vu1")
+
+[node name="NameLabel" type="Label" parent="." unique_id=106953008]
+offset_left = -75.0
+offset_top = -13.0
+offset_right = 75.0
+offset_bottom = 21.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.46666667)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Level Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PointerH" type="Sprite2D" parent="." unique_id=1681683013]
+visible = false
+position = Vector2(66, 27)
+texture = ExtResource("8_fbcwj")

@@ -20,9 +20,6 @@ class Objects:
 
 #endregion
 
-func _ready() -> void:
-	print("huh")
-
 #region Strings
 static func join(messages:Array) -> String:
 	return "".join(messages)
@@ -32,8 +29,8 @@ static func join(messages:Array) -> String:
 
 # I want to make it easier to log to specific streams.
 # Define the streams here - in the enum and also the array for its title
-enum LOG { ACTIONS, MOVEMENT }
-static var streams_text : Array = ["ACTION", "MOVE"]
+enum LOG { ACTIONS, MOVEMENT, ASSETS, SAVE_SYSTEM }
+static var streams_text : Array = ["ACTN", "MOVE", "ASST", "SAVE" ]
 const DEFAULT_LEVEL : Log.LogLevel = Log.LogLevel.INFO
 
 # These can be left alone.  The first is auto-filled and the second is what fills it

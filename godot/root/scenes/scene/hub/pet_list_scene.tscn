@@ -45,6 +45,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Ally" type="Label" parent="CanvasLayer/Background/MarginContainer/Rows/Header" unique_id=1526991410]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ally"
@@ -64,29 +65,42 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Filter Button" type="TextureButton" parent="CanvasLayer/Background/MarginContainer/Rows/Header" unique_id=1978848159]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 tooltip_text = "Filter"
 texture_normal = ExtResource("2_3h0pa")
 texture_pressed = ExtResource("3_0b5b1")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Label" type="Label" parent="CanvasLayer/Background/MarginContainer/Rows/Header/Filter Button" unique_id=595209183]
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -19.0
 offset_top = -17.0
+offset_right = 19.0
 offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.4891863, 0.31864303, 0.1837537, 1)
 text = "Filter"
 horizontal_alignment = 1
 
 [node name="Undiscovered" type="TextureButton" parent="CanvasLayer/Background/MarginContainer/Rows/Header" unique_id=225306267]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 tooltip_text = "Filter"
 texture_normal = ExtResource("2_3h0pa")
 texture_pressed = ExtResource("3_0b5b1")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Label" type="Label" parent="CanvasLayer/Background/MarginContainer/Rows/Header/Undiscovered" unique_id=2075040340]
 layout_mode = 1
@@ -98,5 +112,6 @@ offset_top = -17.0
 offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.49019608, 0.31764707, 0.18431373, 1)
 text = "Undiscovered"
 horizontal_alignment = 1

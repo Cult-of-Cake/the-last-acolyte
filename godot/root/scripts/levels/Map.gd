@@ -14,8 +14,8 @@ var paths : Array[Path]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.delete_path.connect(delete_path)
-	
 	tile_map.left_click.connect(tile_clicked)
+	
 	var start_coords:Vector2 = start_point.get_global_position()
 	var start_map:Vector2 = tile_map.local_to_map(tile_map.to_local(start_coords))
 	var end_coords:Vector2 = end_point.get_global_position()

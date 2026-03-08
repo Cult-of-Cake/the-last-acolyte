@@ -4,10 +4,10 @@ class_name Enemy
 @export var base_speed : float = 300
 @export var true_speed : float = 300
 
-var spawn_obj : StartPoint
-var goal_obj : Area2D
+var spawn_obj : MapPoint
+var goal_obj : MapPoint
 
-func initialize(spawner : StartPoint, end_goal : EndPoint) -> void:
+func initialize(spawner : MapPoint, end_goal : MapPoint) -> void:
 	spawn_obj = spawner
 	goal_obj = end_goal
 	spawner.add_child(self)

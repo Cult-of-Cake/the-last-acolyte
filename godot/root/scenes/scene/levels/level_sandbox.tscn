@@ -637,7 +637,6 @@ tile_map_data = PackedByteArray("AAAEAAAAAQARAAIAAAADAAAAAQARAAIAAAACAAAAAQARAAI
 tile_set = SubResource("TileSet_xvigy")
 
 [node name="StartPoint" type="Area2D" parent="." unique_id=375971510]
-unique_name_in_owner = true
 position = Vector2(73, 191)
 script = ExtResource("8_ccu1u")
 metadata/_custom_type_script = "uid://cj5ybhijiho2v"
@@ -658,7 +657,6 @@ scale = Vector2(3, 3)
 texture = ExtResource("8_6sf74")
 
 [node name="EndPoint" type="Area2D" parent="." unique_id=1285164122]
-unique_name_in_owner = true
 position = Vector2(3645, 2243)
 script = ExtResource("8_ccu1u")
 metadata/_custom_type_script = "uid://cj5ybhijiho2v"

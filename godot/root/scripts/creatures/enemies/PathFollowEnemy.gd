@@ -8,9 +8,12 @@ func set_speed_multiplier(mult : float) -> void:
 	super(mult)
 	pathing_base.speed = true_speed
 	
-func initialize(spawner : StartPoint, end_goal : EndPoint) -> void:
+func initialize(spawner : MapPoint, end_goal : MapPoint) -> void:
 	super(spawner, end_goal)
-	add_to_path(spawn_obj.thePath)
+	# TODO: This is a bad, bad way to find Map but thePath shouldn't belong
+	# to map anyway, since each spawner will eventually have its own default
+	# path and orphaned paths etc, I suspect.  So fixing this can wait.
+	add_to_path(get_tree().root.get_node("Level/Map").thePath)
 
 # Path follow - MUST be the direct child of Path, so Enemy must be a child of that
 

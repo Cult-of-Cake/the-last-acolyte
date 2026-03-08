@@ -1,16 +1,15 @@
 extends TileMapLayer
+class_name ObstacleLayer
 
 var impassible: Dictionary
 var barriers: Dictionary
 
-var navigator = PathNavigator.new()
+var navigator : PathNavigator = PathNavigator.new()
 
 signal left_click(coords: Vector2)
 
-# Called when the node enters the scene tree for the first time.
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("left_click"):
 		left_click.emit(get_global_mouse_position())
 

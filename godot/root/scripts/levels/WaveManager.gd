@@ -2,6 +2,8 @@ extends Node2D
 
 var spawn_timer : Timer
 
+@export var map : Map
+
 # TODO: Once this is in the same branch as Vars, refactor to use Paths
 const basic_enemy = preload("res://root/scenes/scene/levels/FollowEnemy.tscn")
 const flying_enemy = preload("res://root/scenes/scene/levels/FlyingEnemy.tscn")
@@ -14,7 +16,7 @@ func _ready() -> void:
 
 func _on_timer_timeout() -> void:
 	var newguy : Enemy = get_next_enemy().instantiate()
-	newguy.initialize(%StartPoint, %EndPoint)
+	newguy.initialize(map.start_point, map.end_point)
 
 # TODO: At some point, we'll have actual wave patterns, stored somewhere.
 # But for now, I'm just putting something together that lets us test some things.

@@ -8,7 +8,7 @@ func set_speed_multiplier(mult : float) -> void:
 	super(mult)
 	pathing_base.speed = true_speed
 	
-func initialize(spawner : StartPoint, end_goal : Area2D) -> void:
+func initialize(spawner : StartPoint, end_goal : EndPoint) -> void:
 	super(spawner, end_goal)
 	add_to_path(spawn_obj.thePath)
 

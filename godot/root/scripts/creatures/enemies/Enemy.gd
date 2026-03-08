@@ -7,7 +7,7 @@ class_name Enemy
 var spawn_obj : StartPoint
 var goal_obj : Area2D
 
-func initialize(spawner : StartPoint, end_goal : Area2D) -> void:
+func initialize(spawner : StartPoint, end_goal : EndPoint) -> void:
 	spawn_obj = spawner
 	goal_obj = end_goal
 	spawner.add_child(self)

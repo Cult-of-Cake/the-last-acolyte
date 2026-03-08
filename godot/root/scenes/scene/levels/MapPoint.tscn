@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://c17xvrvwss6"]
 
-[ext_resource type="Script" uid="uid://bw011g4yibdoj" path="res://root/scenes/scene/levels/map_point.gd" id="1_7q6nh"]
+[ext_resource type="Script" uid="uid://cj5ybhijiho2v" path="res://root/scripts/levels/MapPoint.gd" id="1_7q6nh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n87yq"]
 radius = 6.0
 
-[node name="MapPoint" type="Area2D" unique_id=1730538540]
+[node name="MapPoint" type="Area2D" unique_id=1050406980]
 script = ExtResource("1_7q6nh")
+metadata/_custom_type_script = "uid://cj5ybhijiho2v"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1176628538]
 shape = SubResource("CircleShape2D_n87yq")

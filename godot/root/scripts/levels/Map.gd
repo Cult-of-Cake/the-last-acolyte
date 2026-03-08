@@ -1,58 +1,55 @@
 extends Node2D
+class_name Map
 
-var the_path : Path
-var paths : Array[Path]
-
-@onready var tile_map : TileMapLayer = %SimpleTiles
 @onready var navigator : PathNavigator = PathNavigator.new()
 #Paths should be objects that keep a list of the involved tiles so they can check if added walls or obstacles interfere
 
+@export var tile_map : ObstacleLayer
+@export var start_point : MapPoint  # TODO: Array
+@export var end_point : MapPoint  # TODO: Array
+
+var thePath : Path
+var paths : Array[Path]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.delete_path.connect(delete_path)
 	
 	tile_map.left_click.connect(tile_clicked)
-	var start_coords:Vector2 = get_node("StartPoints").get_node("StartPoint").get_global_position()
+	var start_coords:Vector2 = start_point.get_global_position()
 	var start_map:Vector2 = tile_map.local_to_map(tile_map.to_local(start_coords))
-	var end_coords:Vector2 = get_node("EndPoints").get_node("EndPoint").get_global_position()
+	var end_coords:Vector2 = end_point.get_global_position()
 	var end_map:Vector2 = tile_map.local_to_map(tile_map.to_local(end_coords))
 	calculate_path(start_map, end_map)
 	
-	get_node("StartPoints").get_node("StartPoint").calculate_coordinates(tile_map)
-	get_node("EndPoints").get_node("EndPoint").calculate_coordinates(tile_map)
+	start_point.calculate_coordinates(tile_map)
+	end_point.calculate_coordinates(tile_map)
 
-
-func _on_map_changed(map):
+func _on_map_changed(map) -> void:
 	print("map changed")
-	%StartPoint.calculate_path()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+	start_point.calculate_path()
 
 func calculate_path(start_coords: Vector2i, end_coords : Vector2i) -> void:
 	var pathfinder:PathNavigator = PathNavigator.new()
-	var point_list:Array[Vector2i] = pathfinder.navigate(start_coords, end_coords, %SimpleTiles)
-	var thePath:Path = Path.new()
+	var point_list:Array[Vector2i] = pathfinder.navigate(start_coords, end_coords, tile_map)
+	thePath = Path.new()
 	thePath.curve = Curve2D.new()
 	thePath.name = "thePath"
 	if point_list:
 		for point in point_list:
 			thePath.map_points[point] = true
-			var local_coords:Vector2 = %SimpleTiles.map_to_local(point)
-			var global_coords:Vector2 = %SimpleTiles.to_global(local_coords)
+			var local_coords:Vector2 = tile_map.map_to_local(point)
+			var global_coords:Vector2 = tile_map.to_global(local_coords)
 			thePath.curve.add_point(global_coords)
 	add_child(thePath)
 	paths.append(thePath)
 	thePath.is_default = true
-	get_node("StartPoints").get_node("StartPoint").default_path = thePath
+	start_point.default_path = thePath
 
 func _on_timer_timeout() -> void:
 	var newguy:PathFollow2D = load("res://root/scenes/scene/levels/dummySprite.tscn").instantiate()
 	var some_path : Path
-	some_path = get_node("StartPoints").get_node("StartPoint").default_path
+	some_path = start_point.default_path
 	if(some_path):
 		some_path.add_child(newguy)
 	#get_node("Timer").wait_time = 100
@@ -97,7 +94,7 @@ func tile_clicked(coords:Vector2) ->void :
 					has_path = true
 			if !has_path:
 				navigator = PathNavigator.new()
-				var points: Array[Vector2i] = navigator.navigate(tile_map.local_to_map(tile_map.to_local(guy.global_position)), get_node("EndPoints").get_node("EndPoint").coordinates, tile_map)
+				var points: Array[Vector2i] = navigator.navigate(tile_map.local_to_map(tile_map.to_local(guy.global_position)), end_point.coordinates, tile_map)
 				if !points:
 					valid = false
 				else:
@@ -111,7 +108,7 @@ func tile_clicked(coords:Vector2) ->void :
 		#We need to make sure there is still some path from the start point to the goal point
 		navigator = PathNavigator.new()
 		var candidate_path: Path
-		var candidate_points:Array[Vector2i] = navigator.navigate(get_node("StartPoints").get_node("StartPoint").coordinates, get_node("EndPoints").get_node("EndPoint").coordinates, tile_map)
+		var candidate_points:Array[Vector2i] = navigator.navigate(start_point.coordinates, end_point.coordinates, tile_map)
 		if !candidate_points:
 			print("It's the main path that is broken")
 			valid = false
@@ -141,13 +138,13 @@ func tile_clicked(coords:Vector2) ->void :
 					print("This code has been reached")
 					hard_place(guy)
 			#if valid, replace the default path for the start point with the new start-to-finish path that was created
-			if get_node("StartPoints").get_node("StartPoint").default_path.get_children().size() == 0:
-				delete_path(get_node("StartPoints").get_node("StartPoint").default_path)
+			if start_point.default_path.get_children().size() == 0:
+				delete_path(start_point.default_path)
 			else:
-				get_node("StartPoints").get_node("StartPoint").default_path.is_default = false
+				start_point.default_path.is_default = false
 			candidate_path.is_default = true
 			candidate_path.name = "default"
-			get_node("StartPoints").get_node("StartPoint").default_path = candidate_path
+			start_point.default_path = candidate_path
 		
 			#clean up any created paths that didn't end up getting used:
 			for path in paths:

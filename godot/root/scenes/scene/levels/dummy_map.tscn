@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://cb541bsl7dfsu"]
 
-[ext_resource type="Script" uid="uid://bi7olhbpff4dy" path="res://root/scripts/levels/dummy_map.gd" id="1_hl7yk"]
+[ext_resource type="Script" uid="uid://bi7olhbpff4dy" path="res://root/scripts/levels/Map.gd" id="1_hl7yk"]
 [ext_resource type="PackedScene" uid="uid://c6faqnn12ba5a" path="res://root/scenes/scene/levels/simple_tiles.tscn" id="1_o3jlj"]
-[ext_resource type="Script" uid="uid://crejfymh045dm" path="res://root/scenes/scene/levels/simple_tiles.gd" id="3_k4dat"]
-[ext_resource type="PackedScene" uid="uid://c17xvrvwss6" path="res://root/scenes/scene/levels/MapPoint.tscn" id="5_k4dat"]
+[ext_resource type="Script" path="res://root/scenes/scene/levels/simple_tiles.gd" id="3_k4dat"]
+[ext_resource type="PackedScene" path="res://root/scenes/scene/levels/MapPoint.tscn" id="5_k4dat"]
 
 [node name="DummyMap" type="Node2D" unique_id=955376474]
 script = ExtResource("1_hl7yk")

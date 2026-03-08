@@ -9,9 +9,9 @@ func _ready() -> void:
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta : float) -> void:
 	pass
 
-#func calculate_coordinates(tilemap : TileMapLayer) -> void:
-#	var local = tilemap.to_local(global_position)
-#	coordinates = tilemap.local_to_map(local)
+func calculate_coordinates(tilemap : TileMapLayer) -> void:
+	var local : Vector2i = tilemap.to_local(global_position)
+	coordinates = tilemap.local_to_map(local)

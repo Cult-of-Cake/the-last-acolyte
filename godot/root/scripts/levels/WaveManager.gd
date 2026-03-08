@@ -21,7 +21,10 @@ func _on_timer_timeout() -> void:
 # TODO: At some point, we'll have actual wave patterns, stored somewhere.
 # But for now, I'm just putting something together that lets us test some things.
 
-var simple_pattern : Array[PackedScene] = [ basic_enemy, basic_enemy, basic_enemy, basic_enemy, basic_enemy, flying_enemy ]
+var simple_pattern : Array[PackedScene] = [
+	basic_enemy, basic_enemy, basic_enemy, basic_enemy,
+	flying_enemy, flying_enemy
+]
 var posn_in_pattern : int = 0
 
 func get_next_enemy() -> PackedScene:

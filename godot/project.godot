@@ -47,6 +47,7 @@ manager/music/bus="Music"
 
 [autoload]
 
+Vars="*uid://4qxidhrp3ay6"
 DebugMenu="*uid://cggqb75a8w8r"
 Log="*res://addons/logger/logger.gd"
 LogWrapper="*res://root/autoload/wrapper/log_wrapper/log_wrapper.tscn"

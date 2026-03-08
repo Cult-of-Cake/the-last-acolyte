@@ -579,7 +579,7 @@ radius = 15.0
 [node name="WaveManager" type="Node2D" parent="." unique_id=1421112523 node_paths=PackedStringArray("map")]
 unique_name_in_owner = true
 script = ExtResource("2_ccu1u")
-map = NodePath("..")
+map = NodePath("../Map")
 
 [node name="Map" type="Node2D" parent="." unique_id=1786262132 node_paths=PackedStringArray("tile_map", "start_point", "end_point")]
 script = ExtResource("1_hm0rt")

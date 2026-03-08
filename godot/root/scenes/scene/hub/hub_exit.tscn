@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://g8ru6a3r06wr"]
+
+[ext_resource type="Script" uid="uid://ca4w6syq6ped3" path="res://root/scripts/creatures/npcs/NPC.gd" id="1_iibjm"]
+[ext_resource type="Script" uid="uid://bxwfiws8et7cl" path="res://root/scripts/creatures/npcs/SceneChanger.gd" id="2_24vm5"]
+[ext_resource type="PackedScene" uid="uid://bk66hj5bein76" path="res://root/scenes/scene/map/map_scene.tscn" id="3_x25p3"]
+[ext_resource type="Texture2D" uid="uid://dinvhjar6bexl" path="res://root/assets/PLACEHOLDERS/Kenney/Scribble Dungeons/PNG 64/bed_luxurious.png" id="4_3tn1w"]
+
+[node name="Bed" type="Node2D" unique_id=1419526251]
+script = ExtResource("1_iibjm")
+metadata/_custom_type_script = "uid://ca4w6syq6ped3"
+
+[node name="Talkable" type="Node2D" parent="." unique_id=1887057595]
+script = ExtResource("2_24vm5")
+new_scene = ExtResource("3_x25p3")
+metadata/_custom_type_script = "uid://bxwfiws8et7cl"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1619440078]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_3tn1w")

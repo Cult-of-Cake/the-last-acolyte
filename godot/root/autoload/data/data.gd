@@ -34,7 +34,7 @@ const SIGNATURE = "§§§"
 @export_category("Configuration")
 @export var save_file_count: int = 3
 ## Save files will be of form "prefix_index_category.data" in directory "data/prefix_index".
-@export var save_file_root_folder: String = PathConsts.USER + "data/"
+@export var save_file_root_folder: String = Vars.Paths.USER + "data/"
 @export var save_file_prefix: String = "save"
 @export var save_file_extension: String = "data"
 @export var autosave_enabled: bool = true
@@ -65,6 +65,7 @@ var _save_files_metadatas: Array[Dictionary] = []
 ## Children hold data of currently selected save file.
 @onready var meta: MetaSaveData = %MetaSaveData
 @onready var game: GameSaveData = %GameSaveData
+@onready var map: MapSaveData = %MapSaveData
 
 @onready var autosave_timer: Timer = %AutosaveTimer
 

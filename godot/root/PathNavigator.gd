@@ -1,21 +1,24 @@
 class_name PathNavigator
 
+###
 var open: Dictionary
 
 var closed: Dictionary
 
 var goal: Dictionary
-var goal_coordinates: Vector2
+var goal_coordinates: Vector2i
 
 var barricades: Dictionary
 
 var start: Dictionary
 
-var solved = false
+var solved:bool = false
 
 var the_tilemap: TileMapLayer
 
-var the_path: Array[Vector2i] = []
+var impassible: Dictionary
+
+var the_path : Array[Vector2i]
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,14 +27,15 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
 #TODO accept a list of barricaded tiles and add them to the list of barricades
-func navigate(start_tile: Vector2, goal_tile: Vector2, tilemap, barricades) -> Array[Vector2i]:
+func navigate(start_tile:Vector2i, goal_tile:Vector2i, tilemap:TileMapLayer) -> Array[Vector2i]:
+	solved = false
 	the_tilemap = tilemap
-	var goal_data = tilemap.get_cell_tile_data(goal_tile)
+	var goal_data:TileData = tilemap.get_cell_tile_data(goal_tile)
 	if !goal_data:
 		print("error: goal coordinates is outside tile map")
 		return []
@@ -59,20 +63,23 @@ func navigate(start_tile: Vector2, goal_tile: Vector2, tilemap, barricades) -> A
 			):
 				best_next = candidate
 		explore(best_next)
-	return the_path
+	if solved:
+		return the_path
+	else:
+		return []
 
 
 func explore(tile):
 	#potentially, there are up to 8 tiles that might be adjacent and walkable next to the tile being explores
-	var top_coordinates = tile.coordinates + Vector2(0, -1)
-	var right_coordinates = tile.coordinates + Vector2(1, 0)
-	var bottom_coordinates = tile.coordinates + Vector2(0, 1)
-	var left_coordinates = tile.coordinates + Vector2(-1, 0)
-	var top_right_coordinates = tile.coordinates + Vector2(1, -1)
-	var bottom_right_coordinates = tile.coordinates + Vector2(1, 1)
-	var top_left_coordinates = tile.coordinates + Vector2(-1, -1)
-	var bottom_left_coordinates = tile.coordinates + Vector2(-1, 1)
-
+	var top_coordinates = tile.coordinates + Vector2i(0, -1)
+	var right_coordinates = tile.coordinates + Vector2i(1, 0)
+	var bottom_coordinates = tile.coordinates + Vector2i(0, 1)
+	var left_coordinates = tile.coordinates + Vector2i(-1, 0)
+	var top_right_coordinates = tile.coordinates + Vector2i(1, -1)
+	var bottom_right_coordinates = tile.coordinates + Vector2i(1, 1)
+	var top_left_coordinates = tile.coordinates + Vector2i(-1, -1)
+	var bottom_left_coordinates = tile.coordinates + Vector2i(-1, 1)
+	
 	top_coordinates = check_coordinates(tile, top_coordinates, 10)
 	right_coordinates = check_coordinates(tile, right_coordinates, 10)
 	left_coordinates = check_coordinates(tile, left_coordinates, 10)
@@ -95,7 +102,7 @@ func explore(tile):
 
 
 #returns true if the test coordinates are in the tilemap and walkable, otherwise returns false
-func check_coordinates(tile: PathTile, test_coordinates: Vector2, cost):
+func check_coordinates(tile: PathTile, test_coordinates: Vector2i, cost):
 	if open.has(test_coordinates):
 		var top_tile = open[test_coordinates]
 		if top_tile.from_start > tile.from_start + 10:
@@ -107,13 +114,8 @@ func check_coordinates(tile: PathTile, test_coordinates: Vector2, cost):
 	elif closed.has(test_coordinates):
 		return true
 	elif !closed.has(test_coordinates):
-		#Only do it if the tilemap exists
-		var tile_data = the_tilemap.get_cell_tile_data(test_coordinates)
-		if (
-			tile_data
-			&& tile_data.get_navigation_polygon(0)
-			&& tile_data.get_navigation_polygon(0).get_polygon(0)
-		):
+		#Only do it if the tile exists
+		if is_walkable(test_coordinates):
 			var new_tile = build_PathTile(test_coordinates, tile.from_start + cost)
 			new_tile.previous = tile.coordinates
 			open[test_coordinates] = new_tile
@@ -126,14 +128,14 @@ func check_coordinates(tile: PathTile, test_coordinates: Vector2, cost):
 		return []
 
 
-func is_walkable(tile):
-	if tile.get_navigation_polygon(0).get_polygon(0):
+func is_walkable(coords) -> bool:
+	var tile:TileData = the_tilemap.get_cell_tile_data(coords)
+	if tile && tile.get_navigation_polygon(0) && tile.get_navigation_polygon(0).get_polygon_count() > 0 && !the_tilemap.impassible.has(coords):
 		return true
 	else:
 		return false
 
-
-func build_PathTile(coordinates: Vector2, _from_start):
+func build_PathTile(coordinates: Vector2i, _from_start):
 	#It's really important to know if the tile is walkable
 	var tile = PathTile.new()
 	if the_tilemap.get_cell_tile_data(coordinates).get_navigation_polygon(0).get_polygon(0):

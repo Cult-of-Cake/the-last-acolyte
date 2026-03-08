@@ -1,19 +1,7 @@
 extends Area2D
 class_name StartPoint
 
-# IMPORTANT: Take Paul's version of this!!!
-
-@export var navigation_layer: TileMapLayer
-@export var start_point: Node2D  # TODO: Array
-@export var end_point: Node2D  # TODO: Array
-
-var thePath
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
+var thePath = Path.new()
 
 func calculate_path():
 	var start_coords : Vector2 = navigation_layer.to_local(start_point.global_position)
@@ -30,8 +18,3 @@ func calculate_path():
 		var global_coords = navigation_layer.to_global(local_coords)
 		thePath.curve.add_point(global_coords)
 	get_parent().add_child(thePath)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

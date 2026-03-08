@@ -1,0 +1,306 @@
+[gd_scene format=3 uid="uid://bk66hj5bein76"]
+
+[ext_resource type="Texture2D" uid="uid://7mgcjeiqh4bk" path="res://root/assets/PLACEHOLDERS/Kenney/Cartography Pack/parchmentAncient.png" id="1_kqol3"]
+[ext_resource type="Script" uid="uid://dj8urviixjcrq" path="res://root/scripts/movement/PlayerControlled.gd" id="2_c1cav"]
+[ext_resource type="Texture2D" uid="uid://roi5s6rj50hk" path="res://root/assets/PLACEHOLDERS/Kenney/Cartography Pack/PNG 64/graveyard.png" id="2_ln24w"]
+[ext_resource type="Texture2D" uid="uid://cksfldn8s1h0f" path="res://root/assets/PLACEHOLDERS/Kenney/Scribble Dungeons/PNG 64/dragon.png" id="3_8uoiw"]
+[ext_resource type="Texture2D" uid="uid://dabqcfm3vvy1a" path="res://root/assets/PLACEHOLDERS/Kenney/Cartography Pack/PNG 64/house.png" id="3_cgac0"]
+[ext_resource type="Texture2D" uid="uid://du8vg6ppq5aix" path="res://root/assets/PLACEHOLDERS/Kenney/Cartography Pack/PNG 64/houses.png" id="4_f2jkt"]
+[ext_resource type="Texture2D" uid="uid://wnla0gipnoi3" path="res://root/assets/PLACEHOLDERS/Kenney/Cartography Pack/PNG 64/houseChimney.png" id="5_kv0gy"]
+[ext_resource type="Texture2D" uid="uid://dvws2nqnr826o" path="res://root/assets/PLACEHOLDERS/Kenney/Cartography Pack/PNG 64/mine.png" id="6_ve0bo"]
+[ext_resource type="Texture2D" uid="uid://clarofr3lbkrh" path="res://root/assets/PLACEHOLDERS/Kenney/Cartography Pack/PNG 64/mill.png" id="7_8uoiw"]
+[ext_resource type="Texture2D" uid="uid://d4bslru1ugh8o" path="res://root/assets/PLACEHOLDERS/Kenney/Scribble Dungeons/PNG 64/barrels_stacked.png" id="8_3o0qy"]
+[ext_resource type="Texture2D" uid="uid://l7qnjvxybgqe" path="res://root/assets/PLACEHOLDERS/Kenney/Cartography Pack/PNG 64/textureWater.png" id="8_u02rk"]
+[ext_resource type="Texture2D" uid="uid://bn4enknram23n" path="res://root/assets/PLACEHOLDERS/Kenney/Cartography Pack/PNG 64/ship.png" id="9_3o0qy"]
+[ext_resource type="Texture2D" uid="uid://cfokibax48700" path="res://root/assets/PLACEHOLDERS/Kenney/Cartography Pack/PNG 64/lake.png" id="10_rius8"]
+[ext_resource type="Texture2D" uid="uid://bf3xegu0uui0y" path="res://root/assets/PLACEHOLDERS/Kenney/Cartography Pack/PNG 64/cactus.png" id="11_xklo6"]
+[ext_resource type="Texture2D" uid="uid://dmao10i4wa3v8" path="res://root/assets/PLACEHOLDERS/Kenney/Cartography Pack/PNG 64/cactusLarge.png" id="12_wibl7"]
+[ext_resource type="Texture2D" uid="uid://qt5ih28gotsx" path="res://root/assets/PLACEHOLDERS/Kenney/Cartography Pack/PNG 64/rocksMountain.png" id="13_m6phn"]
+[ext_resource type="Texture2D" uid="uid://cx7bfss0dpylh" path="res://root/assets/PLACEHOLDERS/Kenney/Scribble Dungeons/PNG 64/track.png" id="16_rius8"]
+[ext_resource type="Texture2D" uid="uid://dfemtpujtr365" path="res://root/assets/PLACEHOLDERS/Kenney/Scribble Dungeons/PNG 64/track_cart.png" id="17_xklo6"]
+[ext_resource type="Texture2D" uid="uid://1kp35m1po8eq" path="res://root/assets/PLACEHOLDERS/Kenney/Scribble Dungeons/PNG 64/plants.png" id="18_wibl7"]
+[ext_resource type="Texture2D" uid="uid://nxl7bitkgxlp" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/button_round_depth_gradient.png" id="20_wibl7"]
+[ext_resource type="Texture2D" uid="uid://dlq82lkpm3bbh" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/button_round_line.png" id="21_m6phn"]
+[ext_resource type="Texture2D" uid="uid://dijle4vdaatak" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/star_outline_depth.png" id="22_s04ac"]
+[ext_resource type="Texture2D" uid="uid://ndr23t86j562" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/star.png" id="23_51rvv"]
+[ext_resource type="Script" uid="uid://d4j2vegspyt6" path="res://root/scripts/map/MapButtonLoader.gd" id="25_m6phn"]
+[ext_resource type="PackedScene" uid="uid://cb541bsl7dfsu" path="res://root/scenes/scene/levels/dummy_map.tscn" id="25_s04ac"]
+
+[node name="MapScene" type="Node2D" unique_id=919757401]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1235913393]
+position = Vector2(516, 520)
+texture = ExtResource("1_kqol3")
+
+[node name="Map Objects" type="Node2D" parent="." unique_id=791444105]
+
+[node name="Graveyard" type="Sprite2D" parent="Map Objects" unique_id=1839631481]
+position = Vector2(149, 605)
+texture = ExtResource("2_ln24w")
+
+[node name="Graveyard2" type="Sprite2D" parent="Map Objects/Graveyard" unique_id=1708214730]
+position = Vector2(35, 42)
+texture = ExtResource("2_ln24w")
+
+[node name="Dragon" type="Sprite2D" parent="Map Objects/Graveyard" unique_id=1153807308]
+position = Vector2(42, -317)
+texture = ExtResource("3_8uoiw")
+
+[node name="Town" type="Node2D" parent="Map Objects" unique_id=1864547676]
+
+[node name="House" type="Sprite2D" parent="Map Objects/Town" unique_id=1173099997]
+position = Vector2(750, 349)
+texture = ExtResource("3_cgac0")
+
+[node name="Houses" type="Sprite2D" parent="Map Objects/Town" unique_id=1369937618]
+position = Vector2(832, 333)
+texture = ExtResource("4_f2jkt")
+
+[node name="HouseChimney" type="Sprite2D" parent="Map Objects/Town" unique_id=309408325]
+position = Vector2(804, 380)
+texture = ExtResource("5_kv0gy")
+
+[node name="Mine" type="Sprite2D" parent="Map Objects" unique_id=683824397]
+position = Vector2(913, 486)
+texture = ExtResource("6_ve0bo")
+
+[node name="BarrelsStacked" type="Sprite2D" parent="Map Objects/Mine" unique_id=990712540]
+position = Vector2(40, 49)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_3o0qy")
+
+[node name="BarrelsStacked2" type="Sprite2D" parent="Map Objects/Mine" unique_id=1150361057]
+position = Vector2(-2, 59)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_3o0qy")
+
+[node name="Mill" type="Sprite2D" parent="Map Objects" unique_id=67491293]
+position = Vector2(916, 234)
+texture = ExtResource("7_8uoiw")
+
+[node name="Ocean" type="Node2D" parent="Map Objects" unique_id=1314342081]
+
+[node name="TextureWater" type="Sprite2D" parent="Map Objects/Ocean" unique_id=1330960946]
+position = Vector2(482, 731)
+texture = ExtResource("8_u02rk")
+
+[node name="Ship" type="Sprite2D" parent="Map Objects/Ocean" unique_id=714347528]
+position = Vector2(541, 743)
+texture = ExtResource("9_3o0qy")
+
+[node name="TextureWater2" type="Sprite2D" parent="Map Objects/Ocean" unique_id=1185236201]
+position = Vector2(569, 706)
+texture = ExtResource("8_u02rk")
+
+[node name="TextureWater3" type="Sprite2D" parent="Map Objects/Ocean" unique_id=1877720537]
+position = Vector2(584, 769)
+texture = ExtResource("8_u02rk")
+
+[node name="Lake" type="Sprite2D" parent="Map Objects" unique_id=589597841]
+position = Vector2(652, 457)
+texture = ExtResource("10_rius8")
+
+[node name="Desert" type="Node2D" parent="Map Objects" unique_id=1181147260]
+
+[node name="Cactus" type="Sprite2D" parent="Map Objects/Desert" unique_id=1304073065]
+position = Vector2(228, 207)
+texture = ExtResource("11_xklo6")
+
+[node name="Cactus2" type="Sprite2D" parent="Map Objects/Desert" unique_id=1729938240]
+position = Vector2(207, 319)
+texture = ExtResource("11_xklo6")
+
+[node name="CactusLarge" type="Sprite2D" parent="Map Objects/Desert" unique_id=676179335]
+position = Vector2(291, 287)
+texture = ExtResource("12_wibl7")
+
+[node name="RocksMountain" type="Sprite2D" parent="Map Objects" unique_id=1879292716]
+position = Vector2(783, 586)
+texture = ExtResource("13_m6phn")
+
+[node name="Rail Tracks" type="Node2D" parent="Map Objects" unique_id=1456323937]
+modulate = Color(0.628002, 0.44729, 0.15608475, 1)
+position = Vector2(349, 186)
+scale = Vector2(0.5, 0.5)
+
+[node name="Track" type="Sprite2D" parent="Map Objects/Rail Tracks" unique_id=1751154611]
+position = Vector2(521, 388)
+rotation = 1.5707964
+texture = ExtResource("16_rius8")
+
+[node name="Track2" type="Sprite2D" parent="Map Objects/Rail Tracks" unique_id=2114826974]
+position = Vector2(581, 388)
+rotation = 1.5707964
+texture = ExtResource("16_rius8")
+
+[node name="Track3" type="Sprite2D" parent="Map Objects/Rail Tracks" unique_id=859072526]
+position = Vector2(641, 388)
+rotation = 1.5707964
+texture = ExtResource("16_rius8")
+
+[node name="Track4" type="Sprite2D" parent="Map Objects/Rail Tracks" unique_id=1821170740]
+position = Vector2(399, 388)
+rotation = 1.5707964
+texture = ExtResource("16_rius8")
+
+[node name="Track5" type="Sprite2D" parent="Map Objects/Rail Tracks" unique_id=234083840]
+position = Vector2(338, 388)
+rotation = 1.5707964
+texture = ExtResource("16_rius8")
+
+[node name="Track6" type="Sprite2D" parent="Map Objects/Rail Tracks" unique_id=1338358832]
+position = Vector2(276, 388)
+rotation = 1.5707964
+texture = ExtResource("16_rius8")
+
+[node name="Track7" type="Sprite2D" parent="Map Objects/Rail Tracks" unique_id=328408165]
+position = Vector2(215, 388)
+rotation = 1.5707964
+texture = ExtResource("16_rius8")
+
+[node name="Track8" type="Sprite2D" parent="Map Objects/Rail Tracks" unique_id=1162096877]
+position = Vector2(154, 388)
+rotation = 1.5707964
+texture = ExtResource("16_rius8")
+
+[node name="Track9" type="Sprite2D" parent="Map Objects/Rail Tracks" unique_id=885247333]
+position = Vector2(92, 388)
+rotation = 1.5707964
+texture = ExtResource("16_rius8")
+
+[node name="Track10" type="Sprite2D" parent="Map Objects/Rail Tracks" unique_id=239922442]
+position = Vector2(27, 388)
+rotation = 1.5707964
+texture = ExtResource("16_rius8")
+
+[node name="Track11" type="Sprite2D" parent="Map Objects/Rail Tracks" unique_id=200189399]
+position = Vector2(-34, 388)
+rotation = 1.5707964
+texture = ExtResource("16_rius8")
+
+[node name="Track12" type="Sprite2D" parent="Map Objects/Rail Tracks" unique_id=1931193674]
+position = Vector2(-96, 388)
+rotation = 1.5707964
+texture = ExtResource("16_rius8")
+
+[node name="TrackCart" type="Sprite2D" parent="Map Objects/Rail Tracks" unique_id=1568576163]
+position = Vector2(461, 388)
+rotation = 1.5707964
+texture = ExtResource("17_xklo6")
+
+[node name="Plains" type="Node2D" parent="Map Objects" unique_id=1764395707]
+position = Vector2(81, 135)
+scale = Vector2(0.75, 0.75)
+
+[node name="Plants" type="Sprite2D" parent="Map Objects/Plains" unique_id=1268051495]
+position = Vector2(303, 502)
+texture = ExtResource("18_wibl7")
+
+[node name="Plants2" type="Sprite2D" parent="Map Objects/Plains" unique_id=720191952]
+position = Vector2(357, 480)
+texture = ExtResource("18_wibl7")
+
+[node name="Plants3" type="Sprite2D" parent="Map Objects/Plains" unique_id=1685556440]
+position = Vector2(353, 549)
+texture = ExtResource("18_wibl7")
+
+[node name="Plants4" type="Sprite2D" parent="Map Objects/Plains" unique_id=1109629457]
+position = Vector2(445.33334, 561.3333)
+texture = ExtResource("18_wibl7")
+
+[node name="Plants5" type="Sprite2D" parent="Map Objects/Plains" unique_id=469336270]
+position = Vector2(273.33334, 617.3333)
+texture = ExtResource("18_wibl7")
+
+[node name="Camera" type="CharacterBody2D" parent="." unique_id=1808667866]
+position = Vector2(531, 548)
+
+[node name="Camera2D" type="Camera2D" parent="Camera" unique_id=1335254968]
+metadata/_edit_lock_ = true
+
+[node name="PlayerControlled" type="Node2D" parent="Camera" unique_id=1941566140 node_paths=PackedStringArray("motion_obj")]
+script = ExtResource("2_c1cav")
+motion_obj = NodePath("..")
+metadata/_custom_type_script = "uid://dj8urviixjcrq"
+metadata/_edit_lock_ = true
+
+[node name="Levels" type="Node2D" parent="." unique_id=826873381]
+
+[node name="UnusedControlPanel" type="Control" parent="Levels" unique_id=746494759]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 667.0
+offset_top = 691.0
+offset_right = 917.0
+offset_bottom = 841.0
+
+[node name="Background" type="Panel" parent="Levels/UnusedControlPanel" unique_id=49815451]
+modulate = Color(1, 1, 1, 0.23529412)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Levels/UnusedControlPanel" unique_id=1582180180]
+layout_mode = 0
+offset_right = 132.0
+offset_bottom = 128.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Rows" type="VBoxContainer" parent="Levels/UnusedControlPanel/MarginContainer" unique_id=1369804119]
+layout_mode = 2
+
+[node name="Main Info" type="HBoxContainer" parent="Levels/UnusedControlPanel/MarginContainer/Rows" unique_id=1584239212]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Marker" type="TextureRect" parent="Levels/UnusedControlPanel/MarginContainer/Rows/Main Info" unique_id=1273800856]
+layout_mode = 2
+texture = ExtResource("20_wibl7")
+
+[node name="Level Back" type="TextureRect" parent="Levels/UnusedControlPanel/MarginContainer/Rows/Main Info" unique_id=990504375]
+layout_mode = 2
+texture = ExtResource("21_m6phn")
+
+[node name="Stars" type="HBoxContainer" parent="Levels/UnusedControlPanel/MarginContainer/Rows" unique_id=835300378]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="StarFull" type="TextureRect" parent="Levels/UnusedControlPanel/MarginContainer/Rows/Stars" unique_id=120299249]
+layout_mode = 2
+texture = ExtResource("23_51rvv")
+
+[node name="StarEmpty" type="TextureRect" parent="Levels/UnusedControlPanel/MarginContainer/Rows/Stars" unique_id=952962130]
+layout_mode = 2
+texture = ExtResource("22_s04ac")
+
+[node name="StarEmpty2" type="TextureRect" parent="Levels/UnusedControlPanel/MarginContainer/Rows/Stars" unique_id=242433262]
+layout_mode = 2
+texture = ExtResource("22_s04ac")
+
+[node name="Level Manager" type="Node2D" parent="Levels" unique_id=1082024788]
+
+[node name="Dummy" type="Node2D" parent="Levels/Level Manager" unique_id=1936436551]
+position = Vector2(130, 411)
+script = ExtResource("25_m6phn")
+level_scene = ExtResource("25_s04ac")
+metadata/_custom_type_script = "uid://d4j2vegspyt6"
+
+[node name="Shipwreck" type="Node2D" parent="Levels/Level Manager" unique_id=509126165]
+position = Vector2(649, 733)
+script = ExtResource("25_m6phn")
+id = 1
+metadata/_custom_type_script = "uid://d4j2vegspyt6"
+
+[node name="Mines" type="Node2D" parent="Levels/Level Manager" unique_id=821515591]
+position = Vector2(1004, 477)
+script = ExtResource("25_m6phn")
+id = 2
+metadata/_custom_type_script = "uid://d4j2vegspyt6"

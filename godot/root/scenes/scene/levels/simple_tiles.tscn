@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c6faqnn12ba5a"]
 
-[ext_resource type="Texture2D" uid="uid://bf34px2jc5rum" path="res://Images/Floor.png" id="1_07qga"]
+[ext_resource type="Texture2D" uid="uid://bf34px2jc5rum" path="res://root/assets/PLACEHOLDERS/Tilesets/Floor.png" id="1_07qga"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_eoyk8"]
 

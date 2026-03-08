@@ -32,9 +32,6 @@ class Objects:
 		#return null
 #endregion
 
-func _ready() -> void:
-	print("huh")
-
 #region Strings
 static func join(messages:Array) -> String:
 	return "".join(messages)
@@ -44,8 +41,8 @@ static func join(messages:Array) -> String:
 
 # I want to make it easier to log to specific streams.
 # Define the streams here - in the enum and also the array for its title
-enum LOG { ACTIONS, MOVEMENT }
-static var streams_text : Array = ["ACTION", "MOVE"]
+enum LOG { ACTIONS, MOVEMENT, ASSETS, SAVE_SYSTEM }
+static var streams_text : Array = ["ACTN", "MOVE", "ASST", "SAVE" ]
 const DEFAULT_LEVEL : Log.LogLevel = Log.LogLevel.INFO
 
 # These can be left alone.  The first is auto-filled and the second is what fills it
@@ -61,6 +58,12 @@ static func warn(stream : LOG, messages:Array, values:Variant=null) -> void:
 	streams[stream].warn(Lib.join(messages), values)
 static func error(stream : LOG, messages:Array, values:Variant=null) -> void:
 	streams[stream].error(Lib.join(messages), values)
+
+#This is the new logging syntax:
+#func meh():
+#	var my_var = "somethin"
+#	Lib.enable_debug(Lib.LOG.ACTIONS)
+#	Lib.debug(Lib.LOG.ACTIONS, [my_var])
 
 # Getting and setting log level by stream
 static func set_log_level(stream : LOG, level : Log.LogLevel) -> void:

@@ -9,7 +9,6 @@ class_name Map
 @export var end_point : MapPoint  # TODO: Array
 
 var log := Lib.EasyLog.new(Lib.LOG.PATHING, true)
-var thePath : Path
 var paths : Array[Path]
 
 # Called when the node enters the scene tree for the first time.
@@ -33,7 +32,7 @@ func _on_map_changed(map) -> void:
 func calculate_path(start_coords: Vector2i, end_coords : Vector2i) -> void:
 	var pathfinder:PathNavigator = PathNavigator.new()
 	var point_list:Array[Vector2i] = pathfinder.navigate(start_coords, end_coords, tile_map)
-	thePath = Path.new()
+	var thePath := Path.new()
 	thePath.curve = Curve2D.new()
 	thePath.name = "thePath"
 	if point_list:

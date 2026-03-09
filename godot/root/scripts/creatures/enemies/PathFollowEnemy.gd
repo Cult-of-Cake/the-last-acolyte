@@ -10,13 +10,12 @@ func set_speed_multiplier(mult : float) -> void:
 	
 func initialize(spawner : MapPoint, end_goal : MapPoint) -> void:
 	super(spawner, end_goal)
-	# TODO: This is a bad, bad way to find Map but thePath shouldn't belong
-	# to map anyway, since each spawner will eventually have its own default
-	# path and orphaned paths etc, I suspect.  So fixing this can wait.
-	var map : Map = get_tree().root.get_node("Level/Map")
-	add_to_path(map.thePath)
+	add_to_path(spawner.default_path)
 
-# Path follow - MUST be the direct child of Path, so Enemy must be a child of that
+# Path follow objects MUST be the direct child of Path, so we must be a child of that.
+# Since we're trying to follow the logical structure of significant functionality
+# being put in child nodes of significant objects, each Enemy is its own main
+# scene (prefab) but THIS enemy re-parents itself under Path (as needs must) on init.
 
 func add_to_path(new_path : Path2D) -> void:
 	follow_path = new_path

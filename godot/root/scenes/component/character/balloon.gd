@@ -91,7 +91,7 @@ func _ready() -> void:
 		start()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_instance_valid(dialogue_line):
 		progress.visible = not dialogue_label.is_typing and dialogue_line.responses.size() == 0 and not dialogue_line.has_tag("voice")
 
@@ -138,8 +138,8 @@ func apply_dialogue_line() -> void:
 	# Figure out if the character portrait is going to work
 	if((target_character != null) \
 	&& (not dialogue_line.get_tag_value("mood").is_empty())):
-		var mood = dialogue_line.get_tag_value("mood")
-		var mood_exists = target_character.dialogue_style.portrait_dict.has(mood)
+		var mood : String = dialogue_line.get_tag_value("mood")
+		var mood_exists : bool = target_character.dialogue_style.portrait_dict.has(mood)
 		if mood_exists: 
 			cur_mood = mood
 		else:

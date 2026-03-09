@@ -80,8 +80,8 @@ class LevelData:
 	var difficulty : int = 1
 	var elements : Array[Vars.ELEMENT]
 
-	func _init(id : LEVEL, n : String, diff : int, elems : Array[Vars.ELEMENT]) -> void:
-		self.id = id
+	func _init(lid : LEVEL, n : String, diff : int, elems : Array[Vars.ELEMENT]) -> void:
+		id = lid
 		name = n
 		difficulty = diff
 		elements = elems

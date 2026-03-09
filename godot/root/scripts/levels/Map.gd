@@ -9,7 +9,7 @@ class_name Map
 @export var start_point : MapPoint  # TODO: Array
 @export var end_point : MapPoint  # TODO: Array
 
-var log := Lib.EasyLog.new(Lib.LOG.PATHING, true)
+var logger := Lib.EasyLog.new(Lib.LOG.PATHING, true)
 var paths : Array[Path]
 
 # Called when the node enters the scene tree for the first time.
@@ -27,7 +27,7 @@ func _ready() -> void:
 	end_point.calculate_coordinates(tile_map)
 
 func _on_map_changed(map) -> void:
-	log.debug("map changed")
+	logger.debug("map changed")
 	start_point.calculate_path()
 
 func calculate_path(start_coords: Vector2i, end_coords : Vector2i) -> void:
@@ -102,7 +102,7 @@ func place_barrier(coords:Vector2) ->void :
 		var candidate_path: Path
 		var candidate_points:Array[Vector2i] = navigator.navigate(start_point.coordinates, end_point.coordinates, tile_map)
 		if !candidate_points:
-			log.debug("It's the main path that is broken")
+			logger.debug("It's the main path that is broken")
 			valid = false
 		else:
 			candidate_path = Path.build_path(candidate_points, tile_map)
@@ -130,7 +130,7 @@ func place_barrier(coords:Vector2) ->void :
 							add_child(new_path)
 				#There is some rare mish-mash of coordinates which allows an enemy to not be placed at this point.  It must be placed somehwere.
 				if !placed:
-					log.warn("This code has been reached")
+					logger.warn("This code has been reached")
 					hard_place(guy)
 			#if valid, replace the default path for the start point with the new start-to-finish path that was created
 			if start_point.default_path.get_children().size() == 0:
@@ -152,7 +152,7 @@ func place_barrier(coords:Vector2) ->void :
 			#TODO Replace with meaningful feedback
 			tile_map.impassible.erase(tile)
 			tile_map.barriers.erase(tile)
-			log.warn("Barricade can not be placed there because some enemies would have no route to their goal")
+			logger.warn("Barricade can not be placed there because some enemies would have no route to their goal")
 
 func delete_path(dead_path: Path) -> void:
 	dead_path.queue_free()

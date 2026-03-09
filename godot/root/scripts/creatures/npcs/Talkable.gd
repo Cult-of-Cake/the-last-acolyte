@@ -11,12 +11,12 @@ func _ready() -> void:
 
 func talk() -> void:
 	if Vars.DIALOGUE_TAKEN:
-		LogWrapper.error(self,"Cannot Talk to character when dialogue already running!")
+		LogWrapper.info(self,"Cannot Talk to character when dialogue already running!")
 		return
 	
 	Vars.DIALOGUE_TAKEN = true
 	print ("You talked to ", get_parent().name)
 	DialogueManager.show_dialogue_balloon_scene(dialogue_balloon,dialogue_file,starting_label)
 
-func _on_dialogue_ended(resource) -> void: 
+func _on_dialogue_ended(_resource : DialogueResource) -> void: 
 	Vars.DIALOGUE_TAKEN = false

@@ -6,10 +6,6 @@ var spawn_timer : Timer
 @export var map : Map
 @export var map_scale : float = 1.0
 
-# TODO: Once this is in the same branch as Vars, refactor to use Paths
-const basic_enemy = preload("res://root/scenes/scene/levels/FollowEnemy.tscn")
-const flying_enemy = preload("res://root/scenes/scene/levels/FlyingEnemy.tscn")
-
 func _ready() -> void:
 	spawn_timer = Timer.new()
 	spawn_timer.timeout.connect(_on_timer_timeout)
@@ -25,8 +21,8 @@ func _on_timer_timeout() -> void:
 # But for now, I'm just putting something together that lets us test some things.
 
 var simple_pattern : Array[PackedScene] = [
-	basic_enemy, basic_enemy, basic_enemy, basic_enemy,
-	flying_enemy, flying_enemy
+	Vars.basic_enemy, Vars.basic_enemy, Vars.basic_enemy, Vars.basic_enemy,
+	Vars.flying_enemy, Vars.flying_enemy
 ]
 var posn_in_pattern : int = 0
 

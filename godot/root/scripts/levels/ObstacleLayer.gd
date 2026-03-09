@@ -14,6 +14,6 @@ func _process(_delta: float) -> void:
 		left_click.emit(get_global_mouse_position())
 
 func place_barrier(coordinates: Vector2i) -> void:
-	barriers[coordinates] = load("res://root/scenes/scene/level_entities/other/barricade.tscn").instantiate()
+	barriers[coordinates] = load(Vars.Paths.PREFABS + "level_entities/other/barricade.tscn").instantiate()
 	add_child(barriers[coordinates])
 	barriers[coordinates].global_position = to_global(map_to_local(coordinates))

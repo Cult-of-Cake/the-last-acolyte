@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bi7olhbpff4dy" path="res://root/scripts/levels/Map.gd" id="1_hm0rt"]
 [ext_resource type="Script" uid="uid://dnqvtj18cemb8" path="res://root/scripts/levels/WaveManager.gd" id="2_ccu1u"]
+[ext_resource type="Script" uid="uid://b46lanymu5680" path="res://root/scripts/ui/input_listeners/LevelActionListener.gd" id="2_m68ns"]
 [ext_resource type="Texture2D" uid="uid://dk7212tikruu" path="res://root/assets/PLACEHOLDERS/Kenney/Tower Defense Pack/towerDefense_tilesheet.png" id="4_vkfsa"]
 [ext_resource type="Script" uid="uid://dj8urviixjcrq" path="res://root/scripts/movement/PlayerControlled.gd" id="5_ljtiv"]
 [ext_resource type="PackedScene" uid="uid://ddgrxhf85hpd2" path="res://root/scenes/scene/levels/speed_region.tscn" id="5_x8y2r"]
@@ -580,6 +581,16 @@ radius = 15.0
 unique_name_in_owner = true
 script = ExtResource("2_ccu1u")
 map = NodePath("../Map")
+
+[node name="LevelActionListener" type="Control" parent="." unique_id=96035147 node_paths=PackedStringArray("tile_map", "map")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_m68ns")
+tile_map = NodePath("../Map/Obstacles")
+map = NodePath("../Map")
+metadata/_custom_type_script = "uid://b46lanymu5680"
 
 [node name="Map" type="Node2D" parent="." unique_id=1786262132 node_paths=PackedStringArray("tile_map", "start_point", "end_point")]
 script = ExtResource("1_hm0rt")

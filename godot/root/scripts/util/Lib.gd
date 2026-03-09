@@ -41,8 +41,8 @@ static func join(messages:Array) -> String:
 
 # I want to make it easier to log to specific streams.
 # Define the streams here - in the enum and also the array for its title
-enum LOG { ACTIONS, MOVEMENT, ASSETS, SAVE_SYSTEM }
-static var streams_text : Array = ["ACTN", "MOVE", "ASST", "SAVE" ]
+enum LOG { ACTIONS, MOVEMENT, ASSETS, SAVE_SYSTEM, PATHING }
+static var streams_text : Array = ["ACTN", "MOVE", "ASST", "SAVE", "PATH" ]
 const DEFAULT_LEVEL : Log.LogLevel = Log.LogLevel.INFO
 
 # These can be left alone.  The first is auto-filled and the second is what fills it
@@ -85,4 +85,44 @@ class LogByStream:
 			var s : LogStream = LogStream.new(Lib.streams_text[idx], DEFAULT_LEVEL)
 			Lib.streams.append(s)
 
+# I want to make it even easier.
+# Set up a log variable somewhere and then just this:
+# log.enable_debug() and log.debug("blah")
+
+class EasyLog:
+	var s : LOG
+	func _init(stream : LOG, debugging : bool) -> void:
+		s = stream
+		if debugging:
+			Lib.enable_debug(s)
+	func debug(messages : Variant, values : Variant=null) -> void:
+		if typeof(messages) == TYPE_ARRAY:
+			Lib.debug(s, messages, values)
+		elif typeof(messages) == TYPE_STRING:
+			Lib.debug(s, [messages], values)
+		else:
+			Lib.error(s, "Cannot handle input to EasyLog.debug: " + messages)
+	func info(messages : Variant, values : Variant=null) -> void:
+		if typeof(messages) == TYPE_ARRAY:
+			Lib.info(s, messages, values)
+		elif typeof(messages) == TYPE_STRING:
+			Lib.info(s, [messages], values)
+		else:
+			Lib.error(s, "Cannot handle input to EasyLog.info: " + messages)
+	func warn(messages : Variant, values : Variant=null) -> void:
+		if typeof(messages) == TYPE_ARRAY:
+			Lib.warn(s, messages, values)
+		elif typeof(messages) == TYPE_STRING:
+			Lib.warn(s, [messages], values)
+		else:
+			Lib.error(s, "Cannot handle input to EasyLog.warn: " + messages)
+	func error(messages : Variant, values : Variant=null) -> void:
+		if typeof(messages) == TYPE_ARRAY:
+			Lib.error(s, messages, values)
+		elif typeof(messages) == TYPE_STRING:
+			Lib.error(s, [messages], values)
+		else:
+			Lib.error(s, "Cannot handle input to EasyLog.error: " + messages)
+
 #endregion
+ 

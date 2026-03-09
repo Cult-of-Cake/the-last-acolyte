@@ -8,13 +8,14 @@ class_name Map
 @export var start_point : MapPoint  # TODO: Array
 @export var end_point : MapPoint  # TODO: Array
 
+var log := Lib.EasyLog.new(Lib.LOG.PATHING, true)
 var thePath : Path
 var paths : Array[Path]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	SignalBus.delete_path.connect(delete_path)
-	tile_map.left_click.connect(tile_clicked)
 	
 	var start_coords:Vector2 = start_point.get_global_position()
 	var start_map:Vector2 = tile_map.local_to_map(tile_map.to_local(start_coords))
@@ -26,7 +27,7 @@ func _ready() -> void:
 	end_point.calculate_coordinates(tile_map)
 
 func _on_map_changed(map) -> void:
-	print("map changed")
+	log.debug("map changed")
 	start_point.calculate_path()
 
 func calculate_path(start_coords: Vector2i, end_coords : Vector2i) -> void:
@@ -46,16 +47,7 @@ func calculate_path(start_coords: Vector2i, end_coords : Vector2i) -> void:
 	thePath.is_default = true
 	start_point.default_path = thePath
 
-func _on_timer_timeout() -> void:
-	var newguy:PathFollow2D = load("res://root/scenes/scene/levels/dummySprite.tscn").instantiate()
-	var some_path : Path
-	some_path = start_point.default_path
-	if(some_path):
-		some_path.add_child(newguy)
-	#get_node("Timer").wait_time = 100
-
-#This is currently the only thing that happens on a click, but attempting to place a barrier should be made into one of many things a player can do
-func tile_clicked(coords:Vector2) ->void :
+func place_barrier(coords:Vector2) ->void :
 	var local:Vector2 = tile_map.to_local(coords)
 	var tile:Vector2i = tile_map.local_to_map(local)
 	if tile_map.impassible.has(tile):
@@ -110,7 +102,7 @@ func tile_clicked(coords:Vector2) ->void :
 		var candidate_path: Path
 		var candidate_points:Array[Vector2i] = navigator.navigate(start_point.coordinates, end_point.coordinates, tile_map)
 		if !candidate_points:
-			print("It's the main path that is broken")
+			log.debug("It's the main path that is broken")
 			valid = false
 		else:
 			candidate_path = Path.build_path(candidate_points, tile_map)
@@ -135,7 +127,7 @@ func tile_clicked(coords:Vector2) ->void :
 							add_child(new_path)
 				#There is some rare mish-mash of coordinates which allows an enemy to not be placed at this point.  It must be placed somehwere.
 				if !placed:
-					print("This code has been reached")
+					log.warn("This code has been reached")
 					hard_place(guy)
 			#if valid, replace the default path for the start point with the new start-to-finish path that was created
 			if start_point.default_path.get_children().size() == 0:
@@ -157,7 +149,7 @@ func tile_clicked(coords:Vector2) ->void :
 			#TODO Replace with meaningful feedback
 			tile_map.impassible.erase(tile)
 			tile_map.barriers.erase(tile)
-			print("Barricade can not be placed there because some enemies would have no route to their goal")
+			log.warn("Barricade can not be placed there because some enemies would have no route to their goal")
 
 func delete_path(dead_path: Path) -> void:
 	dead_path.queue_free()

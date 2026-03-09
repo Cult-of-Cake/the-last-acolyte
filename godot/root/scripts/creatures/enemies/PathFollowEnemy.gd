@@ -13,7 +13,8 @@ func initialize(spawner : MapPoint, end_goal : MapPoint) -> void:
 	# TODO: This is a bad, bad way to find Map but thePath shouldn't belong
 	# to map anyway, since each spawner will eventually have its own default
 	# path and orphaned paths etc, I suspect.  So fixing this can wait.
-	add_to_path(get_tree().root.get_node("Level/Map").thePath)
+	var map : Map = get_tree().root.get_node("Level/Map")
+	add_to_path(map.thePath)
 
 # Path follow - MUST be the direct child of Path, so Enemy must be a child of that
 

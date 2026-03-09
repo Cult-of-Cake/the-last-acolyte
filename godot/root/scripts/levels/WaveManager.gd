@@ -1,8 +1,10 @@
 extends Node2D
+class_name WaveManager
 
 var spawn_timer : Timer
 
 @export var map : Map
+@export var map_scale : float = 1.0
 
 # TODO: Once this is in the same branch as Vars, refactor to use Paths
 const basic_enemy = preload("res://root/scenes/scene/levels/FollowEnemy.tscn")
@@ -16,6 +18,7 @@ func _ready() -> void:
 
 func _on_timer_timeout() -> void:
 	var newguy : Enemy = get_next_enemy().instantiate()
+	newguy.scale *= map_scale
 	newguy.initialize(map.start_point, map.end_point)
 
 # TODO: At some point, we'll have actual wave patterns, stored somewhere.

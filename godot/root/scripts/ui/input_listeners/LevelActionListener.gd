@@ -44,7 +44,9 @@ func set_mode(mode : CLICK_MODE) -> void:
 			cursor.set_to_barrier()
 
 func place_barrier(coords : Vector2) -> void:
-	map.place_barrier(coords)
+	var placed : bool = map.place_barrier(coords)
+	if !placed:
+		cursor.flash_red()
 
 #endregion
 

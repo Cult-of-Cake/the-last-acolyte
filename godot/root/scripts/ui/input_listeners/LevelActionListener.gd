@@ -17,7 +17,7 @@ func _ready() -> void:
 
 #region Click
 
-@export var tile_map : TileMapLayer
+@export var tile_map : ObstacleLayer
 @export var map : Map
 
 func set_mode(mode : CLICK_MODE) -> void:

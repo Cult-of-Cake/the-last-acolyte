@@ -5,6 +5,7 @@ class_name Map
 #Paths should be objects that keep a list of the involved tiles so they can check if added walls or obstacles interfere
 
 @export var tile_map : ObstacleLayer
+@export var placement_map : PlacementLayer
 @export var start_point : MapPoint  # TODO: Array
 @export var end_point : MapPoint  # TODO: Array
 
@@ -110,6 +111,9 @@ func place_barrier(coords:Vector2) ->void :
 		#If valid, assign every enemy in the orphan list to one of the paths that was generated for the orphans
 		if valid:
 			tile_map.place_barrier(tile)
+			# In some levels, obstacles might be invisible and we want to place on a different layer too
+			if placement_map:
+				placement_map.place_barrier(tile)
 			for new_path in new_paths:
 				paths.append(new_path)
 				add_child(new_path)

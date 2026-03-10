@@ -17,6 +17,12 @@ class Paths:
 	const ASSETS: String = RES + "assets/"
 	const SFX: String = ASSETS + "audio/sfx/"
 
+#region Collision Layers / Masks
+
+enum HUB_LAYERS { WALLS, PLAYER, ROOFS }
+
+#endregion
+
 #region Elements
 
 enum ELEMENT { FIRE, EARTH, WATER, AIR, ELECTRIC }

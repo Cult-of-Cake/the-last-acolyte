@@ -5,9 +5,12 @@ class_name Talkable
 @export var dialogue_file : DialogueResource
 @export var dialogue_balloon : PackedScene
 @export var starting_label : String = "start"
+@export var auto_on_collision : Area2D
 
 func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
+	if auto_on_collision != null:
+		auto_on_collision.body_entered.connect(_on_auto_trigger)
 
 func talk() -> void:
 	if Vars.DIALOGUE_TAKEN:
@@ -20,3 +23,9 @@ func talk() -> void:
 
 func _on_dialogue_ended(resource) -> void: 
 	Vars.DIALOGUE_TAKEN = false
+
+func _on_auto_trigger(_body : Node2D) -> void:
+	# Actually, we only scan for the layer we care about.
+	# But I'm going to leave this here because I know I'll need it again.
+	#if body.get_collision_layer_value(Vars.HUB_LAYERS.PLAYER):
+	talk()

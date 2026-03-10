@@ -29,3 +29,7 @@ func _on_auto_trigger(_body : Node2D) -> void:
 	# But I'm going to leave this here because I know I'll need it again.
 	#if body.get_collision_layer_value(Vars.HUB_LAYERS.PLAYER):
 	talk()
+
+# To be overridden
+func load_scene() -> void:
+	pass

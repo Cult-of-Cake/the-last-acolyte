@@ -16,7 +16,7 @@
 [ext_resource type="Resource" uid="uid://b8yy7ikmd2wng" path="res://root/resources/dialogue/leave_glade.dialogue" id="9_8vti2"]
 [ext_resource type="Resource" uid="uid://ciyv4grfrdfn5" path="res://testwors.dialogue" id="9_lq4yk"]
 [ext_resource type="PackedScene" uid="uid://c187j6og8dp42" path="res://root/scenes/component/character/balloon.tscn" id="10_f6ymf"]
-[ext_resource type="PackedScene" path="res://root/scenes/scene/hub/hub_exit.tscn" id="14_f6ymf"]
+[ext_resource type="PackedScene" uid="uid://dd0n8ewuv2rjf" path="res://root/scenes/scene/hub/hub_exit.tscn" id="14_f6ymf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3p63o"]
 texture = ExtResource("1_xqe6v")
@@ -1930,7 +1930,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/NPCs/Right Edge" unique_id=433721314]
 shape = SubResource("SegmentShape2D_uryoo")
 
-[node name="Talkable" type="Node2D" parent="Characters/NPCs/Right Edge" unique_id=299864828 node_paths=PackedStringArray("auto_on_collision")]
+[node name="Talkable" type="Node2D" parent="Characters/NPCs/Right Edge" unique_id=240321566 node_paths=PackedStringArray("auto_on_collision")]
 script = ExtResource("7_kl1gp")
 dialogue_file = ExtResource("9_8vti2")
 dialogue_balloon = ExtResource("10_f6ymf")

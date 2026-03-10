@@ -20,6 +20,15 @@ class Objects:
 
 #endregion
 
+#region Scenes
+
+static func load_scene(scene_key : String) -> void:
+	if scene_key != null:
+		SceneManager.change_scene(scene_key, Vars.scene_fade_out, Vars.scene_fade_in, Vars.scene_options)
+
+
+#endregion
+
 #region Strings
 static func join(messages:Array) -> String:
 	return "".join(messages)

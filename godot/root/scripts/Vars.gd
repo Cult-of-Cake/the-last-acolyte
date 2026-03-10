@@ -1,9 +1,8 @@
 extends Node
 
-var DIALOGUE_TAKEN := false
-
 func _ready() -> void:
 	init_level_array()
+	init_scene_manager_options()
 	# TEMP for testing:
 	Data.select_save_file(0)
 	Data.load_save_file()
@@ -16,6 +15,15 @@ class Paths:
 	const RESOURCES: String = RES + "resources/"
 	const ASSETS: String = RES + "assets/"
 	const SFX: String = ASSETS + "audio/sfx/"
+
+#region Dialogue
+
+var DIALOGUE_TAKEN := false
+
+class DialogueLabels:
+	const LoadScene : String = "LoadMap"
+
+#endregion
 
 #region Collision Layers / Masks
 
@@ -88,5 +96,23 @@ class LevelData:
 		set (val):
 			Data.map.set_stars(id, val)
 			Data.save_save_file()
+
+#endregion
+
+#region Scenes
+
+var scene_fade_in : SceneManager.Options
+var scene_fade_out : SceneManager.Options
+var scene_options : SceneManager.GeneralOptions
+
+func init_scene_manager_options() -> void:
+	scene_fade_in = SceneManager.create_options()
+	scene_fade_out = SceneManager.create_options()
+	scene_options = SceneManager.create_general_options(Color.BLACK, 0.0, false, false)
+
+# TODO Merge this gracefully with the changes to Path in v1-Enemies
+class SceneList:
+	#const MAP : PackedScene = preload("res://root/scenes/scene/map/map_scene.tscn")
+	const MAP : String = "map_scene" # Per SceneManager plugin window
 
 #endregion

@@ -21,7 +21,7 @@ func talk() -> void:
 	print ("You talked to ", get_parent().name)
 	DialogueManager.show_dialogue_balloon_scene(dialogue_balloon,dialogue_file,starting_label)
 
-func _on_dialogue_ended(resource) -> void: 
+func _on_dialogue_ended(_resource : DialogueResource) -> void: 
 	Vars.DIALOGUE_TAKEN = false
 
 func _on_auto_trigger(_body : Node2D) -> void:

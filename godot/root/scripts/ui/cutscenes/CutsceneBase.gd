@@ -5,14 +5,19 @@ class_name CutsceneBase
 @export var cam : Camera2D
 @export var run_on_ready : bool = false
 
+signal dialogue_done
+
 var prev_cam : Camera2D
 
 func _ready() -> void:
+	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 	if run_on_ready:
 		run()
 
 func run() -> void:
 	pass
+func _on_dialogue_ended(_resource : DialogueResource) -> void:
+	dialogue_done.emit()
 
 # This saves us from having to make a bunch of temporary tween variables when
 # we want to do a bunch of things in a row

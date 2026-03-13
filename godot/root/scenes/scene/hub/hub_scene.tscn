@@ -18,13 +18,8 @@
 [ext_resource type="Resource" uid="uid://ciyv4grfrdfn5" path="res://testwors.dialogue" id="9_lq4yk"]
 [ext_resource type="PackedScene" uid="uid://c187j6og8dp42" path="res://root/scenes/component/character/balloon.tscn" id="10_f6ymf"]
 [ext_resource type="Texture2D" uid="uid://mbkcte3iftew" path="res://root/assets/PLACEHOLDERS/Jo Concept/The_Tree.png" id="12_raomi"]
+[ext_resource type="Resource" uid="uid://bqybv3kingv18" path="res://root/resources/dialogue/tree_intro.dialogue" id="13_46iui"]
 [ext_resource type="PackedScene" uid="uid://g8ru6a3r06wr" path="res://root/scenes/scene/hub/hub_exit.tscn" id="14_f6ymf"]
-
-[sub_resource type="Curve2D" id="Curve2D_d6wd1"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1057, 331, 0, 0, 0, 0, 654, 416, 0, 0, 0, 0, 345, 403, 0, 0, 0, 0, 240, 280)
-}
-point_count = 4
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3p63o"]
 texture = ExtResource("1_xqe6v")
@@ -1741,6 +1736,12 @@ colors = PackedColorArray(1, 1, 1, 0, 0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8vti2"]
 gradient = SubResource("Gradient_uryoo")
 
+[sub_resource type="Curve2D" id="Curve2D_d6wd1"]
+_data = {
+"points": PackedVector2Array(0, 0, 10, 0, 1057, 331, 82.84584, -9.525866, -82.84584, 9.525866, 684.2132, 421.86206, 67.78296, 25.068066, -67.78296, -25.068066, 345, 403, 0, 0, 0, 0, 239.02153, 297.78162)
+}
+point_count = 4
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_pap3a"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_uryoo"]
@@ -1751,30 +1752,6 @@ size = Vector2(40.088005, 14.285202)
 
 [node name="HubScene" type="Node2D" unique_id=31770513]
 y_sort_enabled = true
-
-[node name="Intro_Scene" type="Node2D" parent="." unique_id=1968462791 node_paths=PackedStringArray("player", "camera_rail_1", "cam")]
-script = ExtResource("1_d6wd1")
-player = NodePath("../Characters/Player")
-camera_rail_1 = NodePath("Path2D/PathFollow2D")
-cam = NodePath("Path2D/PathFollow2D/Camera")
-run_on_ready = true
-metadata/_custom_type_script = "uid://c06toks8v57ds"
-
-[node name="Path2D" type="Path2D" parent="Intro_Scene" unique_id=45793206]
-position = Vector2(-23.287628, -9.788239)
-scale = Vector2(1.0220318, 1.0235294)
-curve = SubResource("Curve2D_d6wd1")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Intro_Scene/Path2D" unique_id=2115477342]
-position = Vector2(1057, 331)
-rotation = 2.9337213
-loop = false
-
-[node name="Camera" type="Camera2D" parent="Intro_Scene/Path2D/PathFollow2D" unique_id=1307817433]
-rotation = -2.9337213
-scale = Vector2(1.0000001, 1.0000001)
-enabled = false
-zoom = Vector2(3, 3)
 
 [node name="Map" type="Node2D" parent="." unique_id=1515183672]
 y_sort_enabled = true
@@ -1870,9 +1847,9 @@ stretch_mode = 1
 
 [node name="Gradient" type="TextureRect" parent="Map Edges" unique_id=700313693]
 z_index = 10
-offset_left = 720.0
-offset_top = 239.0
-offset_right = 1328.0
+offset_left = 721.0
+offset_top = -1.0
+offset_right = 1329.0
 offset_bottom = 705.0
 texture = SubResource("GradientTexture1D_8vti2")
 
@@ -1907,6 +1884,53 @@ offset_right = 769.0
 offset_bottom = 255.0
 texture = ExtResource("4_uryoo")
 stretch_mode = 1
+
+[node name="Forest Top" type="TextureRect" parent="Map Edges" unique_id=1940648098]
+offset_left = 15.0
+offset_top = -1.0
+offset_right = 1327.0
+offset_bottom = 239.0
+texture = ExtResource("4_uryoo")
+stretch_mode = 1
+
+[node name="Forest Left" type="TextureRect" parent="Map Edges" unique_id=355118503]
+offset_left = -358.0
+offset_right = 14.0
+offset_bottom = 704.0
+texture = ExtResource("4_uryoo")
+stretch_mode = 1
+
+[node name="Gradient Left" type="TextureRect" parent="Map Edges" unique_id=230242956]
+z_index = 10
+offset_left = -462.0
+offset_right = 90.0
+offset_bottom = 706.0
+texture = SubResource("GradientTexture1D_8vti2")
+flip_h = true
+
+[node name="Intro_Scene" type="Node2D" parent="." unique_id=1968462791 node_paths=PackedStringArray("player", "camera_rail_1", "god_tree", "cam")]
+script = ExtResource("1_d6wd1")
+player = NodePath("../Characters/Player")
+camera_rail_1 = NodePath("Path2D/PathFollow2D")
+god_tree = NodePath("../Characters/NPCs/TREE/Talkable")
+cam = NodePath("Path2D/PathFollow2D/Camera")
+run_on_ready = true
+metadata/_custom_type_script = "uid://c06toks8v57ds"
+
+[node name="Path2D" type="Path2D" parent="Intro_Scene" unique_id=45793206]
+position = Vector2(-23.287628, -9.788239)
+scale = Vector2(1.0220318, 1.0235294)
+curve = SubResource("Curve2D_d6wd1")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Intro_Scene/Path2D" unique_id=2115477342]
+position = Vector2(1057, 331)
+loop = false
+
+[node name="Camera" type="Camera2D" parent="Intro_Scene/Path2D/PathFollow2D" unique_id=1307817433]
+rotation = -2.9337213
+scale = Vector2(1.0000001, 1.0000001)
+enabled = false
+zoom = Vector2(3, 3)
 
 [node name="Characters" type="Node2D" parent="." unique_id=1446159103]
 y_sort_enabled = true
@@ -1969,13 +1993,16 @@ dialogue_balloon = ExtResource("10_f6ymf")
 auto_on_collision = NodePath("..")
 metadata/_custom_type_script = "uid://ggwtdut4tvf6"
 
-[node name="TREE" type="Node2D" parent="Characters/NPCs" unique_id=1751996829]
+[node name="TREE" type="Node2D" parent="Characters/NPCs" unique_id=1496040774]
 y_sort_enabled = true
 position = Vector2(518, 307)
 script = ExtResource("6_4kech")
+metadata/_custom_type_script = "uid://ca4w6syq6ped3"
 
 [node name="Talkable" type="Node2D" parent="Characters/NPCs/TREE" unique_id=1872658832]
 script = ExtResource("7_kl1gp")
+dialogue_file = ExtResource("13_46iui")
+dialogue_balloon = ExtResource("10_f6ymf")
 
 [node name="TheTree" type="Sprite2D" parent="Characters/NPCs/TREE" unique_id=1667451330]
 position = Vector2(-289, -93)

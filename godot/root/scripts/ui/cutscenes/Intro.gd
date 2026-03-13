@@ -3,6 +3,7 @@ class_name Intro
 
 @export var player : Player
 @export var camera_rail_1 : PathFollow2D
+@export var god_tree : Talkable
 
 func run() -> void:
 	enter_cutscene_mode()
@@ -13,4 +14,8 @@ func run() -> void:
 	tween_object(player, "position", Vector2(240.0, 410.0), 2.2)
 	await tween_object(cam, "zoom", Vector2(1.7, 1.7), 2.5)
 
-	#exit_cutscene_mode()
+	god_tree.talk()
+	await dialogue_done
+	print("done")
+
+	exit_cutscene_mode()

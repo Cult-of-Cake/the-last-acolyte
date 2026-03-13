@@ -22,9 +22,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_d6wd1"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1057, 331, 0, 0, 0, 0, 654, 416, 0, 0, 0, 0, 345, 403)
+"points": PackedVector2Array(0, 0, 0, 0, 1057, 331, 0, 0, 0, 0, 654, 416, 0, 0, 0, 0, 345, 403, 0, 0, 0, 0, 240, 349)
 }
-point_count = 3
+point_count = 4
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3p63o"]
 texture = ExtResource("1_xqe6v")
@@ -1752,14 +1752,17 @@ size = Vector2(40.088005, 14.285202)
 [node name="HubScene" type="Node2D" unique_id=31770513]
 y_sort_enabled = true
 
-[node name="Intro_Scene" type="Node2D" parent="." unique_id=1968462791 node_paths=PackedStringArray("player", "cam")]
+[node name="Intro_Scene" type="Node2D" parent="." unique_id=1968462791 node_paths=PackedStringArray("player", "camera_rail_1", "cam")]
 script = ExtResource("1_d6wd1")
 player = NodePath("../Characters/Player")
+camera_rail_1 = NodePath("Path2D/PathFollow2D")
 cam = NodePath("Path2D/PathFollow2D/Camera")
 run_on_ready = true
 metadata/_custom_type_script = "uid://c06toks8v57ds"
 
 [node name="Path2D" type="Path2D" parent="Intro_Scene" unique_id=45793206]
+position = Vector2(-23.287628, -9.788239)
+scale = Vector2(1.0220318, 1.0235294)
 curve = SubResource("Curve2D_d6wd1")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Intro_Scene/Path2D" unique_id=2115477342]

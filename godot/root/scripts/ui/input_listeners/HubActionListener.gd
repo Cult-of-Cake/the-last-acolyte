@@ -38,12 +38,14 @@ func on_interact_pressed() -> void:
 
 #region Talkables
 
+@export var search_node : Node2D
+
 const TALK_DISTANCE : int = 50
 var talkables : Array[NPC] = []
 
 func talkables_setup() -> void:
 	for node in search_node.get_children():
-		if typeof(node) == typeof(Pet):
+		if typeof(node) == typeof(Creature):
 			if Lib.Objects.has_child_of_type(node, Talkable):
 				Lib.debug(log_stream, ["Found ", node.name])
 				talkables.append(node)

@@ -9,7 +9,7 @@ extends Control
 
 signal end_reached
 
-@export_file("*.md") var attribution_file_path: String = PathConsts.RES + "CREDITS.md"
+@export_file("*.md") var attribution_file_path: String = Vars.Paths.RES + "CREDITS.md"
 
 @export_group("Formatting")
 @export var h1_font_size: int = 64

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c6faqnn12ba5a"]
 
 [ext_resource type="Texture2D" uid="uid://bf34px2jc5rum" path="res://root/assets/PLACEHOLDERS/Tilesets/Floor.png" id="1_07qga"]
+[ext_resource type="Script" uid="uid://devm6n6l8mxh8" path="res://root/scripts/levels/ObstacleLayer.gd" id="2_v3igb"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_eoyk8"]
 
@@ -1547,5 +1548,7 @@ physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_gd1v2")
 
-[node name="SimpleTiles" type="TileMapLayer" unique_id=1840678148]
+[node name="SimpleTiles" type="TileMapLayer" unique_id=978279544]
 tile_set = SubResource("TileSet_6fuat")
+script = ExtResource("2_v3igb")
+metadata/_custom_type_script = "uid://devm6n6l8mxh8"

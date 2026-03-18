@@ -17,11 +17,20 @@ class Objects:
 	static func has_child_of_type(parent : Node, type : Variant) -> bool:
 		var found : Node = find_child_of_type(parent, type)
 		return found != null
-
+	# Ran into an issue that I *thought* was a subclass not being detected here.
+	# This was a possible solution.  That didn't end up being the problem so I don't
+	# know if this is needed.  God, I hope not.  Keeping just in case.
+	#static func find_child_of_type_str(parent : Node, type : String, recursive : bool = false) -> Node2D:
+		#for child in parent.get_children():
+			#print ("TYPE: Checking if ", child.name, " (", child.get_class(), ") is type ", type)
+			#if child.is_class(type):
+				#return child
+			#if recursive:
+				#var grandchild : Node2D = find_child_of_type_str(child, type, true)
+				#if grandchild != null:
+					#return grandchild
+		#return null
 #endregion
-
-func _ready() -> void:
-	print("huh")
 
 #region Strings
 static func join(messages:Array) -> String:
@@ -32,8 +41,8 @@ static func join(messages:Array) -> String:
 
 # I want to make it easier to log to specific streams.
 # Define the streams here - in the enum and also the array for its title
-enum LOG { ACTIONS, MOVEMENT }
-static var streams_text : Array = ["ACTION", "MOVE"]
+enum LOG { ACTIONS, MOVEMENT, ASSETS, SAVE_SYSTEM, PATHING }
+static var streams_text : Array = ["ACTN", "MOVE", "ASST", "SAVE", "PATH" ]
 const DEFAULT_LEVEL : Log.LogLevel = Log.LogLevel.INFO
 
 # These can be left alone.  The first is auto-filled and the second is what fills it
@@ -76,4 +85,44 @@ class LogByStream:
 			var s : LogStream = LogStream.new(Lib.streams_text[idx], DEFAULT_LEVEL)
 			Lib.streams.append(s)
 
+# I want to make it even easier.
+# Set up a log variable somewhere and then just this:
+# log.enable_debug() and log.debug("blah")
+
+class EasyLog:
+	var s : LOG
+	func _init(stream : LOG, debugging : bool) -> void:
+		s = stream
+		if debugging:
+			Lib.enable_debug(s)
+	func debug(messages : Variant, values : Variant=null) -> void:
+		if typeof(messages) == TYPE_ARRAY:
+			Lib.debug(s, messages, values)
+		elif typeof(messages) == TYPE_STRING:
+			Lib.debug(s, [messages], values)
+		else:
+			Lib.error(s, "Cannot handle input to EasyLog.debug: " + messages)
+	func info(messages : Variant, values : Variant=null) -> void:
+		if typeof(messages) == TYPE_ARRAY:
+			Lib.info(s, messages, values)
+		elif typeof(messages) == TYPE_STRING:
+			Lib.info(s, [messages], values)
+		else:
+			Lib.error(s, "Cannot handle input to EasyLog.info: " + messages)
+	func warn(messages : Variant, values : Variant=null) -> void:
+		if typeof(messages) == TYPE_ARRAY:
+			Lib.warn(s, messages, values)
+		elif typeof(messages) == TYPE_STRING:
+			Lib.warn(s, [messages], values)
+		else:
+			Lib.error(s, "Cannot handle input to EasyLog.warn: " + messages)
+	func error(messages : Variant, values : Variant=null) -> void:
+		if typeof(messages) == TYPE_ARRAY:
+			Lib.error(s, messages, values)
+		elif typeof(messages) == TYPE_STRING:
+			Lib.error(s, [messages], values)
+		else:
+			Lib.error(s, "Cannot handle input to EasyLog.error: " + messages)
+
 #endregion
+ 

@@ -58,7 +58,15 @@ func set_from_dict(dict: Dictionary, index: int = -1) -> void:
 	clear(index)
 	for var_name: String in dict:
 		if var_name in self:
-			self.set(var_name, dict[var_name])
+			# Dictionaries cannot be updated with self.set,
+			# which means they cannot be set with a string property.
+			# If you need dictionaries, your SaveData class must implement a loading function!
+			if dict[var_name] is Dictionary:
+				var loading_function : String = "load_" + var_name
+				if self.has_method(loading_function):
+					self.call(loading_function, dict[var_name])
+			else:
+				self.set(var_name, dict[var_name])
 
 
 ## return true if variable is not private (no underscore prefix) and is a plain script variable

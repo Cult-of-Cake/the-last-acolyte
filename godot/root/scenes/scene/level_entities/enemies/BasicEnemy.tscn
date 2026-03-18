@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://b876cjb2lnsci"]
+
+[ext_resource type="Script" uid="uid://nega1m1ofgnl" path="res://root/scripts/creatures/enemies/PathingBase.gd" id="1_sypfn"]
+[ext_resource type="Texture2D" uid="uid://7h3jyvqqsr8d" path="res://Images/sprite_beast_dustfluffy_1.png" id="2_o8mlk"]
+[ext_resource type="Texture2D" uid="uid://c5y5xrekspur1" path="res://Images/sprite_beast_dustfluffy_2.png" id="3_rlycb"]
+[ext_resource type="Script" uid="uid://bfjq2gp60sfmw" path="res://root/scripts/creatures/enemies/Enemy.gd" id="4_o8mlk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogfdl"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("2_o8mlk")
+}, {
+"duration": 3.0,
+"texture": ExtResource("3_rlycb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rlycb"]
+radius = 47.07
+
+[node name="DummySprite" type="PathFollow2D" unique_id=1250167057]
+progress = 50.0
+rotates = false
+loop = false
+script = ExtResource("1_sypfn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=249716396]
+sprite_frames = SubResource("SpriteFrames_ogfdl")
+autoplay = "default"
+frame_progress = 0.7440687
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=250959287]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1723719872]
+shape = SubResource("CircleShape2D_rlycb")
+
+[node name="Enemy" type="Node2D" parent="CharacterBody2D" unique_id=1268059315 node_paths=PackedStringArray("path")]
+script = ExtResource("4_o8mlk")
+path = NodePath("../..")
+metadata/_custom_type_script = "uid://bfjq2gp60sfmw"

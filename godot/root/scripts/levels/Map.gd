@@ -129,9 +129,7 @@ func place_barrier(coords:Vector2) -> bool:
 	var local:Vector2 = tile_map.to_local(coords)
 	var tile:Vector2i = tile_map.local_to_map(local)
 	if tile_map.impassible.has(tile):
-		tile_map.impassible.erase(tile)
-		tile_map.barriers[tile].queue_free()
-		tile_map.barriers.erase(tile)
+		delete_blocker(tile)
 		return true # We removed it
 	else:
 		#This needs to be added right away so the recalculations are correct.
@@ -228,8 +226,6 @@ func place_barrier(coords:Vector2) -> bool:
 			return true # We placed it!
 		else:
 			#TODO Replace with meaningful feedback
-			tile_map.impassible.erase(tile)
-			tile_map.barriers.erase(tile)
 			logger.warn("Barricade can not be placed there because some enemies would have no route to their goal")
 			return false # Couldn't be placed
 

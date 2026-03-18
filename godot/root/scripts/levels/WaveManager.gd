@@ -8,6 +8,7 @@ var spawn_timer : Timer
 
 func _ready() -> void:
 	spawn_timer = Timer.new()
+	spawn_timer.wait_time = 1.5
 	spawn_timer.timeout.connect(_on_timer_timeout)
 	add_child(spawn_timer)
 	spawn_timer.start()

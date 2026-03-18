@@ -21,6 +21,7 @@ func add_to_path(new_path : Path2D) -> void:
 	follow_path = new_path
 	if pathing_base == null:
 		pathing_base = PathingBase.new()
+		pathing_base.loop = false
 		pathing_base.name = name + " Parent"
 		pathing_base.rotates = false
 		get_parent().add_child(pathing_base)

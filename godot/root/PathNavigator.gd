@@ -107,9 +107,8 @@ func check_coordinates(tile: PathTile, test_coordinates: Vector2i, cost):
 		var top_tile = open[test_coordinates]
 		if top_tile.from_start > tile.from_start + 10:
 			open[test_coordinates].from_start = tile.from_start + cost
-			open[test_coordinates].combined_distance = (
-				open[test_coordinates].from_start + open[test_coordinates].to_goal
-			)
+			open[test_coordinates].combined_distance = (open[test_coordinates].from_start + open[test_coordinates].to_goal)
+			open[test_coordinates].previous = tile.coordinates
 		return true
 	elif closed.has(test_coordinates):
 		return true

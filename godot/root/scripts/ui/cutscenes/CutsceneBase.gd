@@ -7,8 +7,6 @@ class_name CutsceneBase
 
 signal dialogue_done
 
-var prev_cam : Camera2D
-
 func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 	if run_on_ready:
@@ -20,20 +18,33 @@ func _on_dialogue_ended(_resource : DialogueResource) -> void:
 	dialogue_done.emit()
 
 # This saves us from having to make a bunch of temporary tween variables when
-# we want to do a bunch of things in a row
+# we want to do several things in a row
 func tween_object(obj : Node2D, prop : String, new_val : Variant, duration : float) -> void:
 	var my_tween := create_tween()
 	my_tween.tween_property(obj, prop, new_val, duration)
 	await my_tween.finished
 
+#region Switching in and out of cutscene mode
+
+var prev_cam : Camera2D
+
 func enter_cutscene_mode() -> void:
 	prev_cam = get_viewport().get_camera_2d()
+	print(prev_cam)
 	swap_cameras(prev_cam, cam)
 
 func exit_cutscene_mode() -> void:
+	print(prev_cam)
 	swap_cameras(cam, prev_cam)
 
-func swap_cameras(old_c : Camera2D, new_c : Camera2D) -> void:
-	old_c.enabled = false
-	new_c.enabled = true
-	new_c.make_current()
+# If we load from the menu instead of directly, new_c is "recently freed" and throws
+# an exception... not entirely sure why.  Or what sets our camera correctly afterward.
+# But it means we have to check is_instance_valid before acting.
+func swap_cameras(old_c : Camera2D, new_c : Variant) -> void:
+	if is_instance_valid(old_c) and old_c is Camera2D:
+		old_c.enabled = false
+	if is_instance_valid(new_c) and new_c is Camera2D:
+		new_c.enabled = true
+		new_c.make_current()
+
+#endregion

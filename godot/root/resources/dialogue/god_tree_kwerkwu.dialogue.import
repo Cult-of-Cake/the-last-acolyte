@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bqybv3kingv18"
+path="res://.godot/imported/god_tree_kwerkwu.dialogue-8bfe4be44be98bb7d9a2b14106775c51.tres"
+
+[deps]
+
+source_file="res://root/resources/dialogue/god_tree_kwerkwu.dialogue"
+dest_files=["res://.godot/imported/god_tree_kwerkwu.dialogue-8bfe4be44be98bb7d9a2b14106775c51.tres"]
+
+[params]
+
+defaults=true

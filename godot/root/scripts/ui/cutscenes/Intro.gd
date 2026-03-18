@@ -10,6 +10,7 @@ func run() -> void:
 	await narrator.ready
 	await god_tree.ready
 	
+	logger.info("Playing cutscene " + name)
 	enter_cutscene_mode()
 	player.position = Vector2(-1000.0, -1000.0)
 	
@@ -27,6 +28,6 @@ func run() -> void:
 
 	god_tree.talkable.talk_from_label("intro")
 	await dialogue_done
-	print("done")
 
 	exit_cutscene_mode()
+	logger.debug("Finished cutscene " + name)

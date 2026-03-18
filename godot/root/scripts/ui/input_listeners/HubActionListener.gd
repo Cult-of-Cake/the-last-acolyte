@@ -1,6 +1,8 @@
 extends ActionListenerBase
 class_name HubActionListener
 
+var logger := Lib.EasyLog.new(Lib.LOG.ACTIONS)
+
 func _ready() -> void:
 	# Prepare listeners
 	
@@ -53,7 +55,7 @@ func talkables_setup() -> void:
 				talkables.append(node)
 
 func _on_dialogue_label(label : String) -> void:
-	print(label)
+	logger.debug(label)
 	match label:
 		"LoadMap":
 			Lib.load_scene(Vars.SceneList.MAP)

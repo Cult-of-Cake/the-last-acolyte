@@ -50,8 +50,8 @@ static func join(messages:Array) -> String:
 
 # I want to make it easier to log to specific streams.
 # Define the streams here - in the enum and also the array for its title
-enum LOG { ACTIONS, MOVEMENT, ASSETS, SAVE_SYSTEM, PATHING }
-static var streams_text : Array = ["ACTN", "MOVE", "ASST", "SAVE", "PATH" ]
+enum LOG { ACTIONS, MOVEMENT, ASSETS, SAVE_SYSTEM, PATHING, DIALOGUE }
+static var streams_text : Array = ["ACTN", "MOVE", "ASST", "SAVE", "PATH", "DIAG" ]
 const DEFAULT_LEVEL : Log.LogLevel = Log.LogLevel.INFO
 
 # These can be left alone.  The first is auto-filled and the second is what fills it
@@ -100,7 +100,7 @@ class LogByStream:
 
 class EasyLog:
 	var s : LOG
-	func _init(stream : LOG, debugging : bool) -> void:
+	func _init(stream : LOG, debugging : bool = true) -> void:
 		s = stream
 		if debugging:
 			Lib.enable_debug(s)

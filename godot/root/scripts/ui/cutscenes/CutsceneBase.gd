@@ -2,6 +2,8 @@
 extends Node2D
 class_name CutsceneBase
 
+static var logger := Lib.EasyLog.new(Lib.LOG.DIALOGUE)
+
 @export var cam : Camera2D
 @export var run_on_ready : bool = false
 
@@ -30,11 +32,9 @@ var prev_cam : Camera2D
 
 func enter_cutscene_mode() -> void:
 	prev_cam = get_viewport().get_camera_2d()
-	print(prev_cam)
 	swap_cameras(prev_cam, cam)
 
 func exit_cutscene_mode() -> void:
-	print(prev_cam)
 	swap_cameras(cam, prev_cam)
 
 # If we load from the menu instead of directly, new_c is "recently freed" and throws

@@ -7,7 +7,8 @@ class_name Talkable
 @export var starting_label : String = "start"
 @export var auto_on_collision : Area2D
 
-var enabled = true
+var logger := Lib.EasyLog.new(Lib.LOG.DIALOGUE)
+var enabled : bool = true
 
 func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
@@ -22,11 +23,11 @@ func talk_from_label(jump_to : String) -> void:
 		return
 	if jump_to == "" or jump_to == null:
 		return
-		
-	print ("You talked to ", get_parent().name)
-	
+
+	logger.debug("You talked to ", get_parent().name)
+
 	if Vars.DIALOGUE_TAKEN:
-		LogWrapper.info(self,"Cannot Talk to character when dialogue already running!")
+		logger.warn("Cannot Talk to character when dialogue already running!")
 		return
 	Vars.DIALOGUE_TAKEN = true
 

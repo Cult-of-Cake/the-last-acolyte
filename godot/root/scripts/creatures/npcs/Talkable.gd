@@ -7,6 +7,8 @@ class_name Talkable
 @export var starting_label : String = "start"
 @export var auto_on_collision : Area2D
 
+var enabled = true
+
 func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 	if auto_on_collision != null:
@@ -16,6 +18,11 @@ func talk() -> void:
 	talk_from_label(starting_label)
 
 func talk_from_label(jump_to : String) -> void:
+	if !enabled:
+		return
+	if jump_to == "" or jump_to == null:
+		return
+		
 	print ("You talked to ", get_parent().name)
 	
 	if Vars.DIALOGUE_TAKEN:

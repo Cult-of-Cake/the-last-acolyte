@@ -1,5 +1,5 @@
 ~ start
-Leave the forest?
+Leave the glade?
 - Yes
 	=> LoadMap
 - No

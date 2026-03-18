@@ -13,7 +13,7 @@ func _ready() -> void:
 		run()
 
 func run() -> void:
-	pass
+	pass # Override me
 func _on_dialogue_ended(_resource : DialogueResource) -> void:
 	dialogue_done.emit()
 

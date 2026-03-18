@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://3fl4ms7i643s" path="res://root/assets/PLACEHOLDERS/Laura/forest-tile.png" id="4_uryoo"]
 [ext_resource type="Script" uid="uid://vscwnlyod4hn" path="res://root/scripts/movement/Wanderer.gd" id="5_dnolg"]
 [ext_resource type="Script" uid="uid://w55tleix2ic2" path="res://root/scripts/movement/roof.gd" id="5_ruvug"]
-[ext_resource type="Script" uid="uid://cd7temqsi525n" path="res://root/scripts/creatures/pets/Pet.gd" id="6_4kech"]
 [ext_resource type="Texture2D" uid="uid://bpj5rw7vx38vr" path="res://root/assets/PLACEHOLDERS/Laura/ElectricWeaken128.png" id="6_v5l00"]
 [ext_resource type="Script" uid="uid://ggwtdut4tvf6" path="res://root/scripts/creatures/npcs/Talkable.gd" id="7_kl1gp"]
 [ext_resource type="Texture2D" uid="uid://bs5ywiwxj41op" path="res://root/assets/PLACEHOLDERS/Laura/FireDamage128.png" id="7_v5l00"]
@@ -18,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://ciyv4grfrdfn5" path="res://testwors.dialogue" id="9_lq4yk"]
 [ext_resource type="PackedScene" uid="uid://c187j6og8dp42" path="res://root/scenes/component/character/balloon.tscn" id="10_f6ymf"]
 [ext_resource type="Texture2D" uid="uid://mbkcte3iftew" path="res://root/assets/PLACEHOLDERS/Jo Concept/The_Tree.png" id="12_raomi"]
+[ext_resource type="Script" uid="uid://udmda6ffacik" path="res://root/scripts/creatures/npcs/God.gd" id="12_ss8ah"]
 [ext_resource type="Resource" uid="uid://bqybv3kingv18" path="res://root/resources/dialogue/god_tree_kwerkwu.dialogue" id="13_46iui"]
 [ext_resource type="Resource" uid="uid://b4ppdbraqru8c" path="res://root/resources/dialogue/narrator.dialogue" id="13_ss8ah"]
 [ext_resource type="PackedScene" uid="uid://g8ru6a3r06wr" path="res://root/scenes/scene/hub/hub_exit.tscn" id="14_f6ymf"]
@@ -1995,10 +1995,10 @@ dialogue_balloon = ExtResource("10_f6ymf")
 auto_on_collision = NodePath("..")
 metadata/_custom_type_script = "uid://ggwtdut4tvf6"
 
-[node name="Narrator" type="Node2D" parent="Characters/NPCs" unique_id=1496040774]
+[node name="Narrator" type="Node2D" parent="Characters/NPCs" unique_id=758257747]
 y_sort_enabled = true
 position = Vector2(518, 307)
-script = ExtResource("6_4kech")
+script = ExtResource("12_ss8ah")
 metadata/_custom_type_script = "uid://ca4w6syq6ped3"
 
 [node name="Talkable" type="Node2D" parent="Characters/NPCs/Narrator" unique_id=1872658832]
@@ -2007,11 +2007,11 @@ dialogue_file = ExtResource("13_ss8ah")
 dialogue_balloon = ExtResource("10_f6ymf")
 starting_label = ""
 
-[node name="TREE" type="Node2D" parent="Characters/NPCs" unique_id=790179566]
+[node name="TREE" type="Node2D" parent="Characters/NPCs" unique_id=90858263]
 y_sort_enabled = true
-position = Vector2(229, 214)
-script = ExtResource("6_4kech")
-metadata/_custom_type_script = "uid://ca4w6syq6ped3"
+position = Vector2(229, 376)
+script = ExtResource("12_ss8ah")
+metadata/_custom_type_script = "uid://udmda6ffacik"
 
 [node name="Talkable" type="Node2D" parent="Characters/NPCs/TREE" unique_id=1231453335]
 script = ExtResource("7_kl1gp")
@@ -2020,14 +2020,16 @@ dialogue_balloon = ExtResource("10_f6ymf")
 starting_label = "main"
 
 [node name="TheTree" type="Sprite2D" parent="Characters/NPCs/TREE" unique_id=142586120]
+y_sort_enabled = true
 scale = Vector2(0.25616664, 0.2561666)
 texture = ExtResource("12_raomi")
+offset = Vector2(0, -600)
 
 [node name="Giraffe" type="Node2D" parent="Characters/NPCs" unique_id=1556979453]
 visible = false
 y_sort_enabled = true
 position = Vector2(325, 337)
-script = ExtResource("6_4kech")
+script = ExtResource("12_ss8ah")
 
 [node name="Talkable" type="Node2D" parent="Characters/NPCs/Giraffe" unique_id=213575488]
 script = ExtResource("7_kl1gp")
@@ -2064,7 +2066,7 @@ offset = Vector2(0, 20)
 visible = false
 y_sort_enabled = true
 position = Vector2(518, 307)
-script = ExtResource("6_4kech")
+script = ExtResource("12_ss8ah")
 
 [node name="Talkable" type="Node2D" parent="Characters/NPCs/Bernie" unique_id=339809802]
 script = ExtResource("7_kl1gp")

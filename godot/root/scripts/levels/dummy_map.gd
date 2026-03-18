@@ -112,7 +112,7 @@ func delete_blocker(tile:Vector2i) -> void :
 					path.remove_child(repathed_enemy)
 					new_path.add_child(repathed_enemy)
 					enemies_repathed.append(repathed_enemy)
-				add_child(new_path)
+				add_path(new_path)
 				
 		if path.get_children().size() == 0:
 			delete_path(path)
@@ -122,9 +122,11 @@ func delete_blocker(tile:Vector2i) -> void :
 	var new_path: Path = Path.build_path(points, tile_map)
 	new_path.is_default = true
 	get_node("StartPoints").get_node("StartPoint").default_path = new_path
+	add_path(new_path)
+
+func add_path(new_path:Path) ->void:
 	add_child(new_path)
-
-
+	paths.append(new_path)
 
 func tile_clicked(coords:Vector2) ->void :
 	var local:Vector2 = tile_map.to_local(coords)
@@ -145,7 +147,9 @@ func tile_clicked(coords:Vector2) ->void :
 		var new_paths : Array[Path]
 		#We need to check and potentially modify EVERY path that potentially exists
 		for any_path in paths:
+			print("Looking at a path")
 			if any_path.map_points.has(tile):
+				print("A path was broken")
 				var broken_path:Path = any_path
 				#Find the break point and sort the path follows into the ones before and after it.
 				var break_offset:float = broken_path.curve.get_closest_offset(broken_path.to_local(coords))
@@ -153,7 +157,7 @@ func tile_clicked(coords:Vector2) ->void :
 				for guy in broken_path.get_children():
 					if guy.progress && guy.progress < break_offset - 8: #In pixels, probalby about half a tile
 						orphans.append(guy)
-				print("Orphans is now of size ", orphans.size())
+		print("Orphans is now of size ", orphans.size())
 
 		#Make sure every enemy in that list can reach the goal by some new path
 		for guy in orphans:

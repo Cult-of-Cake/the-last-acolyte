@@ -32,6 +32,15 @@ class Objects:
 		#return null
 #endregion
 
+#region Scenes
+
+static func load_scene(scene_key : String) -> void:
+	if scene_key != null:
+		SceneManager.change_scene(scene_key, Vars.scene_fade_out, Vars.scene_fade_in, Vars.scene_options)
+
+
+#endregion
+
 #region Strings
 static func join(messages:Array) -> String:
 	return "".join(messages)
@@ -41,8 +50,8 @@ static func join(messages:Array) -> String:
 
 # I want to make it easier to log to specific streams.
 # Define the streams here - in the enum and also the array for its title
-enum LOG { ACTIONS, MOVEMENT, ASSETS, SAVE_SYSTEM, PATHING }
-static var streams_text : Array = ["ACTN", "MOVE", "ASST", "SAVE", "PATH" ]
+enum LOG { ACTIONS, MOVEMENT, ASSETS, SAVE_SYSTEM, PATHING, DIALOGUE }
+static var streams_text : Array = ["ACTN", "MOVE", "ASST", "SAVE", "PATH", "DIAG" ]
 const DEFAULT_LEVEL : Log.LogLevel = Log.LogLevel.INFO
 
 # These can be left alone.  The first is auto-filled and the second is what fills it
@@ -91,7 +100,7 @@ class LogByStream:
 
 class EasyLog:
 	var s : LOG
-	func _init(stream : LOG, debugging : bool) -> void:
+	func _init(stream : LOG, debugging : bool = true) -> void:
 		s = stream
 		if debugging:
 			Lib.enable_debug(s)

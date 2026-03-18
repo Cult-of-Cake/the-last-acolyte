@@ -1,8 +1,12 @@
 extends ActionListenerBase
 class_name HubActionListener
 
+var logger := Lib.EasyLog.new(Lib.LOG.ACTIONS)
+
 func _ready() -> void:
 	# Prepare listeners
+	
+	DialogueManager.passed_title.connect(_on_dialogue_label)
 	# Technically we could just do a big 'ol switch in _input, but this lets us do things like
 	# output when any input is in the dictionary
 	actions["hub_interact"] = on_interact_pressed
@@ -45,9 +49,15 @@ var talkables : Array[NPC] = []
 
 func talkables_setup() -> void:
 	for node in search_node.get_children():
-		if typeof(node) == typeof(Creature):
+		if node is Creature:
 			if Lib.Objects.has_child_of_type(node, Talkable):
 				Lib.debug(log_stream, ["Found ", node.name])
 				talkables.append(node)
+
+func _on_dialogue_label(label : String) -> void:
+	logger.debug(label)
+	match label:
+		"LoadMap":
+			Lib.load_scene(Vars.SceneList.MAP)
 
 #endregion

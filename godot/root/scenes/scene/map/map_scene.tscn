@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://ndr23t86j562" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/star.png" id="23_51rvv"]
 [ext_resource type="Script" uid="uid://d4j2vegspyt6" path="res://root/scripts/map/MapButtonLoader.gd" id="25_m6phn"]
 [ext_resource type="PackedScene" uid="uid://cb541bsl7dfsu" path="res://root/scenes/scene/levels/dummy_map.tscn" id="25_s04ac"]
+[ext_resource type="PackedScene" uid="uid://r7kq2bt746no" path="res://root/scenes/scene/levels/level_sandbox.tscn" id="26_s04ac"]
 
 [node name="MapScene" type="Node2D" unique_id=919757401]
 
@@ -303,4 +304,5 @@ metadata/_custom_type_script = "uid://d4j2vegspyt6"
 position = Vector2(1004, 477)
 script = ExtResource("25_m6phn")
 id = 2
+level_scene = ExtResource("26_s04ac")
 metadata/_custom_type_script = "uid://d4j2vegspyt6"

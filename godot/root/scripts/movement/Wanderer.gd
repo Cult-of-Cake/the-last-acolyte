@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	# A radical shift in heading means we bypassed or nearly bypassed our goal
 	# And for the rare occasion that we got our target near-exact, check distance too
 	var curr_heading : float = posn.angle_to_point(_goal)
-	#if DEBUG: print(_curr_heading, " originally ", _heading, " -> ", abs(_curr_heading - _heading))
+	Lib.debug(log_stream, [curr_heading, " originally ", _heading, " -> ", abs(curr_heading - _heading)])
 	if abs(curr_heading - _heading) > 0.1 or posn.distance_to(_goal) < 3:
 		# Wait a moment, then find a new goal!
 		begin_waiting()

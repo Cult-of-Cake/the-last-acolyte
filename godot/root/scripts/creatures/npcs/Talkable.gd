@@ -13,13 +13,17 @@ func _ready() -> void:
 		auto_on_collision.body_entered.connect(_on_auto_trigger)
 
 func talk() -> void:
+	talk_from_label(starting_label)
+
+func talk_from_label(jump_to : String) -> void:
+	print ("You talked to ", get_parent().name)
+	
 	if Vars.DIALOGUE_TAKEN:
 		LogWrapper.error(self,"Cannot Talk to character when dialogue already running!")
 		return
-	
 	Vars.DIALOGUE_TAKEN = true
-	print ("You talked to ", get_parent().name)
-	DialogueManager.show_dialogue_balloon_scene(dialogue_balloon,dialogue_file,starting_label)
+
+	DialogueManager.show_dialogue_balloon_scene(dialogue_balloon, dialogue_file, jump_to)
 
 func _on_dialogue_ended(_resource : DialogueResource) -> void: 
 	Vars.DIALOGUE_TAKEN = false

@@ -3,12 +3,20 @@ class_name Intro
 
 @export var player : Player
 @export var camera_rail_1 : PathFollow2D
+@export var narrator : Talkable
 @export var god_tree : Talkable
 
 func run() -> void:
 	enter_cutscene_mode()
 	player.position = Vector2(-1000.0, -1000.0)
+	
+	narrator.talk_from_label("start")
+	await dialogue_done
+	
 	await tween_object(camera_rail_1, "progress_ratio", 1.0, 8.0)
+	
+	narrator.talk_from_label("continue_01")
+	await dialogue_done
 
 	player.position = Vector2(222.0, 475.0)
 	tween_object(player, "position", Vector2(240.0, 410.0), 2.2)

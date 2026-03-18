@@ -3,7 +3,7 @@ class_name LevelActionListener
 
 signal left_click(coords: Vector2)
 
-@export var tiles : PlacementLayer
+@export var tiles : TileMapLayer
 @export var map : Map
 @export var cursor : GhostCursor
 

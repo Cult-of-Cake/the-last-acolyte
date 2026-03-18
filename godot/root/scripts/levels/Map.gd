@@ -1,64 +1,60 @@
 extends Node2D
+class_name Map
 
-var the_path : Path
-var paths : Array[Path]
-
-@onready var tile_map : TileMapLayer = %SimpleTiles
 @onready var navigator : PathNavigator = PathNavigator.new()
 #Paths should be objects that keep a list of the involved tiles so they can check if added walls or obstacles interfere
 
+@export var tile_map : ObstacleLayer
+@export var placement_map : PlacementLayer
+@export var start_point : MapPoint  # TODO: Array
+@export var end_point : MapPoint  # TODO: Array
+
+var logger := Lib.EasyLog.new(Lib.LOG.PATHING, true)
+var paths : Array[Path]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	SignalBus.delete_path.connect(delete_path)
 	
-	tile_map.left_click.connect(tile_clicked)
-	var start_coords:Vector2 = get_node("StartPoints").get_node("StartPoint").get_global_position()
+	var start_coords:Vector2 = start_point.get_global_position()
 	var start_map:Vector2 = tile_map.local_to_map(tile_map.to_local(start_coords))
-	var end_coords:Vector2 = get_node("EndPoints").get_node("EndPoint").get_global_position()
+	var end_coords:Vector2 = end_point.get_global_position()
 	var end_map:Vector2 = tile_map.local_to_map(tile_map.to_local(end_coords))
 	calculate_path(start_map, end_map)
 	
-	get_node("StartPoints").get_node("StartPoint").calculate_coordinates(tile_map)
-	get_node("EndPoints").get_node("EndPoint").calculate_coordinates(tile_map)
+	start_point.calculate_coordinates(tile_map)
+	end_point.calculate_coordinates(tile_map)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func _on_map_changed(map) -> void:
+	logger.debug("map changed")
+	start_point.calculate_path()
 
 func calculate_path(start_coords: Vector2i, end_coords : Vector2i) -> void:
 	var pathfinder:PathNavigator = PathNavigator.new()
-	var point_list:Array[Vector2i] = pathfinder.navigate(start_coords, end_coords, %SimpleTiles)
-	var thePath:Path = Path.new()
+	var point_list:Array[Vector2i] = pathfinder.navigate(start_coords, end_coords, tile_map)
+	var thePath := Path.new()
 	thePath.curve = Curve2D.new()
 	thePath.name = "thePath"
 	if point_list:
 		for point in point_list:
 			thePath.map_points[point] = true
-			var local_coords:Vector2 = %SimpleTiles.map_to_local(point)
-			var global_coords:Vector2 = %SimpleTiles.to_global(local_coords)
+			var local_coords:Vector2 = tile_map.map_to_local(point)
+			var global_coords:Vector2 = tile_map.to_global(local_coords)
 			thePath.curve.add_point(global_coords)
 	add_child(thePath)
 	paths.append(thePath)
 	thePath.is_default = true
-	get_node("StartPoints").get_node("StartPoint").default_path = thePath
+	start_point.default_path = thePath
 
-func _on_timer_timeout() -> void:
-	var newguy:PathFollow2D = load("res://root/scenes/scene/levels/dummySprite.tscn").instantiate()
-	var some_path : Path
-	some_path = get_node("StartPoints").get_node("StartPoint").default_path
-	if(some_path):
-		some_path.add_child(newguy)
-	#get_node("Timer").wait_time = 100
-
-#This is currently the only thing that happens on a click, but attempting to place a barrier should be made into one of many things a player can do
-func tile_clicked(coords:Vector2) ->void :
+func place_barrier(coords:Vector2) -> bool:
 	var local:Vector2 = tile_map.to_local(coords)
 	var tile:Vector2i = tile_map.local_to_map(local)
 	if tile_map.impassible.has(tile):
 		tile_map.impassible.erase(tile)
 		tile_map.barriers[tile].queue_free()
 		tile_map.barriers.erase(tile)
+		return true # We removed it
 	else:
 		#This needs to be added right away so the recalculations are correct.
 		#If the new layout is invalid, it needs to be removed.
@@ -91,7 +87,7 @@ func tile_clicked(coords:Vector2) ->void :
 					has_path = true
 			if !has_path:
 				navigator = PathNavigator.new()
-				var points: Array[Vector2i] = navigator.navigate(tile_map.local_to_map(tile_map.to_local(guy.global_position)), get_node("EndPoints").get_node("EndPoint").coordinates, tile_map)
+				var points: Array[Vector2i] = navigator.navigate(tile_map.local_to_map(tile_map.to_local(guy.global_position)), end_point.coordinates, tile_map)
 				if !points:
 					valid = false
 				else:
@@ -105,9 +101,9 @@ func tile_clicked(coords:Vector2) ->void :
 		#We need to make sure there is still some path from the start point to the goal point
 		navigator = PathNavigator.new()
 		var candidate_path: Path
-		var candidate_points:Array[Vector2i] = navigator.navigate(get_node("StartPoints").get_node("StartPoint").coordinates, get_node("EndPoints").get_node("EndPoint").coordinates, tile_map)
+		var candidate_points:Array[Vector2i] = navigator.navigate(start_point.coordinates, end_point.coordinates, tile_map)
 		if !candidate_points:
-			print("It's the main path that is broken")
+			logger.debug("It's the main path that is broken")
 			valid = false
 		else:
 			candidate_path = Path.build_path(candidate_points, tile_map)
@@ -116,6 +112,9 @@ func tile_clicked(coords:Vector2) ->void :
 		#If valid, assign every enemy in the orphan list to one of the paths that was generated for the orphans
 		if valid:
 			tile_map.place_barrier(tile)
+			# In some levels, obstacles might be invisible and we want to place on a different layer too
+			if placement_map:
+				placement_map.place_barrier(tile)
 			for new_path in new_paths:
 				paths.append(new_path)
 				add_child(new_path)
@@ -132,16 +131,16 @@ func tile_clicked(coords:Vector2) ->void :
 							add_child(new_path)
 				#There is some rare mish-mash of coordinates which allows an enemy to not be placed at this point.  It must be placed somehwere.
 				if !placed:
-					print("This code has been reached")
+					logger.warn("This code has been reached")
 					hard_place(guy)
 			#if valid, replace the default path for the start point with the new start-to-finish path that was created
-			if get_node("StartPoints").get_node("StartPoint").default_path.get_children().size() == 0:
-				delete_path(get_node("StartPoints").get_node("StartPoint").default_path)
+			if start_point.default_path.get_children().size() == 0:
+				delete_path(start_point.default_path)
 			else:
-				get_node("StartPoints").get_node("StartPoint").default_path.is_default = false
+				start_point.default_path.is_default = false
 			candidate_path.is_default = true
 			candidate_path.name = "default"
-			get_node("StartPoints").get_node("StartPoint").default_path = candidate_path
+			start_point.default_path = candidate_path
 		
 			#clean up any created paths that didn't end up getting used:
 			for path in paths:
@@ -150,11 +149,13 @@ func tile_clicked(coords:Vector2) ->void :
 				if path.get_children().size() == 0 && !path.is_default:
 					#print("delete should be getting called on path ", path)
 					delete_path(path)
+			return true # We placed it!
 		else:
 			#TODO Replace with meaningful feedback
 			tile_map.impassible.erase(tile)
 			tile_map.barriers.erase(tile)
-			print("Barricade can not be placed there because some enemies would have no route to their goal")
+			logger.warn("Barricade can not be placed there because some enemies would have no route to their goal")
+			return false # Couldn't be placed
 
 func delete_path(dead_path: Path) -> void:
 	dead_path.queue_free()

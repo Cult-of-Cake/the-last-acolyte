@@ -16,6 +16,9 @@ class Paths:
 	const RESOURCES: String = RES + "resources/"
 	const ASSETS: String = RES + "assets/"
 	const SFX: String = ASSETS + "audio/sfx/"
+	const PREFABS: String = RES + "scenes/scene/"
+	const LEVELS: String = PREFABS + "levels/"
+	const ENEMIES: String = PREFABS + "level_entities/enemies/"
 
 #region Elements
 
@@ -35,6 +38,14 @@ const ELEMENT_ICONS : Array[CompressedTexture2D] = [
 ]
 
 #endregion
+
+#region Enemies
+
+const basic_enemy = preload(Paths.ENEMIES + "FollowEnemy.tscn")
+const flying_enemy = preload(Paths.ENEMIES + "FlyingEnemy.tscn")
+
+#endregion
+
 
 #region TakinTemplate Audio
 
@@ -69,8 +80,8 @@ class LevelData:
 	var difficulty : int = 1
 	var elements : Array[Vars.ELEMENT]
 
-	func _init(id : LEVEL, n : String, diff : int, elems : Array[Vars.ELEMENT]) -> void:
-		self.id = id
+	func _init(lid : LEVEL, n : String, diff : int, elems : Array[Vars.ELEMENT]) -> void:
+		id = lid
 		name = n
 		difficulty = diff
 		elements = elems

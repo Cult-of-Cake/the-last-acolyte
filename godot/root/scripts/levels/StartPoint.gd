@@ -1,0 +1,2 @@
+extends MapPoint
+class_name StartPoint

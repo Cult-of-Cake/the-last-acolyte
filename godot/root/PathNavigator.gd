@@ -23,12 +23,13 @@ var the_path : Array[Vector2i]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass  # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
+
 
 #TODO accept a list of barricaded tiles and add them to the list of barricades
 func navigate(start_tile:Vector2i, goal_tile:Vector2i, tilemap:TileMapLayer) -> Array[Vector2i]:
@@ -46,20 +47,27 @@ func navigate(start_tile:Vector2i, goal_tile:Vector2i, tilemap:TileMapLayer) -> 
 	open[start_tile] = first_tile
 	goal[goal_tile] = tilemap.get_cell_tile_data(goal_tile)
 	goal_coordinates = goal_tile
-	while(open.size() > 0 && !solved):
+	while open.size() > 0 && !solved:
 		#start by just grabbing any open tile:
 		var keys = open.keys()
 		var best_next = open[keys[0]]
 		#Then compare it against all open tiles to find the best candidate to explore next
 		for key in open:
 			var candidate = open[key]
-			if(candidate.combined_distance < best_next.combined_distance || (candidate.combined_distance == best_next.combined_distance && candidate.to_goal < best_next.to_goal)):
+			if (
+				candidate.combined_distance < best_next.combined_distance
+				|| (
+					candidate.combined_distance == best_next.combined_distance
+					&& candidate.to_goal < best_next.to_goal
+				)
+			):
 				best_next = candidate
 		explore(best_next)
 	if solved:
 		return the_path
 	else:
 		return []
+
 
 func explore(tile):
 	#potentially, there are up to 8 tiles that might be adjacent and walkable next to the tile being explores
@@ -76,7 +84,7 @@ func explore(tile):
 	right_coordinates = check_coordinates(tile, right_coordinates, 10)
 	left_coordinates = check_coordinates(tile, left_coordinates, 10)
 	bottom_coordinates = check_coordinates(tile, bottom_coordinates, 10)
-	
+
 	#only attempt diagonal tiles if the "straight" moves to either side are both available
 	#diagonal moves cost slightly more than straight ones
 	if top_coordinates && right_coordinates:
@@ -87,18 +95,20 @@ func explore(tile):
 		bottom_left_coordinates = check_coordinates(tile, bottom_left_coordinates, 14)
 	if left_coordinates && top_coordinates:
 		top_left_coordinates = check_coordinates(tile, top_left_coordinates, 14)
-	
+
 	#once exploration of the tile is complete, move it from open to closed
 	closed[tile.coordinates] = tile
 	open.erase(tile.coordinates)
-	
+
+
 #returns true if the test coordinates are in the tilemap and walkable, otherwise returns false
 func check_coordinates(tile: PathTile, test_coordinates: Vector2i, cost):
 	if open.has(test_coordinates):
 		var top_tile = open[test_coordinates]
 		if top_tile.from_start > tile.from_start + 10:
 			open[test_coordinates].from_start = tile.from_start + cost
-			open[test_coordinates].combined_distance = open[test_coordinates].from_start + open[test_coordinates].to_goal
+			open[test_coordinates].combined_distance = (open[test_coordinates].from_start + open[test_coordinates].to_goal)
+			open[test_coordinates].previous = tile.coordinates
 		return true
 	elif closed.has(test_coordinates):
 		return true
@@ -114,7 +124,7 @@ func check_coordinates(tile: PathTile, test_coordinates: Vector2i, cost):
 				assemble_path(new_tile)
 			return true
 	else:
-		return false
+		return []
 
 
 func is_walkable(coords) -> bool:
@@ -131,35 +141,36 @@ func build_PathTile(coordinates: Vector2i, _from_start):
 		tile.walkable = true
 	else:
 		tile.walkable = false
-		
+
 	#approximates a straight-line distance from this tile to the goal tile, ignoreing obstacles
 	var x_distance = abs(coordinates.x - goal_coordinates.x)
 	var y_distance = abs(coordinates.y - goal_coordinates.y)
 	var big
 	var small
-	if(x_distance > y_distance):
+	if x_distance > y_distance:
 		big = x_distance
 		small = y_distance
 	else:
 		big = y_distance
 		small = x_distance
-	var total_distance = small * 14 + ((big-small) * 10)
+	var total_distance = small * 14 + ((big - small) * 10)
 	tile.to_goal = total_distance
-	
+
 	#obviously this needs to be in there:
 	tile.coordinates = coordinates
-	
+
 	#this will have to get passed in based on outside data
 	tile.from_start = _from_start
-	
+
 	#primary favorability indicator for next search
 	tile.combined_distance = tile.to_goal + tile.from_start
-	
+
 	return tile
-	
+
+
 func assemble_path(end_tile):
 	var current_tile = end_tile
 	the_path.push_front(end_tile.coordinates)
-	while(current_tile.previous):
+	while current_tile.previous:
 		the_path.push_front(current_tile.previous)
 		current_tile = closed[current_tile.previous]

@@ -40,6 +40,8 @@ func on_interact_pressed() -> void:
 
 #region Talkables
 
+@export var search_node : Node2D
+
 const TALK_DISTANCE : int = 50
 var talkables : Array[NPC] = []
 

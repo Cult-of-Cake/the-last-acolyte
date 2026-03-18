@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bpm686jonemgm"]
 
-[ext_resource type="Script" uid="uid://bxorhjyvnfuwn" path="res://root/scenes/scene/level_entities/other/barricade.gd" id="1_5aj67"]
+[ext_resource type="Script" uid="uid://bxorhjyvnfuwn" path="res://root/scripts/levels/Barricade.gd" id="1_5aj67"]
 [ext_resource type="Texture2D" uid="uid://cjm830seu6hvb" path="res://root/assets/PLACEHOLDERS/Other/Sudsy-Soap.png" id="1_c1frg"]
 
 [node name="Barricade" type="Node2D" unique_id=787024682]

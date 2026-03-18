@@ -26,7 +26,7 @@ func talk_from_label(jump_to : String) -> void:
 	print ("You talked to ", get_parent().name)
 	
 	if Vars.DIALOGUE_TAKEN:
-		LogWrapper.error(self,"Cannot Talk to character when dialogue already running!")
+		LogWrapper.info(self,"Cannot Talk to character when dialogue already running!")
 		return
 	Vars.DIALOGUE_TAKEN = true
 

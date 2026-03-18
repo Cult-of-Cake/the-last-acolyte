@@ -2,8 +2,6 @@
 extends Control
 class_name ActionListenerBase
 
-@export var search_node : Node2D
-
 var log_stream : Lib.LOG = Lib.LOG.ACTIONS
 
 const DEBUG = true

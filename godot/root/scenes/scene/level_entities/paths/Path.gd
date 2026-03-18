@@ -32,3 +32,19 @@ func progress_at_point(point: Vector2) -> float:
 	var offset:float = curve.get_closest_offset(point)
 	return offset
 	
+func get_ordered_follows() -> Array[PathFollow2D]:
+	var enemies: Array[PathFollow2D]
+	var children:Array[Node] = self.get_children()
+	for child in children:
+		if child.is_class("PathFollow2D"):
+			enemies.append(child)
+	enemies.sort_custom(sort_by_progress)
+	return enemies
+	
+func sort_by_progress(a:PathFollow2D, b:PathFollow2D ) -> bool:
+	var rv: bool
+	if a.progress < b.progress:
+		rv = true
+	else:
+		rv = false
+	return rv

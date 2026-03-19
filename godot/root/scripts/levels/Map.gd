@@ -91,7 +91,7 @@ func delete_blocker(tile:Vector2i) -> void :
 				#Calculate a path
 				var enemies_to_repath:Array[PathFollow2D]
 				var start_tile:Vector2i = tile_map.local_to_map(tile_map.to_local(enemy.global_position))
-				var goal_tile:Vector2i = get_node("EndPoints").get_node("EndPoint").coordinates
+				var goal_tile:Vector2i = end_point.coordinates
 				navigator = PathNavigator.new()
 				var path_points:Array[Vector2i] = navigator.navigate(start_tile, goal_tile, tile_map)
 				var new_path:Path = Path.build_path(path_points, tile_map)
@@ -115,10 +115,10 @@ func delete_blocker(tile:Vector2i) -> void :
 			delete_path(path)
 	#Always assign a new default path, since you have to generate a replacement to check against the current one anyway.
 	navigator = PathNavigator.new()
-	var points : Array[Vector2i] = navigator.navigate(get_node("StartPoints").get_node("StartPoint").coordinates, get_node("EndPoints").get_node("EndPoint").coordinates, tile_map)
+	var points : Array[Vector2i] = navigator.navigate(start_point.coordinates, end_point.coordinates, tile_map)
 	var new_path: Path = Path.build_path(points, tile_map)
 	new_path.is_default = true
-	get_node("StartPoints").get_node("StartPoint").default_path = new_path
+	start_point.default_path = new_path
 	add_path(new_path)
 
 func add_path(new_path:Path) ->void:

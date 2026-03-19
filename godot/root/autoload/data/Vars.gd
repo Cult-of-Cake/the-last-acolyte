@@ -3,6 +3,7 @@ extends Node
 func _ready() -> void:
 	init_level_array()
 	init_scene_manager_options()
+	RandomNames.init()
 	# TEMP for testing:
 	Data.select_save_file(0)
 	Data.load_save_file()
@@ -181,5 +182,27 @@ class STAT:
 	const HEAL_AMOUNT : String = "att_cosm"
 	const ARMOUR : String = "att_cosm"
 	const ARMOUR_PENETRATION : String = "att_cosm"
+
+class RandomNames:
+	static var by_affinity : Dictionary[ELEMENT, Variant]
+	static func init() -> void:
+		by_affinity[ELEMENT.ELECTRIC] = [
+			"Thunder", "Bolt", "Faraday", "Joule", "Shock", "Volt", "Charge"
+		] as Array[String]
+		by_affinity[ELEMENT.FIRE] = [
+			"Bernie", "Inferno", "Wildfire", "Flambe", "Arson", "Ignition"
+		] as Array[String]
+		by_affinity[ELEMENT.EARTH] = [
+			"Rocky", "Colorado", "Pebble", "Tremor", "Metal", "Mason"
+		] as Array[String]
+		by_affinity[ELEMENT.WATER] = [
+			"Pool", "Ocean", "Waterfall", "Aqua", "River", "Puddle"
+		] as Array[String]
+		by_affinity[ELEMENT.AIR] = [
+			"Wind", "Cloud", "Breeze", "Gale", "Zephyr", "Spin"
+		] as Array[String]
+	static func pick(elem : ELEMENT) -> String:
+		var arr : Array[String] = by_affinity[elem] as Array[String]
+		return arr[randi() % arr.size()]
 
 #endregion

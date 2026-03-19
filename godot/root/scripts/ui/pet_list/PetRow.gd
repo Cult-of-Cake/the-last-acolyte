@@ -18,4 +18,3 @@ func update_row() -> void:
 	pet_level.text = str(int(level))
 	var elem : Vars.ELEMENT = reg.get_element()
 	affinity.set_icon(Vars.ELEMENT_ICONS[elem], Vars.ELEMENT_COLOURS[elem])
-	

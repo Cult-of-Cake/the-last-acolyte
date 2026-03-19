@@ -1909,7 +1909,7 @@ offset_bottom = 706.0
 texture = SubResource("GradientTexture1D_8vti2")
 flip_h = true
 
-[node name="Intro_Scene" type="Node2D" parent="." unique_id=1968462791 node_paths=PackedStringArray("player", "camera_rail_1", "narrator", "god_tree", "cam")]
+[node name="Intro_Scene" type="Node2D" parent="." unique_id=1968462791 node_paths=PackedStringArray("player", "camera_rail_1", "narrator", "god_tree", "cam", "hide_npc_while_running")]
 script = ExtResource("1_d6wd1")
 player = NodePath("../Characters/Player")
 camera_rail_1 = NodePath("Path2D/PathFollow2D")
@@ -1917,6 +1917,7 @@ narrator = NodePath("../Characters/NPCs/Narrator")
 god_tree = NodePath("../Characters/NPCs/TREE")
 cam = NodePath("Path2D/PathFollow2D/Camera")
 run_on_ready = true
+hide_npc_while_running = [NodePath("../Characters/NPCs/Giraffe"), NodePath("../Characters/NPCs/Bernie")]
 metadata/_custom_type_script = "uid://c06toks8v57ds"
 
 [node name="Path2D" type="Path2D" parent="Intro_Scene" unique_id=45793206]
@@ -2028,7 +2029,7 @@ offset = Vector2(0, -600)
 [node name="Giraffe" type="Node2D" parent="Characters/NPCs" unique_id=1556979453]
 visible = false
 y_sort_enabled = true
-position = Vector2(325, 337)
+position = Vector2(325, 600)
 script = ExtResource("12_ss8ah")
 
 [node name="Talkable" type="Node2D" parent="Characters/NPCs/Giraffe" unique_id=213575488]

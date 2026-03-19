@@ -52,7 +52,11 @@ func calculate_path(start_coords: Vector2i, end_coords : Vector2i) -> void:
 
 func delete_blocker(tile:Vector2i) -> void :
 	tile_map.impassible.erase(tile)
-	tile_map.barriers[tile].queue_free()
+	# FIXME: This prevents a complete crash in the scenario where this is
+	# a bool, but there's still some root concern that causes this to sometimes
+	# be set to a bool and those cases are still causing problems
+	if tile_map.barriers[tile] is Node:
+		tile_map.barriers[tile].queue_free()
 	tile_map.barriers.erase(tile)
 	if placement_map:
 		placement_map.remove_barrier(tile)

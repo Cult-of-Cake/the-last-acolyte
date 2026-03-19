@@ -11,14 +11,8 @@ func _ready() -> void:
 	# output when any input is in the dictionary
 	actions["hub_interact"] = on_interact_pressed
 
-	# OTher setup
+	# Other setup
 	talkables_setup()
-	
-	# TEMP for testing
-	Data.select_save_file(0)
-	Data.load_save_file()
-	var reg : PetRegistryData = PetRegistryData.new()
-	Game.set_pet_data(reg)
 
 #region Actions
 

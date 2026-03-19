@@ -3,6 +3,7 @@ class_name Game
 
 # This one doesn't need to be global, it's just convenience functions for Vars.
 # I just feel like some of our data makes more sense under a "Game" class.
+# I could be convinced otherwise if other people's brains work differently.
 
 static func get_pet_data(id : int) -> PetRegistryData:
 	return Vars.get_pet_data(id)

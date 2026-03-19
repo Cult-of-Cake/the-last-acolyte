@@ -41,6 +41,10 @@ func get_role() -> Vars.ROLE:
 func set_role(r : Vars.ROLE) -> void:
 	# This already sets both via setter, don't add another and cause a stack overflow
 	role_str = EnumUtils.to_name(int(r), Vars.ROLE)
+func get_stat(s : String) -> float:
+	return _stats.get_stat(s)
+func set_stat(s : String, val : float) -> void:
+	_stats.set_stat(s, val)
 
 # This works because we extend SaveData
 func serialize() -> String:

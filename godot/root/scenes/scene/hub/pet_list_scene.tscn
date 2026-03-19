@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://bo4diooal2va3"]
 
 [ext_resource type="Texture2D" uid="uid://cgfr7vy5ndwgi" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Adventure Pack/PNG/panel_brown.png" id="1_jhcq2"]
+[ext_resource type="Script" uid="uid://c44kn0yvtus1x" path="res://root/scripts/ui/pet_list/PetListManager.gd" id="1_p0rlv"]
 [ext_resource type="Texture2D" uid="uid://clvx64ibe6a0r" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Adventure Pack/PNG/buttonLong_beige.png" id="2_3h0pa"]
 [ext_resource type="Texture2D" uid="uid://ly55due7phav" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Adventure Pack/PNG/buttonLong_beige_pressed.png" id="3_0b5b1"]
 [ext_resource type="Script" uid="uid://dmwdfktvhed56" path="res://root/scripts/ui/resource_loaders/SpriteLoader.gd" id="4_0b5b1"]
-[ext_resource type="Texture2D" uid="uid://d2kqap18s5fvn" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Water.png" id="5_p0rlv"]
+[ext_resource type="Script" uid="uid://cece34aiebdha" path="res://root/scripts/ui/pet_list/PetRow.gd" id="5_snknl"]
 
 [node name="PetListScene" type="Control" unique_id=1929723783]
 layout_mode = 3
@@ -13,6 +14,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="List Manager" type="Node" parent="." unique_id=1952924820]
+script = ExtResource("1_p0rlv")
+metadata/_custom_type_script = "uid://c44kn0yvtus1x"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1276570601]
 
@@ -126,6 +131,13 @@ default_color = Color(0, 0, 0, 0.4)
 [node name="Pet Template" type="HBoxContainer" parent="CanvasLayer/Background/MarginContainer/Rows" unique_id=1745251694]
 layout_mode = 2
 
+[node name="PetRow" type="Node2D" parent="CanvasLayer/Background/MarginContainer/Rows/Pet Template" unique_id=2013953426 node_paths=PackedStringArray("pet_name", "pet_level", "affinity")]
+script = ExtResource("5_snknl")
+pet_name = NodePath("../Name")
+pet_level = NodePath("../Level")
+affinity = NodePath("../Element/ElementLoader")
+metadata/_custom_type_script = "uid://cece34aiebdha"
+
 [node name="Name" type="Label" parent="CanvasLayer/Background/MarginContainer/Rows/Pet Template" unique_id=633466335]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -146,9 +158,7 @@ expand_mode = 5
 [node name="ElementLoader" type="Node2D" parent="CanvasLayer/Background/MarginContainer/Rows/Pet Template/Element" unique_id=1685646553 node_paths=PackedStringArray("loading_node")]
 position = Vector2(-258, 0)
 script = ExtResource("4_0b5b1")
-colour = Color(0.9033436, 0.22727257, 0.12421506, 1)
 loading_node = NodePath("..")
-file = ExtResource("5_p0rlv")
 metadata/_custom_type_script = "uid://dmwdfktvhed56"
 
 [node name="-Gap-" type="Label" parent="CanvasLayer/Background/MarginContainer/Rows/Pet Template" unique_id=383092302]

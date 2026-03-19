@@ -58,9 +58,9 @@ layout_mode = 2
 text = "Level"
 horizontal_alignment = 1
 
-[node name="Element" type="Label" parent="CanvasLayer/Background/MarginContainer/Rows/Header" unique_id=2069223569]
+[node name="Affinity" type="Label" parent="CanvasLayer/Background/MarginContainer/Rows/Header" unique_id=2069223569]
 layout_mode = 2
-text = "Essence"
+text = "Affinity"
 
 [node name="-Gap-" type="Label" parent="CanvasLayer/Background/MarginContainer/Rows/Header" unique_id=1669163953]
 layout_mode = 2
@@ -118,6 +118,11 @@ theme_override_colors/font_color = Color(0.49019608, 0.31764707, 0.18431373, 1)
 text = "Undiscovered"
 horizontal_alignment = 1
 
+[node name="Line2D" type="Line2D" parent="CanvasLayer/Background/MarginContainer/Rows" unique_id=1548480801]
+points = PackedVector2Array(1, 38, 701, 38)
+width = 3.0
+default_color = Color(0, 0, 0, 0.4)
+
 [node name="Pet Template" type="HBoxContainer" parent="CanvasLayer/Background/MarginContainer/Rows" unique_id=1745251694]
 layout_mode = 2
 
@@ -134,12 +139,14 @@ text = "4"
 horizontal_alignment = 1
 
 [node name="Element" type="TextureRect" parent="CanvasLayer/Background/MarginContainer/Rows/Pet Template" unique_id=690768776]
-custom_minimum_size = Vector2(40, 0)
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
+expand_mode = 5
 
-[node name="ElementLoader" type="Node2D" parent="CanvasLayer/Background/MarginContainer/Rows/Pet Template/Element" unique_id=424208185 node_paths=PackedStringArray("loading_node")]
+[node name="ElementLoader" type="Node2D" parent="CanvasLayer/Background/MarginContainer/Rows/Pet Template/Element" unique_id=1685646553 node_paths=PackedStringArray("loading_node")]
 position = Vector2(-258, 0)
 script = ExtResource("4_0b5b1")
+colour = Color(0.9033436, 0.22727257, 0.12421506, 1)
 loading_node = NodePath("..")
 file = ExtResource("5_p0rlv")
 metadata/_custom_type_script = "uid://dmwdfktvhed56"

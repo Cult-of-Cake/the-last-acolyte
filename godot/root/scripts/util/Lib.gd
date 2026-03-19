@@ -50,7 +50,6 @@ static func join(messages:Array) -> String:
 
 # I want to make it easier to log to specific streams.
 # Define the streams here - in the enum and also the array for its title
-# *Sigh* and one more in the init function here
 enum LOG { ACTIONS, MOVEMENT, ASSETS, SAVE_SYSTEM, PATHING, DIALOGUE }
 static var streams_text : Array = ["ACTN", "MOVE", "ASST", "SAVE", "PATH", "DIAG" ]
 const DEFAULT_LEVEL : Log.LogLevel = Log.LogLevel.INFO

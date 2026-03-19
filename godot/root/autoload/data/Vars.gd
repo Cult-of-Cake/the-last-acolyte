@@ -155,8 +155,8 @@ var _pet_list_internal : Dictionary[int, PetRegistryData]
 func get_pet_data(id : int) -> PetRegistryData:
 	return _pet_list_internal[id]
 func set_pet_data(reg : PetRegistryData) -> void:
-	_pet_list_internal[reg.hatch_id] = reg
-	Data.pet.pet_list[reg.hatch_id] = reg.serialize()
+	_pet_list_internal[reg.sprout_id] = reg
+	Data.pet.pet_list[reg.sprout_id] = reg.serialize()
 
 # These are strings instead of an enum so that we can change the order without breaking old saves
 class STAT:

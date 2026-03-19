@@ -1,7 +1,7 @@
 extends SaveData
 class_name PetRegistryData
 
-var hatch_id : int = 0
+var sprout_id : int = 0
 var given_name : String = "~Rick~"
 var _element : Vars.ELEMENT
 var element_str : String: # This one is needed to save to file
@@ -22,10 +22,10 @@ var recolour : Color = Vars.NO_COLOUR
 var _stats : CharacterStats
 var stats : String
 
-func _init(hatching_new : bool = false) -> void:
-	if hatching_new:
-		Data.pet.num_hatched += 1
-	hatch_id = Data.pet.num_hatched
+func _init(sprouting_new : bool = false) -> void:
+	if sprouting_new:
+		Data.pet.num_sprouted += 1
+	sprout_id = Data.pet.num_sprouted
 	set_element(Vars.ELEMENT.SPECIAL)
 	set_role(Vars.ROLE.DAMAGE)
 	_stats = CharacterStats.new()

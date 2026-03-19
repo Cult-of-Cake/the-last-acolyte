@@ -1,15 +1,15 @@
 extends Node2D
 class_name PetRow
 
-@export var hatch_id : int = 0
+@export var sprout_id : int = 0
 @export var pet_name : Label
 @export var pet_level : Label
 @export var affinity : SpriteLoader
 
 func _ready() -> void:
 	# TEMP for testing
-	hatch_id = 1
-	var reg : PetRegistryData = Game.get_pet_data(hatch_id)
+	sprout_id = 1
+	var reg : PetRegistryData = Game.get_pet_data(sprout_id)
 	print(reg)
 	pet_name.text = reg.given_name
 	# temporary method for level... unless it's not

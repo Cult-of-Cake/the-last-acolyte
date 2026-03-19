@@ -1,12 +1,12 @@
 extends SaveData
 class_name PetSaveData
 
-var num_hatched : int = 0
+var num_sprouted : int = 0
 var pet_list : Dictionary[int, String] # The real list (in Vars) updates this when changed
 
 #region Dictionary Functions
 func clear(_index: int = -1) -> void:
-	num_hatched = 0
+	num_sprouted = 0
 	pet_list.clear()
 #endregion
 

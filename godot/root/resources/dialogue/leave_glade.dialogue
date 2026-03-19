@@ -1,0 +1,8 @@
+~ start
+Leave the glade?
+- Yes
+	=> LoadMap
+- No
+	=> END
+~ LoadMap
+=> END

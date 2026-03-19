@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dp5738jktmoqe"]
+
+[ext_resource type="Script" uid="uid://dohwk6stsywph" path="res://root/scenes/component/click_catcher.gd" id="1_61c16"]
+
+[node name="ClickCatcher" type="Node2D" unique_id=531975181]
+script = ExtResource("1_61c16")

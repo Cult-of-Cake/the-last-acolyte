@@ -1,0 +1,13 @@
+~ start
+Giraffe: [[Hey There Ho There!|Eyyy!|Wazzap!]] I'm a fuckin' Giraffe!
+Giraffe: Don't be indecisive, pick somethin'!
+- Your neck long
+	Giraffe: [#mood=angry]Your neck short. What's it to ya!?
+- Feet pics?
+	Giraffe: Not for free, goon face.
+- Say something long!
+	Giraffe: Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+- Repeat that? => start
+- Leave me be! => END
+Giraffe: Alright then, go away!
+=> END

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://b8yy7ikmd2wng"
+path="res://.godot/imported/leave_glade.dialogue-49ea5855bbb966df2596d47af32fc5cb.tres"
+
+[deps]
+
+source_file="res://root/resources/dialogue/leave_glade.dialogue"
+dest_files=["res://.godot/imported/leave_glade.dialogue-49ea5855bbb966df2596d47af32fc5cb.tres"]
+
+[params]
+
+defaults=true

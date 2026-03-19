@@ -21,6 +21,7 @@
 [ext_resource type="Resource" uid="uid://bqybv3kingv18" path="res://root/resources/dialogue/god_tree_kwerkwu.dialogue" id="13_46iui"]
 [ext_resource type="Resource" uid="uid://b4ppdbraqru8c" path="res://root/resources/dialogue/narrator.dialogue" id="13_ss8ah"]
 [ext_resource type="PackedScene" uid="uid://g8ru6a3r06wr" path="res://root/scenes/scene/hub/hub_exit.tscn" id="14_f6ymf"]
+[ext_resource type="Script" uid="uid://ca4w6syq6ped3" path="res://root/scripts/creatures/npcs/NPC.gd" id="16_vei00"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3p63o"]
 texture = ExtResource("1_xqe6v")
@@ -2051,7 +2052,7 @@ narrator = NodePath("../Characters/NPCs/Narrator")
 god_tree = NodePath("../Characters/NPCs/TREE")
 cam = NodePath("Path2D/PathFollow2D/Camera")
 run_on_ready = true
-hide_npc_while_running = [NodePath("../Characters/NPCs/Giraffe"), NodePath("../Characters/NPCs/Bernie")]
+hide_npc_while_running = [NodePath(""), NodePath("")]
 metadata/_custom_type_script = "uid://c06toks8v57ds"
 
 [node name="Path2D" type="Path2D" parent="Intro_Scene" unique_id=45793206]
@@ -2164,11 +2165,12 @@ scale = Vector2(0.25616664, 0.2561666)
 texture = ExtResource("12_raomi")
 offset = Vector2(0, -600)
 
-[node name="Giraffe" type="Node2D" parent="Characters/NPCs" unique_id=1556979453]
+[node name="Giraffe" type="Node2D" parent="Characters/NPCs" unique_id=1826246295]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(325, 600)
-script = ExtResource("12_ss8ah")
+script = ExtResource("16_vei00")
+metadata/_custom_type_script = "uid://ca4w6syq6ped3"
 
 [node name="Talkable" type="Node2D" parent="Characters/NPCs/Giraffe" unique_id=213575488]
 script = ExtResource("7_kl1gp")
@@ -2201,11 +2203,12 @@ scale = Vector2(0.37, 0.37)
 texture = ExtResource("6_v5l00")
 offset = Vector2(0, 20)
 
-[node name="Bernie" type="Node2D" parent="Characters/NPCs" unique_id=1778374660]
+[node name="Bernie" type="Node2D" parent="Characters/NPCs" unique_id=1934698447]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(549, 299)
-script = ExtResource("12_ss8ah")
+script = ExtResource("16_vei00")
+metadata/_custom_type_script = "uid://ca4w6syq6ped3"
 
 [node name="Talkable" type="Node2D" parent="Characters/NPCs/Bernie" unique_id=339809802]
 script = ExtResource("7_kl1gp")

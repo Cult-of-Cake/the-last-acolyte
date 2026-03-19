@@ -15,7 +15,6 @@ func update_visibility(vis : bool) -> void:
 
 func on_visibility_changed() -> void:
 	if talkable:
-		print("setting talkable")
 		talkable.enabled = visible
 
 func debug_colour() -> Color:

@@ -2025,11 +2025,12 @@ scale = Vector2(0.25616664, 0.2561666)
 texture = ExtResource("12_raomi")
 offset = Vector2(0, -600)
 
-[node name="Giraffe" type="Node2D" parent="Characters/NPCs" unique_id=1556979453]
+[node name="Giraffe" type="Node2D" parent="Characters/NPCs" unique_id=1087777251]
 visible = false
 y_sort_enabled = true
 position = Vector2(325, 337)
 script = ExtResource("12_ss8ah")
+metadata/_custom_type_script = "uid://cd7temqsi525n"
 
 [node name="Talkable" type="Node2D" parent="Characters/NPCs/Giraffe" unique_id=213575488]
 script = ExtResource("7_kl1gp")
@@ -2062,11 +2063,12 @@ scale = Vector2(0.37, 0.37)
 texture = ExtResource("6_v5l00")
 offset = Vector2(0, 20)
 
-[node name="Bernie" type="Node2D" parent="Characters/NPCs" unique_id=1778374660]
+[node name="Bernie" type="Node2D" parent="Characters/NPCs" unique_id=1183229342]
 visible = false
 y_sort_enabled = true
 position = Vector2(518, 307)
 script = ExtResource("12_ss8ah")
+metadata/_custom_type_script = "uid://cd7temqsi525n"
 
 [node name="Talkable" type="Node2D" parent="Characters/NPCs/Bernie" unique_id=339809802]
 script = ExtResource("7_kl1gp")

@@ -54,6 +54,8 @@ func delete_blocker(tile:Vector2i) -> void :
 	tile_map.impassible.erase(tile)
 	tile_map.barriers[tile].queue_free()
 	tile_map.barriers.erase(tile)
+	if placement_map:
+		placement_map.remove_barrier(tile)
 
 	#Get every currently used path, and reassess for every enemy on it.
 	var used_paths: Array[Path]

@@ -158,6 +158,8 @@ func get_pet_data(id : int) -> PetRegistryData:
 func set_pet_data(reg : PetRegistryData) -> void:
 	_pet_list_internal[reg.sprout_id] = reg
 	Data.pet.pet_list[reg.sprout_id] = reg.serialize()
+func get_pet_ids() -> Array[int]:
+	return _pet_list_internal.keys()
 
 # These are strings instead of an enum so that we can change the order without breaking old saves
 class STAT:
@@ -186,6 +188,9 @@ class STAT:
 class RandomNames:
 	static var by_affinity : Dictionary[ELEMENT, Variant]
 	static func init() -> void:
+		by_affinity[ELEMENT.SPECIAL] = [
+			"Bob", "Starter", "Jones"
+		] as Array[String]
 		by_affinity[ELEMENT.ELECTRIC] = [
 			"Thunder", "Bolt", "Faraday", "Joule", "Shock", "Volt", "Charge"
 		] as Array[String]

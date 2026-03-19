@@ -9,6 +9,8 @@ static func get_pet_data(id : int) -> PetRegistryData:
 	return Vars.get_pet_data(id)
 static func set_pet_data(reg : PetRegistryData) -> void:
 	Vars.set_pet_data(reg)
+static func get_pet_ids() -> Array[int]:
+	return Vars.get_pet_ids()
 
 static func get_level_data(id : Vars.LEVEL) -> Vars.LevelData:
 	return Vars.get_level_data(id)

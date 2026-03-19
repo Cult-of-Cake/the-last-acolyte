@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://tyea2g80dfhr"]
+
+[ext_resource type="Script" uid="uid://cece34aiebdha" path="res://root/scripts/ui/pet_list/PetRow.gd" id="1_21umk"]
+[ext_resource type="Script" uid="uid://dmwdfktvhed56" path="res://root/scripts/ui/resource_loaders/SpriteLoader.gd" id="2_51jmw"]
+
+[node name="Pet Template" type="HBoxContainer" unique_id=681209957]
+
+[node name="PetRow" type="Node2D" parent="." unique_id=1113558806 node_paths=PackedStringArray("pet_name", "pet_level", "affinity")]
+unique_name_in_owner = true
+script = ExtResource("1_21umk")
+sprout_id = null
+pet_name = NodePath("../Name")
+pet_level = NodePath("../Level")
+affinity = NodePath("../Element/ElementLoader")
+metadata/_custom_type_script = "uid://cece34aiebdha"
+
+[node name="Name" type="Label" parent="." unique_id=8838544]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Greg"
+
+[node name="Level" type="Label" parent="." unique_id=703951004]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "4"
+horizontal_alignment = 1
+
+[node name="Element" type="TextureRect" parent="." unique_id=720472982]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+expand_mode = 5
+
+[node name="ElementLoader" type="Node2D" parent="Element" unique_id=1374141051 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-258, 0)
+script = ExtResource("2_51jmw")
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dmwdfktvhed56"
+
+[node name="-Gap-" type="Label" parent="." unique_id=1962964954]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Col" type="Label" parent="." unique_id=2087894845]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Filter"
+
+[node name="Col2" type="Label" parent="." unique_id=738598894]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Filter"

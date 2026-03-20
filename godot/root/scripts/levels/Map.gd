@@ -12,7 +12,6 @@ var shortcut_threshold:int = 15
 @export var start_point : MapPoint  # TODO: Array
 @export var end_point : MapPoint  # TODO: Array
 
-var logger := Lib.EasyLog.new(Lib.LOG.PATHING, true)
 var paths : Array[Path]
 
 # Called when the node enters the scene tree for the first time.
@@ -30,7 +29,7 @@ func _ready() -> void:
 	end_point.calculate_coordinates(tile_map)
 
 func _on_map_changed(map) -> void:
-	logger.debug("map changed")
+	out.PATHING.debug("map changed")
 	start_point.calculate_path()
 
 func calculate_path(start_coords: Vector2i, end_coords : Vector2i) -> void:
@@ -57,6 +56,8 @@ func delete_blocker(tile:Vector2i) -> void :
 	# be set to a bool and those cases are still causing problems
 	if tile_map.barriers[tile] is Node:
 		tile_map.barriers[tile].queue_free()
+	else:
+		out.PATHING.error("A barricade was found in the array without its node!")
 	tile_map.barriers.erase(tile)
 	if placement_map:
 		placement_map.remove_barrier(tile)
@@ -184,7 +185,7 @@ func place_barrier(coords:Vector2) -> bool:
 		var candidate_path: Path
 		var candidate_points:Array[Vector2i] = navigator.navigate(start_point.coordinates, end_point.coordinates, tile_map)
 		if !candidate_points:
-			logger.debug("It's the main path that is broken")
+			out.PATHING.debug("It's the main path that is broken")
 			valid = false
 		else:
 			candidate_path = Path.build_path(candidate_points, tile_map)
@@ -212,7 +213,7 @@ func place_barrier(coords:Vector2) -> bool:
 							add_child(new_path)
 				#There is some rare mish-mash of coordinates which allows an enemy to not be placed at this point.  It must be placed somehwere.
 				if !placed:
-					logger.warn("This code has been reached")
+					out.PATHING.warn("This code has been reached")
 					hard_place(guy)
 			#if valid, replace the default path for the start point with the new start-to-finish path that was created
 			if start_point.default_path.get_children().size() == 0:
@@ -229,10 +230,14 @@ func place_barrier(coords:Vector2) -> bool:
 				if path.get_children().size() == 0 && !path.is_default:
 					#print("delete should be getting called on path ", path)
 					delete_path(path)
+
+			if tile_map.barriers[tile] is not Node:
+				out.PATHING.error("A barricade got put into the array without its node!")
+				pass
 			return true # We placed it!
 		else:
-			#TODO Replace with meaningful feedback
-			logger.warn("Barricade can not be placed there because some enemies would have no route to their goal")
+			out.PATHING.warn("Barricade can not be placed there because some enemies would have no route to their goal")
+			tile_map.barriers.erase(tile)
 			return false # Couldn't be placed
 
 func delete_path(dead_path: Path) -> void:

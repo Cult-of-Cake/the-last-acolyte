@@ -143,6 +143,7 @@ func init_scene_manager_options() -> void:
 class SceneList:
 	#const MAP : PackedScene = preload("res://root/scenes/scene/map/map_scene.tscn")
 	const MAP : String = "map_scene" # Per SceneManager plugin window
+	const PETS : String = "pet_list_scene"
 
 #endregion
 

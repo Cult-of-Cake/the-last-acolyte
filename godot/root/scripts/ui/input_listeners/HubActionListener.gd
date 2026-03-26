@@ -10,6 +10,7 @@ func _ready() -> void:
 	# Technically we could just do a big 'ol switch in _input, but this lets us do things like
 	# output when any input is in the dictionary
 	actions["hub_interact"] = on_interact_pressed
+	actions["ui_pet_list"] = toggle_pet_list
 
 	# Other setup
 	talkables_setup()
@@ -37,6 +38,8 @@ func on_interact_pressed() -> void:
 		else:
 			talk_node.talk()
 
+func toggle_pet_list() -> void:
+	Lib.load_scene(Vars.SceneList.PETS)
 
 #endregion
 

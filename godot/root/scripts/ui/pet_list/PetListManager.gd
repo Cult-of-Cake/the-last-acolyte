@@ -29,11 +29,35 @@ func update_display() -> void:
 
 func sprout_seed() -> void:
 	var reg := PetRegistryData.new(true)
+	
+	# Type, element, name
+	# TODO: We might like to have a "favour" mechanic where the god can influence
+	# these odds, and the strength of that will likely increase each time you fail
 	var elem : Vars.ELEMENT = Vars.ELEMENT.values().pick_random()
 	reg.set_element(elem)
 	reg.given_name = Vars.RandomNames.pick(elem)
 	reg.name = reg.given_name # Might as well name the node too
+	reg.set_role(Vars.ROLE.DAMAGE) # TODO: Randomize this too, but later
+	
+	# Random starting stats
+	# TODO: We probably want to revisit this algorithm, but variance here will be
+	# useful for testing the TD levels so doing this for now
+	stat_add_variance(reg, Vars.STAT.SPEED)
+	stat_add_variance(reg, Vars.STAT.MAX_HP)
+	if elem == Vars.ELEMENT.ELECTRIC:
+		reg.set_stat(Vars.STAT.CRIT_CHANCE, 10)
+		reg.set_stat(Vars.STAT.CRIT_MULTIPLIER, 2.5)
+	stat_add_variance(reg, Vars.STAT.ATTACK_ELEMENTAL)
+	stat_add_variance(reg, Vars.STAT.ATTACK_COSMIC)
+	stat_add_variance(reg, Vars.STAT.DEFENSE_ELEMENTAL)
+	stat_add_variance(reg, Vars.STAT.DEFENSE_COSMIC)
 	Game.set_pet_data(reg)
+
+func stat_add_variance(reg : PetRegistryData, s : String) -> void:
+	var initial : float = reg.get_stat(s)
+	var variance : float = randf_range(0.8, 2.0)
+	var final : float = roundf(initial * variance * 2) / 2 # Round to nearest .5
+	reg.set_stat(s, final)
 
 func _process(_delta: float) -> void:
 	if !initiated:

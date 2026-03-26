@@ -12,7 +12,7 @@ func clear(_index: int = -1) -> void:
 
 #region Per-Pet data
 # Required for saving & loading a dictionary!
-func load_pet_list_str(arr : Dictionary) -> void:
+func load_pet_list(arr : Dictionary) -> void:
 	for key : String in arr.keys():
 		var data : Dictionary = JSON.parse_string(arr[key])
 		var reg : PetRegistryData = PetRegistryData.new()

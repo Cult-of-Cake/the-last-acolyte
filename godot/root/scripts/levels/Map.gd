@@ -54,10 +54,8 @@ func delete_blocker(tile:Vector2i) -> void :
 	# FIXME: This prevents a complete crash in the scenario where this is
 	# a bool, but there's still some root concern that causes this to sometimes
 	# be set to a bool and those cases are still causing problems
-	if tile_map.barriers[tile] is Node:
+	if tile_map.barriers.has(tile) and tile_map.barriers[tile] is Node:
 		tile_map.barriers[tile].queue_free()
-	else:
-		out.PATHING.error("A barricade was found in the array without its node!")
 	tile_map.barriers.erase(tile)
 	if placement_map:
 		placement_map.remove_barrier(tile)
@@ -231,13 +229,10 @@ func place_barrier(coords:Vector2) -> bool:
 					#print("delete should be getting called on path ", path)
 					delete_path(path)
 
-			if tile_map.barriers[tile] is not Node:
-				out.PATHING.error("A barricade got put into the array without its node!")
-				pass
 			return true # We placed it!
 		else:
-			out.PATHING.warn("Barricade can not be placed there because some enemies would have no route to their goal")
-			tile_map.barriers.erase(tile)
+			out.PATHING.info("Barricade can not be placed there because some enemies would have no route to their goal")
+			delete_blocker(tile)
 			return false # Couldn't be placed
 
 func delete_path(dead_path: Path) -> void:

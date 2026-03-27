@@ -2,8 +2,6 @@
 extends Node2D
 class_name CutsceneBase
 
-static var logger := Lib.EasyLog.new(Lib.LOG.DIALOGUE)
-
 @export var cam : Camera2D
 @export var run_on_ready : bool = false
 @export var hide_npc_while_running : Array[NPC]

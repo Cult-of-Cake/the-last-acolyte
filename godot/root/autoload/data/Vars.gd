@@ -3,6 +3,7 @@ extends Node
 func _ready() -> void:
 	init_level_array()
 	init_scene_manager_options()
+	Lib.init_log_streams()
 	# TEMP for testing:
 	Data.select_save_file(0)
 	Data.load_save_file()

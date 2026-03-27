@@ -50,9 +50,19 @@ static func join(messages:Array) -> String:
 
 # I want to make it easier to log to specific streams.
 # Define the streams here - in the enum and also the array for its title
+# *Sigh* and two more: "out.gd" and its init function here
 enum LOG { ACTIONS, MOVEMENT, ASSETS, SAVE_SYSTEM, PATHING, DIALOGUE }
 static var streams_text : Array = ["ACTN", "MOVE", "ASST", "SAVE", "PATH", "DIAG" ]
 const DEFAULT_LEVEL : Log.LogLevel = Log.LogLevel.INFO
+static var debugging_on : Array[LOG] = [ Lib.LOG.PATHING ]
+
+static func init_log_streams() -> void:
+	out.ACTIONS = Lib.EasyLog.new(Lib.LOG.ACTIONS)
+	out.MOVEMENT = Lib.EasyLog.new(Lib.LOG.MOVEMENT)
+	out.ASSETS = Lib.EasyLog.new(Lib.LOG.ASSETS)
+	out.SAVE_SYSTEM = Lib.EasyLog.new(Lib.LOG.SAVE_SYSTEM)
+	out.PATHING = Lib.EasyLog.new(Lib.LOG.PATHING)
+	out.DIALOGUE = Lib.EasyLog.new(Lib.LOG.DIALOGUE)
 
 # These can be left alone.  The first is auto-filled and the second is what fills it
 static var streams : Array = []
@@ -71,8 +81,9 @@ static func error(stream : LOG, messages:Array, values:Variant=null) -> void:
 #This is the new logging syntax:
 #func meh():
 #	var my_var = "somethin"
-#	Lib.enable_debug(Lib.LOG.ACTIONS)
-#	Lib.debug(Lib.LOG.ACTIONS, [my_var])
+#	out.ACTION.debug(my_var)
+#	or
+#	out.ACTION.debug(["My var ", my_var])
 
 # Getting and setting log level by stream
 static func set_log_level(stream : LOG, level : Log.LogLevel) -> void:
@@ -100,10 +111,12 @@ class LogByStream:
 
 class EasyLog:
 	var s : LOG
-	func _init(stream : LOG, debugging : bool = true) -> void:
+	func _init(stream : LOG) -> void:
 		s = stream
-		if debugging:
+		if s in Lib.debugging_on:
 			Lib.enable_debug(s)
+	func is_debugging() -> bool:
+		return Lib.is_debugging(s)
 	func debug(messages : Variant, values : Variant=null) -> void:
 		if typeof(messages) == TYPE_ARRAY:
 			Lib.debug(s, messages, values)

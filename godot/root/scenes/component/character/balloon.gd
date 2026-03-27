@@ -20,6 +20,9 @@ extends CanvasLayer
 ## The action to use to skip typing the dialogue
 @export var skip_action: StringName = &"ui_cancel"
 
+## The action to use to kill the balloon
+@export var dialogue_kill_action: StringName = &"cycle_debug_menu"
+
 ## A sound player for voice lines (if they exist).
 @onready var audio_stream_player: AudioStreamPlayer = %AudioStreamPlayer
 
@@ -143,7 +146,7 @@ func apply_dialogue_line() -> void:
 		if mood_exists: 
 			cur_mood = mood
 		else:
-			Log.debug("MOOD DOESN'T EXIST FOR " + target_character.character_name + ": " + cur_mood)
+			out.DIALOGUE.debug("MOOD DOESN'T EXIST FOR " + target_character.character_name + ": " + cur_mood)
 		
 	
 	
@@ -204,6 +207,10 @@ func apply_dialogue_line() -> void:
 
 ## Go to the next line
 func next(next_id: String) -> void:
+	if (next_id == "END"):
+		dialogue_line = null
+		Vars.DIALOGUE_TAKEN = false
+		return
 	dialogue_line = await dialogue_resource.get_next_dialogue_line(next_id, temporary_game_states)
 
 
@@ -243,7 +250,8 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 		next(dialogue_line.next_id)
 	elif event.is_action_pressed(next_action) and get_viewport().gui_get_focus_owner() == balloon:
 		next(dialogue_line.next_id)
-
+	elif event.is_action_pressed(dialogue_kill_action) and get_viewport().gui_get_focus_owner() == balloon:
+		next("END")
 
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)

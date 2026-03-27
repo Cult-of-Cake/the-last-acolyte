@@ -145,6 +145,14 @@ class SceneList:
 	#const MAP : PackedScene = preload("res://root/scenes/scene/map/map_scene.tscn")
 	const MAP : String = "map_scene" # Per SceneManager plugin window
 	const PETS : String = "pet_list_scene"
+	const HUB : String = "hub_scene"
+
+#endregion
+
+#region Cutscenes
+
+class CutsceneCounts:
+	static var intro : int = 0
 
 #endregion
 

@@ -15,9 +15,9 @@ func set_file(newfile : Resource) -> void:
 func update_object() -> void:
 	if loading_node is Sprite2D:
 		if file:
-			Lib.debug(Lib.LOG.ASSETS, ["Loading sprite ", file.resource_name])
+			out.ASSETS.debug(["Loading sprite ", file.resource_name])
 			loading_node.texture = file
 	if loading_node is TextureRect:
 		if file:
-			Lib.debug(Lib.LOG.ASSETS, ["Loading texture ", file.resource_name])
+			out.ASSETS.debug(["Loading texture ", file.resource_name])
 			loading_node.texture = file

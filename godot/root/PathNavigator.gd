@@ -20,8 +20,6 @@ var impassible: Dictionary
 
 var the_path : Array[Vector2i]
 
-var logger := Lib.EasyLog.new(Lib.LOG.MOVEMENT)
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass  # Replace with function body.
@@ -38,10 +36,10 @@ func navigate(start_tile:Vector2i, goal_tile:Vector2i, tilemap:TileMapLayer) -> 
 	the_tilemap = tilemap
 	var goal_data:TileData = tilemap.get_cell_tile_data(goal_tile)
 	if !goal_data:
-		logger.error("Goal coordinates outside tile map")
+		out.PATHING.error("Goal coordinates outside tile map")
 		return []
 	if !goal_data.get_navigation_polygon(0).get_polygon(0):
-		logger.error("Goal coordinates on an unwalkable tile")
+		out.PATHING.error("Goal coordinates on an unwalkable tile")
 		return []
 	var first_tile : PathTile = build_PathTile(start_tile, 0)
 	start[start_tile] = first_tile
@@ -128,7 +126,6 @@ func check_coordinates(tile: PathTile, test_coordinates: Vector2i, cost : int) -
 			return false
 	else:
 		return false
-
 
 func is_walkable(coords : Vector2i) -> bool:
 	var tile:TileData = the_tilemap.get_cell_tile_data(coords)

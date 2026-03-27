@@ -1,8 +1,6 @@
 extends ActionListenerBase
 class_name HubActionListener
 
-var logger := Lib.EasyLog.new(Lib.LOG.ACTIONS)
-
 func _ready() -> void:
 	# Prepare listeners
 	
@@ -23,18 +21,18 @@ func on_interact_pressed() -> void:
 	var closest : NPC = null
 	for npc in talkables:
 		var dist : float = witch.distance_to(npc.get_posn())
-		Lib.debug(log_stream, ["Checking NPC ", npc.name, ", distance is ", dist])
+		out.ACTIONS.debug(["Checking NPC ", npc.name, ", distance is ", dist])
 		if dist < TALK_DISTANCE:
 			if closest == null or dist < witch.distance_to(closest.get_posn()):
-				Lib.debug(log_stream, ["Setting ", npc.name, " as closest"])
+				out.ACTIONS.debug(["Setting ", npc.name, " as closest"])
 				closest = npc
 	# Found it!
 	if closest == null:
-		Lib.debug(log_stream, ["Nobody nearby"])
+		out.ACTIONS.debug(["Nobody nearby"])
 	else:
 		var talk_node : Talkable = Lib.Objects.find_child_of_type(closest, Talkable)
 		if talk_node == null:
-			push_error("Talkable NPC went missing after being added to talkables array")
+			out.ACTIONS.error("Talkable NPC went missing after being added to talkables array")
 		else:
 			talk_node.talk()
 
@@ -54,11 +52,11 @@ func talkables_setup() -> void:
 	for node in search_node.get_children():
 		if node is Creature:
 			if Lib.Objects.has_child_of_type(node, Talkable):
-				Lib.debug(log_stream, ["Found ", node.name])
+				out.ACTIONS.debug(["Found ", node.name])
 				talkables.append(node)
 
 func _on_dialogue_label(label : String) -> void:
-	logger.debug(label)
+	out.ACTIONS.debug(label)
 	match label:
 		"LoadMap":
 			Lib.load_scene(Vars.SceneList.MAP)

@@ -1,8 +1,6 @@
 @tool
 extends Node
 
-var logger := Lib.EasyLog.new(Lib.LOG.DIALOGUE)
-
 @export var character_file_list : Array[Character]
 static var character_dict : Dictionary[String,Character]
 
@@ -13,4 +11,4 @@ func _ready() -> void:
 			# in case the overloaded name is used in dialogue
 			# we can also include nicknames
 			character_dict[ch.character_name.to_lower()] = ch
-	logger.debug(character_dict.keys())
+	out.DIALOGUE.debug(character_dict.keys())

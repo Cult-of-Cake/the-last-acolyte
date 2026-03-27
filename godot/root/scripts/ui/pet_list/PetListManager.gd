@@ -62,13 +62,13 @@ func stat_add_variance(reg : PetRegistryData, s : String) -> void:
 func _process(_delta: float) -> void:
 	if !initiated:
 		if Data.is_node_ready():
-			print("Save system ready")
+			out.SAVE_SYSTEM.debug("Save system ready")
 			Data.load_save_file()
 			if Game.get_pet_ids().size() == 0:
-				print("Creating starter pets")
+				out.SAVE_SYSTEM.debug("Creating starter pets")
 				create_starters()
 				Data.save_save_file()
 			else:
-				print("Found save file")
+				out.SAVE_SYSTEM.debug("Found save file")
 			update_display()
 			initiated = true

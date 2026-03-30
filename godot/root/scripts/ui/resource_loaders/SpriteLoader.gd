@@ -4,7 +4,7 @@ class_name SpriteLoader
 @export var colour : Color
 
 func _ready() -> void:
-	pass #Lib.enable_debug(Lib.LOG.ASSETS)
+	super()
 
 func set_icon(img : CompressedTexture2D, c : Color) -> void:
 	file = img

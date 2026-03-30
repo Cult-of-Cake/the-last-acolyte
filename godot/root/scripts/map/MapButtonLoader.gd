@@ -8,8 +8,8 @@ const MAP_LEVEL_TEMPLATE : PackedScene = preload(Vars.Paths.PREFABS + "map/map_b
 
 func _ready() -> void:
 
-	var data : Vars.LevelData = Vars.level_list[id]
 	var level : MapButton = MAP_LEVEL_TEMPLATE.instantiate()
+	var data : Vars.LevelData = Game.get_level_data(id)
 	level.initialize(data.name, data.difficulty, level_scene, data.stars_earned, data.elements)
 
 	add_child(level)

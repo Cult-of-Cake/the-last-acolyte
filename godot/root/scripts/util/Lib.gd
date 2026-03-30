@@ -14,6 +14,16 @@ class Objects:
 				if grandchild != null:
 					return grandchild
 		return null
+	static func find_children_of_type(parent : Node, type : Variant, _recursive : bool = false) -> Array[Variant]:
+		var arr : Array[Variant]
+		for child in parent.get_children():
+			if is_instance_of(child, type):
+				arr.append(child)
+			#if recursive:
+				#var grandchildren = find_children_of_type(child, type, true)
+				#for grandchild in grandchildren:
+					#arr.append(grandchild)
+		return arr
 	static func has_child_of_type(parent : Node, type : Variant) -> bool:
 		var found : Node = find_child_of_type(parent, type)
 		return found != null
@@ -54,7 +64,7 @@ static func join(messages:Array) -> String:
 enum LOG { ACTIONS, MOVEMENT, ASSETS, SAVE_SYSTEM, PATHING, DIALOGUE }
 static var streams_text : Array = ["ACTN", "MOVE", "ASST", "SAVE", "PATH", "DIAG" ]
 const DEFAULT_LEVEL : Log.LogLevel = Log.LogLevel.INFO
-static var debugging_on : Array[LOG] = [ Lib.LOG.PATHING ]
+static var debugging_on : Array[LOG] = [ Lib.LOG.DIALOGUE, Lib.LOG.SAVE_SYSTEM ]
 
 static func init_log_streams() -> void:
 	out.ACTIONS = Lib.EasyLog.new(Lib.LOG.ACTIONS)

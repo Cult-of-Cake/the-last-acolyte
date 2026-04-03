@@ -717,9 +717,10 @@ position = Vector2(0, -12)
 scale = Vector2(3, 3)
 texture = ExtResource("9_ccu1u")
 
-[node name="HealthTracker" type="Node2D" parent="EndPoint" unique_id=804460501 node_paths=PackedStringArray("progress_bar")]
+[node name="HealthTracker" type="Node2D" parent="EndPoint" unique_id=804460501 node_paths=PackedStringArray("progress_bar", "shake_sprite")]
 script = ExtResource("16_yps60")
 progress_bar = NodePath("TextureProgressBar")
+shake_sprite = NodePath("../Sprite2D")
 metadata/_custom_type_script = "uid://btc76cp3ljvwx"
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="EndPoint/HealthTracker" unique_id=855702493]

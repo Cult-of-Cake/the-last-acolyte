@@ -21,6 +21,8 @@ class Paths:
 	const LEVELS: String = PREFABS + "levels/"
 	const ENEMIES: String = PREFABS + "level_entities/enemies/"
 
+	const PREFAB_SUFFIX : String = ".tscn"
+
 const NO_COLOUR : Color = Color(-99, -99, -99, 0)
 
 #region Dialogue

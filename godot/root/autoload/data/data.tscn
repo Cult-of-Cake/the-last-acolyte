@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cr7wsdokcqccw" path="res://root/autoload/data/save_data/meta_save_data/meta_save_data.tscn" id="2_itpja"]
 [ext_resource type="PackedScene" uid="uid://babllcijku2kx" path="res://root/autoload/data/save_data/game_save_data/game_save_data.tscn" id="3_fr31e"]
 [ext_resource type="Script" uid="uid://ckvav1gbe8m1o" path="res://root/autoload/data/save_data/game_save_data/MapSaveData.gd" id="4_pofjk"]
+[ext_resource type="Script" uid="uid://b4sm0x1t6n81j" path="res://root/autoload/data/save_data/game_save_data/PetsSaveData.gd" id="5_4bpl3"]
 
 [node name="Data" type="Node" unique_id=933453075]
 script = ExtResource("1_lxqnb")
@@ -30,3 +31,9 @@ unique_name_in_owner = true
 script = ExtResource("4_pofjk")
 category = "map"
 metadata/_custom_type_script = "uid://ckvav1gbe8m1o"
+
+[node name="PetSaveData" type="Node" parent="." unique_id=724434011]
+unique_name_in_owner = true
+script = ExtResource("5_4bpl3")
+category = "pets"
+metadata/_custom_type_script = "uid://b4sm0x1t6n81j"

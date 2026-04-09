@@ -223,10 +223,10 @@ func place_barrier(coords:Vector2) -> bool:
 			start_point.default_path = candidate_path
 		
 			for path in paths:
-				#print(path, " has ", path.get_children().size(), " children and default is ", path.is_default)
-				#print(path, "has children: ", path.get_children())
+				#out.PATHING.debug([path, " has ", path.get_children().size(), " children and default is ", path.is_default])
+				#out.PATHING.debug([path, "has children: ", path.get_children()])
 				if path.get_children().size() == 0 && !path.is_default:
-					#print("delete should be getting called on path ", path)
+					#out.PATHING.debug(["delete should be getting called on path ", path])
 					delete_path(path)
 
 			return true # We placed it!

@@ -7,6 +7,11 @@ class_name Intro
 @export var god_tree : NPC
 
 func run() -> void:
+	
+	#out.DIALOGUE.debug(["Cutscene - watch count ", Vars.CutsceneCounts.intro])
+	if Vars.CutsceneCounts.intro > 0:
+		return
+	
 	await narrator.ready
 	await god_tree.ready
 	
@@ -31,3 +36,8 @@ func run() -> void:
 
 	exit_cutscene_mode()
 	out.DIALOGUE.debug("Finished cutscene " + name)
+
+
+func exit_cutscene_mode() -> void:
+	Vars.CutsceneCounts.intro += 1
+	super()

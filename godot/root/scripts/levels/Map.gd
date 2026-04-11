@@ -116,10 +116,10 @@ func delete_blocker(tile:Vector2i) -> void :
 	#Always assign a new default path, since you have to generate a replacement to check against the current one anyway.
 	navigator = PathNavigator.new()
 	var points : Array[Vector2i] = navigator.navigate(get_node("StartPoints").get_node("StartPoint").coordinates, get_node("EndPoints").get_node("EndPoint").coordinates, tile_map)
-	var new_path: Path = Path.build_path(points, tile_map)
-	new_path.is_default = true
-	get_node("StartPoints").get_node("StartPoint").default_path = new_path
-	add_path(new_path)
+	var new_start: Path = Path.build_path(points, tile_map)
+	new_start.is_default = true
+	get_node("StartPoints").get_node("StartPoint").default_path = new_start
+	add_path(new_start)
 
 func add_path(new_path:Path) ->void:
 	add_child(new_path)

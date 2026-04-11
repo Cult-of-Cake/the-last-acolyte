@@ -1,0 +1,1 @@
+class_name Projectile extends CharacterBody2D

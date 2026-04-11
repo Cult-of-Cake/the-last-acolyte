@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://j2gurs3vcuww"]
+
+[ext_resource type="Script" uid="uid://rn18y5l8tse7" path="res://root/scenes/projectiles/arcing_bolt.gd" id="1_nt0gy"]
+
+[node name="ArcingBolt" type="CharacterBody2D" unique_id=1896430671]
+script = ExtResource("1_nt0gy")

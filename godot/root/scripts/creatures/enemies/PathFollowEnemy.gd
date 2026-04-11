@@ -4,6 +4,9 @@ class_name PathFollowEnemy
 var pathing_base : PathingBase
 var follow_path : Path2D
 
+func _ready()->void:
+	%HitDetectorComponent.hit.connect(take_damage)
+
 func set_speed_multiplier(mult : float) -> void:
 	super(mult)
 	pathing_base.speed = true_speed
@@ -31,3 +34,9 @@ func add_to_path(new_path : Path2D) -> void:
 func move_node(node : Node2D, new_parent : Node2D) -> void:
 	node.get_parent().remove_child(node)
 	new_parent.add_child(node)
+
+func take_damage(projectile:Projectile)->void:
+	die()
+
+func die()->void:
+	queue_free()

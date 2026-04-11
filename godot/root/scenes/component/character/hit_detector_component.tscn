@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b2repnruc20p2"]
+
+[ext_resource type="Script" uid="uid://bambigg0lpvj8" path="res://root/scripts/components/characters/hit_detector_component.gd" id="1_mp0gx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_knsop"]
+radius = 20.0
+
+[node name="HitDetectorComponent" type="CharacterBody2D" unique_id=1910203219]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_mp0gx")
+radius = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1795403606]
+shape = SubResource("CircleShape2D_knsop")

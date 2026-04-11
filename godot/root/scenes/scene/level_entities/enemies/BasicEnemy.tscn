@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://b876cjb2lnsci"]
+[gd_scene format=3 uid="uid://jjiuxggpdprk"]
 
 [ext_resource type="Script" uid="uid://nega1m1ofgnl" path="res://root/scripts/creatures/enemies/PathingBase.gd" id="1_sypfn"]
-[ext_resource type="Texture2D" uid="uid://7h3jyvqqsr8d" path="res://Images/sprite_beast_dustfluffy_1.png" id="2_o8mlk"]
-[ext_resource type="Texture2D" uid="uid://c5y5xrekspur1" path="res://Images/sprite_beast_dustfluffy_2.png" id="3_rlycb"]
+[ext_resource type="Texture2D" uid="uid://7h3jyvqqsr8d" path="res://root/assets/PLACEHOLDERS/Other/sprite_beast_dustfluffy_1.png" id="2_o8mlk"]
+[ext_resource type="Texture2D" uid="uid://c5y5xrekspur1" path="res://root/assets/PLACEHOLDERS/Other/sprite_beast_dustfluffy_2.png" id="3_rlycb"]
 [ext_resource type="Script" uid="uid://bfjq2gp60sfmw" path="res://root/scripts/creatures/enemies/Enemy.gd" id="4_o8mlk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ogfdl"]
@@ -38,7 +38,6 @@ frame_progress = 0.7440687
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1723719872]
 shape = SubResource("CircleShape2D_rlycb")
 
-[node name="Enemy" type="Node2D" parent="CharacterBody2D" unique_id=1268059315 node_paths=PackedStringArray("path")]
+[node name="Enemy" type="Node2D" parent="CharacterBody2D" unique_id=1268059315]
 script = ExtResource("4_o8mlk")
-path = NodePath("../..")
 metadata/_custom_type_script = "uid://bfjq2gp60sfmw"

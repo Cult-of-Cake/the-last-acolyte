@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://3vup5qm6wk5w"]
+
+[ext_resource type="Script" uid="uid://c0dq82p2qra4i" path="res://root/scenes/projectiles/tower_bullet.gd" id="1_gl3g8"]
+[ext_resource type="Texture2D" uid="uid://btdq5khgetgpl" path="res://root/assets/PLACEHOLDERS/Other/istockphoto-1396632993-612x612.jpg" id="1_xk0vm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xk0vm"]
+radius = 20.0
+
+[node name="TowerBullet" type="CharacterBody2D" unique_id=630515912]
+scale = Vector2(0.2, 0.2)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_gl3g8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=883695639]
+texture = ExtResource("1_xk0vm")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=763322863]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1815510953]
+shape = SubResource("CircleShape2D_xk0vm")
+
+[node name="Lifetime" type="Timer" parent="." unique_id=1568458479]
+unique_name_in_owner = true
+wait_time = 2.0

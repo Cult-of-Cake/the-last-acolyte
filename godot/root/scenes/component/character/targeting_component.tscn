@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://d3jiffpijfc82"]
+
+[ext_resource type="Script" uid="uid://r237au7x5fc4" path="res://root/scripts/components/targeting_component.gd" id="1_0jbmq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q3vsn"]
+resource_local_to_scene = true
+radius = 150.0
+
+[node name="TargetingComponent" type="Node2D" unique_id=1270146252 node_paths=PackedStringArray("primary_targeting_shape", "primary_targeting")]
+script = ExtResource("1_0jbmq")
+primary_targeting_shape = NodePath("PrimaryTargeting/PrimaryTargetingShape")
+primary_targeting = NodePath("PrimaryTargeting")
+
+[node name="PrimaryTargeting" type="Area2D" parent="." unique_id=570595308]
+collision_layer = 0
+
+[node name="PrimaryTargetingShape" type="CollisionShape2D" parent="PrimaryTargeting" unique_id=1309244674]
+shape = SubResource("CircleShape2D_q3vsn")
+
+[connection signal="body_entered" from="PrimaryTargeting" to="." method="_on_primary_targeting_body_entered"]

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dq1ctupcrk7hw"]
+
+[ext_resource type="Script" uid="uid://djfcfg21hfb1u" path="res://root/scripts/components/characters/targetable_component.gd" id="1_sw8yd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o8b7m"]
+radius = 20.0
+
+[node name="TargetableComponent" type="CharacterBody2D" unique_id=1648788476]
+collision_mask = 0
+script = ExtResource("1_sw8yd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=682412536]
+shape = SubResource("CircleShape2D_o8b7m")

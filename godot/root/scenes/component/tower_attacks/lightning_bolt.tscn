@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ccyetbxna8wk8"]
+
+[ext_resource type="Script" uid="uid://cv7r081lpblsb" path="res://root/scripts/components/tower_attacks/lightning_bolt.gd" id="1_cw6k3"]
+[ext_resource type="PackedScene" uid="uid://d3jiffpijfc82" path="res://root/scenes/component/character/targeting_component.tscn" id="2_gxxhp"]
+
+[node name="LightningBolt" type="Node2D" unique_id=4546128 node_paths=PackedStringArray("targeting_component")]
+script = ExtResource("1_cw6k3")
+targeting_component = NodePath("TargetingComponent")
+
+[node name="TargetingComponent" parent="." unique_id=1270146252 instance=ExtResource("2_gxxhp")]
+tower_range = 900

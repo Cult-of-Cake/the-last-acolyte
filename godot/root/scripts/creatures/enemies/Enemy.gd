@@ -1,4 +1,4 @@
-extends Creature
+extends Node2D
 class_name Enemy
 
 @export var base_speed : float = 300
@@ -21,3 +21,9 @@ func set_speed_multiplier(mult : float) -> void:
 
 func reset_speed() -> void:
 	set_speed_multiplier(1.0)
+
+func get_hit(bullet:Projectile)->void:
+	die()
+
+func die()->void:
+	queue_free()

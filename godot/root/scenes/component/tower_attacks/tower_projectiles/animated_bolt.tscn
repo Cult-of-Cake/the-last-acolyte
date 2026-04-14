@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b6hko4l7o7lb0"]
+
+[ext_resource type="Texture2D" uid="uid://u2ba8jgnaxkf" path="res://root/assets/PLACEHOLDERS/Other/highlystolenbolt1.png" id="1_rt40p"]
+[ext_resource type="Texture2D" uid="uid://dbsbqysjf785v" path="res://root/assets/PLACEHOLDERS/Other/highlystolenbolt2.png" id="2_h8i6j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s3m2h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rt40p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h8i6j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BoltRoot" type="Node2D" unique_id=1800823497]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2092486489]
+position = Vector2(78, 0)
+rotation = -1.5707964
+sprite_frames = SubResource("SpriteFrames_s3m2h")
+autoplay = "default"
+frame_progress = 0.4930032

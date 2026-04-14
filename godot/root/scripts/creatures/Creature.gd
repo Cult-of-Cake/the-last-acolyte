@@ -18,5 +18,5 @@ func debug_colour() -> Color:
 func _draw() -> void:
 	# Draw functions need to be converted to local
 	# But the general advice is to otherwise always use global
-	if Lib.is_debugging(MovementNode.log_stream):
+	if out.MOVEMENT.is_debugging():
 		draw_circle(to_local(get_posn()), 5, debug_colour(), true)

@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	# A radical shift in heading means we bypassed or nearly bypassed our goal
 	# And for the rare occasion that we got our target near-exact, check distance too
 	var curr_heading : float = posn.angle_to_point(_goal)
-	#if DEBUG: print(_curr_heading, " originally ", _heading, " -> ", abs(_curr_heading - _heading))
+	out.MOVEMENT.debug([curr_heading, " originally ", _heading, " -> ", abs(curr_heading - _heading)])
 	if abs(curr_heading - _heading) > 0.1 or posn.distance_to(_goal) < 3:
 		# Wait a moment, then find a new goal!
 		begin_waiting()
@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func begin_waiting() -> void:
-		Lib.debug(log_stream, ["Waiting"])
+		out.MOVEMENT.debug(["Waiting"])
 		_waiting = true
 		delay.wait_time = randf_range(1, 7)
 		delay.start()
@@ -49,12 +49,12 @@ func get_new_goal() -> void:
 	_goal = _origin + Vector2(randf_range(-leash.x, leash.x), randf_range(-leash.y, leash.y))
 	_heading = posn.angle_to_point(_goal)
 
-	Lib.debug(log_stream, ["Done waiting. Goal position is now ", _goal])
+	out.MOVEMENT.debug(["Done waiting. Goal position is now ", _goal])
 	queue_redraw()
 	_waiting = false
 
 func _draw() -> void:
-	if Lib.is_debugging(log_stream):
+	if out.MOVEMENT.is_debugging():
 		var rect : Rect2 = Rect2(to_local(_origin) - leash, leash * 2)
 		draw_rect(rect, Color.BISQUE, false)
 		draw_circle(to_local(_goal), 1, Color.BISQUE, false)

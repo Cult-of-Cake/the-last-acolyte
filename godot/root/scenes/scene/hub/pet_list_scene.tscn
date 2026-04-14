@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://bo4diooal2va3"]
+
+[ext_resource type="Texture2D" uid="uid://cgfr7vy5ndwgi" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Adventure Pack/PNG/panel_brown.png" id="1_jhcq2"]
+[ext_resource type="Script" uid="uid://c44kn0yvtus1x" path="res://root/scripts/ui/pet_list/PetListManager.gd" id="1_p0rlv"]
+[ext_resource type="Texture2D" uid="uid://clvx64ibe6a0r" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Adventure Pack/PNG/buttonLong_beige.png" id="2_3h0pa"]
+[ext_resource type="Script" uid="uid://ygmps53daacr" path="res://root/scripts/ui/input_listeners/PetScreenActionListener.gd" id="2_p0rlv"]
+[ext_resource type="Texture2D" uid="uid://ly55due7phav" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Adventure Pack/PNG/buttonLong_beige_pressed.png" id="3_0b5b1"]
+[ext_resource type="PackedScene" uid="uid://tyea2g80dfhr" path="res://root/scenes/scene/hub/pet_row.tscn" id="5_0b5b1"]
+
+[node name="PetListScene" type="Control" unique_id=1929723783]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="List Manager" type="Node" parent="." unique_id=1952924820 node_paths=PackedStringArray("row_container")]
+script = ExtResource("1_p0rlv")
+row_container = NodePath("../CanvasLayer/Background/MarginContainer/Rows")
+metadata/_custom_type_script = "uid://c44kn0yvtus1x"
+
+[node name="UI" type="Control" parent="." unique_id=612539976]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PetScreenActionListener" type="Control" parent="UI" unique_id=319242950]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_p0rlv")
+metadata/_custom_type_script = "uid://ygmps53daacr"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1276570601]
+
+[node name="Background" type="NinePatchRect" parent="CanvasLayer" unique_id=85784312]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_jhcq2")
+patch_margin_left = 20
+patch_margin_top = 40
+patch_margin_right = 60
+patch_margin_bottom = 60
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Background" unique_id=2060417122]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Rows" type="VBoxContainer" parent="CanvasLayer/Background/MarginContainer" unique_id=530672756]
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="CanvasLayer/Background/MarginContainer/Rows" unique_id=1285029003]
+layout_mode = 2
+
+[node name="Ally" type="Label" parent="CanvasLayer/Background/MarginContainer/Rows/Header" unique_id=1526991410]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ally"
+
+[node name="Level" type="Label" parent="CanvasLayer/Background/MarginContainer/Rows/Header" unique_id=662559564]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Level"
+horizontal_alignment = 1
+
+[node name="Affinity" type="Label" parent="CanvasLayer/Background/MarginContainer/Rows/Header" unique_id=2069223569]
+layout_mode = 2
+text = "Affinity"
+
+[node name="-Gap-" type="Label" parent="CanvasLayer/Background/MarginContainer/Rows/Header" unique_id=1669163953]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Filter Button" type="TextureButton" parent="CanvasLayer/Background/MarginContainer/Rows/Header" unique_id=1978848159]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Filter"
+texture_normal = ExtResource("2_3h0pa")
+texture_pressed = ExtResource("3_0b5b1")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Background/MarginContainer/Rows/Header/Filter Button" unique_id=595209183]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -17.0
+offset_right = 19.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.4891863, 0.31864303, 0.1837537, 1)
+text = "Filter"
+horizontal_alignment = 1
+
+[node name="Undiscovered" type="TextureButton" parent="CanvasLayer/Background/MarginContainer/Rows/Header" unique_id=225306267]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Filter"
+texture_normal = ExtResource("2_3h0pa")
+texture_pressed = ExtResource("3_0b5b1")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Background/MarginContainer/Rows/Header/Undiscovered" unique_id=2075040340]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.49019608, 0.31764707, 0.18431373, 1)
+text = "Undiscovered"
+horizontal_alignment = 1
+
+[node name="Line2D" type="Line2D" parent="CanvasLayer/Background/MarginContainer/Rows" unique_id=1548480801]
+points = PackedVector2Array(1, 38, 701, 38)
+width = 3.0
+default_color = Color(0, 0, 0, 0.4)
+
+[node name="Pet Template" parent="CanvasLayer/Background/MarginContainer/Rows" unique_id=681209957 instance=ExtResource("5_0b5b1")]
+visible = false
+layout_mode = 2

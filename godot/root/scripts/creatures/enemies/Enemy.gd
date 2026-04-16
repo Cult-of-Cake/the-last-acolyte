@@ -1,4 +1,4 @@
-extends Creature
+extends Node2D
 class_name Enemy
 
 @export var base_speed : float = 300
@@ -31,3 +31,9 @@ func reset_speed() -> void:
 func on_collide_endpoint(endpoint : EndPoint) -> void:
 	endpoint.take_damage(50)
 	self.queue_free()
+
+func get_hit(bullet:Projectile)->void:
+	die()
+
+func die()->void:
+	queue_free()

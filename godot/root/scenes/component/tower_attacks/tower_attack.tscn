@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b714k1hir31ra"]
+
+[ext_resource type="Script" uid="uid://cibbv6i3lwpsp" path="res://root/scripts/components/tower_attacks/tower_attack.gd" id="1_ign2j"]
+
+[node name="TowerAttack" type="Node2D" unique_id=343692164]
+script = ExtResource("1_ign2j")

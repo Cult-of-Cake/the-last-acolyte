@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cgnoxkp7bv736"]
+
+[ext_resource type="Script" uid="uid://mricvfdwxyy1" path="res://root/scripts/towers/lectro_giraffe.gd" id="1_y4lpf"]
+[ext_resource type="Texture2D" uid="uid://bpj5rw7vx38vr" path="res://root/assets/PLACEHOLDERS/Laura/ElectricWeaken128.png" id="2_w5rmq"]
+[ext_resource type="PackedScene" uid="uid://cjga4rti5fyxj" path="res://root/scenes/component/tower_attacks/homing_bullet.tscn" id="4_3amej"]
+[ext_resource type="PackedScene" uid="uid://ccyetbxna8wk8" path="res://root/scenes/component/tower_attacks/lightning_bolt.tscn" id="5_1oomn"]
+
+[node name="LectroGiraffe" type="Node2D" unique_id=1128536587]
+script = ExtResource("1_y4lpf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=971717483]
+texture = ExtResource("2_w5rmq")
+
+[node name="Attacks" type="Node2D" parent="." unique_id=429116756]
+unique_name_in_owner = true
+
+[node name="LightningBolt" parent="Attacks" unique_id=4546128 instance=ExtResource("5_1oomn")]
+
+[node name="HomingBullet" parent="Attacks" unique_id=329652978 instance=ExtResource("4_3amej")]

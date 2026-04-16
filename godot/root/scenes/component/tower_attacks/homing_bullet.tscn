@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cjga4rti5fyxj"]
+
+[ext_resource type="Script" uid="uid://dxta46gsi862b" path="res://root/scripts/components/tower_attacks/homing_bullet.gd" id="1_ajah3"]
+[ext_resource type="PackedScene" uid="uid://d3jiffpijfc82" path="res://root/scenes/component/character/targeting_component.tscn" id="2_fu8hh"]
+
+[node name="HomingBullet" type="Node2D" unique_id=329652978 node_paths=PackedStringArray("targeting_component")]
+script = ExtResource("1_ajah3")
+targeting_component = NodePath("TargetingComponent")
+
+[node name="TargetingComponent" parent="." unique_id=1270146252 instance=ExtResource("2_fu8hh")]

@@ -6,9 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://dsts3hge36paw" path="res://root/assets/PLACEHOLDERS/Jo Concept/flying_dustfluffy_1.png" id="3_ont2y"]
 [ext_resource type="Texture2D" uid="uid://bwf1wnhpj63mq" path="res://root/assets/PLACEHOLDERS/Jo Concept/flying_dustfluffy_2.png" id="4_0jf6v"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rlycb"]
-radius = 47.07
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_ogfdl"]
 animations = [{
 "frames": [{
@@ -23,6 +20,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_rlycb"]
+radius = 47.07
+
 [node name="Enemy Flying" type="Node2D" unique_id=996641153 node_paths=PackedStringArray("move_obj")]
 script = ExtResource("1_u4fmg")
 move_obj = NodePath("DirectToPoint")
@@ -33,6 +33,11 @@ script = ExtResource("2_grven")
 motion_obj = NodePath("../CharacterBody2D")
 metadata/_custom_type_script = "uid://b2pqgygo756jl"
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=410654866]
+sprite_frames = SubResource("SpriteFrames_ogfdl")
+autoplay = "default"
+frame_progress = 0.7440687
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1684537816 node_paths=PackedStringArray("true_body")]
 collision_mask = 0
 motion_mode = 1
@@ -42,8 +47,3 @@ metadata/_custom_type_script = "uid://co4a7w86xhd0s"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=215321409]
 shape = SubResource("CircleShape2D_rlycb")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=410654866]
-sprite_frames = SubResource("SpriteFrames_ogfdl")
-autoplay = "default"
-frame_progress = 0.7440687

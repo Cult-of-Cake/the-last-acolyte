@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dgbbit8m7xwg2"]
+
+[ext_resource type="Script" uid="uid://c0dq82p2qra4i" path="res://root/scenes/projectiles/tower_bullet.gd" id="1_3s2ay"]
+[ext_resource type="Texture2D" uid="uid://btdq5khgetgpl" path="res://root/assets/PLACEHOLDERS/Other/istockphoto-1396632993-612x612.jpg" id="2_cpqv1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jl4xh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cpqv1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="LightningBoltProjectile" type="Node2D" unique_id=1514848483]
+script = ExtResource("1_3s2ay")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1485240088]
+sprite_frames = SubResource("SpriteFrames_jl4xh")

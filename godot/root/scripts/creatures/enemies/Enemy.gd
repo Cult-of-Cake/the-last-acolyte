@@ -22,6 +22,16 @@ func set_speed_multiplier(mult : float) -> void:
 func reset_speed() -> void:
 	set_speed_multiplier(1.0)
 
+#TODO: This function will almost certainly be completely replaced later.
+# Some enemies may just stop moving and start attacking.
+# Some will do damage based on their stats.
+# And we may want to use signals or something instead of this.
+# But I want to have something in place to test damage to the endpoint and ending the level.
+
+func on_collide_endpoint(endpoint : EndPoint) -> void:
+	endpoint.take_damage(50)
+	self.queue_free()
+
 func get_hit(bullet:Projectile)->void:
 	die()
 

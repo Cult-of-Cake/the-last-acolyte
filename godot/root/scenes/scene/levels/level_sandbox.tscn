@@ -16,7 +16,12 @@
 [ext_resource type="Texture2D" uid="uid://b5o7h7ph1cuqp" path="res://root/assets/PLACEHOLDERS/f724bfee-aec6-4b31-969c-0d38d6fd5218.png" id="9_ccu1u"]
 [ext_resource type="Texture2D" uid="uid://75w4qdblat2m" path="res://root/assets/PLACEHOLDERS/Kenney/Scribble Dungeons/PNG 64/tree.png" id="9_m6cc7"]
 [ext_resource type="Texture2D" uid="uid://cfei4w0hqqj2j" path="res://root/assets/PLACEHOLDERS/Kenney/Cartography Pack/PNG 64/treePinesSmall.png" id="10_m6cc7"]
+[ext_resource type="Script" uid="uid://bfpgcfxb781hs" path="res://root/scripts/levels/EndPoint.gd" id="15_f7ei6"]
+[ext_resource type="Script" uid="uid://btc76cp3ljvwx" path="res://HealthTracker.gd" id="16_yps60"]
 [ext_resource type="Script" uid="uid://0vkhw84lb2n6" path="res://root/scripts/levels/GhostCursor.gd" id="17_ivipd"]
+[ext_resource type="Texture2D" uid="uid://vubev6ol7k0y" path="res://root/assets/PLACEHOLDERS/Laura/UI/barGrey_horizontal_all.png" id="17_yps60"]
+[ext_resource type="Texture2D" uid="uid://b17susj88kk02" path="res://root/assets/PLACEHOLDERS/Laura/UI/bar_shading_all.png" id="18_f7ei6"]
+[ext_resource type="Texture2D" uid="uid://ds1qlrghhytrp" path="res://root/assets/PLACEHOLDERS/Laura/UI/barGreen_horizontal_all.png" id="19_6148q"]
 [ext_resource type="PackedScene" uid="uid://cgnoxkp7bv736" path="res://root/scenes/towers/LectroGiraffe.tscn" id="18_lgvk3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ljtiv"]
@@ -587,7 +592,7 @@ sources/0 = SubResource("TileSetAtlasSource_8235c")
 radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1bqvh"]
-radius = 15.0
+radius = 62.08
 
 [node name="Level" type="Node2D" unique_id=955376474]
 
@@ -719,25 +724,52 @@ debug_path_custom_color = Color(0.58317125, 0.00025749952, 0.5857103, 1)
 scale = Vector2(3, 3)
 texture = ExtResource("8_6sf74")
 
-[node name="EndPoint" type="Area2D" parent="." unique_id=1285164122]
+[node name="EndPoint" type="Area2D" parent="." unique_id=384078147 node_paths=PackedStringArray("health_tracker")]
 position = Vector2(3645, 2243)
-script = ExtResource("8_ccu1u")
-metadata/_custom_type_script = "uid://cj5ybhijiho2v"
+script = ExtResource("15_f7ei6")
+health_tracker = NodePath("HealthTracker")
+metadata/_custom_type_script = "uid://bfpgcfxb781hs"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndPoint" unique_id=533524911]
 shape = SubResource("CircleShape2D_1bqvh")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="EndPoint" unique_id=646138320]
-position = Vector2(-13, -35)
+position = Vector2(0, -12)
 scale = Vector2(3, 3)
 texture = ExtResource("9_ccu1u")
+
+[node name="HealthTracker" type="Node2D" parent="EndPoint" unique_id=804460501 node_paths=PackedStringArray("progress_bar", "shake_sprite")]
+script = ExtResource("16_yps60")
+progress_bar = NodePath("TextureProgressBar")
+shake_sprite = NodePath("../Sprite2D")
+metadata/_custom_type_script = "uid://btc76cp3ljvwx"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="EndPoint/HealthTracker" unique_id=855702493]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = 70.0
+offset_right = 80.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 10
+stretch_margin_right = 10
+texture_under = ExtResource("17_yps60")
+texture_over = ExtResource("18_f7ei6")
+texture_progress = ExtResource("19_6148q")
 
 [node name="Moveable Camera" type="CharacterBody2D" parent="." unique_id=1316024975]
 
 [node name="Camera2D" type="Camera2D" parent="Moveable Camera" unique_id=2135722269]
 position = Vector2(1861, 1289)
-zoom = Vector2(0.19, 0.19)
+zoom = Vector2(0.3, 0.3)
 
 [node name="PlayerControlled" type="Node2D" parent="Moveable Camera" unique_id=1910119733 node_paths=PackedStringArray("motion_obj")]
 position = Vector2(1861, 1289)
@@ -757,6 +789,8 @@ visible = false
 modulate = Color(0.5529412, 1, 0.627451, 0.4)
 texture = ExtResource("9_m6cc7")
 centered = false
+
+[connection signal="body_entered" from="EndPoint" to="EndPoint" method="_on_body_entered"]
 
 [node name="LectroGiraffe" parent="." unique_id=1128536587 instance=ExtResource("18_lgvk3")]
 position = Vector2(697, 1574)

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://qrjsg21xcgi8"]
+
+[ext_resource type="FontFile" uid="uid://bjq4hcgn1ncce" path="res://root/assets/font/coiny/Coiny-Regular.ttf" id="1_s4hlw"]
+[ext_resource type="Script" uid="uid://dkfjjs0t4n4o2" path="res://root/scripts/ui/FadingText.gd" id="2_3uci3"]
+
+[node name="FadingText" type="Label" unique_id=1008096680]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -17.0
+offset_right = 100.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(100, 17)
+theme_override_colors/font_color = Color(0.8614898, 0.17521614, 4.813075e-07, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("1_s4hlw")
+theme_override_font_sizes/font_size = 32
+text = "10	"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 1
+script = ExtResource("2_3uci3")
+fade_time = 1.0
+distance = 5.0
+x_motion = 0.25
+y_motion = -40.0

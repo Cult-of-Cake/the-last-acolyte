@@ -1,6 +1,8 @@
 extends Node2D
 class_name Creature
 
+@export var health_tracker : HealthTracker
+
 func get_posn() -> Vector2:
 	var motion_obj : MovementNode = Lib.Objects.find_child_of_type(self, MovementNode, true)
 	var posn : Vector2

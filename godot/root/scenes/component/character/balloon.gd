@@ -94,7 +94,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if is_instance_valid(dialogue_line):
 		progress.visible = not dialogue_label.is_typing and dialogue_line.responses.size() == 0 and not dialogue_line.has_tag("voice")
-	if Input.is_action_pressed("fast_forward"):
+	if Input.is_action_pressed(Vars.InputMapConsts.fast_forward):
 		next(dialogue_line.next_id)
 
 

@@ -19,8 +19,8 @@ func _input(event: InputEvent) -> void:
 
 # Note: If a scene has multiple action listeners, this should only happen in one of them.
 func enable_fast_foward() -> void:
-	actions["fast_forward"] = on_skip_pressed
-	release_actions["fast_forward"] = on_skip_released
+	actions[Vars.InputMapConsts.fast_forward] = on_skip_pressed
+	release_actions[Vars.InputMapConsts.fast_forward] = on_skip_released
 
 func on_skip_pressed() -> void:
 	Engine.time_scale = 20

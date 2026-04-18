@@ -23,6 +23,9 @@ class Paths:
 
 	const PREFAB_SUFFIX : String = ".tscn"
 
+class InputMapConsts:
+	const fast_forward : String = "fast_forward"
+
 const NO_COLOUR : Color = Color(-99, -99, -99, 0)
 
 #region Dialogue

@@ -9,6 +9,7 @@ func _ready() -> void:
 	# output when any input is in the dictionary
 	actions["hub_interact"] = on_interact_pressed
 	actions["ui_pet_list"] = toggle_pet_list
+	enable_fast_foward()
 
 	# Other setup
 	talkables_setup()

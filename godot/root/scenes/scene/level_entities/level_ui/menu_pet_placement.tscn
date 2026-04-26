@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://0tkhxkxv03hl" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Air.png" id="11_47ouj"]
 [ext_resource type="Texture2D" uid="uid://cnu2drc0vxjnv" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Electric.png" id="12_4oka2"]
 [ext_resource type="Texture2D" uid="uid://cxjjds72ly0pb" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Damage.png" id="14_jn488"]
+[ext_resource type="Script" uid="uid://bxbiqah7dshvr" path="res://root/scripts/ui/resource_loaders/TribeLoader.gd" id="15_47ouj"]
 [ext_resource type="Texture2D" uid="uid://nmg7gaeytlby" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Slow.png" id="15_altej"]
 [ext_resource type="Texture2D" uid="uid://cyct8pgbkr2ij" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Boost.png" id="16_bmuwb"]
 
@@ -28,10 +29,13 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="FilterManager" type="Node2D" parent="." unique_id=1957863517 node_paths=PackedStringArray("faves_button", "affinity_button")]
+[node name="FilterManager" type="Node2D" parent="." unique_id=1957863517 node_paths=PackedStringArray("faves_button", "tribe_button", "affinity_button", "tribe_label", "affinity_label")]
 script = ExtResource("1_a5p15")
 faves_button = NodePath("../Placement Menu/GridContainer/Favourites/ImageCycler")
+tribe_button = NodePath("../Placement Menu/GridContainer/Tribe/ImageCycler")
 affinity_button = NodePath("../Placement Menu/GridContainer/Affinities/ImageCycler")
+tribe_label = NodePath("../Placement Menu/GridContainer/Tribe/Anchored/Label")
+affinity_label = NodePath("../Placement Menu/GridContainer/Affinities/Anchored/Label")
 metadata/_custom_type_script = "uid://bhjr5jja3eh2m"
 
 [node name="Placement Menu" type="NinePatchRect" parent="." unique_id=1838559089]
@@ -80,7 +84,7 @@ metadata/_custom_type_script = "uid://diqbdgqufm1we"
 [node name="ButtonArt" type="NinePatchRect" parent="Placement Menu/GridContainer/Barrier" unique_id=8286612]
 modulate = Color(0.8392157, 0.6509804, 0.3764706, 0.3529412)
 texture_filter = 1
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("4_uv53o")
 patch_margin_left = 12
@@ -100,12 +104,12 @@ patch_margin_top = 12
 patch_margin_right = 20
 patch_margin_bottom = 20
 
-[node name="Undertext" type="Control" parent="Placement Menu/GridContainer/Barrier" unique_id=424441337]
+[node name="Anchored" type="Control" parent="Placement Menu/GridContainer/Barrier" unique_id=424441337]
 texture_filter = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Placement Menu/GridContainer/Barrier/Undertext" unique_id=579090470]
+[node name="Label" type="Label" parent="Placement Menu/GridContainer/Barrier/Anchored" unique_id=579090470]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -120,20 +124,19 @@ text = "Barrier"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Keypress" type="TextureRect" parent="Placement Menu/GridContainer/Barrier/Undertext" unique_id=140586019]
+[node name="Keypress" type="TextureRect" parent="Placement Menu/GridContainer/Barrier/Anchored" unique_id=140586019]
 modulate = Color(1, 1, 0.8235294, 1)
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
+offset_top = 8.0
 offset_right = 8.0
 offset_bottom = 8.0
 grow_vertical = 0
 texture = ExtResource("9_0e7xq")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Placement Menu/GridContainer/Barrier/Undertext/Keypress" unique_id=1011069328]
+[node name="Label" type="Label" parent="Placement Menu/GridContainer/Barrier/Anchored/Keypress" unique_id=1011069328]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -143,34 +146,6 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 7
 text = "B"
-horizontal_alignment = 1
-
-[node name="Cancel" type="TextureRect" parent="Placement Menu/GridContainer/Barrier/Undertext" unique_id=1374422549]
-visible = false
-modulate = Color(1, 1, 0.8235294, 1)
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -10.0
-offset_bottom = 8.0
-grow_vertical = 0
-texture = ExtResource("9_0e7xq")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="Placement Menu/GridContainer/Barrier/Undertext/Cancel" unique_id=34460473]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 7
-text = "x"
 horizontal_alignment = 1
 
 [node name="Icon" type="TextureRect" parent="Placement Menu/GridContainer/Barrier" unique_id=398215653]
@@ -200,7 +175,7 @@ metadata/_custom_type_script = "uid://diqbdgqufm1we"
 [node name="ButtonArt" type="NinePatchRect" parent="Placement Menu/GridContainer/Favourites" unique_id=140521800]
 modulate = Color(0.8392157, 0.6509804, 0.3764706, 0.3529412)
 texture_filter = 1
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("4_uv53o")
 patch_margin_left = 12
@@ -220,12 +195,12 @@ patch_margin_top = 12
 patch_margin_right = 20
 patch_margin_bottom = 20
 
-[node name="Undertext" type="Control" parent="Placement Menu/GridContainer/Favourites" unique_id=529507458]
+[node name="Anchored" type="Control" parent="Placement Menu/GridContainer/Favourites" unique_id=529507458]
 texture_filter = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Placement Menu/GridContainer/Favourites/Undertext" unique_id=1403758292]
+[node name="Label" type="Label" parent="Placement Menu/GridContainer/Favourites/Anchored" unique_id=1403758292]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -240,20 +215,17 @@ text = "Favourites"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Keypress" type="TextureRect" parent="Placement Menu/GridContainer/Favourites/Undertext" unique_id=1190207826]
+[node name="Keypress" type="TextureRect" parent="Placement Menu/GridContainer/Favourites/Anchored" unique_id=1190207826]
 modulate = Color(1, 1, 0.8235294, 1)
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_right = 8.0
 offset_bottom = 8.0
 grow_vertical = 0
 texture = ExtResource("9_0e7xq")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Placement Menu/GridContainer/Favourites/Undertext/Keypress" unique_id=35774616]
+[node name="Label" type="Label" parent="Placement Menu/GridContainer/Favourites/Anchored/Keypress" unique_id=35774616]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -263,34 +235,6 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 7
 text = "F"
-horizontal_alignment = 1
-
-[node name="Cancel" type="TextureRect" parent="Placement Menu/GridContainer/Favourites/Undertext" unique_id=524049676]
-visible = false
-modulate = Color(1, 1, 0.8235294, 1)
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -10.0
-offset_bottom = 8.0
-grow_vertical = 0
-texture = ExtResource("9_0e7xq")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="Placement Menu/GridContainer/Favourites/Undertext/Cancel" unique_id=622014996]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 7
-text = "x"
 horizontal_alignment = 1
 
 [node name="Icon" type="TextureRect" parent="Placement Menu/GridContainer/Favourites" unique_id=42847177]
@@ -319,7 +263,7 @@ metadata/_custom_type_script = "uid://diqbdgqufm1we"
 [node name="ButtonArt" type="NinePatchRect" parent="Placement Menu/GridContainer/Affinities" unique_id=1893744738]
 modulate = Color(0.8392157, 0.6509804, 0.3764706, 0.3529412)
 texture_filter = 1
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("4_uv53o")
 patch_margin_left = 12
@@ -365,10 +309,10 @@ expand_mode = 1
 
 [node name="Fire" type="TextureRect" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=1095336253]
 layout_mode = 1
-offset_left = 18.0
-offset_top = 1.0
-offset_right = 34.0
-offset_bottom = 17.0
+offset_left = 24.0
+offset_top = 4.0
+offset_right = 40.0
+offset_bottom = 20.0
 tooltip_text = "Filter"
 texture = ExtResource("8_of2b5")
 expand_mode = 1
@@ -382,10 +326,10 @@ metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
 
 [node name="Earth" type="TextureRect" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=1487748843]
 layout_mode = 1
-offset_left = 26.0
-offset_top = 32.0
-offset_right = 42.0
-offset_bottom = 48.0
+offset_left = 34.0
+offset_top = 40.0
+offset_right = 50.0
+offset_bottom = 56.0
 tooltip_text = "Filter"
 texture = ExtResource("10_a5p15")
 expand_mode = 1
@@ -399,9 +343,10 @@ metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
 
 [node name="Water" type="TextureRect" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=1796981989]
 layout_mode = 1
-offset_top = 15.0
-offset_right = 16.0
-offset_bottom = 31.0
+offset_left = 6.0
+offset_top = 21.0
+offset_right = 22.0
+offset_bottom = 37.0
 tooltip_text = "Filter"
 texture = ExtResource("7_bbnqj")
 expand_mode = 1
@@ -415,10 +360,10 @@ metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
 
 [node name="Air" type="TextureRect" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=983249945]
 layout_mode = 1
-offset_left = 33.0
-offset_top = 15.0
-offset_right = 49.0
-offset_bottom = 31.0
+offset_left = 44.0
+offset_top = 21.0
+offset_right = 60.0
+offset_bottom = 37.0
 tooltip_text = "Filter"
 texture = ExtResource("11_47ouj")
 expand_mode = 1
@@ -432,10 +377,10 @@ metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
 
 [node name="Electric" type="TextureRect" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=432013873]
 layout_mode = 1
-offset_left = 8.0
-offset_top = 33.0
-offset_right = 24.0
-offset_bottom = 49.0
+offset_left = 13.0
+offset_top = 40.0
+offset_right = 29.0
+offset_bottom = 56.0
 tooltip_text = "Filter"
 texture = ExtResource("12_4oka2")
 expand_mode = 1
@@ -467,8 +412,6 @@ modulate = Color(1, 1, 0.8235294, 1)
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 1
 anchors_preset = -1
-offset_top = 8.0
-offset_right = 8.0
 offset_bottom = 8.0
 grow_vertical = 0
 texture = ExtResource("9_0e7xq")
@@ -504,7 +447,7 @@ metadata/_custom_type_script = "uid://diqbdgqufm1we"
 [node name="ButtonArt" type="NinePatchRect" parent="Placement Menu/GridContainer/Tribe" unique_id=412321224]
 modulate = Color(0.8392157, 0.6509804, 0.3764706, 0.3529412)
 texture_filter = 1
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("4_uv53o")
 patch_margin_left = 12
@@ -550,54 +493,53 @@ expand_mode = 1
 
 [node name="Hoof" type="TextureRect" parent="Placement Menu/GridContainer/Tribe/Anchored" unique_id=428295955]
 layout_mode = 1
-offset_left = 9.0
-offset_top = 9.0
-offset_right = 25.0
-offset_bottom = 25.0
+offset_left = 17.0
+offset_top = 17.0
+offset_right = 33.0
+offset_bottom = 33.0
 tooltip_text = "Filter"
 texture = ExtResource("14_jn488")
 expand_mode = 1
 
-[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Tribe/Anchored/Hoof" unique_id=305232802 node_paths=PackedStringArray("loading_node")]
+[node name="TribeLoader" type="Node2D" parent="Placement Menu/GridContainer/Tribe/Anchored/Hoof" unique_id=40454885 node_paths=PackedStringArray("loading_node")]
 position = Vector2(-138, -630)
-script = ExtResource("9_of2b5")
-affinity = 1
+script = ExtResource("15_47ouj")
 loading_node = NodePath("..")
-metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
+metadata/_custom_type_script = "uid://bxbiqah7dshvr"
 
 [node name="Slow" type="TextureRect" parent="Placement Menu/GridContainer/Tribe/Anchored" unique_id=822321834]
 layout_mode = 1
-offset_left = 25.0
-offset_top = 9.0
-offset_right = 41.0
-offset_bottom = 25.0
+offset_left = 33.0
+offset_top = 17.0
+offset_right = 49.0
+offset_bottom = 33.0
 tooltip_text = "Filter"
 texture = ExtResource("15_altej")
 expand_mode = 1
 
-[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Tribe/Anchored/Slow" unique_id=1224260821 node_paths=PackedStringArray("loading_node")]
+[node name="TribeLoader" type="Node2D" parent="Placement Menu/GridContainer/Tribe/Anchored/Slow" unique_id=441346067 node_paths=PackedStringArray("loading_node")]
 position = Vector2(-138, -630)
-script = ExtResource("9_of2b5")
-affinity = 2
+script = ExtResource("15_47ouj")
+tribe = 2
 loading_node = NodePath("..")
-metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
+metadata/_custom_type_script = "uid://bxbiqah7dshvr"
 
 [node name="Boost" type="TextureRect" parent="Placement Menu/GridContainer/Tribe/Anchored" unique_id=1350131797]
 layout_mode = 1
-offset_left = 16.0
-offset_top = 25.0
-offset_right = 32.0
-offset_bottom = 41.0
+offset_left = 24.0
+offset_top = 34.0
+offset_right = 40.0
+offset_bottom = 50.0
 tooltip_text = "Filter"
 texture = ExtResource("16_bmuwb")
 expand_mode = 1
 
-[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Tribe/Anchored/Boost" unique_id=352681750 node_paths=PackedStringArray("loading_node")]
+[node name="TribeLoader" type="Node2D" parent="Placement Menu/GridContainer/Tribe/Anchored/Boost" unique_id=1945504352 node_paths=PackedStringArray("loading_node")]
 position = Vector2(-138, -630)
-script = ExtResource("9_of2b5")
-affinity = 3
+script = ExtResource("15_47ouj")
+tribe = 1
 loading_node = NodePath("..")
-metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
+metadata/_custom_type_script = "uid://bxbiqah7dshvr"
 
 [node name="Label" type="Label" parent="Placement Menu/GridContainer/Tribe/Anchored" unique_id=1124499788]
 layout_mode = 1
@@ -619,8 +561,6 @@ modulate = Color(1, 1, 0.8235294, 1)
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 1
 anchors_preset = -1
-offset_top = 8.0
-offset_right = 8.0
 offset_bottom = 8.0
 grow_vertical = 0
 texture = ExtResource("9_0e7xq")
@@ -653,7 +593,7 @@ theme_override_constants/margin_bottom = 10
 [node name="ButtonArt" type="NinePatchRect" parent="Placement Menu/GridContainer/Charlie" unique_id=929595142]
 modulate = Color(0.8392157, 0.6509804, 0.3764706, 0.3529412)
 texture_filter = 1
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("4_uv53o")
 patch_margin_left = 12
@@ -684,12 +624,12 @@ tooltip_text = "Filter"
 texture = ExtResource("5_13n33")
 expand_mode = 1
 
-[node name="Undertext" type="Control" parent="Placement Menu/GridContainer/Charlie" unique_id=33771330]
+[node name="Anchored" type="Control" parent="Placement Menu/GridContainer/Charlie" unique_id=33771330]
 texture_filter = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Placement Menu/GridContainer/Charlie/Undertext" unique_id=1293196995]
+[node name="Label" type="Label" parent="Placement Menu/GridContainer/Charlie/Anchored" unique_id=1293196995]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -704,20 +644,17 @@ text = "Charlie"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Keypress" type="TextureRect" parent="Placement Menu/GridContainer/Charlie/Undertext" unique_id=1079454117]
+[node name="Keypress" type="TextureRect" parent="Placement Menu/GridContainer/Charlie/Anchored" unique_id=1079454117]
 modulate = Color(1, 1, 0.8235294, 1)
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_right = 8.0
 offset_bottom = 8.0
 grow_vertical = 0
 texture = ExtResource("9_0e7xq")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Placement Menu/GridContainer/Charlie/Undertext/Keypress" unique_id=320375046]
+[node name="Label" type="Label" parent="Placement Menu/GridContainer/Charlie/Anchored/Keypress" unique_id=320375046]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

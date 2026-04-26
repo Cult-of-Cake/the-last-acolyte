@@ -603,7 +603,7 @@ unique_name_in_owner = true
 script = ExtResource("2_ccu1u")
 map = NodePath("../Map")
 
-[node name="LevelActionListener" type="Control" parent="." unique_id=96035147 node_paths=PackedStringArray("tiles", "map", "cursor", "barrier_button", "faves_button", "affinity_button")]
+[node name="LevelActionListener" type="Control" parent="." unique_id=96035147 node_paths=PackedStringArray("tiles", "map", "cursor", "barrier_button")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -613,8 +613,6 @@ tiles = NodePath("../Map/Placement")
 map = NodePath("../Map")
 cursor = NodePath("../GhostCursor")
 barrier_button = NodePath("../CanvasLayer/MenuPetPlacement/Placement Menu/GridContainer/Barrier/ImageCycler")
-faves_button = NodePath("../CanvasLayer/MenuPetPlacement/Placement Menu/GridContainer/Favourites/ImageCycler")
-affinity_button = NodePath("../CanvasLayer/MenuPetPlacement/Placement Menu/GridContainer/Affinities/ImageCycler")
 metadata/_custom_type_script = "uid://b46lanymu5680"
 
 [node name="Map" type="Node2D" parent="." unique_id=1786262132 node_paths=PackedStringArray("tile_map", "placement_map", "start_point", "end_point")]

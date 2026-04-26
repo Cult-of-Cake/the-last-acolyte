@@ -66,6 +66,16 @@ const ELEMENT_ICONS : Array[CompressedTexture2D] = [
 #region Roles
 
 enum ROLE { DAMAGE, BOOST, SLOW }
+const ROLE_NAMES : Array[String] = [ "Hoof", "Claw", "Wing"]
+const ROLE_COLOURS : Array[Color] = [ Color.WHITE, Color.WHITE, Color.WHITE ]
+
+const ROLE_FILE_PREFIX : String = "PLACEHOLDERS/Laura/Tribes/"
+const ROLE_FILE_SUFFIX : String = ".png"
+const ROLE_ICONS : Array[CompressedTexture2D] = [
+	preload(Paths.ASSETS + ROLE_FILE_PREFIX + ROLE_NAMES[0] + ROLE_FILE_SUFFIX),
+	preload(Paths.ASSETS + ROLE_FILE_PREFIX + ROLE_NAMES[1] + ROLE_FILE_SUFFIX),
+	preload(Paths.ASSETS + ROLE_FILE_PREFIX + ROLE_NAMES[2] + ROLE_FILE_SUFFIX),
+]
 
 #endregion
 

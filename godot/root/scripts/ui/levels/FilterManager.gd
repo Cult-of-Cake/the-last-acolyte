@@ -4,6 +4,8 @@ class_name FilterManager
 @export var faves_button : ImageCycler
 @export var tribe_button : ImageCycler
 @export var affinity_button : ImageCycler
+@export var tribe_label : Label
+@export var affinity_label : Label
 
 func _ready() -> void:
 	SignalBus.lvl_pet_filter_cycle_favourite.connect(on_key_favourite)
@@ -30,11 +32,20 @@ func on_key_favourite() -> void:
 # Cycle tribe through the roles, then back to all
 func on_key_tribe() -> void:
 	if tribe_filter == NO_FILTER:
-		tribe_filter = 1
+		tribe_filter = 0
 	else:
 		tribe_filter += 1
-		if tribe_filter >= Vars.ROLE.size() - 1:
+		if tribe_filter >= Vars.ROLE.size():
 			tribe_filter = NO_FILTER
+	# And update the button
+	var label : String
+	if tribe_filter == NO_FILTER:
+		tribe_button.show_all()
+		label = "Any"
+	else:
+		tribe_button.set_to_image(tribe_filter)
+		label = Vars.ROLE_NAMES[tribe_filter]
+	tribe_label.text = "Tribe: " + label
 
 # E cycles affinity through the elements, then back to all
 # C cycles affinity through the cosmics, then back to all
@@ -44,14 +55,18 @@ func on_key_element() -> void:
 		affinity_filter = 0
 	else:
 		affinity_filter += 1
-		if affinity_filter >= Vars.ELEMENT.size() - 1:
+		if affinity_filter >= Vars.ELEMENT.size() - 1: # We're ignoring Special, for now
 			affinity_filter = NO_FILTER
 	out.ACTIONS.debug(["Affinity filter: ", affinity_filter])
-	# And update the icon
+	# And update the button
+	var label : String
 	if affinity_filter == NO_FILTER:
 		affinity_button.show_all()
+		label = "Any"
 	else:
 		affinity_button.set_to_image(affinity_filter)
+		label = Vars.ELEMENT_NAMES[affinity_filter + 1] # Again, ignoring Special
+	affinity_label.text = "Element: " + label
 
 # A is being used by WASD anyway, let's just figure this out if/when cosmic gets added
 #func on_key_affinity() -> void:

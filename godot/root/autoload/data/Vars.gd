@@ -20,6 +20,8 @@ class Paths:
 	const PREFABS: String = RES + "scenes/scene/"
 	const LEVELS: String = PREFABS + "levels/"
 	const ENEMIES: String = PREFABS + "level_entities/enemies/"
+	
+	const PET_IMAGES : String = ASSETS + "image/pets/"
 
 	const PREFAB_SUFFIX : String = ".tscn"
 
@@ -45,10 +47,10 @@ enum HUB_LAYERS { WALLS, PLAYER, ROOFS }
 
 #region Elements
 
-enum ELEMENT { SPECIAL, FIRE, EARTH, WATER, AIR, ELECTRIC }
-const ELEMENT_NAMES : Array[String] = [ "", "Fire", "Earth", "Water", "Air", "Electric" ]
+enum ELEMENT { SPECIAL, FIRE, EARTH, WATER, AIR, ELECTRIC, NATURE }
+const ELEMENT_NAMES : Array[String] = [ "", "Fire", "Earth", "Water", "Air", "Electric", "Nature" ]
 const ELEMENT_COLOURS : Array[Color] = [ Color.TRANSPARENT, Color.FIREBRICK, Color.PERU,
-	Color.DEEP_SKY_BLUE, Color.LIGHT_GRAY, Color.YELLOW ]
+	Color.DEEP_SKY_BLUE, Color.LIGHT_GRAY, Color.YELLOW, Color.FOREST_GREEN ]
 
 const ELEMENT_FILE_PREFIX : String = "PLACEHOLDERS/Laura/Elements/"
 const ELEMENT_FILE_SUFFIX : String = ".png"
@@ -59,6 +61,7 @@ const ELEMENT_ICONS : Array[CompressedTexture2D] = [
 	preload(Paths.ASSETS + ELEMENT_FILE_PREFIX + ELEMENT_NAMES[3] + ELEMENT_FILE_SUFFIX),
 	preload(Paths.ASSETS + ELEMENT_FILE_PREFIX + ELEMENT_NAMES[4] + ELEMENT_FILE_SUFFIX),
 	preload(Paths.ASSETS + ELEMENT_FILE_PREFIX + ELEMENT_NAMES[5] + ELEMENT_FILE_SUFFIX),
+	preload(Paths.ASSETS + ELEMENT_FILE_PREFIX + ELEMENT_NAMES[6] + ELEMENT_FILE_SUFFIX),
 ]
 
 #endregion
@@ -76,6 +79,48 @@ const ROLE_ICONS : Array[CompressedTexture2D] = [
 	preload(Paths.ASSETS + ROLE_FILE_PREFIX + ROLE_NAMES[1] + ROLE_FILE_SUFFIX),
 	preload(Paths.ASSETS + ROLE_FILE_PREFIX + ROLE_NAMES[2] + ROLE_FILE_SUFFIX),
 ]
+
+#endregion
+
+#region Affinity-Role combo
+
+var PET_IMAGES : Dictionary[String, CompressedTexture2D]
+enum PET_IMAGE_USES { SPRITE, ICON, CURSOR }
+const PET_IMAGE_USE_SUFFIX = [ "Sprite", "Icon", "Cursor" ]
+const PET_IMAGE_SUFFIX = ".png"
+# I was going to put dialog in here, then I remembered expressions and this is probably already
+# set up in the dialogue engine anyway.
+
+func init_pet_images() -> void:
+	# Sadly, these MUST be constant in order to use preload.  No looping, no making this neater.
+	PET_IMAGES[get_pet_image_key(2, 0, 0)] = preload(Paths.PET_IMAGES +
+		ELEMENT_NAMES[2] + "_" + ROLE_NAMES[0] + "_" + PET_IMAGE_USE_SUFFIX[0] + PET_IMAGE_SUFFIX)
+	PET_IMAGES[get_pet_image_key(2, 0, 1)] = preload(Paths.PET_IMAGES +
+		ELEMENT_NAMES[2] + "_" + ROLE_NAMES[0] + "_" + PET_IMAGE_USE_SUFFIX[1] + PET_IMAGE_SUFFIX)
+	PET_IMAGES[get_pet_image_key(2, 0, 2)] = preload(Paths.PET_IMAGES +
+		ELEMENT_NAMES[2] + "_" + ROLE_NAMES[0] + "_" + PET_IMAGE_USE_SUFFIX[2] + PET_IMAGE_SUFFIX)
+	PET_IMAGES[get_pet_image_key(6, 0, 0)] = preload(Paths.PET_IMAGES +
+		ELEMENT_NAMES[6] + "_" + ROLE_NAMES[0] + "_" + PET_IMAGE_USE_SUFFIX[0] + PET_IMAGE_SUFFIX)
+	PET_IMAGES[get_pet_image_key(6, 0, 1)] = preload(Paths.PET_IMAGES +
+		ELEMENT_NAMES[6] + "_" + ROLE_NAMES[0] + "_" + PET_IMAGE_USE_SUFFIX[1] + PET_IMAGE_SUFFIX)
+	PET_IMAGES[get_pet_image_key(6, 0, 2)] = preload(Paths.PET_IMAGES +
+		ELEMENT_NAMES[6] + "_" + ROLE_NAMES[0] + "_" + PET_IMAGE_USE_SUFFIX[2] + PET_IMAGE_SUFFIX)
+
+func get_pet_image_key(a : int, r : int, use : int = PET_IMAGE_USES.SPRITE) -> String:
+	var key : String = ELEMENT_NAMES[a] + "_" + ROLE_NAMES[r]
+	#if use != PET_IMAGE_USES.SPRITE:
+	key += "_" + PET_IMAGE_USE_SUFFIX[use]
+	return key
+
+func get_pet_image(a : ELEMENT, r : ROLE, u : PET_IMAGE_USES) -> CompressedTexture2D:
+	var key : String = get_pet_image_key(a, r, u)
+	if (PET_IMAGES.has(key)):
+		return PET_IMAGES[key]
+	elif PET_IMAGES.has(get_pet_image_key(a, r)):
+		return PET_IMAGES[get_pet_image_key(a, r)]
+	else:
+		return PET_IMAGES[PET_IMAGES.find_key(0)]
+
 
 #endregion
 
@@ -230,6 +275,9 @@ class RandomNames:
 		] as Array[String]
 		by_affinity[ELEMENT.AIR] = [
 			"Wind", "Cloud", "Breeze", "Gale", "Zephyr", "Spin"
+		] as Array[String]
+		by_affinity[ELEMENT.NATURE] = [
+			"Spike"
 		] as Array[String]
 	static func pick(elem : ELEMENT) -> String:
 		var arr : Array[String] = by_affinity[elem] as Array[String]

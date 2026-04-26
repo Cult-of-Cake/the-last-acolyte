@@ -788,11 +788,7 @@ position = Vector2(697, 1574)
 
 [node name="MenuPetPlacement" parent="CanvasLayer" unique_id=1435267098 instance=ExtResource("25_74w0y")]
 
-[node name="ImageCycler" parent="CanvasLayer/MenuPetPlacement/Placement Menu/GridContainer/Affinities" parent_id_path=PackedInt32Array(1435267098, 498683531) index="0" unique_id=977101511]
-hide_alpha = 0.2
-
 [connection signal="body_entered" from="EndPoint" to="EndPoint" method="_on_body_entered"]
 
 [editable path="Map/Regions/Speed x5"]
 [editable path="Map/Regions/Slow x2"]
-[editable path="CanvasLayer/MenuPetPlacement"]

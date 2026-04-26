@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://hh4bxkwvlbb0"]
 
+[ext_resource type="Script" uid="uid://bhjr5jja3eh2m" path="res://root/scripts/ui/levels/FilterManager.gd" id="1_a5p15"]
 [ext_resource type="Script" uid="uid://diqbdgqufm1we" path="res://root/scripts/ui/ImageCycler.gd" id="2_a5p15"]
 [ext_resource type="Texture2D" uid="uid://bfay66e8ic5da" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Adventure Pack/PNG/panel_beige.png" id="3_rood7"]
 [ext_resource type="Texture2D" uid="uid://b6olxaq7xvpha" path="res://root/assets/PLACEHOLDERS/Laura/UI/button9.png" id="4_uv53o"]
@@ -26,6 +27,12 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="FilterManager" type="Node2D" parent="." unique_id=1957863517 node_paths=PackedStringArray("faves_button", "affinity_button")]
+script = ExtResource("1_a5p15")
+faves_button = NodePath("../Placement Menu/GridContainer/Favourites/ImageCycler")
+affinity_button = NodePath("../Placement Menu/GridContainer/Affinities/ImageCycler")
+metadata/_custom_type_script = "uid://bhjr5jja3eh2m"
 
 [node name="Placement Menu" type="NinePatchRect" parent="." unique_id=1838559089]
 layout_mode = 1
@@ -487,6 +494,12 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 10
+
+[node name="ImageCycler" type="Node2D" parent="Placement Menu/GridContainer/Tribe" unique_id=267697587 node_paths=PackedStringArray("sprite_list")]
+script = ExtResource("2_a5p15")
+has_an_all = true
+sprite_list = [NodePath("../Anchored/Hoof"), NodePath("../Anchored/Slow"), NodePath("../Anchored/Boost")]
+metadata/_custom_type_script = "uid://diqbdgqufm1we"
 
 [node name="ButtonArt" type="NinePatchRect" parent="Placement Menu/GridContainer/Tribe" unique_id=412321224]
 modulate = Color(0.8392157, 0.6509804, 0.3764706, 0.3529412)

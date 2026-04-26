@@ -75,27 +75,9 @@ func on_mouse_moved(mouse_posn : Vector2i) -> void:
 #endregion
 
 #region Tower Filter
-# F turns favourites-only on or off
-# T cycles tribe, then back to all
-# E cycles affinity through the elements, then back to all
-# C cycles affinity through the cosmics, then back to all
-# A cycles either affinity - elements then cosmics - then back to all
-# 1 through 9 places the 1st through 9th displayed tower
-# X resets all filters
-
-var NO_FILTER : int = -1
-var FAVES_FILTER_DEFAULT : bool = true
-var TRIBE_FILTER_DEFAULT : int = NO_FILTER
-var AFFINITY_FILTER_DEFAULT : int = NO_FILTER
-var faves_filter : bool = FAVES_FILTER_DEFAULT
-var tribe_filter : int = TRIBE_FILTER_DEFAULT
-var affinity_filter : int = AFFINITY_FILTER_DEFAULT
 var placing_tower : int
 
 @export var barrier_button : ImageCycler
-@export var faves_button : ImageCycler
-@export var tribe_button : ImageCycler
-@export var affinity_button : ImageCycler
 
 func on_key_barrier() -> void:
 	if current_mode == CLICK_MODE.BARRIERS:
@@ -106,48 +88,15 @@ func on_key_barrier() -> void:
 		barrier_button.set_to_image(0)
 
 func on_key_favourite() -> void:
-	faves_filter = !faves_filter
-	if faves_filter:
-		faves_button.set_to_image(0)
-	else:
-		faves_button.show_none()
+	SignalBus.lvl_pet_filter_cycle_favourite.emit()
 
 func on_key_tribe() -> void:
-	if tribe_filter == NO_FILTER:
-		tribe_filter = 1
-	else:
-		tribe_filter += 1
-		if tribe_filter >= Vars.ROLE.size() - 1:
-			tribe_filter = NO_FILTER
-
-# A is being used by WASD anyway, let's just figure this out if/when cosmic gets added
-#func on_key_affinity() -> void:
-	#if affinity_filter == NO_FILTER:
-		#affinity_filter = 1
-	#else:
-		#affinity_filter += 1
-		#if affinity_filter >= Vars.ELEMENT.size() - 1: #TODO: + COSMIC - 1 ?
-			## If we end up with an AFFINITY enum that just has all, maybe we update
-			## the later functions instead to use AFFINITY.size / 2 ?
-			#affinity_filter = NO_FILTER
+	SignalBus.lvl_pet_filter_cycle_tribe.emit()
 
 func on_key_element() -> void:
-	if affinity_filter == NO_FILTER:
-		affinity_filter = 0
-	else:
-		affinity_filter += 1
-		if affinity_filter >= Vars.ELEMENT.size() - 1:
-			affinity_filter = NO_FILTER
-	out.ACTIONS.debug(["Affinity filter: ", affinity_filter])
-	# And update the icon
-	if affinity_filter == NO_FILTER:
-		affinity_button.show_all()
-	else:
-		affinity_button.set_to_image(affinity_filter)
+	SignalBus.lvl_pet_filter_cycle_affinity.emit()
 
 func on_key_reset_filters() -> void:
-	faves_filter = FAVES_FILTER_DEFAULT
-	tribe_filter = TRIBE_FILTER_DEFAULT
-	affinity_filter = AFFINITY_FILTER_DEFAULT
+	SignalBus.lvl_pet_filter_reset.emit()
 
 #endregion

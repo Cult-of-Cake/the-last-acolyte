@@ -11,5 +11,5 @@ func _ready()->void:
 	get_node("CollisionShape2D").shape.radius = radius
 
 func get_hit(projectile:Projectile)->void:
-	print("occurred")
+	out.TD.debug("occurred")
 	hit.emit(projectile)

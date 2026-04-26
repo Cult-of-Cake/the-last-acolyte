@@ -19,7 +19,7 @@ func _physics_process(delta:float)->void:
 	if(active):
 		var attack:TowerAttack = select_attack()
 		if attack:
-			print("found an attack: ", attack)
+			out.TD.debug(["Found an attack: ", attack])
 			var enemy:Enemy = attack.get_target()
 			attack.fire(enemy)
 			start_cooldown()

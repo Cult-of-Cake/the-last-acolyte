@@ -61,10 +61,10 @@ static func join(messages:Array) -> String:
 # I want to make it easier to log to specific streams.
 # Define the streams here - in the enum and also the array for its title
 # *Sigh* and two more: "out.gd" and its init function here
-enum LOG { ACTIONS, MOVEMENT, ASSETS, SAVE_SYSTEM, PATHING, DIALOGUE }
-static var streams_text : Array = ["ACTN", "MOVE", "ASST", "SAVE", "PATH", "DIAG" ]
+enum LOG { ACTIONS, MOVEMENT, ASSETS, SAVE_SYSTEM, PATHING, DIALOGUE, TD }
+static var streams_text : Array = ["ACTN", "MOVE", "ASST", "SAVE", "PATH", "DIAG", "TD" ]
 const DEFAULT_LEVEL : Log.LogLevel = Log.LogLevel.INFO
-static var debugging_on : Array[LOG] = [ Lib.LOG.DIALOGUE, Lib.LOG.SAVE_SYSTEM ]
+static var debugging_on : Array[LOG] = [ Lib.LOG.ACTIONS ]
 
 static func init_log_streams() -> void:
 	out.ACTIONS = Lib.EasyLog.new(Lib.LOG.ACTIONS)
@@ -73,6 +73,7 @@ static func init_log_streams() -> void:
 	out.SAVE_SYSTEM = Lib.EasyLog.new(Lib.LOG.SAVE_SYSTEM)
 	out.PATHING = Lib.EasyLog.new(Lib.LOG.PATHING)
 	out.DIALOGUE = Lib.EasyLog.new(Lib.LOG.DIALOGUE)
+	out.TD = Lib.EasyLog.new(Lib.LOG.TD)
 
 # These can be left alone.  The first is auto-filled and the second is what fills it
 static var streams : Array = []

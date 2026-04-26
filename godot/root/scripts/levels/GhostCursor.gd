@@ -8,6 +8,11 @@ func mouse_moved_to(coords : Vector2i) -> void:
 
 func set_to_barrier() -> void:
 	barrier.visible = true
+func unset_barrier() -> void:
+	barrier.visible = false
+
+func turn_off() -> void:
+	unset_barrier()
 
 func flash_red() -> void:
 	var tween := create_tween()

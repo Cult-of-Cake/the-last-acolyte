@@ -1,20 +1,22 @@
 extends Node2D
 class_name ImageCycler
 
-@export var has_an_all : bool = false
-@export var has_a_none : bool = false
+@export var has_an_all : bool
+@export var has_a_none : bool
 @export var sprite_list : Array[CanvasItem]
 @export var hide_alpha : float = 0
 
 var NONE : int = -1
 var ALL : int = -9
-@export var showing : int = NONE
+@export var showing : int
 
 func _ready() -> void:
+	print("Showing is ", showing)
 	update_display()
 
 func set_to_image(n : int) -> void:
-	showing = clampi(n, 0, sprite_list.size())
+	showing = clampi(n, 0, sprite_list.size() - 1)
+	print("Set to ", showing)
 	update_display()
 
 func show_all() -> void:
@@ -49,6 +51,7 @@ func update_display() -> void:
 	var i : int = 0
 	for img in sprite_list:
 		var show_me : bool = (showing == ALL or showing == i)
+		print("Show ", get_parent().name, "(", showing, "): ", i, " = ", show_me)
 		var colour : Color = img.modulate
 		if show_me:
 			colour.a = 1

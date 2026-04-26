@@ -7,7 +7,7 @@ signal left_click(coords: Vector2)
 @export var map : Map
 @export var cursor : GhostCursor
 
-enum CLICK_MODE { BARRIERS }
+enum CLICK_MODE { NONE, BARRIERS, TOWERS }
 var current_mode : CLICK_MODE
 
 var tile_scale : Vector2i
@@ -15,16 +15,20 @@ var tile_scale : Vector2i
 func _ready() -> void:
 
 	tile_scale = tiles.scale.x * tiles.tile_set.tile_size
-	set_mode(CLICK_MODE.BARRIERS)
+	set_mode(CLICK_MODE.NONE)
 
 	# Prepare listeners
 	left_click.connect(place_barrier)
 
-	# TODO: We need to figure out how we want to do this.  Likely a keyboard shortcut for
-	# some actions, but also a UI for everything, and the keyboard shortcuts will likely
-	# reflect how the UI is set up.  For example if barrier is just a special tower/pet,
-	# then maybe "ctrl" gets you to your pets and "1" is barrier.  If not, maybe it's "B".
-	#actions["level_barrier"] = set_mode#(CLICK_MODE.BARRIERS)
+	# Placement shortcut keys
+	actions["lvl_ui_barrier"] = on_key_barrier
+	actions["lvl_ui_favourite"] = on_key_favourite
+	actions["lvl_ui_tribe"] = on_key_tribe
+	actions["lvl_ui_affinity"] = on_key_affinity
+	actions["lvl_ui_element"] = on_key_element
+	#actions["lvl_ui_cosmic"] = on_key_cosmic
+	actions["lvl_ui_reset_filters"] = on_key_reset_filters
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouse:
@@ -59,5 +63,72 @@ func on_mouse_moved(mouse_posn : Vector2i) -> void:
 	if new_tile != prev_tile:
 		prev_tile = new_tile
 		cursor.mouse_moved_to(new_tile)
+
+#endregion
+
+#region Tower Filter
+# F turns favourites-only on or off
+# T cycles tribe, then back to all
+# E cycles affinity through the elements, then back to all
+# C cycles affinity through the cosmics, then back to all
+# A cycles either affinity - elements then cosmics - then back to all
+# 1 through 9 places the 1st through 9th displayed tower
+# X resets all filters
+
+var NO_FILTER : int = -1
+var FAVES_FILTER_DEFAULT : bool = true
+var TRIBE_FILTER_DEFAULT : int = NO_FILTER
+var AFFINITY_FILTER_DEFAULT : int = NO_FILTER
+var faves_filter : bool = FAVES_FILTER_DEFAULT
+var tribe_filter : int = TRIBE_FILTER_DEFAULT
+var affinity_filter : int = AFFINITY_FILTER_DEFAULT
+var placing_tower : int
+
+@export var barrier_button : ImageCycler
+@export var faves_button : ImageCycler
+@export var tribe_button : ImageCycler
+@export var affinity_button : ImageCycler
+
+func on_key_barrier() -> void:
+	if current_mode == CLICK_MODE.BARRIERS:
+		set_mode(CLICK_MODE.NONE)
+		barrier_button.show_none()
+	else:
+		set_mode(CLICK_MODE.BARRIERS)
+		barrier_button.set_to_image(0)
+
+func on_key_favourite() -> void:
+	faves_filter = !faves_filter
+
+func on_key_tribe() -> void:
+	if tribe_filter == NO_FILTER:
+		tribe_filter = 1
+	else:
+		tribe_filter += 1
+		if tribe_filter >= Vars.ROLE.size():
+			tribe_filter = NO_FILTER
+
+func on_key_affinity() -> void:
+	if affinity_filter == NO_FILTER:
+		affinity_filter = 1
+	else:
+		affinity_filter += 1
+		if affinity_filter >= Vars.ELEMENT.size(): #TODO: + COSMIC - 1 ?
+			# If we end up with an AFFINITY enum that just has all, maybe we update
+			# the later functions instead to use AFFINITY.size / 2 ?
+			affinity_filter = NO_FILTER
+
+func on_key_element() -> void:
+	if affinity_filter == NO_FILTER:
+		affinity_filter = 1
+	else:
+		affinity_filter += 1
+		if affinity_filter >= Vars.ELEMENT.size():
+			affinity_filter = NO_FILTER
+
+func on_key_reset_filters() -> void:
+	faves_filter = FAVES_FILTER_DEFAULT
+	tribe_filter = TRIBE_FILTER_DEFAULT
+	affinity_filter = AFFINITY_FILTER_DEFAULT
 
 #endregion

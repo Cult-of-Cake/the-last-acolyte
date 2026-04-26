@@ -1,0 +1,494 @@
+[gd_scene format=3 uid="uid://hh4bxkwvlbb0"]
+
+[ext_resource type="Texture2D" uid="uid://bfay66e8ic5da" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Adventure Pack/PNG/panel_beige.png" id="3_rood7"]
+[ext_resource type="PackedScene" uid="uid://e8a4o243r4k" path="res://root/scenes/scene/level_entities/level_ui/button_pp_filter_big.tscn" id="4_13n33"]
+[ext_resource type="Texture2D" uid="uid://b6olxaq7xvpha" path="res://root/assets/PLACEHOLDERS/Laura/UI/button9.png" id="4_uv53o"]
+[ext_resource type="Texture2D" uid="uid://d3oilougr6wsm" path="res://root/assets/image/pets/Nature_Hoof_Icon.png" id="5_13n33"]
+[ext_resource type="Texture2D" uid="uid://ndr23t86j562" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/star.png" id="5_iyels"]
+[ext_resource type="Texture2D" uid="uid://d2kqap18s5fvn" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Water.png" id="7_bbnqj"]
+[ext_resource type="Texture2D" uid="uid://1qovbr6qggxv" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Fire.png" id="8_of2b5"]
+[ext_resource type="Texture2D" uid="uid://b6yms43y373x1" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/button_square_flat.png" id="9_0e7xq"]
+[ext_resource type="Script" uid="uid://dn5ag4p5fg81o" path="res://root/scripts/ui/resource_loaders/AffinityLoader.gd" id="9_of2b5"]
+[ext_resource type="Texture2D" uid="uid://b807jjr5vnee8" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Earth.png" id="10_a5p15"]
+[ext_resource type="Texture2D" uid="uid://0tkhxkxv03hl" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Air.png" id="11_47ouj"]
+[ext_resource type="Texture2D" uid="uid://cnu2drc0vxjnv" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Electric.png" id="12_4oka2"]
+[ext_resource type="Texture2D" uid="uid://cxjjds72ly0pb" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Damage.png" id="14_jn488"]
+[ext_resource type="Texture2D" uid="uid://nmg7gaeytlby" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Slow.png" id="15_altej"]
+[ext_resource type="Texture2D" uid="uid://cyct8pgbkr2ij" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Boost.png" id="16_bmuwb"]
+
+[node name="MenuPetPlacement" type="Control" unique_id=1435267098]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Placement Menu" type="NinePatchRect" parent="." unique_id=1838559089]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("3_rood7")
+patch_margin_left = 20
+patch_margin_top = 40
+patch_margin_right = 60
+patch_margin_bottom = 60
+
+[node name="GridContainer" type="GridContainer" parent="Placement Menu" unique_id=1384539902]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 10
+
+[node name="Barrier" parent="Placement Menu/GridContainer" unique_id=1034269311 instance=ExtResource("4_13n33")]
+layout_mode = 2
+
+[node name="Cancel" parent="Placement Menu/GridContainer/Barrier/Undertext" parent_id_path=PackedInt32Array(1034269311, 424441337) index="2" unique_id=1374422549]
+visible = false
+
+[node name="Favourites" parent="Placement Menu/GridContainer" unique_id=2120840957 instance=ExtResource("4_13n33")]
+layout_mode = 2
+
+[node name="Label" parent="Placement Menu/GridContainer/Favourites/Undertext" parent_id_path=PackedInt32Array(2120840957, 424441337) index="0" unique_id=579090470]
+text = "Favourites"
+
+[node name="Label" parent="Placement Menu/GridContainer/Favourites/Undertext/Keypress" parent_id_path=PackedInt32Array(2120840957, 140586019) index="0" unique_id=1011069328]
+text = "F"
+
+[node name="Cancel" parent="Placement Menu/GridContainer/Favourites/Undertext" parent_id_path=PackedInt32Array(2120840957, 424441337) index="2" unique_id=1374422549]
+visible = false
+
+[node name="Icon" parent="Placement Menu/GridContainer/Favourites" index="4" unique_id=398215653]
+modulate = Color(0.9850213, 0.9265989, 2.3102762e-06, 1)
+texture = ExtResource("5_iyels")
+
+[node name="Affinities" type="MarginContainer" parent="Placement Menu/GridContainer" unique_id=498683531]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="ButtonArt" type="NinePatchRect" parent="Placement Menu/GridContainer/Affinities" unique_id=8286612]
+modulate = Color(0.8392157, 0.6509804, 0.3764706, 0.3529412)
+texture_filter = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("4_uv53o")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="Active" type="NinePatchRect" parent="Placement Menu/GridContainer/Affinities" unique_id=497775642]
+visible = false
+modulate = Color(0.8392157, 0.6509804, 0.3764706, 0.3529412)
+texture_filter = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("4_uv53o")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="Anchored" type="Control" parent="Placement Menu/GridContainer/Affinities" unique_id=424441337]
+texture_filter = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Icon - Selected" type="TextureRect" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=1592722711]
+visible = false
+modulate = Color(0.9850213, 0.9265989, 2.3102762e-06, 1)
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -30.0
+offset_right = 15.0
+grow_horizontal = 2
+grow_vertical = 0
+tooltip_text = "Filter"
+texture = ExtResource("7_bbnqj")
+expand_mode = 1
+
+[node name="Fire" type="TextureRect" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=1095336253]
+layout_mode = 1
+offset_left = 18.0
+offset_top = 1.0
+offset_right = 34.0
+offset_bottom = 17.0
+tooltip_text = "Filter"
+texture = ExtResource("8_of2b5")
+expand_mode = 1
+
+[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Affinities/Anchored/Fire" unique_id=481674330 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-138, -630)
+script = ExtResource("9_of2b5")
+affinity = 1
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
+
+[node name="Earth" type="TextureRect" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=1487748843]
+layout_mode = 1
+offset_left = 26.0
+offset_top = 32.0
+offset_right = 42.0
+offset_bottom = 48.0
+tooltip_text = "Filter"
+texture = ExtResource("10_a5p15")
+expand_mode = 1
+
+[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Affinities/Anchored/Earth" unique_id=894506847 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-138, -630)
+script = ExtResource("9_of2b5")
+affinity = 2
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
+
+[node name="Water" type="TextureRect" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=1796981989]
+layout_mode = 1
+offset_top = 15.0
+offset_right = 16.0
+offset_bottom = 31.0
+tooltip_text = "Filter"
+texture = ExtResource("7_bbnqj")
+expand_mode = 1
+
+[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Affinities/Anchored/Water" unique_id=795925622 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-138, -630)
+script = ExtResource("9_of2b5")
+affinity = 3
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
+
+[node name="Air" type="TextureRect" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=983249945]
+layout_mode = 1
+offset_left = 33.0
+offset_top = 15.0
+offset_right = 49.0
+offset_bottom = 31.0
+tooltip_text = "Filter"
+texture = ExtResource("11_47ouj")
+expand_mode = 1
+
+[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Affinities/Anchored/Air" unique_id=209541640 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-138, -630)
+script = ExtResource("9_of2b5")
+affinity = 4
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
+
+[node name="Electric" type="TextureRect" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=432013873]
+layout_mode = 1
+offset_left = 8.0
+offset_top = 33.0
+offset_right = 24.0
+offset_bottom = 49.0
+tooltip_text = "Filter"
+texture = ExtResource("12_4oka2")
+expand_mode = 1
+
+[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Affinities/Anchored/Electric" unique_id=164265276 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-138, -630)
+script = ExtResource("9_of2b5")
+affinity = 5
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
+
+[node name="Label" type="Label" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=502119413]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.49019608, 0.31764707, 0.18431373, 1)
+theme_override_font_sizes/font_size = 6
+text = "Affinity: Any"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Keypress" type="TextureRect" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=140586019]
+modulate = Color(1, 1, 0.8235294, 1)
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = -1
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_vertical = 0
+texture = ExtResource("9_0e7xq")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Placement Menu/GridContainer/Affinities/Anchored/Keypress" unique_id=934804769]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 7
+text = "A"
+horizontal_alignment = 1
+
+[node name="Tribe" type="MarginContainer" parent="Placement Menu/GridContainer" unique_id=571698866]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="ButtonArt" type="NinePatchRect" parent="Placement Menu/GridContainer/Tribe" unique_id=412321224]
+modulate = Color(0.8392157, 0.6509804, 0.3764706, 0.3529412)
+texture_filter = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("4_uv53o")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="Active" type="NinePatchRect" parent="Placement Menu/GridContainer/Tribe" unique_id=97308822]
+visible = false
+modulate = Color(0.8392157, 0.6509804, 0.3764706, 0.3529412)
+texture_filter = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("4_uv53o")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="Anchored" type="Control" parent="Placement Menu/GridContainer/Tribe" unique_id=1783988335]
+texture_filter = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Icon - Selected" type="TextureRect" parent="Placement Menu/GridContainer/Tribe/Anchored" unique_id=827224644]
+visible = false
+modulate = Color(0.9850213, 0.9265989, 2.3102762e-06, 1)
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -30.0
+offset_right = 15.0
+grow_horizontal = 2
+grow_vertical = 0
+tooltip_text = "Filter"
+texture = ExtResource("7_bbnqj")
+expand_mode = 1
+
+[node name="Hoof" type="TextureRect" parent="Placement Menu/GridContainer/Tribe/Anchored" unique_id=428295955]
+layout_mode = 1
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 25.0
+offset_bottom = 25.0
+tooltip_text = "Filter"
+texture = ExtResource("14_jn488")
+expand_mode = 1
+
+[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Tribe/Anchored/Hoof" unique_id=305232802 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-138, -630)
+script = ExtResource("9_of2b5")
+affinity = 1
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
+
+[node name="Slow" type="TextureRect" parent="Placement Menu/GridContainer/Tribe/Anchored" unique_id=822321834]
+layout_mode = 1
+offset_left = 25.0
+offset_top = 9.0
+offset_right = 41.0
+offset_bottom = 25.0
+tooltip_text = "Filter"
+texture = ExtResource("15_altej")
+expand_mode = 1
+
+[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Tribe/Anchored/Slow" unique_id=1224260821 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-138, -630)
+script = ExtResource("9_of2b5")
+affinity = 2
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
+
+[node name="Boost" type="TextureRect" parent="Placement Menu/GridContainer/Tribe/Anchored" unique_id=1350131797]
+layout_mode = 1
+offset_left = 16.0
+offset_top = 25.0
+offset_right = 32.0
+offset_bottom = 41.0
+tooltip_text = "Filter"
+texture = ExtResource("16_bmuwb")
+expand_mode = 1
+
+[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Tribe/Anchored/Boost" unique_id=352681750 node_paths=PackedStringArray("loading_node")]
+position = Vector2(-138, -630)
+script = ExtResource("9_of2b5")
+affinity = 3
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
+
+[node name="Label" type="Label" parent="Placement Menu/GridContainer/Tribe/Anchored" unique_id=1124499788]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.49019608, 0.31764707, 0.18431373, 1)
+theme_override_font_sizes/font_size = 6
+text = "Tribe: Any"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Keypress" type="TextureRect" parent="Placement Menu/GridContainer/Tribe/Anchored" unique_id=642978183]
+modulate = Color(1, 1, 0.8235294, 1)
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = -1
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_vertical = 0
+texture = ExtResource("9_0e7xq")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Placement Menu/GridContainer/Tribe/Anchored/Keypress" unique_id=502565902]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 7
+text = "T"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="Placement Menu/GridContainer" unique_id=208307463]
+layout_mode = 2
+
+[node name="Charlie" type="MarginContainer" parent="Placement Menu/GridContainer" unique_id=1730797065]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="ButtonArt" type="NinePatchRect" parent="Placement Menu/GridContainer/Charlie" unique_id=929595142]
+modulate = Color(0.8392157, 0.6509804, 0.3764706, 0.3529412)
+texture_filter = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("4_uv53o")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="Label" type="Label" parent="Placement Menu/GridContainer/Charlie/ButtonArt" unique_id=184060443]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.49019608, 0.31764707, 0.18431373, 1)
+theme_override_font_sizes/font_size = 6
+text = "Charlie"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Icon" type="TextureRect" parent="Placement Menu/GridContainer/Charlie" unique_id=331142187]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Filter"
+texture = ExtResource("5_13n33")
+expand_mode = 1
+
+[node name="Undertext" type="Control" parent="Placement Menu/GridContainer/Charlie" unique_id=33771330]
+texture_filter = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Placement Menu/GridContainer/Charlie/Undertext" unique_id=1293196995]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.49019608, 0.31764707, 0.18431373, 1)
+theme_override_font_sizes/font_size = 6
+text = "Charlie"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Keypress" type="TextureRect" parent="Placement Menu/GridContainer/Charlie/Undertext" unique_id=1079454117]
+modulate = Color(1, 1, 0.8235294, 1)
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_vertical = 0
+texture = ExtResource("9_0e7xq")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Placement Menu/GridContainer/Charlie/Undertext/Keypress" unique_id=320375046]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 7
+text = "1"
+horizontal_alignment = 1
+
+[editable path="Placement Menu/GridContainer/Barrier"]
+[editable path="Placement Menu/GridContainer/Favourites"]

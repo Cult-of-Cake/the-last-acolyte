@@ -64,98 +64,6 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 10
 
-[node name="Barrier" type="MarginContainer" parent="Placement Menu/GridContainer" unique_id=1034269311]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 10
-
-[node name="ImageCycler" type="Node2D" parent="Placement Menu/GridContainer/Barrier" unique_id=742617619 node_paths=PackedStringArray("sprite_list")]
-script = ExtResource("2_a5p15")
-has_a_none = true
-sprite_list = [NodePath("../Icon")]
-hide_alpha = 0.5
-showing = -1
-metadata/_custom_type_script = "uid://diqbdgqufm1we"
-
-[node name="ButtonArt" type="NinePatchRect" parent="Placement Menu/GridContainer/Barrier" unique_id=8286612]
-modulate = Color(0.8392157, 0.6509804, 0.3764706, 0.3529412)
-texture_filter = 1
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture = ExtResource("4_uv53o")
-patch_margin_left = 12
-patch_margin_top = 12
-patch_margin_right = 20
-patch_margin_bottom = 20
-
-[node name="Active" type="NinePatchRect" parent="Placement Menu/GridContainer/Barrier" unique_id=497775642]
-visible = false
-modulate = Color(0.8392157, 0.6509804, 0.3764706, 0.3529412)
-texture_filter = 1
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture = ExtResource("4_uv53o")
-patch_margin_left = 12
-patch_margin_top = 12
-patch_margin_right = 20
-patch_margin_bottom = 20
-
-[node name="Anchored" type="Control" parent="Placement Menu/GridContainer/Barrier" unique_id=424441337]
-texture_filter = 1
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Placement Menu/GridContainer/Barrier/Anchored" unique_id=579090470]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.49019608, 0.31764707, 0.18431373, 1)
-theme_override_font_sizes/font_size = 6
-text = "Barrier"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="Keypress" type="TextureRect" parent="Placement Menu/GridContainer/Barrier/Anchored" unique_id=140586019]
-modulate = Color(1, 1, 0.8235294, 1)
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 1
-anchors_preset = -1
-offset_top = 8.0
-offset_right = 8.0
-offset_bottom = 8.0
-grow_vertical = 0
-texture = ExtResource("9_0e7xq")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="Placement Menu/GridContainer/Barrier/Anchored/Keypress" unique_id=1011069328]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 7
-text = "B"
-horizontal_alignment = 1
-
-[node name="Icon" type="TextureRect" parent="Placement Menu/GridContainer/Barrier" unique_id=398215653]
-modulate = Color(0.3019637, 0.59008425, 7.70092e-07, 1)
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-tooltip_text = "Filter"
-texture = ExtResource("5_47ouj")
-expand_mode = 1
-
 [node name="Favourites" type="MarginContainer" parent="Placement Menu/GridContainer" unique_id=2120840957]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -580,6 +488,98 @@ horizontal_alignment = 1
 
 [node name="VSeparator" type="VSeparator" parent="Placement Menu/GridContainer" unique_id=208307463]
 layout_mode = 2
+
+[node name="Barrier" type="MarginContainer" parent="Placement Menu/GridContainer" unique_id=1034269311]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="ImageCycler" type="Node2D" parent="Placement Menu/GridContainer/Barrier" unique_id=742617619 node_paths=PackedStringArray("sprite_list")]
+script = ExtResource("2_a5p15")
+has_a_none = true
+sprite_list = [NodePath("../Icon")]
+hide_alpha = 0.5
+showing = -1
+metadata/_custom_type_script = "uid://diqbdgqufm1we"
+
+[node name="ButtonArt" type="NinePatchRect" parent="Placement Menu/GridContainer/Barrier" unique_id=8286612]
+modulate = Color(0.8392157, 0.6509804, 0.3764706, 0.3529412)
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("4_uv53o")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="Active" type="NinePatchRect" parent="Placement Menu/GridContainer/Barrier" unique_id=497775642]
+visible = false
+modulate = Color(0.8392157, 0.6509804, 0.3764706, 0.3529412)
+texture_filter = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("4_uv53o")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="Anchored" type="Control" parent="Placement Menu/GridContainer/Barrier" unique_id=424441337]
+texture_filter = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Placement Menu/GridContainer/Barrier/Anchored" unique_id=579090470]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.49019608, 0.31764707, 0.18431373, 1)
+theme_override_font_sizes/font_size = 6
+text = "Barrier"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Keypress" type="TextureRect" parent="Placement Menu/GridContainer/Barrier/Anchored" unique_id=140586019]
+modulate = Color(1, 1, 0.8235294, 1)
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = -1
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_vertical = 0
+texture = ExtResource("9_0e7xq")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Placement Menu/GridContainer/Barrier/Anchored/Keypress" unique_id=1011069328]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 7
+text = "B"
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Placement Menu/GridContainer/Barrier" unique_id=398215653]
+modulate = Color(0.3019637, 0.59008425, 7.70092e-07, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+tooltip_text = "Filter"
+texture = ExtResource("5_47ouj")
+expand_mode = 1
 
 [node name="Charlie" type="MarginContainer" parent="Placement Menu/GridContainer" unique_id=1730797065]
 layout_mode = 2

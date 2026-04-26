@@ -12,6 +12,7 @@ func _ready() -> void:
 	SignalBus.lvl_pet_filter_cycle_tribe.connect(on_key_tribe)
 	SignalBus.lvl_pet_filter_cycle_affinity.connect(on_key_element)
 	SignalBus.lvl_pet_filter_reset.connect(on_key_reset_filters)
+	SignalBus.lvl_pet_pick.connect(on_pet_number)
 
 var NO_FILTER : int = -1
 var FAVES_FILTER_DEFAULT : bool = true
@@ -20,6 +21,8 @@ var AFFINITY_FILTER_DEFAULT : int = NO_FILTER
 var faves_filter : bool = FAVES_FILTER_DEFAULT
 var tribe_filter : int = TRIBE_FILTER_DEFAULT
 var affinity_filter : int = AFFINITY_FILTER_DEFAULT
+
+#region Filters
 
 # Turns favourites-only on or off
 func on_key_favourite() -> void:
@@ -90,3 +93,11 @@ func on_key_reset_filters() -> void:
 	on_key_favourite()
 	on_key_tribe()
 	on_key_element()
+
+#endregion
+
+func on_pet_number(_n : int) -> void:
+	#TODO Implement the filters.
+	# This should return the ID of the nth pet who has not been filtered out and has not been placed
+	var selected : PetRegistryData = Game.get_pet_data(1)
+	SignalBus.lvl_pet_result.emit(selected)

@@ -28,6 +28,11 @@ func _ready() -> void:
 	actions["lvl_ui_element"] = on_key_element
 	#actions["lvl_ui_cosmic"] = on_key_cosmic
 	actions["lvl_ui_reset_filters"] = on_key_reset_filters
+	actions["lvl_ui_pick_01"] = on_key_T1
+	actions["lvl_ui_pick_02"] = on_key_T2
+	actions["lvl_ui_pick_03"] = on_key_T3
+	actions["lvl_ui_pick_04"] = on_key_T4
+	actions["lvl_ui_pick_05"] = on_key_T5
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouse:
@@ -49,8 +54,10 @@ func set_mode(mode : CLICK_MODE) -> void:
 	match mode:
 		CLICK_MODE.BARRIERS:
 			cursor.set_to_barrier()
+		CLICK_MODE.TOWERS:
+			cursor.set_to_tower()
 		_:
-			cursor.turn_off()
+			cursor.unset()
 	out.ACTIONS.debug((["Set mode to: ", mode]))
 
 func on_click(coords : Vector2) -> void:
@@ -59,6 +66,8 @@ func on_click(coords : Vector2) -> void:
 			var placed : bool = map.place_barrier(coords)
 			if !placed:
 				cursor.flash_red()
+		CLICK_MODE.TOWERS:
+			out.ACTIONS.debug("Placing a tower")
 
 #endregion
 
@@ -75,28 +84,36 @@ func on_mouse_moved(mouse_posn : Vector2i) -> void:
 #endregion
 
 #region Tower Filter
-var placing_tower : int
 
-@export var barrier_button : ImageCycler
+var placing_tower : int
 
 func on_key_barrier() -> void:
 	if current_mode == CLICK_MODE.BARRIERS:
 		set_mode(CLICK_MODE.NONE)
-		barrier_button.show_none()
 	else:
 		set_mode(CLICK_MODE.BARRIERS)
-		barrier_button.set_to_image(0)
 
 func on_key_favourite() -> void:
 	SignalBus.lvl_pet_filter_cycle_favourite.emit()
-
 func on_key_tribe() -> void:
 	SignalBus.lvl_pet_filter_cycle_tribe.emit()
-
 func on_key_element() -> void:
 	SignalBus.lvl_pet_filter_cycle_affinity.emit()
-
 func on_key_reset_filters() -> void:
 	SignalBus.lvl_pet_filter_reset.emit()
+func on_key_T1() -> void:
+	on_numbered_key(0)
+func on_key_T2() -> void:
+	on_numbered_key(1)
+func on_key_T3() -> void:
+	on_numbered_key(2)
+func on_key_T4() -> void:
+	on_numbered_key(3)
+func on_key_T5() -> void:
+	on_numbered_key(4)
+func on_numbered_key(posn : int) -> void:
+	set_mode(CLICK_MODE.TOWERS)
+	placing_tower = posn
+	SignalBus.lvl_pet_pick.emit(posn)
 
 #endregion

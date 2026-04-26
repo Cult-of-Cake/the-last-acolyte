@@ -2,6 +2,7 @@ extends Node
 
 func _ready() -> void:
 	init_level_array()
+	init_pet_images()
 	init_scene_manager_options()
 	Lib.init_log_streams()
 	RandomNames.init()

@@ -603,7 +603,7 @@ unique_name_in_owner = true
 script = ExtResource("2_ccu1u")
 map = NodePath("../Map")
 
-[node name="LevelActionListener" type="Control" parent="." unique_id=96035147 node_paths=PackedStringArray("tiles", "map", "cursor", "barrier_button")]
+[node name="LevelActionListener" type="Control" parent="." unique_id=96035147 node_paths=PackedStringArray("tiles", "map", "cursor")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -612,7 +612,6 @@ script = ExtResource("2_m68ns")
 tiles = NodePath("../Map/Placement")
 map = NodePath("../Map")
 cursor = NodePath("../GhostCursor")
-barrier_button = NodePath("../CanvasLayer/MenuPetPlacement/Placement Menu/GridContainer/Barrier/ImageCycler")
 metadata/_custom_type_script = "uid://b46lanymu5680"
 
 [node name="Map" type="Node2D" parent="." unique_id=1786262132 node_paths=PackedStringArray("tile_map", "placement_map", "start_point", "end_point")]
@@ -761,10 +760,11 @@ highspeed = 2000.0
 motion_obj = NodePath("..")
 metadata/_custom_type_script = "uid://dj8urviixjcrq"
 
-[node name="GhostCursor" type="Node2D" parent="." unique_id=123066385 node_paths=PackedStringArray("barrier")]
+[node name="GhostCursor" type="Node2D" parent="." unique_id=123066385 node_paths=PackedStringArray("barrier", "tower")]
 scale = Vector2(2, 2)
 script = ExtResource("17_ivipd")
 barrier = NodePath("Barrier")
+tower = NodePath("Tower")
 
 [node name="Barrier" type="Sprite2D" parent="GhostCursor" unique_id=1057147397]
 visible = false
@@ -772,10 +772,9 @@ modulate = Color(0.5529412, 1, 0.627451, 0.4)
 texture = ExtResource("9_m6cc7")
 centered = false
 
-[node name="NatureHoof" type="Sprite2D" parent="GhostCursor" unique_id=2004743833]
+[node name="Tower" type="Sprite2D" parent="GhostCursor" unique_id=2004743833]
 visible = false
 modulate = Color(1, 1, 1, 0.33333334)
-scale = Vector2(0.14, 0.14)
 texture = ExtResource("23_token")
 centered = false
 

@@ -44,6 +44,7 @@ func place_tower(coordinates: Vector2i) -> void:
 	out.TD.info(["Placing tower ", selected_tower.data.given_name, " at ", coordinates])
 	placed_towers[coordinates] = selected_tower
 	add_child(selected_tower)
+	selected_tower.global_position = to_global(map_to_local(coordinates))
 	SignalBus.lvl_pet_placed.emit(coordinates)
 	
 #endregion

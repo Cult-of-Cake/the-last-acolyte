@@ -61,13 +61,15 @@ func set_mode(mode : CLICK_MODE) -> void:
 	out.ACTIONS.debug((["Set mode to: ", mode]))
 
 func on_click(coords : Vector2) -> void:
+	var placed : bool = false
 	match current_mode:
 		CLICK_MODE.BARRIERS:
-			var placed : bool = map.place_barrier(coords)
-			if !placed:
-				cursor.flash_red()
+			placed = map.place_barrier(coords)
 		CLICK_MODE.TOWERS:
-			out.ACTIONS.debug("Placing a tower")
+			placed = map.place_barrier(coords, true)
+	if !placed:
+		cursor.flash_red()
+
 
 #endregion
 

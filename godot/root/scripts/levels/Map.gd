@@ -130,7 +130,7 @@ func add_path(new_path:Path) ->void:
 	add_child(new_path)
 	paths.append(new_path)
 
-func place_barrier(coords:Vector2) -> bool:
+func place_barrier(coords:Vector2, is_tower : bool = false) -> bool:
 	var local:Vector2 = tile_map.to_local(coords)
 	var tile:Vector2i = tile_map.local_to_map(local)
 	if tile_map.impassible.has(tile):
@@ -194,7 +194,10 @@ func place_barrier(coords:Vector2) -> bool:
 			tile_map.place_barrier(tile)
 			# In some levels, obstacles might be invisible and we want to place on a different layer too
 			if placement_map:
-				placement_map.place_barrier(tile)
+				if is_tower:
+					placement_map.place_tower(tile)
+				else:
+					placement_map.place_barrier(tile)
 			for new_path in new_paths:
 				paths.append(new_path)
 				add_child(new_path)

@@ -1,18 +1,17 @@
 extends Node2D
 class_name FilterManager
 
+func _ready() -> void:
+	connect_signals()
+	load_available_towers()
+
+#region Key presses
+
 @export var faves_button : ImageCycler
 @export var tribe_button : ImageCycler
 @export var affinity_button : ImageCycler
 @export var tribe_label : Label
 @export var affinity_label : Label
-
-func _ready() -> void:
-	SignalBus.lvl_pet_filter_cycle_favourite.connect(on_key_favourite)
-	SignalBus.lvl_pet_filter_cycle_tribe.connect(on_key_tribe)
-	SignalBus.lvl_pet_filter_cycle_affinity.connect(on_key_element)
-	SignalBus.lvl_pet_filter_reset.connect(on_key_reset_filters)
-	SignalBus.lvl_pet_pick.connect(on_pet_number)
 
 var NO_FILTER : int = -1
 var FAVES_FILTER_DEFAULT : bool = true
@@ -22,7 +21,13 @@ var faves_filter : bool = FAVES_FILTER_DEFAULT
 var tribe_filter : int = TRIBE_FILTER_DEFAULT
 var affinity_filter : int = AFFINITY_FILTER_DEFAULT
 
-#region Filters
+func connect_signals() -> void:
+	SignalBus.lvl_pet_filter_cycle_favourite.connect(on_key_favourite)
+	SignalBus.lvl_pet_filter_cycle_tribe.connect(on_key_tribe)
+	SignalBus.lvl_pet_filter_cycle_affinity.connect(on_key_element)
+	SignalBus.lvl_pet_filter_reset.connect(on_key_reset_filters)
+	SignalBus.lvl_pet_pick.connect(on_pet_number)
+	SignalBus.lvl_pet_placed.connect(on_tower_placed)
 
 # Turns favourites-only on or off
 func on_key_favourite() -> void:
@@ -96,8 +101,34 @@ func on_key_reset_filters() -> void:
 
 #endregion
 
-func on_pet_number(_n : int) -> void:
+func on_pet_number(n : int) -> void:
 	#TODO Implement the filters.
 	# This should return the ID of the nth pet who has not been filtered out and has not been placed
-	var selected : PetRegistryData = Game.get_pet_data(1)
+	selected = available_towers.get(filtered_towers[n])
 	SignalBus.lvl_pet_result.emit(selected)
+
+#region Towers
+
+var selected : Tower
+var available_towers : Dictionary[int, Tower]
+var filtered_towers : Array[int]
+
+func load_available_towers() -> void:
+	filtered_towers.clear()
+	for p_id in Game.get_pet_ids():
+		var pet : PetRegistryData = Game.get_pet_data(p_id)
+		var tower : Tower = Vars.get_tower_prefab(pet).instantiate() as Tower
+		tower.init(pet)
+		available_towers[pet.sprout_id] = tower
+		# Do a default sort, this will change a lot though
+		filtered_towers.append(pet.sprout_id)
+
+func on_tower_placed(coords : Vector2i) -> void:
+	selected.coords = coords
+	available_towers.erase(selected.data.sprout_id)
+	refilter()
+
+#endregion
+
+func refilter() -> void:
+	pass

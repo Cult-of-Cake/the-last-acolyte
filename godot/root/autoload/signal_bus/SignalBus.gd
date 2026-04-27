@@ -23,6 +23,7 @@ signal lvl_pet_filter_reset
 signal lvl_pet_filter_changed(favourites : bool, tribe : int, affinity : int)
 
 signal lvl_pet_pick(posn : int)
-signal lvl_pet_result(pet : PetRegistryData)
+signal lvl_pet_result(tower : Tower)
+signal lvl_pet_placed(coords : Vector2i)
 
 #endregion

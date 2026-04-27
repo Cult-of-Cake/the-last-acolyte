@@ -10,3 +10,6 @@ func place_barrier(coordinates: Vector2i) -> void:
 	barriers[coordinates] = load(Vars.Paths.PREFABS + "level_entities/other/barricade.tscn").instantiate()
 	add_child(barriers[coordinates])
 	barriers[coordinates].global_position = to_global(map_to_local(coordinates))
+
+func place_tower(coordinates: Vector2i) -> void:
+	barriers[coordinates].global_position = to_global(map_to_local(coordinates))

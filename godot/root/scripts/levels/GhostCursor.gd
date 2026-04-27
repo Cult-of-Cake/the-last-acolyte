@@ -22,8 +22,8 @@ func unset() -> void:
 	tower.visible = false
 #endregion
 
-func on_tower_placement(pet : PetRegistryData) -> void:
-	tower.texture = Vars.get_pet_image(pet.get_element(), pet.get_role(), Vars.PET_IMAGE_USES.CURSOR)
+func on_tower_placement(pet : Tower) -> void:
+	tower.texture = pet.cursor_img
 	set_to_tower()
 
 func flash_red() -> void:

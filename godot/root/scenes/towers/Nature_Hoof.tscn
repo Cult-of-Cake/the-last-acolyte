@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bxc5feq7injim"]
+
+[ext_resource type="Script" uid="uid://mricvfdwxyy1" path="res://root/scripts/towers/lectro_giraffe.gd" id="1_ylivr"]
+[ext_resource type="Texture2D" uid="uid://cllmce1lvm76m" path="res://root/assets/image/pets/Nature_Hoof_Sprite.png" id="2_mjusm"]
+[ext_resource type="Texture2D" uid="uid://d3oilougr6wsm" path="res://root/assets/image/pets/Nature_Hoof_Icon.png" id="3_esye5"]
+[ext_resource type="Texture2D" uid="uid://7tmm6otxd606" path="res://root/assets/image/pets/Nature_Hoof_Cursor.png" id="4_qvxvr"]
+
+[node name="Tower" type="Node2D" unique_id=1128536587 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_ylivr")
+sprite = NodePath("Sprite2D")
+sprite_img = ExtResource("2_mjusm")
+icon_img = ExtResource("3_esye5")
+cursor_img = ExtResource("4_qvxvr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=971717483]
+texture = ExtResource("2_mjusm")
+
+[node name="Attacks" type="Node2D" parent="." unique_id=429116756]
+unique_name_in_owner = true

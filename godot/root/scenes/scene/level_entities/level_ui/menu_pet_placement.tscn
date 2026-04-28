@@ -226,44 +226,9 @@ tooltip_text = "Filter"
 texture = ExtResource("8_of2b5")
 expand_mode = 1
 
-[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Affinities/Anchored/Fire" unique_id=481674330 node_paths=PackedStringArray("loading_node")]
-position = Vector2(-138, -630)
+[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Affinities/Anchored/Fire" unique_id=1932161859 node_paths=PackedStringArray("loading_node")]
 script = ExtResource("9_of2b5")
 affinity = 1
-loading_node = NodePath("..")
-metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
-
-[node name="Earth" type="TextureRect" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=1487748843]
-layout_mode = 1
-offset_left = 33.0
-offset_top = 41.0
-offset_right = 57.0
-offset_bottom = 65.0
-tooltip_text = "Filter"
-texture = ExtResource("10_a5p15")
-expand_mode = 1
-
-[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Affinities/Anchored/Earth" unique_id=894506847 node_paths=PackedStringArray("loading_node")]
-position = Vector2(-138, -630)
-script = ExtResource("9_of2b5")
-affinity = 2
-loading_node = NodePath("..")
-metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
-
-[node name="Water" type="TextureRect" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=1796981989]
-layout_mode = 1
-offset_left = -2.0
-offset_top = 17.0
-offset_right = 22.0
-offset_bottom = 41.0
-tooltip_text = "Filter"
-texture = ExtResource("7_bbnqj")
-expand_mode = 1
-
-[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Affinities/Anchored/Water" unique_id=795925622 node_paths=PackedStringArray("loading_node")]
-position = Vector2(-138, -630)
-script = ExtResource("9_of2b5")
-affinity = 3
 loading_node = NodePath("..")
 metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
 
@@ -277,10 +242,25 @@ tooltip_text = "Filter"
 texture = ExtResource("11_47ouj")
 expand_mode = 1
 
-[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Affinities/Anchored/Air" unique_id=209541640 node_paths=PackedStringArray("loading_node")]
-position = Vector2(-138, -630)
+[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Affinities/Anchored/Air" unique_id=164513954 node_paths=PackedStringArray("loading_node")]
 script = ExtResource("9_of2b5")
-affinity = 4
+affinity = 2
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
+
+[node name="Earth" type="TextureRect" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=1487748843]
+layout_mode = 1
+offset_left = 33.0
+offset_top = 41.0
+offset_right = 57.0
+offset_bottom = 65.0
+tooltip_text = "Filter"
+texture = ExtResource("10_a5p15")
+expand_mode = 1
+
+[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Affinities/Anchored/Earth" unique_id=1361995041 node_paths=PackedStringArray("loading_node")]
+script = ExtResource("9_of2b5")
+affinity = 3
 loading_node = NodePath("..")
 metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
 
@@ -294,8 +274,23 @@ tooltip_text = "Filter"
 texture = ExtResource("12_4oka2")
 expand_mode = 1
 
-[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Affinities/Anchored/Electric" unique_id=164265276 node_paths=PackedStringArray("loading_node")]
-position = Vector2(-138, -630)
+[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Affinities/Anchored/Electric" unique_id=1706638672 node_paths=PackedStringArray("loading_node")]
+script = ExtResource("9_of2b5")
+affinity = 4
+loading_node = NodePath("..")
+metadata/_custom_type_script = "uid://dn5ag4p5fg81o"
+
+[node name="Water" type="TextureRect" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=1796981989]
+layout_mode = 1
+offset_left = -2.0
+offset_top = 17.0
+offset_right = 22.0
+offset_bottom = 41.0
+tooltip_text = "Filter"
+texture = ExtResource("7_bbnqj")
+expand_mode = 1
+
+[node name="AffinityLoader" type="Node2D" parent="Placement Menu/GridContainer/Affinities/Anchored/Water" unique_id=945665728 node_paths=PackedStringArray("loading_node")]
 script = ExtResource("9_of2b5")
 affinity = 5
 loading_node = NodePath("..")

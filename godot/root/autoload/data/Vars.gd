@@ -69,10 +69,10 @@ enum HUB_LAYERS { WALLS, PLAYER, ROOFS }
 
 #region Elements
 
-enum ELEMENT { SPECIAL, FIRE, EARTH, WATER, AIR, ELECTRIC, NATURE }
-const ELEMENT_NAMES : Array[String] = [ "", "Fire", "Earth", "Water", "Air", "Electric", "Nature" ]
-const ELEMENT_COLOURS : Array[Color] = [ Color.TRANSPARENT, Color.FIREBRICK, Color.PERU,
-	Color.DEEP_SKY_BLUE, Color.LIGHT_GRAY, Color.YELLOW, Color.FOREST_GREEN ]
+enum ELEMENT { SPECIAL, FIRE, AIR, EARTH, ELECTRIC, WATER, NATURE }
+const ELEMENT_NAMES : Array[String] = [ "", "Fire", "Air", "Earth", "Electric", "Water", "Nature" ]
+const ELEMENT_COLOURS : Array[Color] = [ Color.TRANSPARENT, Color.FIREBRICK, Color.LIGHT_GRAY,
+	Color.PERU, Color.YELLOW, Color.DEEP_SKY_BLUE, Color.FOREST_GREEN ]
 
 const ELEMENT_FILE_PREFIX : String = "PLACEHOLDERS/Laura/Elements/"
 const ELEMENT_FILE_SUFFIX : String = ".png"

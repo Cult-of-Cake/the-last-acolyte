@@ -69,7 +69,7 @@ func on_key_element() -> void:
 		affinity_filter = 0
 	else:
 		affinity_filter += 1
-		if affinity_filter >= Vars.ELEMENT.size() - 1: # We're ignoring Special, for now
+		if affinity_filter >= Vars.ELEMENT.size() - 2: # We're ignoring Special, for now
 			affinity_filter = NO_FILTER
 	out.ACTIONS.debug(["Affinity filter: ", affinity_filter])
 	# And update the button

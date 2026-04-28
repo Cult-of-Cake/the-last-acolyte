@@ -17,7 +17,6 @@
 [ext_resource type="Script" uid="uid://bxbiqah7dshvr" path="res://root/scripts/ui/resource_loaders/TribeLoader.gd" id="15_47ouj"]
 [ext_resource type="Texture2D" uid="uid://nmg7gaeytlby" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Slow.png" id="15_altej"]
 [ext_resource type="Texture2D" uid="uid://cyct8pgbkr2ij" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Boost.png" id="16_bmuwb"]
-[ext_resource type="PackedScene" uid="uid://dre1uwyqac027" path="res://root/scenes/scene/level_entities/level_ui/button_pp_pet.tscn" id="18_47ouj"]
 
 [node name="MenuPetPlacement" type="Control" unique_id=1435267098]
 layout_mode = 3
@@ -586,11 +585,3 @@ layout_mode = 2
 tooltip_text = "Filter"
 texture = ExtResource("5_47ouj")
 expand_mode = 1
-
-[node name="PetPickerButton" parent="Placement Menu/GridContainer" unique_id=1120883520 instance=ExtResource("18_47ouj")]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="PetPickerButton2" parent="Placement Menu/GridContainer" unique_id=557956565 instance=ExtResource("18_47ouj")]
-layout_mode = 2
-size_flags_horizontal = 3

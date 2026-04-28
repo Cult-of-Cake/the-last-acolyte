@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://b6yms43y373x1" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/button_square_flat.png" id="3_usuyn"]
 
 [node name="PetPickerButton" type="Control" unique_id=1120883520 node_paths=PackedStringArray("sprite_rect", "name_label", "key_label")]
+custom_minimum_size = Vector2(75, 96)
 layout_mode = 3
 anchors_preset = 0
-size_flags_horizontal = 3
 script = ExtResource("1_vdbx1")
 sprite_rect = NodePath("Margin/Icon")
 name_label = NodePath("Margin/Anchored/Label")
@@ -18,11 +18,11 @@ metadata/_custom_type_script = "uid://b8w14qytca4bs"
 [node name="Margin" type="MarginContainer" parent="." unique_id=1583606139]
 layout_mode = 0
 offset_left = 4.0
-offset_right = 78.0
+offset_right = 74.0
 offset_bottom = 84.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 10

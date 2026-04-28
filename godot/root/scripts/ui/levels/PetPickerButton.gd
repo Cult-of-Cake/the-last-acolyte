@@ -6,12 +6,12 @@ class_name PetPickerButton
 @export var key_label : Label
 
 func init(pet : Tower) -> void:
-	sprite_rect.texture = pet.sprite_img
+	sprite_rect.texture = pet.icon_img
 	name_label.text = pet.data.given_name
 	hide_from_bar()
 
 func display_on_bar(n : int) -> void:
-	key_label.text = "%i" % n
+	key_label.text = "%s" % n
 	visible = true
 
 func hide_from_bar() -> void:

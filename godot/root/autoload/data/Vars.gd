@@ -105,52 +105,27 @@ const ROLE_ICONS : Array[CompressedTexture2D] = [
 
 #region Affinity-Role combo
 
-var PET_IMAGES : Dictionary[String, CompressedTexture2D]
-enum PET_IMAGE_USES { SPRITE, ICON, CURSOR }
-const PET_IMAGE_USE_SUFFIX = [ "Sprite", "Icon", "Cursor" ]
-const PET_IMAGE_SUFFIX = ".png"
-# I was going to put dialog in here, then I remembered expressions and this is probably already
-# set up in the dialogue engine anyway.
-
 var TOWER_PREFABS : Dictionary[String, PackedScene]
 
 func init_pet_consts() -> void:
+	# Sadly, these MUST be constant in order to use preload.  No looping, no functions.
+	# Elemental Hoof
 	TOWER_PREFABS[get_pet_prefab_key(ELEMENT.EARTH, ROLE.DAMAGE)] = preload(Paths.TOWERS +
 		ELEMENT_NAMES[ELEMENT.EARTH] + "_" + ROLE_NAMES[ROLE.DAMAGE] + Paths.PREFAB_SUFFIX)
+	TOWER_PREFABS[get_pet_prefab_key(ELEMENT.ELECTRIC, ROLE.DAMAGE)] = preload(Paths.TOWERS +
+		ELEMENT_NAMES[ELEMENT.ELECTRIC] + "_" + ROLE_NAMES[ROLE.DAMAGE] + Paths.PREFAB_SUFFIX)
+	TOWER_PREFABS[get_pet_prefab_key(ELEMENT.AIR, ROLE.DAMAGE)] = preload(Paths.TOWERS +
+		ELEMENT_NAMES[ELEMENT.AIR] + "_" + ROLE_NAMES[ROLE.DAMAGE] + Paths.PREFAB_SUFFIX)
+	TOWER_PREFABS[get_pet_prefab_key(ELEMENT.FIRE, ROLE.DAMAGE)] = preload(Paths.TOWERS +
+		ELEMENT_NAMES[ELEMENT.FIRE] + "_" + ROLE_NAMES[ROLE.DAMAGE] + Paths.PREFAB_SUFFIX)
+	TOWER_PREFABS[get_pet_prefab_key(ELEMENT.WATER, ROLE.DAMAGE)] = preload(Paths.TOWERS +
+		ELEMENT_NAMES[ELEMENT.WATER] + "_" + ROLE_NAMES[ROLE.DAMAGE] + Paths.PREFAB_SUFFIX)
+	# Cosmic Hoof
 	TOWER_PREFABS[get_pet_prefab_key(ELEMENT.NATURE, ROLE.DAMAGE)] = preload(Paths.TOWERS +
 		ELEMENT_NAMES[ELEMENT.NATURE] + "_" + ROLE_NAMES[ROLE.DAMAGE] + Paths.PREFAB_SUFFIX)
-	TOWER_PREFABS[get_pet_prefab_key(ELEMENT.ELECTRIC, ROLE.DAMAGE)] = preload(Paths.TOWERS +
-		"LectroGiraffe" + Paths.PREFAB_SUFFIX)
-	# Sadly, these MUST be constant in order to use preload.  No looping, no making this neater.
-	PET_IMAGES[get_pet_image_key(2, 0, 0)] = preload(Paths.PET_IMAGES +
-		ELEMENT_NAMES[2] + "_" + ROLE_NAMES[0] + "_" + PET_IMAGE_USE_SUFFIX[0] + PET_IMAGE_SUFFIX)
-	PET_IMAGES[get_pet_image_key(2, 0, 1)] = preload(Paths.PET_IMAGES +
-		ELEMENT_NAMES[2] + "_" + ROLE_NAMES[0] + "_" + PET_IMAGE_USE_SUFFIX[1] + PET_IMAGE_SUFFIX)
-	PET_IMAGES[get_pet_image_key(2, 0, 2)] = preload(Paths.PET_IMAGES +
-		ELEMENT_NAMES[2] + "_" + ROLE_NAMES[0] + "_" + PET_IMAGE_USE_SUFFIX[2] + PET_IMAGE_SUFFIX)
-	PET_IMAGES[get_pet_image_key(6, 0, 0)] = preload(Paths.PET_IMAGES +
-		ELEMENT_NAMES[6] + "_" + ROLE_NAMES[0] + "_" + PET_IMAGE_USE_SUFFIX[0] + PET_IMAGE_SUFFIX)
-	PET_IMAGES[get_pet_image_key(6, 0, 1)] = preload(Paths.PET_IMAGES +
-		ELEMENT_NAMES[6] + "_" + ROLE_NAMES[0] + "_" + PET_IMAGE_USE_SUFFIX[1] + PET_IMAGE_SUFFIX)
-	PET_IMAGES[get_pet_image_key(6, 0, 2)] = preload(Paths.PET_IMAGES +
-		ELEMENT_NAMES[6] + "_" + ROLE_NAMES[0] + "_" + PET_IMAGE_USE_SUFFIX[2] + PET_IMAGE_SUFFIX)
 
-func get_pet_image_key(a : int, r : int, use : int = PET_IMAGE_USES.SPRITE) -> String:
-	var key : String = ELEMENT_NAMES[a] + "_" + ROLE_NAMES[r]
-	#if use != PET_IMAGE_USES.SPRITE:
-	key += "_" + PET_IMAGE_USE_SUFFIX[use]
-	return key
 func get_pet_prefab_key(a : ELEMENT, r : ROLE) -> String:
 	return ELEMENT_NAMES[a] + "_" + ROLE_NAMES[r]
-
-func get_pet_image(a : ELEMENT, r : ROLE, u : PET_IMAGE_USES) -> CompressedTexture2D:
-	var key : String = get_pet_image_key(a, r, u)
-	if (PET_IMAGES.has(key)):
-		return PET_IMAGES[key]
-	elif PET_IMAGES.has(get_pet_image_key(a, r)):
-		return PET_IMAGES[get_pet_image_key(a, r)]
-	else:
-		return PET_IMAGES[get_pet_image_key(2, 0, 0)]
 
 func get_tower_prefab(pet : PetRegistryData) -> PackedScene:
 	var key : String = get_pet_prefab_key(pet.get_element(), pet.get_role())

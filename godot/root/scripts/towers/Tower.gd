@@ -12,9 +12,6 @@ func init(data : PetRegistryData) -> void:
 	self.data = data
 	affinity = data.get_element()
 	role = data.get_role()
-	#sprite_img = Vars.get_pet_image(affinity, role, Vars.PET_IMAGE_USES.SPRITE)
-	#icon_img = Vars.get_pet_image(affinity, role, Vars.PET_IMAGE_USES.ICON)
-	#cursor_img = Vars.get_pet_image(affinity, role, Vars.PET_IMAGE_USES.CURSOR)
 	sprite.texture = sprite_img
 
 #region Sprites

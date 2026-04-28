@@ -10,9 +10,11 @@ func init(pet : Tower) -> void:
 	name_label.text = pet.data.given_name
 	hide_from_bar()
 
-func display_on_bar(n : int) -> void:
+func display_on_bar(n : int, labelvis : bool = true) -> void:
 	key_label.text = "%s" % n
 	visible = true
+	# Not all numbers are actually mapped, e.g. 10+ never will be
+	key_label.visible = labelvis
 
 func hide_from_bar() -> void:
 	visible = false

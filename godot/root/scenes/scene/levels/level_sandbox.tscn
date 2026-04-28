@@ -785,6 +785,8 @@ scale = Vector2(2, 2)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2048161884]
 
 [node name="MenuPetPlacement" parent="CanvasLayer" unique_id=1435267098 instance=ExtResource("25_74w0y")]
+offset_left = 1.0
+offset_right = 1.0
 
 [connection signal="body_entered" from="EndPoint" to="EndPoint" method="_on_body_entered"]
 

@@ -38,6 +38,10 @@ func connect_keypress_signals() -> void:
 # Turns favourites-only on or off
 func on_key_favourite() -> void:
 	faves_filter = !faves_filter
+	update_fave_display()
+	refilter()
+
+func update_fave_display() -> void:
 	if faves_filter:
 		faves_button.set_to_image(0)
 	else:
@@ -51,7 +55,10 @@ func on_key_tribe() -> void:
 		tribe_filter += 1
 		if tribe_filter >= Vars.ROLE.size():
 			tribe_filter = NO_FILTER
-	# And update the button
+	update_tribe_display()
+	refilter()
+
+func update_tribe_display() -> void:
 	var label : String
 	if tribe_filter == NO_FILTER:
 		tribe_button.show_all()
@@ -72,7 +79,10 @@ func on_key_element() -> void:
 		if affinity_filter >= Vars.ELEMENT.size() - 2: # We're ignoring Special, for now
 			affinity_filter = NO_FILTER
 	out.ACTIONS.debug(["Affinity filter: ", affinity_filter])
-	# And update the button
+	update_element_display()
+	refilter()
+
+func update_element_display() -> void:
 	var label : String
 	if affinity_filter == NO_FILTER:
 		affinity_button.show_all()
@@ -101,9 +111,10 @@ func on_key_reset_filters() -> void:
 	faves_filter = FAVES_FILTER_DEFAULT
 	tribe_filter = TRIBE_FILTER_DEFAULT
 	affinity_filter = AFFINITY_FILTER_DEFAULT
-	on_key_favourite()
-	on_key_tribe()
-	on_key_element()
+	update_fave_display()
+	update_tribe_display()
+	update_element_display()
+	refilter()
 
 #endregion
 

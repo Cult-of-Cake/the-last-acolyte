@@ -1,6 +1,9 @@
 extends Node2D
 class_name FilterManager
 
+const PET_BUTTON : PackedScene = preload(Vars.Paths.LVL_UI + "button_pp_pet" + Vars.Paths.PREFAB_SUFFIX)
+@export var pet_button_parent : Control
+
 func _ready() -> void:
 	connect_keypress_signals()
 	if Vars.save_data_ready:
@@ -118,13 +121,20 @@ var filtered_towers : Array[int]
 
 func load_available_towers() -> void:
 	filtered_towers.clear()
+	var added_count : int = 0
 	for p_id in Game.get_pet_ids():
 		var pet : PetRegistryData = Game.get_pet_data(p_id)
 		var tower : Tower = Vars.get_tower_prefab(pet).instantiate() as Tower
 		tower.init(pet)
 		available_towers[pet.sprout_id] = tower
+		var pet_button := PET_BUTTON.instantiate() as PetPickerButton
+		pet_button.init(tower)
+		pet_button_parent.add_child(pet_button)
 		# Do a default sort, this will change a lot though
 		filtered_towers.append(pet.sprout_id)
+		if added_count < 5:
+			pet_button.display_on_bar(added_count + 1)
+		added_count += 1
 
 func on_tower_placed(coords : Vector2i) -> void:
 	selected.coords = coords

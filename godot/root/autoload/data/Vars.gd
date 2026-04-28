@@ -18,6 +18,7 @@ class Paths:
 	const PREFABS: String = RES + "scenes/scene/"
 	const LEVELS: String = PREFABS + "levels/"
 	const ENEMIES: String = PREFABS + "level_entities/enemies/"
+	const LVL_UI: String = PREFABS + "level_entities/level_ui/"
 	const TOWERS : String = RES + "scenes/towers/"
 	
 	const PET_IMAGES : String = ASSETS + "image/pets/"

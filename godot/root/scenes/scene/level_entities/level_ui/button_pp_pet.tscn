@@ -5,7 +5,21 @@
 [ext_resource type="Texture2D" uid="uid://d3oilougr6wsm" path="res://root/assets/image/pets/Nature_Hoof_Icon.png" id="2_vdbx1"]
 [ext_resource type="Texture2D" uid="uid://b6yms43y373x1" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/button_square_flat.png" id="3_usuyn"]
 
-[node name="Charlie" type="MarginContainer" unique_id=664988829]
+[node name="PetPickerButton" type="Control" unique_id=1120883520 node_paths=PackedStringArray("sprite_rect", "name_label", "key_label")]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+script = ExtResource("1_vdbx1")
+sprite_rect = NodePath("Margin/Icon")
+name_label = NodePath("Margin/Anchored/Label")
+key_label = NodePath("Margin/Anchored/Keypress/Label")
+metadata/_custom_type_script = "uid://b8w14qytca4bs"
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1583606139]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 78.0
+offset_bottom = 84.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/margin_left = 10
@@ -13,12 +27,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 10
 
-[node name="PetPickerButton" type="Control" parent="." unique_id=1758403239]
-layout_mode = 2
-script = ExtResource("1_vdbx1")
-metadata/_custom_type_script = "uid://b8w14qytca4bs"
-
-[node name="ButtonArt" type="NinePatchRect" parent="." unique_id=1286975289]
+[node name="ButtonArt" type="NinePatchRect" parent="Margin" unique_id=2108369975]
 modulate = Color(0.8392157, 0.6509804, 0.3764706, 0.3529412)
 texture_filter = 1
 custom_minimum_size = Vector2(64, 64)
@@ -29,19 +38,19 @@ patch_margin_top = 12
 patch_margin_right = 20
 patch_margin_bottom = 20
 
-[node name="Icon" type="TextureRect" parent="." unique_id=1892508175]
+[node name="Icon" type="TextureRect" parent="Margin" unique_id=1901873487]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 tooltip_text = "Filter"
 texture = ExtResource("2_vdbx1")
 expand_mode = 1
 
-[node name="Anchored" type="Control" parent="." unique_id=1049706769]
+[node name="Anchored" type="Control" parent="Margin" unique_id=2109244190]
 texture_filter = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Anchored" unique_id=1817459469]
+[node name="Label" type="Label" parent="Margin/Anchored" unique_id=1940338940]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -58,7 +67,7 @@ text = "Charlie"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Keypress" type="TextureRect" parent="Anchored" unique_id=1592855927]
+[node name="Keypress" type="TextureRect" parent="Margin/Anchored" unique_id=996990249]
 modulate = Color(1, 1, 0.8235294, 1)
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 1
@@ -69,7 +78,7 @@ grow_vertical = 0
 texture = ExtResource("3_usuyn")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Anchored/Keypress" unique_id=489364699]
+[node name="Label" type="Label" parent="Margin/Anchored/Keypress" unique_id=369465177]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -49,7 +49,7 @@ func update_display() -> void:
 	var i : int = 0
 	for img in sprite_list:
 		var show_me : bool = (showing == ALL or showing == i)
-		print("Show ", get_parent().name, "(", showing, "): ", i, " = ", show_me)
+		#print("Show ", get_parent().name, "(", showing, "): ", i, " = ", show_me)
 		var colour : Color = img.modulate
 		if show_me:
 			colour.a = 1

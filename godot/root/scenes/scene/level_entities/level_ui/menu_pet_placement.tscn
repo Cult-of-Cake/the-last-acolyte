@@ -29,8 +29,9 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="FilterManager" type="Node2D" parent="." unique_id=1957863517 node_paths=PackedStringArray("faves_button", "tribe_button", "affinity_button", "tribe_label", "affinity_label")]
+[node name="FilterManager" type="Node2D" parent="." unique_id=1957863517 node_paths=PackedStringArray("pet_button_parent", "faves_button", "tribe_button", "affinity_button", "tribe_label", "affinity_label")]
 script = ExtResource("1_a5p15")
+pet_button_parent = NodePath("../Placement Menu/GridContainer")
 faves_button = NodePath("../Placement Menu/GridContainer/Favourites/ImageCycler")
 tribe_button = NodePath("../Placement Menu/GridContainer/Tribe/ImageCycler")
 affinity_button = NodePath("../Placement Menu/GridContainer/Affinities/ImageCycler")
@@ -586,5 +587,10 @@ tooltip_text = "Filter"
 texture = ExtResource("5_47ouj")
 expand_mode = 1
 
-[node name="Charlie" parent="Placement Menu/GridContainer" unique_id=664988829 instance=ExtResource("18_47ouj")]
+[node name="PetPickerButton" parent="Placement Menu/GridContainer" unique_id=1120883520 instance=ExtResource("18_47ouj")]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PetPickerButton2" parent="Placement Menu/GridContainer" unique_id=557956565 instance=ExtResource("18_47ouj")]
+layout_mode = 2
+size_flags_horizontal = 3

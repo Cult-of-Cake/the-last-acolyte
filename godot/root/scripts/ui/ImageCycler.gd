@@ -11,12 +11,10 @@ var ALL : int = -9
 @export var showing : int
 
 func _ready() -> void:
-	print("Showing is ", showing)
 	update_display()
 
 func set_to_image(n : int) -> void:
 	showing = clampi(n, 0, sprite_list.size() - 1)
-	print("Set to ", showing)
 	update_display()
 
 func show_all() -> void:

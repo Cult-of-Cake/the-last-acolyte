@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://diqbdgqufm1we" path="res://root/scripts/ui/ImageCycler.gd" id="2_a5p15"]
 [ext_resource type="Texture2D" uid="uid://bfay66e8ic5da" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Adventure Pack/PNG/panel_beige.png" id="3_rood7"]
 [ext_resource type="Texture2D" uid="uid://b6olxaq7xvpha" path="res://root/assets/PLACEHOLDERS/Laura/UI/button9.png" id="4_uv53o"]
-[ext_resource type="Texture2D" uid="uid://d3oilougr6wsm" path="res://root/assets/image/pets/Nature_Hoof_Icon.png" id="5_13n33"]
 [ext_resource type="Texture2D" uid="uid://75w4qdblat2m" path="res://root/assets/PLACEHOLDERS/Kenney/Scribble Dungeons/PNG 64/tree.png" id="5_47ouj"]
 [ext_resource type="Texture2D" uid="uid://ndr23t86j562" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/star.png" id="5_iyels"]
 [ext_resource type="Texture2D" uid="uid://d2kqap18s5fvn" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Water.png" id="7_bbnqj"]
@@ -18,6 +17,7 @@
 [ext_resource type="Script" uid="uid://bxbiqah7dshvr" path="res://root/scripts/ui/resource_loaders/TribeLoader.gd" id="15_47ouj"]
 [ext_resource type="Texture2D" uid="uid://nmg7gaeytlby" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Slow.png" id="15_altej"]
 [ext_resource type="Texture2D" uid="uid://cyct8pgbkr2ij" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Boost.png" id="16_bmuwb"]
+[ext_resource type="PackedScene" uid="uid://dre1uwyqac027" path="res://root/scenes/scene/level_entities/level_ui/button_pp_pet.tscn" id="18_47ouj"]
 
 [node name="MenuPetPlacement" type="Control" unique_id=1435267098]
 layout_mode = 3
@@ -125,10 +125,11 @@ vertical_alignment = 2
 
 [node name="Keypress" type="TextureRect" parent="Placement Menu/GridContainer/Favourites/Anchored" unique_id=1190207826]
 modulate = Color(1, 1, 0.8235294, 1)
-custom_minimum_size = Vector2(10, 10)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 1
 anchors_preset = -1
-offset_bottom = 8.0
+offset_left = -4.0
+offset_bottom = 12.0
 grow_vertical = 0
 texture = ExtResource("9_0e7xq")
 expand_mode = 1
@@ -141,7 +142,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 12
 text = "F"
 horizontal_alignment = 1
 
@@ -319,10 +320,11 @@ vertical_alignment = 2
 
 [node name="Keypress" type="TextureRect" parent="Placement Menu/GridContainer/Affinities/Anchored" unique_id=48316230]
 modulate = Color(1, 1, 0.8235294, 1)
-custom_minimum_size = Vector2(10, 10)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 1
 anchors_preset = -1
-offset_bottom = 8.0
+offset_left = -4.0
+offset_bottom = 12.0
 grow_vertical = 0
 texture = ExtResource("9_0e7xq")
 expand_mode = 1
@@ -335,7 +337,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 12
 text = "A"
 horizontal_alignment = 1
 
@@ -427,10 +429,9 @@ tooltip_text = "Filter"
 texture = ExtResource("15_altej")
 expand_mode = 1
 
-[node name="TribeLoader" type="Node2D" parent="Placement Menu/GridContainer/Tribe/Anchored/Slow" unique_id=441346067 node_paths=PackedStringArray("loading_node")]
-position = Vector2(-138, -630)
+[node name="TribeLoader" type="Node2D" parent="Placement Menu/GridContainer/Tribe/Anchored/Slow" unique_id=512186520 node_paths=PackedStringArray("loading_node")]
 script = ExtResource("15_47ouj")
-tribe = 2
+tribe = 1
 loading_node = NodePath("..")
 metadata/_custom_type_script = "uid://bxbiqah7dshvr"
 
@@ -447,7 +448,7 @@ expand_mode = 1
 [node name="TribeLoader" type="Node2D" parent="Placement Menu/GridContainer/Tribe/Anchored/Boost" unique_id=1945504352 node_paths=PackedStringArray("loading_node")]
 position = Vector2(-138, -630)
 script = ExtResource("15_47ouj")
-tribe = 1
+tribe = 2
 loading_node = NodePath("..")
 metadata/_custom_type_script = "uid://bxbiqah7dshvr"
 
@@ -470,10 +471,11 @@ vertical_alignment = 2
 
 [node name="Keypress" type="TextureRect" parent="Placement Menu/GridContainer/Tribe/Anchored" unique_id=642978183]
 modulate = Color(1, 1, 0.8235294, 1)
-custom_minimum_size = Vector2(10, 10)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 1
 anchors_preset = -1
-offset_bottom = 8.0
+offset_left = -4.0
+offset_bottom = 12.0
 grow_vertical = 0
 texture = ExtResource("9_0e7xq")
 expand_mode = 1
@@ -486,7 +488,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 12
 text = "T"
 horizontal_alignment = 1
 
@@ -555,12 +557,11 @@ vertical_alignment = 2
 
 [node name="Keypress" type="TextureRect" parent="Placement Menu/GridContainer/Barrier/Anchored" unique_id=140586019]
 modulate = Color(1, 1, 0.8235294, 1)
-custom_minimum_size = Vector2(10, 10)
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 1
 anchors_preset = -1
-offset_top = 8.0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = -4.0
+offset_bottom = 12.0
 grow_vertical = 0
 texture = ExtResource("9_0e7xq")
 expand_mode = 1
@@ -573,7 +574,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 12
 text = "B"
 horizontal_alignment = 1
 
@@ -585,73 +586,5 @@ tooltip_text = "Filter"
 texture = ExtResource("5_47ouj")
 expand_mode = 1
 
-[node name="Charlie" type="MarginContainer" parent="Placement Menu/GridContainer" unique_id=1730797065]
+[node name="Charlie" parent="Placement Menu/GridContainer" unique_id=664988829 instance=ExtResource("18_47ouj")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 10
-
-[node name="ButtonArt" type="NinePatchRect" parent="Placement Menu/GridContainer/Charlie" unique_id=929595142]
-modulate = Color(0.8392157, 0.6509804, 0.3764706, 0.3529412)
-texture_filter = 1
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture = ExtResource("4_uv53o")
-patch_margin_left = 12
-patch_margin_top = 12
-patch_margin_right = 20
-patch_margin_bottom = 20
-
-[node name="Icon" type="TextureRect" parent="Placement Menu/GridContainer/Charlie" unique_id=331142187]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-tooltip_text = "Filter"
-texture = ExtResource("5_13n33")
-expand_mode = 1
-
-[node name="Anchored" type="Control" parent="Placement Menu/GridContainer/Charlie" unique_id=33771330]
-texture_filter = 1
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Placement Menu/GridContainer/Charlie/Anchored" unique_id=1293196995]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -10.0
-offset_right = 10.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.49019608, 0.31764707, 0.18431373, 1)
-theme_override_font_sizes/font_size = 10
-text = "Charlie"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="Keypress" type="TextureRect" parent="Placement Menu/GridContainer/Charlie/Anchored" unique_id=1079454117]
-modulate = Color(1, 1, 0.8235294, 1)
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 1
-anchors_preset = -1
-offset_bottom = 8.0
-grow_vertical = 0
-texture = ExtResource("9_0e7xq")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="Placement Menu/GridContainer/Charlie/Anchored/Keypress" unique_id=320375046]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 7
-text = "1"
-horizontal_alignment = 1

@@ -89,8 +89,8 @@ const ELEMENT_ICONS : Array[CompressedTexture2D] = [
 
 #region Roles
 
-enum ROLE { DAMAGE, BOOST, SLOW }
-const ROLE_NAMES : Array[String] = [ "Hoof", "Claw", "Wing"]
+enum ROLE { DAMAGE, SLOW, BOOST }
+const ROLE_NAMES : Array[String] = [ "Hoof", "Fang", "Wing"]
 const ROLE_COLOURS : Array[Color] = [ Color.WHITE, Color.WHITE, Color.WHITE ]
 
 const ROLE_FILE_PREFIX : String = "PLACEHOLDERS/Laura/Tribes/"

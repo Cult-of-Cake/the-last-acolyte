@@ -85,6 +85,7 @@ func _ready() -> void:
 	reload_save_files_metadatas()
 
 	LogWrapper.debug(self, "Save files initialized: ", _save_files_metadatas.size())
+	Vars.save_system_initialized()
 
 
 func get_save_files_metadatas() -> Array[Dictionary]:
@@ -128,6 +129,7 @@ func load_save_file() -> void:
 	for save_data: SaveData in _save_datas:
 		_system_read_into_or_create(selected_index, save_data)
 		save_data.selected_and_loaded(selected_index)
+		SignalBus.save_data_is_ready.emit()
 
 
 func save_save_file() -> void:

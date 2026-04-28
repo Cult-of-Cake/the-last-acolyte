@@ -6,9 +6,6 @@ func _ready() -> void:
 	init_scene_manager_options()
 	Lib.init_log_streams()
 	RandomNames.init()
-	# TEMP for testing:
-	Data.select_save_file(0)
-	Data.load_save_file()
 
 class Paths:
 	const USER: String = "user://"
@@ -31,6 +28,28 @@ class InputMapConsts:
 	const fast_forward : String = "fast_forward"
 
 const NO_COLOUR : Color = Color(-99, -99, -99, 0)
+
+#region Menu Save Bypass
+# I've set up some signals that should hopefully allow us to test more easily
+# by allowing us to use the save system *without* requiring the main menu.
+# Of course I don't want to break the main menu, so this code should only
+# trigger if the main menu signal does not arrive.
+
+var using_main_menu : bool = false # This will be set by main_menu.gd
+var save_data_ready : bool = false
+
+# This will be called by data.gd
+func save_system_initialized() -> void:
+	SignalBus.save_data_is_ready.connect(on_save_data_ready)
+	# Wait a moment to give main_menu._ready a chance to run, if it's going to
+	await get_tree().create_timer(1.0).timeout
+	if not using_main_menu:
+		Data.select_save_file(0, true)
+
+func on_save_data_ready() -> void:
+	save_data_ready = true
+
+#endregion
 
 #region Dialogue
 

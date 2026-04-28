@@ -11,6 +11,7 @@ signal delete_path(path: Path)
 
 # Game
 signal clicks_per_second_updated(cps: int)
+signal save_data_is_ready
 
 #region In-level
 

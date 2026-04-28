@@ -2,8 +2,11 @@ extends Node2D
 class_name FilterManager
 
 func _ready() -> void:
-	connect_signals()
-	load_available_towers()
+	connect_keypress_signals()
+	if Vars.save_data_ready:
+		load_available_towers()
+	else:
+		SignalBus.save_data_is_ready.connect(load_available_towers)
 
 #region Key presses
 
@@ -21,7 +24,7 @@ var faves_filter : bool = FAVES_FILTER_DEFAULT
 var tribe_filter : int = TRIBE_FILTER_DEFAULT
 var affinity_filter : int = AFFINITY_FILTER_DEFAULT
 
-func connect_signals() -> void:
+func connect_keypress_signals() -> void:
 	SignalBus.lvl_pet_filter_cycle_favourite.connect(on_key_favourite)
 	SignalBus.lvl_pet_filter_cycle_tribe.connect(on_key_tribe)
 	SignalBus.lvl_pet_filter_cycle_affinity.connect(on_key_element)

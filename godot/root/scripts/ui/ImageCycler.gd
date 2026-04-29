@@ -14,7 +14,7 @@ func _ready() -> void:
 	update_display()
 
 func set_to_image(n : int) -> void:
-	showing = clampi(n, 0, sprite_list.size() - 1)
+	showing = clampi(n, 0, sprite_list.size())
 	update_display()
 
 func show_all() -> void:

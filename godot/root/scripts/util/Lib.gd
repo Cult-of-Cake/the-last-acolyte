@@ -64,7 +64,7 @@ static func join(messages:Array) -> String:
 enum LOG { ACTIONS, MOVEMENT, ASSETS, SAVE_SYSTEM, PATHING, DIALOGUE, TD }
 static var streams_text : Array = ["ACTN", "MOVE", "ASST", "SAVE", "PATH", "DIAG", "TD" ]
 const DEFAULT_LEVEL : Log.LogLevel = Log.LogLevel.INFO
-static var debugging_on : Array[LOG] = [ Lib.LOG.ACTIONS ]
+static var debugging_on : Array[LOG] = [ Lib.LOG.TD ]
 
 static func init_log_streams() -> void:
 	out.ACTIONS = Lib.EasyLog.new(Lib.LOG.ACTIONS)

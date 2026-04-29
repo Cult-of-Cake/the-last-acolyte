@@ -133,6 +133,8 @@ func get_tower_prefab(pet : PetRegistryData) -> PackedScene:
 	#FIXME Temporary
 	if TOWER_PREFABS.has(key):
 		return TOWER_PREFABS[key]
+	elif TOWER_PREFABS.has(str(ELEMENT_NAMES[pet.get_element()]) + "_Hoof"):
+		return TOWER_PREFABS[str(ELEMENT_NAMES[pet.get_element()]) + "_Hoof"]
 	else:
 		return TOWER_PREFABS["Nature_Hoof"]
 

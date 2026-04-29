@@ -3,6 +3,7 @@ class_name FilterManager
 
 const PET_BUTTON : PackedScene = preload(Vars.Paths.LVL_UI + "button_pp_pet" + Vars.Paths.PREFAB_SUFFIX)
 @export var pet_button_parent : Control
+const MAPPED_KEYS_COUNT : int = 5
 
 func _ready() -> void:
 	connect_keypress_signals()
@@ -73,10 +74,10 @@ func update_tribe_display() -> void:
 # A cycles either affinity - elements then cosmics - then back to all
 func on_key_element() -> void:
 	if affinity_filter == NO_FILTER:
-		affinity_filter = 0
+		affinity_filter = Vars.ELEMENT.FIRE
 	else:
 		affinity_filter += 1
-		if affinity_filter >= Vars.ELEMENT.size() - 2: # We're ignoring Special, for now
+		if affinity_filter >= Vars.ELEMENT.WATER:
 			affinity_filter = NO_FILTER
 	out.ACTIONS.debug(["Affinity filter: ", affinity_filter])
 	update_element_display()
@@ -88,8 +89,8 @@ func update_element_display() -> void:
 		affinity_button.show_all()
 		label = "Any"
 	else:
-		affinity_button.set_to_image(affinity_filter)
-		label = Vars.ELEMENT_NAMES[affinity_filter + 1] # Again, ignoring Special
+		affinity_button.set_to_image(affinity_filter - 1) # Ignoring special
+		label = Vars.ELEMENT_NAMES[affinity_filter]
 	affinity_label.text = "Element: " + label
 
 # A is being used by WASD anyway, let's just figure this out if/when cosmic gets added
@@ -128,7 +129,9 @@ func on_pet_number(n : int) -> void:
 
 var selected : Tower
 var available_towers : Dictionary[int, Tower]
+var placed_towers : Array[int]
 var filtered_towers : Array[int]
+var pet_button_list : Dictionary[int, PetPickerButton]
 
 func load_available_towers() -> void:
 	filtered_towers.clear()
@@ -141,18 +144,32 @@ func load_available_towers() -> void:
 		var pet_button := PET_BUTTON.instantiate() as PetPickerButton
 		pet_button.init(tower)
 		pet_button_parent.add_child(pet_button)
+		pet_button_list[pet.sprout_id] = pet_button
 		# Do a default sort, this will change a lot though
 		filtered_towers.append(pet.sprout_id)
-		if added_count < 5:
-			pet_button.display_on_bar(added_count + 1)
+		pet_button.display_on_bar(added_count + 1, added_count < MAPPED_KEYS_COUNT)
 		added_count += 1
 
 func on_tower_placed(coords : Vector2i) -> void:
 	selected.coords = coords
-	available_towers.erase(selected.data.sprout_id)
+	placed_towers.append(selected.data.sprout_id)
 	refilter()
 
 #endregion
 
 func refilter() -> void:
-	pass
+	filtered_towers.clear()
+	var added_count : int = 0
+	for tower : Tower in available_towers.values():
+		var pet := tower.data
+		var is_match : bool = true
+		is_match = is_match && (!placed_towers.has(pet.sprout_id))
+		#TODO Put this back when favourites exist: is_match = is_match && (!faves_filter or pet.is_favourite)
+		is_match = is_match && (tribe_filter == NO_FILTER or tribe_filter == tower.role)
+		is_match = is_match && (affinity_filter == NO_FILTER or affinity_filter == tower.affinity)
+		if is_match:
+			filtered_towers.append(pet.sprout_id)
+			pet_button_list[pet.sprout_id].display_on_bar(added_count + 1, added_count < MAPPED_KEYS_COUNT)
+			added_count += 1
+		else:
+			pet_button_list[pet.sprout_id].hide_from_bar()

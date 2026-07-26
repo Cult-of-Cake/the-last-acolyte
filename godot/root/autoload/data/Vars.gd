@@ -2,12 +2,10 @@ extends Node
 
 func _ready() -> void:
 	init_level_array()
+	init_pet_consts()
 	init_scene_manager_options()
 	Lib.init_log_streams()
 	RandomNames.init()
-	# TEMP for testing:
-	Data.select_save_file(0)
-	Data.load_save_file()
 
 class Paths:
 	const USER: String = "user://"
@@ -20,6 +18,10 @@ class Paths:
 	const PREFABS: String = RES + "scenes/scene/"
 	const LEVELS: String = PREFABS + "levels/"
 	const ENEMIES: String = PREFABS + "level_entities/enemies/"
+	const LVL_UI: String = PREFABS + "level_entities/level_ui/"
+	const TOWERS : String = RES + "scenes/towers/"
+	
+	const PET_IMAGES : String = ASSETS + "image/pets/"
 
 	const PREFAB_SUFFIX : String = ".tscn"
 
@@ -27,6 +29,28 @@ class InputMapConsts:
 	const fast_forward : String = "fast_forward"
 
 const NO_COLOUR : Color = Color(-99, -99, -99, 0)
+
+#region Menu Save Bypass
+# I've set up some signals that should hopefully allow us to test more easily
+# by allowing us to use the save system *without* requiring the main menu.
+# Of course I don't want to break the main menu, so this code should only
+# trigger if the main menu signal does not arrive.
+
+var using_main_menu : bool = false # This will be set by main_menu.gd
+var save_data_ready : bool = false
+
+# This will be called by data.gd
+func save_system_initialized() -> void:
+	SignalBus.save_data_is_ready.connect(on_save_data_ready)
+	# Wait a moment to give main_menu._ready a chance to run, if it's going to
+	await get_tree().create_timer(1.0).timeout
+	if not using_main_menu:
+		Data.select_save_file(0, true)
+
+func on_save_data_ready() -> void:
+	save_data_ready = true
+
+#endregion
 
 #region Dialogue
 
@@ -45,10 +69,10 @@ enum HUB_LAYERS { WALLS, PLAYER, ROOFS }
 
 #region Elements
 
-enum ELEMENT { SPECIAL, FIRE, EARTH, WATER, AIR, ELECTRIC }
-const ELEMENT_NAMES : Array[String] = [ "", "Fire", "Earth", "Water", "Air", "Electric" ]
-const ELEMENT_COLOURS : Array[Color] = [ Color.TRANSPARENT, Color.FIREBRICK, Color.PERU,
-	Color.DEEP_SKY_BLUE, Color.LIGHT_GRAY, Color.YELLOW ]
+enum ELEMENT { SPECIAL, FIRE, AIR, EARTH, ELECTRIC, WATER, NATURE }
+const ELEMENT_NAMES : Array[String] = [ "", "Fire", "Air", "Earth", "Electric", "Water", "Nature" ]
+const ELEMENT_COLOURS : Array[Color] = [ Color.TRANSPARENT, Color.FIREBRICK, Color.LIGHT_GRAY,
+	Color.PERU, Color.YELLOW, Color.DEEP_SKY_BLUE, Color.FOREST_GREEN ]
 
 const ELEMENT_FILE_PREFIX : String = "PLACEHOLDERS/Laura/Elements/"
 const ELEMENT_FILE_SUFFIX : String = ".png"
@@ -59,13 +83,60 @@ const ELEMENT_ICONS : Array[CompressedTexture2D] = [
 	preload(Paths.ASSETS + ELEMENT_FILE_PREFIX + ELEMENT_NAMES[3] + ELEMENT_FILE_SUFFIX),
 	preload(Paths.ASSETS + ELEMENT_FILE_PREFIX + ELEMENT_NAMES[4] + ELEMENT_FILE_SUFFIX),
 	preload(Paths.ASSETS + ELEMENT_FILE_PREFIX + ELEMENT_NAMES[5] + ELEMENT_FILE_SUFFIX),
+	preload(Paths.ASSETS + ELEMENT_FILE_PREFIX + ELEMENT_NAMES[6] + ELEMENT_FILE_SUFFIX),
 ]
 
 #endregion
 
 #region Roles
 
-enum ROLE { DAMAGE, BOOST, SLOW }
+enum ROLE { DAMAGE, SLOW, BOOST }
+const ROLE_NAMES : Array[String] = [ "Hoof", "Fang", "Wing"]
+const ROLE_COLOURS : Array[Color] = [ Color.WHITE, Color.WHITE, Color.WHITE ]
+
+const ROLE_FILE_PREFIX : String = "PLACEHOLDERS/Laura/Tribes/"
+const ROLE_FILE_SUFFIX : String = ".png"
+const ROLE_ICONS : Array[CompressedTexture2D] = [
+	preload(Paths.ASSETS + ROLE_FILE_PREFIX + ROLE_NAMES[0] + ROLE_FILE_SUFFIX),
+	preload(Paths.ASSETS + ROLE_FILE_PREFIX + ROLE_NAMES[1] + ROLE_FILE_SUFFIX),
+	preload(Paths.ASSETS + ROLE_FILE_PREFIX + ROLE_NAMES[2] + ROLE_FILE_SUFFIX),
+]
+
+#endregion
+
+#region Affinity-Role combo
+
+var TOWER_PREFABS : Dictionary[String, PackedScene]
+
+func init_pet_consts() -> void:
+	# Sadly, these MUST be constant in order to use preload.  No looping, no functions.
+	# Elemental Hoof
+	TOWER_PREFABS[get_pet_prefab_key(ELEMENT.EARTH, ROLE.DAMAGE)] = preload(Paths.TOWERS +
+		ELEMENT_NAMES[ELEMENT.EARTH] + "_" + ROLE_NAMES[ROLE.DAMAGE] + Paths.PREFAB_SUFFIX)
+	TOWER_PREFABS[get_pet_prefab_key(ELEMENT.ELECTRIC, ROLE.DAMAGE)] = preload(Paths.TOWERS +
+		ELEMENT_NAMES[ELEMENT.ELECTRIC] + "_" + ROLE_NAMES[ROLE.DAMAGE] + Paths.PREFAB_SUFFIX)
+	TOWER_PREFABS[get_pet_prefab_key(ELEMENT.AIR, ROLE.DAMAGE)] = preload(Paths.TOWERS +
+		ELEMENT_NAMES[ELEMENT.AIR] + "_" + ROLE_NAMES[ROLE.DAMAGE] + Paths.PREFAB_SUFFIX)
+	TOWER_PREFABS[get_pet_prefab_key(ELEMENT.FIRE, ROLE.DAMAGE)] = preload(Paths.TOWERS +
+		ELEMENT_NAMES[ELEMENT.FIRE] + "_" + ROLE_NAMES[ROLE.DAMAGE] + Paths.PREFAB_SUFFIX)
+	TOWER_PREFABS[get_pet_prefab_key(ELEMENT.WATER, ROLE.DAMAGE)] = preload(Paths.TOWERS +
+		ELEMENT_NAMES[ELEMENT.WATER] + "_" + ROLE_NAMES[ROLE.DAMAGE] + Paths.PREFAB_SUFFIX)
+	# Cosmic Hoof
+	TOWER_PREFABS[get_pet_prefab_key(ELEMENT.NATURE, ROLE.DAMAGE)] = preload(Paths.TOWERS +
+		ELEMENT_NAMES[ELEMENT.NATURE] + "_" + ROLE_NAMES[ROLE.DAMAGE] + Paths.PREFAB_SUFFIX)
+
+func get_pet_prefab_key(a : ELEMENT, r : ROLE) -> String:
+	return ELEMENT_NAMES[a] + "_" + ROLE_NAMES[r]
+
+func get_tower_prefab(pet : PetRegistryData) -> PackedScene:
+	var key : String = get_pet_prefab_key(pet.get_element(), pet.get_role())
+	#FIXME Temporary
+	if TOWER_PREFABS.has(key):
+		return TOWER_PREFABS[key]
+	elif TOWER_PREFABS.has(str(ELEMENT_NAMES[pet.get_element()]) + "_Hoof"):
+		return TOWER_PREFABS[str(ELEMENT_NAMES[pet.get_element()]) + "_Hoof"]
+	else:
+		return TOWER_PREFABS["Nature_Hoof"]
 
 #endregion
 
@@ -220,6 +291,9 @@ class RandomNames:
 		] as Array[String]
 		by_affinity[ELEMENT.AIR] = [
 			"Wind", "Cloud", "Breeze", "Gale", "Zephyr", "Spin"
+		] as Array[String]
+		by_affinity[ELEMENT.NATURE] = [
+			"Spike"
 		] as Array[String]
 	static func pick(elem : ELEMENT) -> String:
 		var arr : Array[String] = by_affinity[elem] as Array[String]

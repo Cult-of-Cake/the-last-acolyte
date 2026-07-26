@@ -19,3 +19,4 @@ static var ASSETS : Lib.EasyLog
 static var SAVE_SYSTEM : Lib.EasyLog
 static var PATHING : Lib.EasyLog
 static var DIALOGUE : Lib.EasyLog
+static var TD : Lib.EasyLog

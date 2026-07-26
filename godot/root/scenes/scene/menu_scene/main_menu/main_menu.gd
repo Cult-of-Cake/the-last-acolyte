@@ -15,6 +15,7 @@ const VERSION_PREFIX: String = "v"
 
 
 func _ready() -> void:
+	Vars.using_main_menu = true
 	_connect_signals()
 	_refresh_labels()
 

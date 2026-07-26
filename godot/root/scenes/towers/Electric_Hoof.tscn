@@ -1,15 +1,21 @@
 [gd_scene format=3 uid="uid://cgnoxkp7bv736"]
 
 [ext_resource type="Script" uid="uid://mricvfdwxyy1" path="res://root/scripts/towers/lectro_giraffe.gd" id="1_y4lpf"]
-[ext_resource type="Texture2D" uid="uid://bpj5rw7vx38vr" path="res://root/assets/PLACEHOLDERS/Laura/ElectricWeaken128.png" id="2_w5rmq"]
+[ext_resource type="Texture2D" uid="uid://bhitaqv7a531t" path="res://root/assets/image/pets/Electric_Hoof_Sprite.png" id="2_stlv0"]
+[ext_resource type="Texture2D" uid="uid://b8y06pvby65y8" path="res://root/assets/image/pets/Electric_Hoof_Icon.png" id="3_d3b35"]
 [ext_resource type="PackedScene" uid="uid://cjga4rti5fyxj" path="res://root/scenes/component/tower_attacks/homing_bullet.tscn" id="4_3amej"]
+[ext_resource type="Texture2D" uid="uid://cjxr0n8t7jto0" path="res://root/assets/image/pets/Electric_Hoof_Cursor.png" id="4_s3nnv"]
 [ext_resource type="PackedScene" uid="uid://ccyetbxna8wk8" path="res://root/scenes/component/tower_attacks/lightning_bolt.tscn" id="5_1oomn"]
 
-[node name="LectroGiraffe" type="Node2D" unique_id=1128536587]
+[node name="LectroGiraffe" type="Node2D" unique_id=1128536587 node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_y4lpf")
+sprite = NodePath("Sprite2D")
+sprite_img = ExtResource("2_stlv0")
+icon_img = ExtResource("3_d3b35")
+cursor_img = ExtResource("4_s3nnv")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=971717483]
-texture = ExtResource("2_w5rmq")
+texture = ExtResource("2_stlv0")
 
 [node name="Attacks" type="Node2D" parent="." unique_id=429116756]
 unique_name_in_owner = true

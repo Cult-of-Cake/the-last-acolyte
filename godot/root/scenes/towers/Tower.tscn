@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dvvb3s5b7bsfg"]
 
-[ext_resource type="Script" uid="uid://m768bg3rljj7" path="res://root/scripts/towers/tower.gd" id="1_dotxt"]
+[ext_resource type="Script" uid="uid://m768bg3rljj7" path="res://root/scripts/towers/Tower.gd" id="1_dotxt"]
 
 [node name="Tower" type="Node2D" unique_id=123398247]
 script = ExtResource("1_dotxt")

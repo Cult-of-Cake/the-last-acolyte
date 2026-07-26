@@ -37,7 +37,7 @@ func spawn_sprites(origin:Vector2, target:Enemy)->void:
 		spawn_sprites(new_point, target)
 		
 func strike(body:Node2D)->void:
-	print("strike called")
+	out.TD.debug("strike called")
 	if body.has_method("get_hit"):
 		body.get_hit(self)
 		

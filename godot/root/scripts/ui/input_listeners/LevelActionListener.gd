@@ -2,6 +2,7 @@ extends ActionListenerBase
 class_name LevelActionListener
 
 signal left_click(coords: Vector2)
+signal right_click()
 
 @export var tiles : TileMapLayer
 @export var map : Map
@@ -19,6 +20,7 @@ func _ready() -> void:
 
 	# Prepare listeners
 	left_click.connect(on_click)
+	right_click.connect(on_rclick)
 
 	# Placement shortcut keys
 	actions["lvl_ui_barrier"] = on_key_barrier
@@ -42,6 +44,8 @@ func _input(event: InputEvent) -> void:
 		else:
 			if event.is_action_released("left_click"):
 				left_click.emit(mouse_posn)
+			elif event.is_action_released("right_click"):
+				right_click.emit()
 	else:
 		super(event)
 
@@ -70,6 +74,8 @@ func on_click(coords : Vector2) -> void:
 	if !placed:
 		cursor.flash_red()
 
+func on_rclick() -> void:
+	set_mode(CLICK_MODE.NONE)
 
 #endregion
 

@@ -25,8 +25,10 @@ var _love_label: String
 
 func _process(_delta: float) -> void:
 	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
-	emitter_spawner_entity_parent.position = viewport_size / 2
-	tween_spawner_entity_parent.position = viewport_size / 2
+	if emitter_spawner_entity_parent != null:
+		emitter_spawner_entity_parent.position = viewport_size / 2
+	if tween_spawner_entity_parent != null:
+		tween_spawner_entity_parent.position = viewport_size / 2
 
 
 func _ready() -> void:
@@ -51,7 +53,8 @@ func max_click(clicks_per_second: int) -> void:
 
 
 func _init_nodes() -> void:
-	animation_player.play("float")
+	if animation_player != null:
+		animation_player.play("float")
 
 
 func _refresh_label() -> void:

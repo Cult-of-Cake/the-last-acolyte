@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://75w4qdblat2m" path="res://root/assets/PLACEHOLDERS/Kenney/Scribble Dungeons/PNG 64/tree.png" id="5_47ouj"]
 [ext_resource type="Texture2D" uid="uid://ndr23t86j562" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/star.png" id="5_iyels"]
 [ext_resource type="Texture2D" uid="uid://d2kqap18s5fvn" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Water.png" id="7_bbnqj"]
+[ext_resource type="Texture2D" uid="uid://b3g48jrx3xgv5" path="res://root/assets/PLACEHOLDERS/Laura/UI/button9-hover.png" id="8_4oka2"]
 [ext_resource type="Texture2D" uid="uid://1qovbr6qggxv" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Fire.png" id="8_of2b5"]
 [ext_resource type="Texture2D" uid="uid://b6yms43y373x1" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/button_square_flat.png" id="9_0e7xq"]
 [ext_resource type="Script" uid="uid://dn5ag4p5fg81o" path="res://root/scripts/ui/resource_loaders/AffinityLoader.gd" id="9_of2b5"]
@@ -156,6 +157,11 @@ layout_mode = 2
 tooltip_text = "Filter"
 texture = ExtResource("5_iyels")
 expand_mode = 1
+
+[node name="ButtonAction" type="TextureButton" parent="Placement Menu/GridContainer/Favourites" unique_id=155187355]
+layout_mode = 2
+texture_hover = ExtResource("8_4oka2")
+stretch_mode = 0
 
 [node name="Affinities" type="MarginContainer" parent="Placement Menu/GridContainer" unique_id=498683531]
 layout_mode = 2
@@ -339,6 +345,11 @@ theme_override_font_sizes/font_size = 12
 text = "E"
 horizontal_alignment = 1
 
+[node name="ButtonAction" type="TextureButton" parent="Placement Menu/GridContainer/Affinities" unique_id=238693083]
+layout_mode = 2
+texture_hover = ExtResource("8_4oka2")
+stretch_mode = 0
+
 [node name="Tribe" type="MarginContainer" parent="Placement Menu/GridContainer" unique_id=571698866]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -490,6 +501,11 @@ theme_override_font_sizes/font_size = 12
 text = "T"
 horizontal_alignment = 1
 
+[node name="ButtonAction" type="TextureButton" parent="Placement Menu/GridContainer/Tribe" unique_id=1394651222]
+layout_mode = 2
+texture_hover = ExtResource("8_4oka2")
+stretch_mode = 0
+
 [node name="VSeparator" type="VSeparator" parent="Placement Menu/GridContainer" unique_id=208307463]
 layout_mode = 2
 
@@ -583,3 +599,12 @@ layout_mode = 2
 tooltip_text = "Filter"
 texture = ExtResource("5_47ouj")
 expand_mode = 1
+
+[node name="ButtonAction" type="TextureButton" parent="Placement Menu/GridContainer/Barrier" unique_id=1408194260]
+layout_mode = 2
+texture_hover = ExtResource("8_4oka2")
+stretch_mode = 0
+
+[connection signal="pressed" from="Placement Menu/GridContainer/Favourites/ButtonAction" to="FilterManager" method="on_key_favourite"]
+[connection signal="pressed" from="Placement Menu/GridContainer/Affinities/ButtonAction" to="FilterManager" method="on_key_element"]
+[connection signal="pressed" from="Placement Menu/GridContainer/Tribe/ButtonAction" to="FilterManager" method="on_key_tribe"]

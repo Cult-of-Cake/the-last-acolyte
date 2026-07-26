@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://hh4bxkwvlbb0"]
 
+[ext_resource type="Script" uid="uid://gb0rbkxltnh1" path="res://root/scripts/ui/MenuObject.gd" id="1_47ouj"]
 [ext_resource type="Script" uid="uid://bhjr5jja3eh2m" path="res://root/scripts/ui/levels/FilterManager.gd" id="1_a5p15"]
 [ext_resource type="Script" uid="uid://diqbdgqufm1we" path="res://root/scripts/ui/ImageCycler.gd" id="2_a5p15"]
 [ext_resource type="Texture2D" uid="uid://bfay66e8ic5da" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Adventure Pack/PNG/panel_beige.png" id="3_rood7"]
@@ -18,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://nmg7gaeytlby" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Slow.png" id="15_altej"]
 [ext_resource type="Texture2D" uid="uid://cyct8pgbkr2ij" path="res://root/assets/PLACEHOLDERS/Laura/Elements/Boost.png" id="16_bmuwb"]
 
-[node name="MenuPetPlacement" type="Control" unique_id=1435267098]
+[node name="MenuPetPlacement" type="Control" unique_id=1435267098 node_paths=PackedStringArray("blocking_objects")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,6 +28,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_47ouj")
+blocking_objects = [NodePath("Placement Menu/GridContainer")]
 
 [node name="FilterManager" type="Node2D" parent="." unique_id=1957863517 node_paths=PackedStringArray("pet_button_parent", "faves_button", "tribe_button", "affinity_button", "tribe_label", "affinity_label")]
 script = ExtResource("1_a5p15")

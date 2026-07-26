@@ -7,6 +7,7 @@ signal right_click()
 @export var tiles : TileMapLayer
 @export var map : Map
 @export var cursor : GhostCursor
+@export var pet_bar : MenuObject
 
 enum CLICK_MODE { NONE, BARRIERS, TOWERS }
 var current_mode : CLICK_MODE
@@ -43,7 +44,8 @@ func _input(event: InputEvent) -> void:
 			on_mouse_moved(mouse_posn)
 		else:
 			if event.is_action_released("left_click"):
-				left_click.emit(mouse_posn)
+				if not pet_bar.swallowing_click():
+					left_click.emit(mouse_posn)
 			elif event.is_action_released("right_click"):
 				right_click.emit()
 	else:

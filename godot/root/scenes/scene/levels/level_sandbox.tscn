@@ -21,7 +21,6 @@
 [ext_resource type="Script" uid="uid://0vkhw84lb2n6" path="res://root/scripts/levels/GhostCursor.gd" id="17_ivipd"]
 [ext_resource type="Texture2D" uid="uid://vubev6ol7k0y" path="res://root/assets/PLACEHOLDERS/Laura/UI/barGrey_horizontal_all.png" id="17_yps60"]
 [ext_resource type="Texture2D" uid="uid://b17susj88kk02" path="res://root/assets/PLACEHOLDERS/Laura/UI/bar_shading_all.png" id="18_f7ei6"]
-[ext_resource type="PackedScene" uid="uid://cgnoxkp7bv736" path="res://root/scenes/towers/Electric_Hoof.tscn" id="18_lgvk3"]
 [ext_resource type="Texture2D" uid="uid://ds1qlrghhytrp" path="res://root/assets/PLACEHOLDERS/Laura/UI/barGreen_horizontal_all.png" id="19_6148q"]
 [ext_resource type="Texture2D" uid="uid://d3oilougr6wsm" path="res://root/assets/image/pets/Nature_Hoof_Icon.png" id="23_token"]
 [ext_resource type="PackedScene" uid="uid://hh4bxkwvlbb0" path="res://root/scenes/scene/level_entities/level_ui/menu_pet_placement.tscn" id="25_74w0y"]
@@ -603,7 +602,7 @@ unique_name_in_owner = true
 script = ExtResource("2_ccu1u")
 map = NodePath("../Map")
 
-[node name="LevelActionListener" type="Control" parent="." unique_id=96035147 node_paths=PackedStringArray("tiles", "map", "cursor")]
+[node name="LevelActionListener" type="Control" parent="." unique_id=96035147 node_paths=PackedStringArray("tiles", "map", "cursor", "pet_bar")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -612,6 +611,7 @@ script = ExtResource("2_m68ns")
 tiles = NodePath("../Map/Placement")
 map = NodePath("../Map")
 cursor = NodePath("../GhostCursor")
+pet_bar = NodePath("../CanvasLayer/MenuPetPlacement")
 metadata/_custom_type_script = "uid://b46lanymu5680"
 
 [node name="Map" type="Node2D" parent="." unique_id=1786262132 node_paths=PackedStringArray("tile_map", "placement_map", "start_point", "end_point")]
@@ -777,10 +777,6 @@ visible = false
 modulate = Color(1, 1, 1, 0.33333334)
 texture = ExtResource("23_token")
 centered = false
-
-[node name="LectroGiraffe" parent="." unique_id=1128536587 instance=ExtResource("18_lgvk3")]
-position = Vector2(697, 1574)
-scale = Vector2(2, 2)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2048161884]
 

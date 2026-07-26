@@ -608,3 +608,4 @@ stretch_mode = 0
 [connection signal="pressed" from="Placement Menu/GridContainer/Favourites/ButtonAction" to="FilterManager" method="on_key_favourite"]
 [connection signal="pressed" from="Placement Menu/GridContainer/Affinities/ButtonAction" to="FilterManager" method="on_key_element"]
 [connection signal="pressed" from="Placement Menu/GridContainer/Tribe/ButtonAction" to="FilterManager" method="on_key_tribe"]
+[connection signal="pressed" from="Placement Menu/GridContainer/Barrier/ButtonAction" to="FilterManager" method="fake_event_signal" binds= ["lvl_ui_barrier"]]

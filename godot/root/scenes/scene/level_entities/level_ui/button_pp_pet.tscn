@@ -4,8 +4,9 @@
 [ext_resource type="Script" uid="uid://b8w14qytca4bs" path="res://root/scripts/ui/levels/PetPickerButton.gd" id="1_vdbx1"]
 [ext_resource type="Texture2D" uid="uid://d3oilougr6wsm" path="res://root/assets/image/pets/Nature_Hoof_Icon.png" id="2_vdbx1"]
 [ext_resource type="Texture2D" uid="uid://b6yms43y373x1" path="res://root/assets/PLACEHOLDERS/Kenney/UI Assets/UI Pack White/button_square_flat.png" id="3_usuyn"]
+[ext_resource type="Texture2D" uid="uid://b3g48jrx3xgv5" path="res://root/assets/PLACEHOLDERS/Laura/UI/button9-hover.png" id="5_usuyn"]
 
-[node name="PetPickerButton" type="Control" unique_id=1120883520 node_paths=PackedStringArray("sprite_rect", "name_label", "key_label")]
+[node name="PetPickerButton" type="Control" unique_id=1120883520 node_paths=PackedStringArray("sprite_rect", "name_label", "key_label", "button")]
 custom_minimum_size = Vector2(75, 96)
 layout_mode = 3
 anchors_preset = 0
@@ -13,6 +14,7 @@ script = ExtResource("1_vdbx1")
 sprite_rect = NodePath("Margin/Icon")
 name_label = NodePath("Margin/Anchored/Label")
 key_label = NodePath("Margin/Anchored/Keypress/Label")
+button = NodePath("Margin/ButtonAction")
 metadata/_custom_type_script = "uid://b8w14qytca4bs"
 
 [node name="Margin" type="MarginContainer" parent="." unique_id=1583606139]
@@ -89,3 +91,10 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
 text = "1"
 horizontal_alignment = 1
+
+[node name="ButtonAction" type="TextureButton" parent="Margin" unique_id=55989941]
+layout_mode = 2
+texture_hover = ExtResource("5_usuyn")
+stretch_mode = 0
+
+[connection signal="pressed" from="Margin/ButtonAction" to="." method="on_click"]

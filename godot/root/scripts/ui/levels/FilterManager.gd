@@ -93,6 +93,18 @@ func update_element_display() -> void:
 		label = Vars.ELEMENT_NAMES[affinity_filter]
 	affinity_label.text = "Element: " + label
 
+# --- Non-filter button action --------------------------------------------------
+# Handles barrier, pet selection, etc
+# This shouldn't strictly be here, but 1) creating a new class for these other actions seems
+# like overkill, and 2) all the rest are here so this makes things easier to debug/maintain.
+static func fake_event_signal(signal_name : String) -> void:
+	#out.ACTIONS.debug("fake_event_signal ", signal_name)
+	var event := InputEventAction.new()
+	event.action = signal_name
+	event.pressed = true
+	Input.parse_input_event(event)
+
+
 # A is being used by WASD anyway, let's just figure this out if/when cosmic gets added
 #func on_key_affinity() -> void:
 	#if affinity_filter == NO_FILTER:
@@ -120,7 +132,6 @@ func on_key_reset_filters() -> void:
 #endregion
 
 func on_pet_number(n : int) -> void:
-	#TODO Implement the filters.
 	# This should return the ID of the nth pet who has not been filtered out and has not been placed
 	selected = available_towers.get(filtered_towers[n])
 	SignalBus.lvl_pet_result.emit(selected)
